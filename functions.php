@@ -32,7 +32,7 @@ require_once('functions-admin.php');    # Admin/login functions
  * object.
  **/
 Config::$custom_post_types = array(
-	'Example',
+	'FrontPage',
 );
 
 Config::$body_classes = array('default',);
@@ -182,4 +182,19 @@ if ($theme_options['bw_verify']){
 		'name'    => 'msvalidate.01',
 		'content' => htmlentities($theme_options['bw_verify']),
 	);
+}
+
+/**
+ * Get a random post from the FrontPage post type 
+ *
+ *
+ * @author Chris Conover
+ **/
+function get_front_page_post() {
+	$front_page_posts  = get_posts(array('numberposts'=>1,'orderby'=>'rand', 'post_type'=>'frontpage'));
+	$post_thumbnail_id = get_post_thumbnail_id($front_page_posts[0]->ID);
+	$featured_image    = wp_get_attachment_image_src($post_thumbnail_id,'single-post-thumbnail');
+	return array(
+		'post'           => $front_page_posts[0],
+		'featured_image' => $featured_image);
 }

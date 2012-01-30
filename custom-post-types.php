@@ -322,4 +322,22 @@ class Example extends CustomPostType{
 	}
 }
 
+class FrontPage extends CustomPostType{
+	public 
+		$name           = 'frontpage',
+		$plural_name    = 'Front Pages',
+		$singular_name  = 'Front PAge',
+		$add_new_item   = 'Add New Front Page',
+		$edit_item      = 'Edit Front Page',
+		$new_item       = 'New Front Page',
+		$public         = True,
+		$use_categories = false,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = false,
+		$use_title      = True,
+		$use_shortcode  = false,
+		$use_metabox    = false;
+		
+}
 ?>
