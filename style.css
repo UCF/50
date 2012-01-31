@@ -11,7 +11,14 @@ html {background:none;background-color:#fff;overflow:hidden;}
 #UCFHBHeader {z-index:2;position:absolute;width:100%;}
 
 /* Header */
-#header-wrap {position:absolute;top:37px;left:0;width:100%;background-color:rgba(255,255,255,.8);z-index:2;}
+#header-wrap {
+	position:absolute;
+	top:37px;
+	left:0;
+	width:100%;
+	background-color:rgba(255,255,255,.8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
+	z-index:2;}
 #header {padding-top:35px;margin-left:auto;margin-right:auto;float:none;height:65px;border:none;}
 #header h1 {text-indent:-500em;background-image:url('static/img/logo-50.png');background-repeat:no-repeat;width:174px;height:65px;}
 #header #header-menu {margin-left:65px;padding-top:0;}
@@ -52,9 +59,31 @@ html {background:none;background-color:#fff;overflow:hidden;}
 	border-left:1px solid rgba(235,216,138,.6);
 	border-right:1px solid rgba(235,216,138,.6);
 	border-bottom:1px solid rgba(235,216,138,.6);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
 }
 #front-page #post-content * {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
-#front-page #post-content h2 {color:rgba(255,255,255,.9);margin:0;padding:0;font-weight:normal;font-size:20px;}
-#front-page #post-content > p {color:rgba(255,255,255,.75);font-size:20px;margin:0;line-height:1.2em;}
+#front-page #post-content h2 {
+	color:rgba(255,255,255,.9);
+	color:#FFF;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	margin:0;
+	padding:0;
+	font-weight:normal;
+	font-size:20px;
+}
+#front-page #post-content > p {
+	color:rgba(255,255,255,.75);
+	color:#FFF;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	font-size:20px;
+	margin:0;
+	line-height:1.2em;
+}
 #front-page #post-content em {font-size:16px;}
-#front-page #post-content a {color:rgba(255,255,255,.9);font-size:14px;font-weight:200;}
+#front-page #post-content a {
+	color:rgba(255,255,255,.9);
+	color:#FFF;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	font-size:14px;
+	font-weight:200;
+}
