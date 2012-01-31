@@ -28,10 +28,14 @@
 		<?php endif;?>
 		
 	</head>
-	<body class="<?=body_classes()?>">
+	<!--[if lt IE 7 ]>  <body class="ie ie6 <?=body_classes()?>"> <![endif]-->
+	<!--[if IE 7 ]>     <body class="ie ie7 <?=body_classes()?>"> <![endif]-->
+	<!--[if IE 8 ]>     <body class="ie ie8 <?=body_classes()?>"> <![endif]-->
+	<!--[if IE 9 ]>     <body class="ie ie9 <?=body_classes()?>"> <![endif]-->
+	<!--[if (gt IE 9)|!(IE)]><!--> <body class="<?=body_classes()?>"> <!--<![endif]-->
 		<? get_template_part('includes/blackbar'); ?>
 		<div id="blueprint-container" class="container">
-			<div id="header-wrap">
+			<div id="header-wrap" class="clearfix">
 				<div id="header" class="span-24 last">
 					<h1 class="span-5 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 					<div class="span-19 last">
