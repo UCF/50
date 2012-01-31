@@ -7,8 +7,9 @@ Version: v0.0.1
 
 /*/ Global Styles /*/
 html {background:none;background-color:#fff;overflow:hidden;}
+html, body {width:100%;height:100%;}
 #blueprint-container {padding-top:0;}
-#UCFHBHeader {z-index:2;position:absolute;width:100%;}
+#UCFHBHeader {z-index:2;position:absolute;top:0;left:0;width:100%;}
 
 /* Header */
 #header-wrap {
