@@ -33,8 +33,8 @@
 		<div id="blueprint-container" class="container">
 			<div id="header-wrap">
 				<div id="header" class="span-24 last">
-					<h1 class="span-10 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-					<div class="span-14 last">
+					<h1 class="span-5 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+					<div class="span-19 last">
 					<?=get_menu('header-menu', 'menu horizontal', 'header-menu')?>
 					</div>
 				</div>

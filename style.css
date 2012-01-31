@@ -8,16 +8,22 @@ Version: v0.0.1
 /*/ Global Styles /*/
 html {background:none;background-color:#fff;overflow:hidden;}
 #blueprint-container {padding-top:0;}
-#UCFHBHeader {z-index:2;}
+#UCFHBHeader {z-index:2;position:absolute;width:100%;}
 
 /* Header */
 #header-wrap {position:absolute;top:37px;left:0;width:100%;background-color:rgba(255,255,255,.8);z-index:2;}
-#header {padding-top:35px;margin-left:auto;margin-right:auto;float:none;height:110px;border:none;}
+#header {padding-top:35px;margin-left:auto;margin-right:auto;float:none;height:65px;border:none;}
+#header h1 {text-indent:-500em;background-image:url('static/img/logo-50.png');background-repeat:no-repeat;width:174px;height:65px;}
+#header #header-menu {margin-left:65px;padding-top:0;}
+#header #header-menu li {margin-left:14px;}
+#header #header-menu li:after {content:'';}
+#header #header-menu li a {font-size:25px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 
 /* Front Page */
-#front_page {position:relative;width:100%;height:100%;}
+#front-page {width:100%;height:100%;}
 /** Deep Magic **/
-#front_page #feature_wrap {
+#front-page #feature-wrap {
+	z-index:1;
 	display:table;
 	position:absolute;
 	top:-50%;
@@ -25,12 +31,30 @@ html {background:none;background-color:#fff;overflow:hidden;}
 	width:200%;
 	height:200%;
 }
-#front_page #feature_wrap > div {
+#front-page #feature-wrap > div {
 	display:table-cell;
 	vertical-align:middle;
 }
-#front_page #feature_wrap img {
+#front-page #feature-wrap img {
 	position:relative;
 	margin:0 auto;
 	display:block;
 }
+#front-page #post-content {
+	position:absolute;
+	top:157px;
+	right:40px;
+	z-index:2;
+	background-color:rgba(0,0,0,.6);
+	color:#FFF;
+	width:350px;
+	padding:20px;
+	border-left:1px solid rgba(235,216,138,.6);
+	border-right:1px solid rgba(235,216,138,.6);
+	border-bottom:1px solid rgba(235,216,138,.6);
+}
+#front-page #post-content * {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
+#front-page #post-content h2 {color:rgba(255,255,255,.9);margin:0;padding:0;font-weight:normal;font-size:20px;}
+#front-page #post-content > p {color:rgba(255,255,255,.75);font-size:20px;margin:0;line-height:1.2em;}
+#front-page #post-content em {font-size:16px;}
+#front-page #post-content a {color:rgba(255,255,255,.9);font-size:14px;font-weight:200;}

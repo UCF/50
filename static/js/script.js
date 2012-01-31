@@ -1,5 +1,7 @@
 if (typeof jQuery != 'undefined'){
 	jQuery(document).ready(function($) {
+		$('#header-menu a, #front-page #post-content a').addClass('ignore-external');
+
 		Webcom.slideshow($);
 		Webcom.chartbeat($);
 		Webcom.analytics($);
@@ -8,9 +10,9 @@ if (typeof jQuery != 'undefined'){
 		
 		/* Theme Specific Code Here */
 		(function() {
-			
+			// Front Page Image Scaling
 			$(window).resize(function() {
-				var front_page_image = $('#front_page #feature_wrap img'),
+				var front_page_image = $('#front-page #feature-wrap img'),
 					body_width = $(window).width(),
 					body_height = $(window).height();
 				
