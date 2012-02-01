@@ -36,7 +36,7 @@ abstract class CustomPostType{
 		$options = array_merge($defaults, $options);
 		$objects = get_posts($options);
 		return $objects;
-	}
+	}	
 	
 	
 	/**
@@ -358,7 +358,11 @@ class PhotoSet extends CustomPostType{
 		$use_shortcode  = True,
 		$use_metabox    = False;
 	
-	
+	public function get_objects($options=array()){
+		//Overriden to order by menu_order
+		parent::get_objects(array_merge(array('orderby'=>'menu_order'), $options));
+	}
+
 	public function objectsToHTML($objects){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
@@ -394,7 +398,7 @@ class PhotoSet extends CustomPostType{
 				$count++;
 			}
 			$outputs[] = '</ul>';
-			$outputs[] = '<div class="pagination"><a class="left">Move Left</a><span class="pages">&bull;</span><a class="right">Move Right</a></div>';
+			$outputs[] = '<div class="pagination clear"><a class="left">Move Left</a><span class="pages">&bull;</span><a class="right">Move Right</a></div>';
 			$outputs[] = '</fieldset>';
 		}
 		$outputs[] = '</ul>';
