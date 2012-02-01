@@ -105,9 +105,16 @@ html, body {width:100%;height:100%;}
 .photoset-nav > li {list-style-type:none;float:left;margin-left:40px;}
 .photoset-nav > li:first-child {margin-left:0;}
 .photoset-nav > li > a {font-size:25px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-style:italic;text-decoration:none;font-weight:200;}
-.photoset {border-left:none;border-bottom:none;border-right:none;padding-left:0;border-top:1px solid #efefef;}
+.photoset {border-left:none;border-bottom:none;border-right:none;padding-left:0;padding-right:0;padding-bottom:0;margin-bottom:15px;border-top:1px solid #efefef;}
 .photoset legend {font-family:"Helvetica Neue",Helvetica,sans-serif !important;font-weight:200;font-size:20px;padding-right:10px;}
-.photoset ul {margin:0;padding:0;}
-.photoset ul > li {list-style-type:none;float:left;margin-left:17px;}
-.photoset ul > li:first-child {margin-left:0;}
+.photoset ul {margin:0 0 5px 0;padding:0;}
+.photoset ul > li {list-style-type:none;float:left;margin-left:25px;margin-bottom:0;}
+.photoset ul > li.no-margin-left {margin-left:0;}
 .photoset ul > li > img {box-shadow:3px 5px 10px #CCC;}
+.photoset ul > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 5px 0 5px;}
+.photoset .left, 
+	.photoset .right {display:block;text-indent:-500em;width:36px;height:30px;}
+.photoset .left:hover, 
+	.photoset .right:hover {cursor:pointer;}
+.photoset .left {background:#FFF url('static/img/left-arrow.png') no-repeat center left;float:left;}
+.photoset .right {background:#FFF url('static/img/right-arrow.png') no-repeat center left;float:right;}

@@ -372,24 +372,29 @@ class PhotoSet extends CustomPostType{
 
 		// Photosets
 		foreach($objects as $o){
-			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
-			$outputs[] = '<legend>'.$o->post_title.'</legend>';
-
 			// Attachemnts - Assume they are all images
 			$images = get_posts(array(
 				'post_type'   => 'attachment',
 				'numberposts' => -1,
 				'post_status' => NULL,
 				'post_parent' => $o->ID));
-			$outputs[] = '<ul class="clearfix">';
+
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<legend>'.$o->post_title.' - '.count($images).' Images</legend>';
+			$outputs[] = '<ul class="images clearfix">';
+			$count = 0;
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'medium');
 				if($details !== False) {
-					$outputs[] = '<li><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></li>';
+					$style = $count > 2 ? ' style="display:none;" ':'';
+					$css   = ($count % 3) == 0 ? ' class="no-margin-left" ' : '';
+
+					$outputs[] = '<li'.$style.$css.'><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></li>';
 				}
+				$count++;
 			}
 			$outputs[] = '</ul>';
-
+			$outputs[] = '<div class="pagination"><a class="left">Move Left</a><a class="right">Move Right</a></div>';
 			$outputs[] = '</fieldset>';
 		}
 		$outputs[] = '</ul>';
