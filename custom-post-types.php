@@ -340,4 +340,67 @@ class FrontPage extends CustomPostType{
 		$use_metabox    = false;
 		
 }
+
+class PhotoSet extends CustomPostType{
+	public 
+		$name           = 'photoset',
+		$plural_name    = 'Photo Sets',
+		$singular_name  = 'Photo Set',
+		$add_new_item   = 'Add New Photo Set',
+		$edit_item      = 'Edit Photo Set',
+		$new_item       = 'New Photo Set',
+		$public         = True,
+		$use_categories = False,
+		$use_thumbnails = True,
+		$use_editor     = False,
+		$use_order      = True,
+		$use_title      = True,
+		$use_shortcode  = True,
+		$use_metabox    = False;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		// Photoset Navigation
+		$outputs = array('<ul class="photoset-nav span-24 last">');
+		foreach($objects as $o){
+			$outputs[] = '<li><a href="#photoset-'.$o->post_title.'">'.$o->post_title.'</a></li>';
+		}
+		$outputs[] = '</ul>';
+
+		// Photosets
+		foreach($objects as $o){
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<legend>'.$o->post_title.'</legend>';
+
+			// Attachemnts - Assume they are all images
+			$images = get_posts(array(
+				'post_type'   => 'attachment',
+				'numberposts' => -1,
+				'post_status' => NULL,
+				'post_parent' => $o->ID));
+			$outputs[] = '<ul class="clearfix">';
+			foreach($images as $image) {
+				$details = wp_get_attachment_image_src($image->ID, 'medium');
+				if($details !== False) {
+					$outputs[] = '<li><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></li>';
+				}
+			}
+			$outputs[] = '</ul>';
+
+			$outputs[] = '</fieldset>';
+		}
+		$outputs[] = '</ul>';
+
+		return implode("\n", $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+}
 ?>
