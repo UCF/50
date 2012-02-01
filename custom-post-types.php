@@ -380,7 +380,7 @@ class PhotoSet extends CustomPostType{
 				'post_parent' => $o->ID));
 
 			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
-			$outputs[] = '<legend>'.$o->post_title.' - '.count($images).' Images</legend>';
+			$outputs[] = '<legend>'.$o->post_title.'</legend>';
 			$outputs[] = '<ul class="images clearfix">';
 			$count = 0;
 			foreach($images as $image) {
@@ -394,7 +394,7 @@ class PhotoSet extends CustomPostType{
 				$count++;
 			}
 			$outputs[] = '</ul>';
-			$outputs[] = '<div class="pagination"><a class="left">Move Left</a><a class="right">Move Right</a></div>';
+			$outputs[] = '<div class="pagination"><a class="left">Move Left</a><span class="pages">&bull;</span><a class="right">Move Right</a></div>';
 			$outputs[] = '</fieldset>';
 		}
 		$outputs[] = '</ul>';

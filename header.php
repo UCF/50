@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US"<?= (is_front_page() ? ' class="front-page"':'')?>>
 	<head>
 		<?="\n".header_()."\n"?>
 		<!--[if IE]>

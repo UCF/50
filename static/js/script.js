@@ -42,7 +42,7 @@ if (typeof jQuery != 'undefined'){
 					var images       = photoset.find('.images li'),
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
-						page_summary = photoset.find('.pagination .pages');
+						page_summary = photoset.find('.pages');
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
@@ -59,16 +59,42 @@ if (typeof jQuery != 'undefined'){
 						} else if(pages > 1) {
 							right.css('visibility', 'visible');
 						}
-						if(pages > 1) {
-							page_summary.text('Page ' + current_page + ' of ' + pages);
+
+						page_summary.empty();
+						for(var i = 1; i <= pages;i++) {
+							if(i == current_page) {
+								page_summary.append('<a data-page="' + i + '" class="active">&bull;</span>')
+							} else {
+								page_summary.append('<a data-page="' + i + '">&bull;</a>')
+							}
 						}
+						page_summary
+							.find('a')
+								.click(function(event) {
+									event.preventDefault();
+									var page_num = parseInt($(this).attr('data-page'), 10);
+									if(page_num != current_page) {
+										var range_start = (current_page - 1) * 3,
+											range_end   = current_page * 3,
+											new_range_start = (page_num - 1) * 3,
+											new_range_end   = page_num * 3;
+										images
+											.slice(range_start,range_end)
+												.fadeOut('slow', function() {
+													images.slice(new_range_start, new_range_end).fadeIn()
+												});
+										current_page = page_num;
+										reset_navigation();
+									}
+								});
 					}
 
 					right
-						.click(function() {
+						.click(function(event) {
+							event.preventDefault();
 							var range_start = (current_page - 1) * 3,
 								range_end   = current_page * 3;
-
+							
 							images
 								.slice(range_start,range_end)
 									.fadeOut('slow', function() {
@@ -79,7 +105,8 @@ if (typeof jQuery != 'undefined'){
 						});
 					
 					left
-						.click(function() {
+						.click(function(event) {
+							event.preventDefault();
 							var range_end   = (current_page - 1) * 3,
 								range_start = (current_page - 2) * 3;
 							images
