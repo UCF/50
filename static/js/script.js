@@ -63,7 +63,7 @@ if (typeof jQuery != 'undefined'){
 						page_summary.empty();
 						for(var i = 1; i <= pages;i++) {
 							if(i == current_page) {
-								page_summary.append('<a data-page="' + i + '" class="active">&bull;</span>')
+								page_summary.append('<a data-page="' + i + '" class="active">&bull;</a>')
 							} else {
 								page_summary.append('<a data-page="' + i + '">&bull;</a>')
 							}

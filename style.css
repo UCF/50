@@ -108,15 +108,24 @@ html, body {width:100%;height:100%;}
 .photoset-nav > li > a {font-size:25px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-style:italic;text-decoration:none;font-weight:200;}
 .photoset {border-left:none;border-bottom:none;border-right:none;padding-left:0;padding-right:0;padding-bottom:0;margin-bottom:15px;border-top:1px solid #efefef;}
 .photoset legend {font-family:"Helvetica Neue",Helvetica,sans-serif !important;font-weight:200;font-size:20px;padding-right:10px;}
-.photoset ul {margin:0 0 5px 0;padding:0;}
+.photoset ul {margin:0 0 5px 0;padding:0;height:210px;}
 .photoset ul > li {list-style-type:none;float:left;margin-left:25px;margin-bottom:0;}
 .photoset ul > li.no-margin-left {margin-left:0;}
 .photoset ul > li > img {box-shadow:3px 5px 10px #CCC;}
 .photoset ul > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 5px 0 5px;}
 .photoset .pagination {text-align:center;}
 .photoset .pages a {font-size:30px;text-decoration:none;color:rgba(188,155,106,.25);}
+.ie7 .photoset .pages a,
+	.ie8 .photoset .pages a {
+		color:rgb(188,155,106);
+		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	}
 .photoset .pages a:hover {cursor:pointer;}
-.photoset .pages .active {color:rgba(188,155,106,.8);}
+.photoset .pages .active {color:rgba(188,155,106,.8);font-size:30px;}
+.ie7 .photoset .pages .active,
+	.ie8 .photoset .pages .active {
+		color:rgb(188,115,106);
+	}
 .photoset .left, 
 	.photoset .right {display:block;text-indent:-500em;width:36px;height:30px;}
 .photoset .left:hover, 
