@@ -17,31 +17,34 @@ if (typeof jQuery != 'undefined'){
 			}
 
 			function scale() {
-				var front_page_image = $('#front-page #feature-wrap img'),
-					body_width = $(window).width(),
-					body_height = $(window).height();
 				
-				if(ie7) {
-					body_height = body_height * 1.5; // why? who knows
-				}
-
-				var aspect_ratio = (front_page_image.width() / front_page_image.height());
-
-				var new_width = Math.round(body_height * aspect_ratio);
-				
-				front_page_image.width((body_width > new_width ? body_width : new_width));
 			}
 
 			// Front Page Image Scaling
+			// Adapted from polanski.co
 			$(window)
 				.resize(function() {
-					scale();
+					var front_page_image = $('#front-page #feature-wrap img'),
+						window_width     = $(window).width(),
+						window_height    = $(window).height();
+					
+					if(ie7) {
+						window_height = window_height * 1.5; // why? who knows
+					}
+
+					var aspect_ratio = front_page_image.width() / front_page_image.height();
+
+					var target_width = Math.round(window_height * aspect_ratio);
+					
+					front_page_image.width((window_width > target_width ? window_width : target_width));
 				})
 				.load(function() { 
 					// $(window).load waits for the images to be ready
 					// but $(document).load does not
-					scale();
-				})
+					// If the image isn't all the way loaded, jQuery
+					// will report 0 for the height and width
+					$(this).trigger('resize');
+				});
 
 			// Photo Set
 			$('.photoset')
