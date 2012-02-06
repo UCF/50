@@ -16,8 +16,7 @@ if (typeof jQuery != 'undefined'){
 				ie7 = true
 			}
 
-			// Front Page Image Scaling
-			$(window).resize(function() {
+			function scale() {
 				var front_page_image = $('#front-page #feature-wrap img'),
 					body_width = $(window).width(),
 					body_height = $(window).height();
@@ -31,9 +30,18 @@ if (typeof jQuery != 'undefined'){
 				var new_width = Math.round(body_height * aspect_ratio);
 				
 				front_page_image.width((body_width > new_width ? body_width : new_width));
-				
-			})
-			$(window).trigger('resize')
+			}
+
+			// Front Page Image Scaling
+			$(window)
+				.resize(function() {
+					scale();
+				})
+				.load(function() { 
+					// $(window).load waits for the images to be ready
+					// but $(document).load does not
+					scale();
+				})
 
 			// Photo Set
 			$('.photoset')
