@@ -105,11 +105,10 @@ if (typeof jQuery != 'undefined'){
 							event.preventDefault();
 							var range_start = (current_page - 1) * 3,
 								range_end   = current_page * 3;
-							
 							images
 								.slice(range_start,range_end)
 									.fadeOut('slow', function() {
-										images.slice(range_end).fadeIn();
+										images.slice(range_end, range_end + 3).fadeIn();
 									});
 							current_page += 1;
 							reset_navigation();
