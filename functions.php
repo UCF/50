@@ -148,6 +148,7 @@ Config::$styles = array(
 	THEME_CSS_URL.'/jquery.css',
 	THEME_CSS_URL.'/yahoo.css',
 	THEME_CSS_URL.'/blueprint-screen.css',
+	THEME_CSS_URL.'/jquery.lightbox-0.5.css',
 	array('media' => 'print', 'src' => THEME_CSS_URL.'/blueprint-print.css',),
 	THEME_CSS_URL.'/webcom-base.css',
 	get_bloginfo('stylesheet_url'),
@@ -158,6 +159,7 @@ Config::$scripts = array(
 	'http://universityheader.ucf.edu/bar/js/university-header.js',
 	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.6.1.min.js',),
 	THEME_JS_URL.'/jquery-extras.js',
+	THEME_JS_URL.'/jquery.lightbox-0.5.pack.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );

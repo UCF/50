@@ -57,6 +57,13 @@ if (typeof jQuery != 'undefined'){
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
+					images.find('a').lightBox({
+						imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
+						imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
+						imageBtnPrev  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-prev.gif',
+						imageBtnNext  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-next.gif'
+					});
+
 					images.filter(':gt(2)').hide();
 
 					function reset_navigation() {

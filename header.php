@@ -24,9 +24,13 @@
 			var CB_DOMAIN   = '<?=CB_DOMAIN?>';
 			<?php endif?>
 			
+
 		</script>
 		<?php endif;?>
-		
+
+		<script type="text/javascript">
+			var THEME_STATIC_URL = '<?=THEME_STATIC_URL?>';
+		</script>
 	</head>
 	<!--[if lt IE 7 ]>  <body class="ie ie6 <?=body_classes()?>"> <![endif]-->
 	<!--[if IE 7 ]>     <body class="ie ie7 <?=body_classes()?>"> <![endif]-->
