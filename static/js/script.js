@@ -53,7 +53,8 @@ if (typeof jQuery != 'undefined'){
 					var images       = photoset.find('.images li'),
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
-						page_summary = photoset.find('.pages');
+						page_summary = photoset.find('.pages'),
+						in_progress  = false;
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
@@ -90,19 +91,26 @@ if (typeof jQuery != 'undefined'){
 							.find('a')
 								.click(function(event) {
 									event.preventDefault();
-									var page_num = parseInt($(this).attr('data-page'), 10);
-									if(page_num != current_page) {
-										var range_start = (current_page - 1) * 3,
-											range_end   = current_page * 3,
-											new_range_start = (page_num - 1) * 3,
-											new_range_end   = page_num * 3;
-										images
-											.slice(range_start,range_end)
-												.fadeOut('slow', function() {
-													images.slice(new_range_start, new_range_end).fadeIn()
-												});
-										current_page = page_num;
-										reset_navigation();
+									if(!in_progress) {
+										in_progress = true;
+										var page_num = parseInt($(this).attr('data-page'), 10);
+										if(page_num != current_page) {
+											var range_start = (current_page - 1) * 3,
+												range_end   = current_page * 3,
+												new_range_start = (page_num - 1) * 3,
+												new_range_end   = page_num * 3;
+											images
+												.slice(range_start,range_end)
+													.fadeOut('slow', function() {
+														images
+															.slice(new_range_start, new_range_end)
+																.fadeIn('slow', function() {
+																	in_progress = false;
+																})
+													});
+											current_page = page_num;
+											reset_navigation();
+										}
 									}
 								});
 					}
@@ -110,29 +118,43 @@ if (typeof jQuery != 'undefined'){
 					right
 						.click(function(event) {
 							event.preventDefault();
-							var range_start = (current_page - 1) * 3,
-								range_end   = current_page * 3;
-							images
-								.slice(range_start,range_end)
-									.fadeOut('slow', function() {
-										images.slice(range_end, range_end + 3).fadeIn();
-									});
-							current_page += 1;
-							reset_navigation();
+							if(!in_progress) {
+								in_progress = true;
+								var range_start = (current_page - 1) * 3,
+									range_end   = current_page * 3;
+								images
+									.slice(range_start,range_end)
+										.fadeOut('slow', function() {
+											images
+												.slice(range_end, range_end + 3)
+													.fadeIn('slow', function() {
+														in_progress = false;
+													});
+										});
+								current_page += 1;
+								reset_navigation();
+							}
 						});
 					
 					left
 						.click(function(event) {
 							event.preventDefault();
-							var range_end   = (current_page - 1) * 3,
-								range_start = (current_page - 2) * 3;
-							images
-								.slice(range_end, range_end + 3)
-									.fadeOut('slow', function() {
-										images.slice(range_start, range_end).fadeIn();
-									});
-							current_page -= 1;
-							reset_navigation();
+							if(!in_progress) {
+								in_progress = true;
+								var range_end   = (current_page - 1) * 3,
+									range_start = (current_page - 2) * 3;
+								images
+									.slice(range_end, range_end + 3)
+										.fadeOut('slow', function() {
+											images
+												.slice(range_start, range_end)
+													.fadeIn('slow', function() {
+														in_progress = false;
+													});
+										});
+								current_page -= 1;
+								reset_navigation();
+							}
 						});
 
 					reset_navigation();
