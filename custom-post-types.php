@@ -381,7 +381,9 @@ class PhotoSet extends CustomPostType{
 				'post_type'   => 'attachment',
 				'numberposts' => -1,
 				'post_status' => NULL,
-				'post_parent' => $o->ID));
+				'post_parent' => $o->ID,
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC'));
 
 			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
