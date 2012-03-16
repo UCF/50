@@ -120,7 +120,7 @@ if (typeof jQuery != 'undefined'){
 							var range_end   = (current_page - 1) * 3,
 								range_start = (current_page - 2) * 3;
 							images
-								.slice(range_end)
+								.slice(range_end, range_end + 3)
 									.fadeOut('slow', function() {
 										images.slice(range_start, range_end).fadeIn();
 									});
