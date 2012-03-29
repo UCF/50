@@ -8,7 +8,12 @@
 	</div>
 	<div id="post-content">
 		<h2 class="sans"><?=$post->post_title?></h2>
-		<?=apply_filters('the_content', $post->post_content)?>
+		<a id="more">
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/more.png" /><span>More</span>
+		</a>
+		<div id="post-body">
+			<?=apply_filters('the_content', $post->post_content)?>
+		</div>
 	</div>
 </div>
 <?php get_footer();?>

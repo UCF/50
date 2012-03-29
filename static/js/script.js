@@ -49,11 +49,12 @@ if (typeof jQuery != 'undefined'){
 					var images       = photoset.find('.images li'),
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
-						page_summary = photoset.find('.pages'),
 						in_progress  = false;
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
+
+					// Lightbox
 					images.find('a').lightBox({
 						imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
 						imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
@@ -61,60 +62,22 @@ if (typeof jQuery != 'undefined'){
 						imageBtnNext  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-next.gif'
 					});
 
+					// Hide images on pages greater than 1
 					images.filter(':gt(2)').hide();
 
-					function reset_navigation() {
-						if(current_page == 1) {
-							left.css('visibility', 'hidden');
-						} else if(current_page > 1) {
-							left.css('visibility', 'visible');
-						}
-						if(pages == 1 || current_page == pages || pages == 0) {
-							right.css('visibility', 'hidden')
-						} else if(pages > 1) {
-							right.css('visibility', 'visible');
-						}
+					// Set first page as active
+					photoset.find('.page:first').addClass('active');
 
-						page_summary.empty();
-						for(var i = 1; i <= pages;i++) {
-							if(i == current_page) {
-								page_summary.append('<a data-page="' + i + '" class="active">&bull;</a>')
-							} else {
-								page_summary.append('<a data-page="' + i + '">&bull;</a>')
-							}
-						}
-						page_summary
-							.find('a')
-								.click(function(event) {
-									event.preventDefault();
-									if(!in_progress) {
-										in_progress = true;
-										var page_num = parseInt($(this).attr('data-page'), 10);
-										if(page_num != current_page) {
-											var range_start = (current_page - 1) * 3,
-												range_end   = current_page * 3,
-												new_range_start = (page_num - 1) * 3,
-												new_range_end   = page_num * 3;
-											images
-												.slice(range_start,range_end)
-													.fadeOut('slow', function() {
-														images
-															.slice(new_range_start, new_range_end)
-																.fadeIn('slow', function() {
-																	in_progress = false;
-																})
-													});
-											current_page = page_num;
-											reset_navigation();
-										}
-									}
-								});
+					function activate_current_page() {
+						photoset
+							.find('.page').removeClass('active').end()
+							.find('.page:eq(' + (current_page - 1) + ')').addClass('active');
 					}
 
 					right
 						.click(function(event) {
 							event.preventDefault();
-							if(!in_progress) {
+							if(!in_progress && current_page != pages) {
 								in_progress = true;
 								var range_start = (current_page - 1) * 3,
 									range_end   = current_page * 3;
@@ -128,14 +91,13 @@ if (typeof jQuery != 'undefined'){
 													});
 										});
 								current_page += 1;
-								reset_navigation();
+								activate_current_page();
 							}
 						});
-					
 					left
 						.click(function(event) {
 							event.preventDefault();
-							if(!in_progress) {
+							if(!in_progress && current_page != 1) {
 								in_progress = true;
 								var range_end   = (current_page - 1) * 3,
 									range_start = (current_page - 2) * 3;
@@ -149,12 +111,19 @@ if (typeof jQuery != 'undefined'){
 													});
 										});
 								current_page -= 1;
-								reset_navigation();
+								activate_current_page();
 							}
 						});
-
-					reset_navigation();
 				});
+
+				// Hide post body until the More button is clicked
+				var post_body = $('#front-page #post-body');
+				post_body.hide();
+				$('#more')
+					.click(function() {
+						post_body.show();
+						$(this).hide();
+					})
 		})();
 	});
 }else{console.log('jQuery dependancy failed to load');}

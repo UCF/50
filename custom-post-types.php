@@ -400,7 +400,11 @@ class PhotoSet extends CustomPostType{
 				$count++;
 			}
 			$outputs[] = '</ul>';
-			$outputs[] = '<div class="pagination clear"><a class="left">Move Left</a><span class="pages">&bull;</span><a class="right">Move Right</a></div>';
+			$outputs[] = '<ul class="pagination clear"><li><a class="left">&larr;</a></li>';
+			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
+				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
+			}
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul>';
 			$outputs[] = '</fieldset>';
 		}
 		$outputs[] = '</ul>';
