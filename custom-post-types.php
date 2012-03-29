@@ -404,7 +404,7 @@ class PhotoSet extends CustomPostType{
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul>';
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><span class="instructions">Click on an image to see it larger.</span>';
 			$outputs[] = '</fieldset>';
 		}
 		$outputs[] = '</ul>';
