@@ -41,8 +41,8 @@
 		<div id="blueprint-container" class="container">
 			<div id="header-wrap" class="clearfix<? if(is_front_page()):?> front-page<? endif ?>">
 				<div id="header" class="span-24 last">
-					<h1 class="span-5 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-					<div class="span-19 last">
+					<h1 class="span-6 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+					<div class="span-18 last">
 					<?=get_menu('header-menu', 'menu horizontal', 'header-menu')?>
 					</div>
 				</div>

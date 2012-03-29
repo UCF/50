@@ -18,19 +18,34 @@ html, body {width:100%;height:100%;}
 	top:37px;
 	left:0;
 	width:100%;
-	background-color:rgba(239,239,239,.8);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCEFEFEF,endColorstr=#CCEFEFEF);
 	z-index:2;}
-#header-wrap.front-page {
-	background-color:rgba(255,255,255,.8);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF);
-}
-#header {padding-top:35px;margin-left:auto;margin-right:auto;float:none;height:65px;border:none;}
-#header h1 a {display:block;text-indent:-500em;background-image:url('static/img/logo-50.png');background-repeat:no-repeat;width:174px;height:65px;}
-#header #header-menu {margin-left:65px;padding-top:0;}
-#header #header-menu li {margin-left:14px;}
+#header-wrap.front-page {}
+#header {margin-left:auto;margin-right:auto;float:none;border:none;}
+#header h1 {background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:138px;width:232px;}
+#header h1 a {margin:30px auto 0 auto;display:block;text-indent:-500em;background-image:url('static/img/logo-50.png');background-repeat:no-repeat;width:174px;height:65px;}
+#header #header-menu {margin-left:65px;margin-top:45px;padding-top:0;}
+#header #header-menu li {margin:0 0 0 -5px;padding:0;}
+.ie9 #header #header-menu li {margin-left:0;}
 #header #header-menu li:after {content:'';}
-#header #header-menu li a {font-size:25px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
+#header #header-menu li a {
+	font-size:25px;
+	font-family:"Helvetica Neue",Helvetica,sans-serif;
+	font-weight:200;
+	color:#333;
+	background-color:rgba(239,239,239,0.7);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2EFEFEF,endColorstr=#B2EFEFEF);
+	padding:10px 15px 10px 15px;
+	margin:0;
+}
+.ie7 #header #header-menu li a,
+.ie8 #header #header-menu li a {
+	background-color:#FFF;
+}
+#header #header-menu li a:hover {
+	text-decoration:none;
+	background-color:rgba(255,255,255,0.9);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5FFFFFF,endColorstr=#E5FFFFFF);
+}
 
 /* Front Page */
 #front-page {width:100%;height:100%;margin-top:0;}
