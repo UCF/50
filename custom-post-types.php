@@ -392,10 +392,9 @@ class PhotoSet extends CustomPostType{
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'large');
 				if($details !== False) {
-					$style = $count > 2 ? ' style="display:none;" ':'';
 					$css   = ($count % 3) == 0 ? ' class="no-margin-left" ' : '';
 
-					$outputs[] = '<li'.$style.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></a></li>';
+					$outputs[] = '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></a></li>';
 				}
 				$count++;
 			}
