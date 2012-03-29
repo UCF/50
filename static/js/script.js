@@ -16,10 +16,6 @@ if (typeof jQuery != 'undefined'){
 				ie7 = true
 			}
 
-			function scale() {
-				
-			}
-
 			// Front Page Image Scaling
 			// Adapted from polanski.co
 			$(window)
