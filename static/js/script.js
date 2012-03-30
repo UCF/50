@@ -67,7 +67,7 @@
 
 					// Hide pagination if there is only 1 page
 					if(pages == 1) {
-						photoset.find('.pagination').css('visibility', 'hidden');
+						photoset.find('.pagination,#show_all').css('visibility', 'hidden');
 					}
 
 					// Set first page as active

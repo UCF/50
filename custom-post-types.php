@@ -399,11 +399,12 @@ class PhotoSet extends CustomPostType{
 				$count++;
 			}
 			$outputs[] = '</ul><div class="clear">&nbsp;</div>';
-			$outputs[] = '<ul class="pagination clear span-18"><li><a class="left">&larr;</a></li>';
+			$outputs[] = '<div class="span-18 clear"><ul class="pagination"><li><a class="left">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><div class="instructions span-6 last">Click on an image to see it larger.</span>';
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a id="show_all" href="'.get_permalink($o->ID).'">Show All Photos</a></div>';
+			$outputs[] = '<div class="instructions span-6 last">Click on an image to see it larger.</span>';
 			$outputs[] = '</fieldset>';
 		}
 

@@ -206,3 +206,12 @@ html, body {width:100%;height:100%;}
 	color:#666;
 	font-size:14px;
 }
+.photoset #show_all {
+	text-decoration:none;
+	font-size:12px;
+	margin:0 10px;
+	position:relative;
+	top:10px;
+	color:#666;
+	font-family:"Helvetica Neue",Helvetica,sans-serif;
+}
