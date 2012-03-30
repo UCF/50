@@ -417,4 +417,22 @@ class PhotoSet extends CustomPostType{
 	}
 	
 }
+
+class Example extends CustomPostType{
+	public 
+		$name           = 'story',
+		$plural_name    = 'Stories',
+		$singular_name  = 'Story',
+		$add_new_item   = 'Add New Story',
+		$edit_item      = 'Edit Story',
+		$new_item       = 'New Story',
+		$public         = True,
+		$use_tags       = True,
+		$use_thumbnails = False,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = True,
+		$use_metabox    = False;
+}
 ?>
