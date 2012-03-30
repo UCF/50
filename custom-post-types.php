@@ -460,6 +460,7 @@ class Story extends CustomPostType{
 			$o_count++;
 		}
 		$outputs[] = '</ul>';
+		$outputs[] = '<a class="more-stories"><img src="'.get_bloginfo('stylesheet_directory').'/static/img/more.png" /><span>View More Stories</span></a>';
 
 		return implode("\n", $outputs);
 	}

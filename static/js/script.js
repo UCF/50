@@ -149,7 +149,16 @@
 					.click(function() {
 						post_body.show();
 						$(this).hide();
-					})
+					});
+
+				// Hide stories until `View More Stories` is clicked
+				$('.stories > li:gt(2)').hide();
+				$('.more-stories')
+					.click(function(event) {
+						event.preventDefault();
+						$(this).prev('ul').find('li').show();
+						$(this).hide();
+					});
 		})();
 	});
 }else{console.log('jQuery dependancy failed to load');}
