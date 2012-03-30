@@ -190,7 +190,7 @@ html, body {width:100%;height:100%;}
 }
 .photoset .instructions {
 	font-style:italic;
-	float:right;
+	text-align:right;
 	color:#666;
 	font-size:14px;
 }

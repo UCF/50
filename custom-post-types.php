@@ -385,7 +385,7 @@ class PhotoSet extends CustomPostType{
 				'orderby'     => 'menu_order',
 				'order'       => 'ASC'));
 
-			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<fieldset class="photoset clear span-24 last" id="photoset-'.$o->post_title.'">';
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
 			$outputs[] = '<ul class="images clearfix">';
 			$count = 0;
@@ -398,15 +398,14 @@ class PhotoSet extends CustomPostType{
 				}
 				$count++;
 			}
-			$outputs[] = '</ul>';
-			$outputs[] = '<ul class="pagination clear"><li><a class="left">&larr;</a></li>';
+			$outputs[] = '</ul><div class="clear">&nbsp;</div>';
+			$outputs[] = '<ul class="pagination clear span-18"><li><a class="left">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><span class="instructions">Click on an image to see it larger.</span>';
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><div class="instructions span-6 last">Click on an image to see it larger.</span>';
 			$outputs[] = '</fieldset>';
 		}
-		$outputs[] = '</ul>';
 
 		return implode("\n", $outputs);
 	}

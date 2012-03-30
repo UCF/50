@@ -1,4 +1,4 @@
-if (typeof jQuery != 'undefined'){
+	if (typeof jQuery != 'undefined'){
 	jQuery(document).ready(function($) {
 		$('#header-menu a, #front-page #post-content a').addClass('ignore-external');
 
@@ -65,8 +65,16 @@ if (typeof jQuery != 'undefined'){
 					// Hide images on pages greater than 1
 					images.filter(':gt(2)').hide();
 
+					// Hide pagination if there is only 1 page
+					if(pages == 1) {
+						photoset.find('.pagination').css('visibility', 'hidden');
+					}
+
 					// Set first page as active
 					photoset.find('.page:first').addClass('active');
+
+					// Hide pages greater than 3. They'll be rotated in on click
+					//photoset.find('.page:gt(2)').hide();
 
 					function activate_current_page() {
 						photoset
