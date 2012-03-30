@@ -74,12 +74,20 @@
 					photoset.find('.page:first').addClass('active');
 
 					// Hide pages greater than 3. They'll be rotated in on click
-					//photoset.find('.page:gt(2)').hide();
+					photoset.find('.page:gt(2)').hide();
 
 					function activate_current_page() {
 						photoset
 							.find('.page').removeClass('active').end()
 							.find('.page:eq(' + (current_page - 1) + ')').addClass('active');
+					}
+
+					function rotate_pages() {
+						if(current_page != 1 && (current_page % 3) == 0) {
+							photoset
+								.find('.page').hide().end()
+								.find('.page:gt(' + (current_page - 1) + '):lt(' + (current_page + 1) + ')').show();
+						} 
 					}
 
 					right
@@ -100,6 +108,11 @@
 										});
 								current_page += 1;
 								activate_current_page();
+								if( (current_page % 3) == 0 && current_page != pages) {
+									photoset
+										.find('.page:visible:first').hide().end()
+										.find('.page:eq('+ current_page + ')').show();
+								}
 							}
 						});
 					left
@@ -120,6 +133,11 @@
 										});
 								current_page -= 1;
 								activate_current_page();
+								if( ((current_page + 1) % 3) == 0 && current_page != 1) {
+									photoset
+										.find('.page:visible:last').hide().end()
+										.find('.page:eq('+ (current_page - 2) + ')').show();
+								}
 							}
 						});
 				});
