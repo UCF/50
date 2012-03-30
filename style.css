@@ -215,3 +215,18 @@ html, body {width:100%;height:100%;}
 	color:#666;
 	font-family:"Helvetica Neue",Helvetica,sans-serif;
 }
+
+/* Photoset Page */
+#photoset-page {}
+#photoset-page #images {margin:0;padding:0;}
+#photoset-page #images > li {list-style-type:none;margin:0 0 35px 0;padding:0;text-align:center;background-color:#f7f7f7;}
+#photoset-page #images > li > img {max-width:950px;border:none;}
+#photoset-page #images > li > p {padding:20px;font-family:"Helvetica Neue",Helvetica,sans-serif;text-align:left;}
+#photoset-page #images > li > p .num {
+	color: #FFC907;
+	font-size: 35px;
+	display: block;
+	float: left;
+	margin-right: 10px;
+	line-height: 1em;
+}
