@@ -230,3 +230,24 @@ html, body {width:100%;height:100%;}
 	margin-right: 10px;
 	line-height: 1em;
 }
+
+/* Stories */
+.stories {margin:0;padding:0;}
+.stories > li {
+	list-style-type:none;
+	display:inline-block;
+	width:270px;
+	vertical-align:top;
+	margin-left:15px;
+	padding:15px;
+	/* rgb(235, 215,163, 1) rgb(215,191,127,1)*/
+	background: -webkit-gradient(linear, left top, right bottom, from(#ebd7a3), to(#d7bf7f));
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFEBD7A3,endColorstr=#FFD7BF7F);
+	box-shadow: 2px 2px 5px #999;
+}
+.stories > li.no-margin-left {margin-left:0;}
+.stories > li .title {font-family:"Helvetica Neue",Helvetica,sans-serif;font-style:italic;margin-bottom:5px;}
+.stories > li .content {font-size:14px;}
+.stories > li .tags {margin:0;padding:0;}
+.stories > li .tags > li {display:inline-block;list-style-type:none;color:#bb1111;}
+.stories > li .tags > li a {color:#bb1111;font-size:12px;font-family:"Helvetica Neue",Helvetica,sans-serif;}

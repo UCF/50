@@ -418,7 +418,7 @@ class PhotoSet extends CustomPostType{
 	
 }
 
-class Example extends CustomPostType{
+class Story extends CustomPostType{
 	public 
 		$name           = 'story',
 		$plural_name    = 'Stories',
@@ -434,5 +434,34 @@ class Example extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = True,
 		$use_metabox    = False;
+
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array('<ul class="stories clear">');
+
+		$o_count = 1;
+		foreach($objects as $o){
+
+			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'><div class="title"><strong>'.$o->post_title.'</strong></div>';
+			$outputs[] = '<div class="content">'.truncate($o->post_content, 40).'</div>';
+			$outputs[] = '<ul class="tags">';
+
+			$tags      = wp_get_post_tags($o->ID);
+			$num_tags  = count($tags);
+			$tag_count = 1;
+			foreach($tags as $tag) {
+				$outputs[] = '<li><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
+				$tag_count++;
+			}
+			
+			$outputs[] = '</ul></li>';
+			$o_count++;
+		}
+		$outputs[] = '</ul>';
+
+		return implode("\n", $outputs);
+	}
 }
 ?>
