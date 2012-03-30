@@ -444,8 +444,10 @@ class Story extends CustomPostType{
 		$o_count = 1;
 		foreach($objects as $o){
 
-			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'><div class="title"><strong>'.$o->post_title.'</strong></div>';
-			$outputs[] = '<div class="content">'.truncate($o->post_content, 40).'</div>';
+			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'>';
+			$outputs[] = '<a href="'.get_permalink($o->ID).'">';
+			$outputs[] = '<div class="title"><strong>'.$o->post_title.'</strong></div>';
+			$outputs[] = '<div class="content">'.truncate(strip_tags($o->post_content), 40).'</div></a>';
 			$outputs[] = '<ul class="tags">';
 
 			$tags      = wp_get_post_tags($o->ID);
