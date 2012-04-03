@@ -444,6 +444,10 @@ class Story extends CustomPostType{
 		$o_count = 1;
 		foreach($objects as $o){
 
+			if($o_count == 4) {
+				$outputs[] = '</ul><ul class="stories clear">';
+			}
+
 			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'>';
 			$outputs[] = '<a href="'.get_permalink($o->ID).'">';
 			$outputs[] = '<div class="title"><strong>'.$o->post_title.'</strong></div>';
@@ -462,7 +466,7 @@ class Story extends CustomPostType{
 			$o_count++;
 		}
 		$outputs[] = '</ul>';
-		$outputs[] = '<a class="more-stories"><img src="'.get_bloginfo('stylesheet_directory').'/static/img/more.png" /><span>View More Stories</span></a>';
+		$outputs[] = '<a class="more-stories clear"><img src="'.get_bloginfo('stylesheet_directory').'/static/img/more.png" /><span>View More Stories</span></a>';
 
 		return implode("\n", $outputs);
 	}
