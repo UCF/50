@@ -49,7 +49,8 @@
 					var images       = photoset.find('.images li'),
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
-						in_progress  = false;
+						in_progress  = false,
+						page_links   = photoset.find('.page');
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
@@ -139,6 +140,36 @@
 								}
 							}
 						});
+					page_links
+						.click(function() {
+							var page_num = page_links.index($(this)) + 1;
+							if(!in_progress && page_num != current_page) {
+								in_progress = true;
+								var range_end   = page_num * 3,
+									range_start = (page_num - 1) * 3;
+								images
+									.filter(':visible')
+										.fadeOut('slow', function() {
+											images
+												.slice(range_start, range_end)
+													.fadeIn('slow', function() {
+														in_progress = false;
+													});
+										});
+								current_page = page_num;
+								activate_current_page();
+								if( ((current_page + 1) % 3) == 0 && current_page != 1) {
+									photoset
+										.find('.page:visible:last').hide().end()
+										.find('.page:eq('+ (current_page - 2) + ')').show();
+								} else if( (current_page % 3) == 0 && current_page != pages) {
+									photoset
+										.find('.page:visible:first').hide().end()
+										.find('.page:eq('+ current_page + ')').show();
+								}
+							}
+
+						})
 				});
 
 				// Hide post body until the More button is clicked
