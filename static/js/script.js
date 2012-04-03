@@ -146,7 +146,8 @@
 							if(!in_progress && page_num != current_page) {
 								in_progress = true;
 								var range_end   = page_num * 3,
-									range_start = (page_num - 1) * 3;
+									range_start = (page_num - 1) * 3,
+									going_left  = page_num < current_page ? true : false;
 								images
 									.filter(':visible')
 										.fadeOut('slow', function() {
@@ -158,7 +159,7 @@
 										});
 								current_page = page_num;
 								activate_current_page();
-								if( ((current_page + 1) % 3) == 0 && current_page != 1) {
+								if(going_left && ((current_page + 1) % 3) == 0 && current_page != 1) {
 									photoset
 										.find('.page:visible:last').hide().end()
 										.find('.page:eq('+ (current_page - 2) + ')').show();
