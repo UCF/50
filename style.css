@@ -234,6 +234,9 @@ html, body {width:100%;height:100%;}
 }
 
 /* Stories */
+#stories .search-form {margin-top:5px;}
+#stories .search-field {width:285px;margin-top}
+
 .stories {margin:0;padding:0;}
 .stories > li {
 	list-style-type:none;
