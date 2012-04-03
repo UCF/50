@@ -63,11 +63,12 @@
 <?php get_footer();?>
 <?php else:?>
 	<?php get_header();?>
-	<div class="page-content">
+	<div class="page-content" id="wp-search-results">
 		<div class="results span-16 append-2">
-			<?php if(have_posts()):?>
-			<?php while(have_posts()): the_post();?>
-			<article>
+			<h2>Search Results for "<?=htmlentities($_GET['s'])?>"</h2>
+			<?php if(have_posts()): $even = True;?>
+			<?php while(have_posts()): the_post(); $even = $even ? False : True;?>
+			<article class="<?=$even ? 'even' : 'odd'?>">
 				<h1><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
 				<div class="meta">
 					<span class="date"><?php the_time("F j, Y");?></span>
