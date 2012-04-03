@@ -82,14 +82,6 @@
 							.find('.page:eq(' + (current_page - 1) + ')').addClass('active');
 					}
 
-					function rotate_pages() {
-						if(current_page != 1 && (current_page % 3) == 0) {
-							photoset
-								.find('.page').hide().end()
-								.find('.page:gt(' + (current_page - 1) + '):lt(' + (current_page + 1) + ')').show();
-						} 
-					}
-
 					right
 						.click(function(event) {
 							event.preventDefault();
