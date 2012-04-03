@@ -238,9 +238,9 @@ html, body {width:100%;height:100%;}
 .stories > li {
 	list-style-type:none;
 	float:left;
-	width:270px;
+	width:275px;
 	vertical-align:top;
-	margin-left:15px;
+	margin-left:17px;
 	padding:15px;
 	/* rgb(235, 215,163, 1) rgb(215,191,127,1)*/
 	background: -webkit-gradient(linear, left top, right bottom, from(#ebd7a3), to(#d7bf7f));
