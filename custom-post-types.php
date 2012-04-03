@@ -403,7 +403,7 @@ class PhotoSet extends CustomPostType{
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a id="show_all" href="'.get_permalink($o->ID).'">Show All Photos</a></div>';
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a id="show_all" href="'.get_permalink($o->ID).'">Show All</a></div>';
 			$outputs[] = '<div class="instructions span-6 last">Click on an image to see it larger.</span>';
 			$outputs[] = '</fieldset>';
 		}
