@@ -62,4 +62,26 @@ function sc_slideshow($attr, $content=null){
 add_shortcode('slideshow', 'sc_slideshow');
 
 
+/**
+ * Returns HTML for WordPress search form
+ *
+ * @author Chris Conover
+ * @return string
+ **/
+function sc_search_form($search_post_type = '') {
+	ob_start();?>
+	<form role="search" method="get" class="search-form" action="<?=home_url( '/' )?>">
+		<div>
+			<label for="s">Search:</label>
+			<input type="text" value="<?=htmlentities($_GET['s'])?>" name="s" class="search-field" id="s" placeholder="Search" />
+			<button type="submit" class="search-submit">Search</button>
+			<? if($search_post_type != '') { ?>
+			<input type="hidden" name="post_type" value="<?=$search_post_type?>" />
+			<? } ?>
+		</div>
+	</form>
+	<?
+	return ob_get_clean();
+}
+add_shortcode('search-form', 'sc_search_form');
 ?>
