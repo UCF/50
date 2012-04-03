@@ -152,7 +152,7 @@
 					});
 
 				// Hide stories until `View More Stories` is clicked
-				$('.stories > li:gt(2)').hide();
+				$('.stories > li:gt(5)').hide();
 				$('.more-stories')
 					.click(function(event) {
 						event.preventDefault();
