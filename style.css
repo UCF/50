@@ -247,6 +247,10 @@ html, body {width:100%;height:100%;}
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFEBD7A3,endColorstr=#FFD7BF7F);
 	box-shadow: 2px 2px 5px #999;
 }
+.ie7 .stories > li,
+.ie8 .stories > li {
+	background-color:#bfa664;
+}
 .stories > li.no-margin-left {margin-left:0;}
 .stories > li > a {text-decoration:none;font-weight:normal;}
 .stories > li .title {font-family:"Helvetica Neue",Helvetica,sans-serif;font-style:italic;margin-bottom:5px;}
