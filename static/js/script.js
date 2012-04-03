@@ -100,6 +100,10 @@
 										});
 								current_page += 1;
 								activate_current_page();
+
+								// If this page is at the right edge of the pagination
+								// page listing and it's not the last page of images,
+								// rotate the page listing to the right
 								if( (current_page % 3) == 0 && current_page != pages) {
 									photoset
 										.find('.page:visible:first').hide().end()
@@ -125,6 +129,9 @@
 										});
 								current_page -= 1;
 								activate_current_page();
+								// If the next page to the left is at the left edege of the
+								// pagination page listing and it's not the first page,
+								// rotate the page listing to the left
 								if( ((current_page + 1) % 3) == 0 && current_page != 1) {
 									photoset
 										.find('.page:visible:last').hide().end()
