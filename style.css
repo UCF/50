@@ -270,3 +270,11 @@ html, body {width:100%;height:100%;}
 .more-stories:hover {cursor:pointer;}
 .more-stories img {margin-right:10px;}
 .more-stories span {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:normal;}
+
+/* Tag Stories */
+#tag-stories {margin:0;padding:0;}
+#tag-stories > li {list-style-type:none;margin:0 0 0 0;padding:5px 10px;}
+#tag-stories > li.odd {background-color:#f9f9f9;}
+#tag-stories > li.even {background-color:#FFF;}
+#tag-stories > li > a {text-decoration:none;font-weight:normal;}
+#tag-stories > li > a > h2 {margin-bottom:10px;}
