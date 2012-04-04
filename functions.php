@@ -32,7 +32,7 @@ require_once('functions-admin.php');    # Admin/login functions
  * object.
  **/
 Config::$custom_post_types = array(
-	'FrontPage', 'PhotoSet', 'Story'
+	'FrontPage', 'PhotoSet', 'Story', 'Timeline', 'TimelineEvent'
 );
 
 Config::$body_classes = array('default',);
@@ -149,9 +149,10 @@ Config::$styles = array(
 	THEME_CSS_URL.'/yahoo.css',
 	THEME_CSS_URL.'/blueprint-screen.css',
 	THEME_CSS_URL.'/jquery.lightbox-0.5.css',
+	'http://veritetimeline.appspot.com/latest/timeline.css',
 	array('media' => 'print', 'src' => THEME_CSS_URL.'/blueprint-print.css',),
 	THEME_CSS_URL.'/webcom-base.css',
-	get_bloginfo('stylesheet_url'),
+	get_bloginfo('stylesheet_url')
 );
 
 Config::$scripts = array(
@@ -160,6 +161,7 @@ Config::$scripts = array(
 	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.6.1.min.js',),
 	THEME_JS_URL.'/jquery-extras.js',
 	THEME_JS_URL.'/jquery.lightbox-0.5.pack.js',
+	THEME_JS_URL.'/timeline-min.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );

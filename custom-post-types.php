@@ -471,4 +471,121 @@ class Story extends CustomPostType{
 		return implode("\n", $outputs);
 	}
 }
+
+class Timeline extends CustomPostType{
+	public 
+		$name           = 'timeline',
+		$plural_name    = 'Timelines',
+		$singular_name  = 'Timeline',
+		$add_new_item   = 'Add New Timeline',
+		$edit_item      = 'Edit Timeline',
+		$new_item       = 'New Timeline',
+		$public         = True,
+		$use_categories = False,
+		$use_tags       = False,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Start Year',
+				'desc' => 'Format: YYYY',
+				'id'   => $prefix.'start_year',
+				'type' => 'text',
+			)
+		);
+	}
+}
+
+class TimelineEvent extends CustomPostType{
+	public 
+		$name           = 'timeline_event',
+		$plural_name    = 'Timeline Events',
+		$singular_name  = 'Timeline Event',
+		$add_new_item   = 'Add New Timeline Event',
+		$edit_item      = 'Edit Timeline Event',
+		$new_item       = 'New Timeline Event',
+		$public         = True,
+		$use_categories = False,
+		$use_tags       = False,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		$timeline_options = array();
+		foreach(get_posts(array('post_type'=>'timeline','orderby'=>'title')) as $timeline) {
+			$timeline_options[$timeline->post_title] = $timeline->ID;
+		}
+		return array(
+			array(
+				'name' => 'Start Date',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted in needed.',
+				'id'   => $prefix.'start_date',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'End Date',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted. If left blank, end date will default to the start date.',
+				'id'   => $prefix.'end_date',
+				'type' => 'text',
+			),
+			array(
+				'name'    => 'Timelines',
+				'desc'    => 'Which timeline should this even be associated with?',
+				'default' => '(None)',
+				'id'      => $prefix.'_timeline',
+				'options' => $timeline_options,
+				'type'    => 'select',
+			)
+		);
+	}
+}
 ?>
