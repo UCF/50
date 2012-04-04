@@ -56,7 +56,7 @@ if(isset($_GET['json'])) {
 			$timeline_event_json['asset']['media']   = $event_thumbnail_src[0];
 			$timeline_event_json['asset']['caption'] = $event_thumbnail_post->post_excerpt;
 		}
-		$to_json['timeline']['date'] = $timeline_event_json;
+		$to_json['timeline']['date'][] = $timeline_event_json;
 	}
 	header('Content-Type:application/json;');
 	echo json_encode($to_json);

@@ -581,7 +581,7 @@ class TimelineEvent extends CustomPostType{
 				'name'    => 'Timelines',
 				'desc'    => 'Which timeline should this even be associated with?',
 				'default' => '(None)',
-				'id'      => $prefix.'_timeline',
+				'id'      => $prefix.'timeline',
 				'options' => $timeline_options,
 				'type'    => 'select',
 			)
