@@ -16,6 +16,9 @@
 				ie7 = true
 			}
 
+			// UCF Header Bar Links
+			$('#UCFHBHeader a').removeClass('external');
+
 			// Browser Support
 			var browser_support = $('#browser_support'),
 				browser_version = parseFloat($.browser.version);
