@@ -16,6 +16,34 @@
 				ie7 = true
 			}
 
+			// Browser Support
+			var browser_support = $('#browser_support'),
+				browser_version = parseFloat($.browser.version);
+			var browser_support_text = browser_support.text();
+
+			function center_browser_support() {
+				browser_support
+					.css("left", (($(window).width() - browser_support.outerWidth()) / 2) + $(window).scrollLeft() + "px");
+
+			}
+			center_browser_support();
+			if($.browser.msie && browser_version < 7) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version));
+			} else if($.browser.opera) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Opera ' + browser_version));
+			} else if($.browser.webkit && !$.browser.safari && browser_version < 15) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Chrome ' + browser_version));
+			} else if($.browser.mozilla && browser_version < 8) {
+				browser_support.show()
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Firefox ' + browser_version));
+			} else if($.browser.safari && browser_version < 5) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Safari ' + browser_version));
+			}
+
 			// Front Page Image Scaling
 			// Adapted from polanski.co
 			$(window)
@@ -33,6 +61,8 @@
 					var target_width = Math.round(window_height * aspect_ratio);
 					
 					front_page_image.width((window_width > target_width ? window_width : target_width));
+
+					center_browser_support();
 				})
 				.load(function() { 
 					// $(window).load waits for the images to be ready

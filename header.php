@@ -37,7 +37,12 @@
 	<!--[if IE 8 ]>     <body class="ie ie8 <?=body_classes()?><?=!is_front_page() ? ' subpage': ''?>"> <![endif]-->
 	<!--[if IE 9 ]>     <body class="ie ie9 <?=body_classes()?><?=!is_front_page() ? ' subpage': ''?>"> <![endif]-->
 	<!--[if (gt IE 9)|!(IE)]><!--> <body class="<?=body_classes()?><?=!is_front_page() ? ' subpage': ''?>"> <!--<![endif]-->
-		<? get_template_part('includes/blackbar'); ?>
+
+		<div id="browser_support" class="error" style="display:none;">
+			Your browser, !BROWSER!, is not supported by this website. Various features may work
+			in unexpected ways or not at all. The following browsers are supported:
+			Internet Explorer 7+, Firefox 10+, Chrome 17+, and Safari 5+. 
+		</div>
 		<div id="blueprint-container" class="container">
 			<div id="header-wrap" class="clearfix<? if(is_front_page()):?> front-page<? endif ?>">
 				<div id="header" class="span-24 last">
