@@ -3,6 +3,7 @@
 <? 
 if(isset($_GET['json'])) {
 
+	# See Timeline formatting spec at http://timeline.verite.co/#fileformat
 	$to_json = array(
 		'timeline' => array(
 			'headline'  => $post->post_title,
