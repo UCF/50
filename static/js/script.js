@@ -83,7 +83,9 @@
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
 						in_progress  = false,
-						page_links   = photoset.find('.page');
+						page_links   = photoset.find('.page'),
+						show_all     = photoset.find('.show_all'),
+						pagination   = photoset.find('.pagination');
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
@@ -101,7 +103,7 @@
 
 					// Hide pagination if there is only 1 page
 					if(pages == 1) {
-						photoset.find('.pagination,#show_all').css('visibility', 'hidden');
+						photoset.find('.pagination,.show_all').css('visibility', 'hidden');
 					}
 
 					// Set first page as active
@@ -203,7 +205,33 @@
 								}
 							}
 
-						})
+						});
+
+					// Hide the show all link if there is only 1 page of images
+					if(images.length <= 3) {
+						show_all.hide();
+					}
+
+					show_all
+						.click(function(event) {
+							event.preventDefault();
+							var visible_images = images.filter(':visible');
+
+							if(visible_images.length <= 3) { // Show the rest of the images
+								images.show();
+								show_all.text('Hide All');
+								pagination.hide();
+							} else { // Hide everything except the first page
+								images.filter(':gt(2)').hide();
+								current_page = 1;
+								page_links
+									.filter(':lt(2)').show().end()
+									.filter(':gt(2)').hide();
+								activate_current_page();
+								pagination.show();
+								show_all.text('Show All')
+							}
+						});
 				});
 
 				// Hide post body until the More button is clicked

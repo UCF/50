@@ -169,7 +169,7 @@ html, body {width:100%;height:100%;}
 .ie8 .photoset .images {
 	margin-top:30px;
 }
-.photoset .images > li {list-style-type:none;float:left;margin-left:25px;margin-bottom:0;max-width:300px;}
+.photoset .images > li {list-style-type:none;float:left;margin-left:25px;margin-bottom:20px;max-width:300px;}
 .photoset .images > li.no-margin-left {margin-left:0;}
 .photoset .images > li a {font-weight:normal;text-decoration:none;}
 .photoset .images > li img {box-shadow:3px 5px 10px #CCC;margin:auto;display:block;margin-bottom:10px;max-width:300px;max-height:243px;}
@@ -218,7 +218,7 @@ html, body {width:100%;height:100%;}
 	color:#666;
 	font-size:14px;
 }
-.photoset #show_all {
+.photoset .show_all {
 	text-decoration:none;
 	font-size:12px;
 	margin:0 10px;
@@ -227,6 +227,9 @@ html, body {width:100%;height:100%;}
 	color:#666;
 	font-family:"Helvetica Neue",Helvetica,sans-serif;
 	font-weight:200;
+}
+.photoset .show_all:hover {
+	cursor:pointer;
 }
 
 /* Photoset Page */
