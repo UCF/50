@@ -4,10 +4,5586 @@
  * Date: December 12, 2011
  * Copyright 2011 Verite
  * Designed and built by Zach Wise digitalartwork.net
- * ----------------------------------------------------- *//* CodeKit Import
-================================================== *//* Simple JavaScript Inheritance
+ * ----------------------------------------------------- */
+
+
+/* CodeKit Import
+================================================== */
+
+
+
+/* Simple JavaScript Inheritance
  * By John Resig http://ejohn.org/
  * MIT Licensed.
-================================================== */function trace(a){window.console?console.log(a):typeof jsTrace!="undefined"&&jsTrace.send(a)}function onYouTubePlayerAPIReady(){VMM.ExternalAPI.youtube.onAPIReady()}(function(){var a=!1,b=/xyz/.test(function(){xyz})?/\b_super\b/:/.*/;this.Class=function(){};Class.extend=function(c){function g(){!a&&this.init&&this.init.apply(this,arguments)}var d=this.prototype;a=!0;var e=new this;a=!1;for(var f in c)e[f]=typeof c[f]=="function"&&typeof d[f]=="function"&&b.test(c[f])?function(a,b){return function(){var c=this._super;this._super=d[a];var e=b.apply(this,arguments);this._super=c;return e}}(f,c[f]):c[f];g.prototype=e;g.prototype.constructor=g;g.extend=arguments.callee;return g}})();var global=function(){return this||(1,eval)("this")}();if(typeof VMM=="undefined"){var VMM=Class.extend({});VMM.master_config={init:function(){return this},youtube:{active:!1,array:[],api_loaded:!1}}.init();VMM.master_config={init:function(){return this},youtube:{active:!1,array:[],api_loaded:!1,que:[]}}.init();VMM.createElement=function(a,b,c,d,e){var f="";if(a!=null&&a!=""){f+="<"+a;c!=null&&c!=""&&(f+=" class='"+c+"'");d!=null&&d!=""&&(f+=" "+d);e!=null&&e!=""&&(f+=" "+e);f+=">";b!=null&&b!=""&&(f+=b);f=f+"</"+a+">"}return f};VMM.createMediaElement=function(a,b,c){var d="",e=!1;d+="<div class='media'>";if(a!=null&&a!=""){valid=!0;d+="<img src='"+a+"'>";c!=null&&c!=""&&(d+=VMM.createElement("div",c,"credit"));b!=null&&b!=""&&(d+=VMM.createElement("div",b,"caption"))}d+="</div>";return d};VMM.attachElement=function(a,b){typeof jQuery!="undefined"&&$(a).html(b)};VMM.appendElement=function(a,b){typeof jQuery!="undefined"&&$(a).append(b)};VMM.getHTML=function(a){var b;if(typeof jQuery!="undefined"){b=$(a).html();return b}};VMM.getElement=function(a,b){var c;if(typeof jQuery!="undefined"){b?c=$(a).parent().get(0):c=$(a).get(0);return c}};VMM.bindEvent=function(a,b,c,d){var e,f="click",g={};c!=null&&c!=""&&(f=c);g!=null&&g!=""&&(g=d);typeof jQuery!="undefined"&&$(a).bind(f,g,b)};VMM.unbindEvent=function(a,b,c){var d,e="click",f={};c!=null&&c!=""&&(e=c);typeof jQuery!="undefined"&&$(a).unbind(e,b)};VMM.fireEvent=function(a,b,c){var d,e="click",f=[];b!=null&&b!=""&&(e=b);c!=null&&c!=""&&(f=c);typeof jQuery!="undefined"&&$(a).trigger(e,f)};VMM.getJSON=function(a,b){typeof jQuery!="undefined"&&$.getJSON(a,b)};VMM.appendAndGetElement=function(a,b,c,d){var e,f="<div>",g="",h="";b!=null&&b!=""&&(f=b);c!=null&&c!=""&&(g=c);d!=null&&d!=""&&(h=d);if(typeof jQuery!="undefined"){e=$(b);e.addClass(g);e.html(h);$(a).append(e)}return e};VMM.Element={init:function(){return this},hide:function(a,b){b!=null&&b!=""?typeof jQuery!="undefined"&&$(a).hide(b):typeof jQuery!="undefined"&&$(a).hide()},remove:function(a){typeof jQuery!="undefined"&&$(a).remove()},detach:function(a){typeof jQuery!="undefined"&&$(a).detach()},append:function(a,b){typeof jQuery!="undefined"&&$(a).append(b)},show:function(a,b){b!=null&&b!=""?typeof jQuery!="undefined"&&$(a).show(b):typeof jQuery!="undefined"&&$(a).show()},load:function(a,b,c){var d={elem:a};d!=null&&d!=""&&(d=c);typeof jQuery!="undefined"&&$(a).load(d,b)},addClass:function(a,b){typeof jQuery!="undefined"&&$(a).addClass(b)},removeClass:function(a,b){typeof jQuery!="undefined"&&$(a).removeClass(b)},attr:function(a,b,c){if(c!=null&&c!="")typeof jQuery!="undefined"&&$(a).attr(b,c);else if(typeof jQuery!="undefined")return $(a).attr(b)},prop:function(a,b,c){typeof jQuery=="undefined"||!/[1-9]\.[3-9].[1-9]/.test($.fn.jquery)?VMM.Element.attribute(a,b,c):$(a).prop(b,c)},attribute:function(a,b,c){if(c!=null&&c!="")typeof jQuery!="undefined"&&$(a).attr(b,c);else if(typeof jQuery!="undefined")return $(a).attr(b)},visible:function(a,b){if(b!=null)typeof jQuery!="undefined"&&(b?$(a).show(0):$(a).hide(0));else if(typeof jQuery!="undefined")return $(a).is(":visible")?!0:!1},css:function(a,b,c){if(c!=null&&c!="")typeof jQuery!="undefined"&&$(a).css(b,c);else if(typeof jQuery!="undefined")return $(a).css(b)},cssmultiple:function(a,b){if(typeof jQuery!="undefined")return $(a).css(b)},offset:function(a){var b;typeof jQuery!="undefined"&&(b=$(a).offset());return b},position:function(a){var b;typeof jQuery!="undefined"&&(b=$(a).position());return b},width:function(a,b){if(b!=null&&b!="")typeof jQuery!="undefined"&&$(a).width(b);else if(typeof jQuery!="undefined")return $(a).width()},height:function(a,b){if(b!=null&&b!="")typeof jQuery!="undefined"&&$(a).height(b);else if(typeof jQuery!="undefined")return $(a).height()},toggleClass:function(a,b){typeof jQuery!="undefined"&&$(a).toggleClass(b)},each:function(a,b){typeof jQuery!="undefined"&&$(a).each(b)},html:function(a,b){var c;if(typeof jQuery!="undefined"){c=$(a).html();return c}if(b!=null&&b!="")typeof jQuery!="undefined"&&$(a).html(b);else{var c;if(typeof jQuery!="undefined"){c=$(a).html();return c}}},find:function(a,b){if(typeof jQuery!="undefined")return $(a).find(b)},stop:function(a){typeof jQuery!="undefined"&&$(a).stop()},animate:function(a,b,c,d,e){var f="easein",g=1e3,h={};b!=null&&(b<1?g=1:g=Math.round(b));c!=null&&c!=""&&(f=c);d!=null?h=d:h={opacity:0};if(VMM.Browser.device=="mobile"||VMM.Browser.device=="tablet"){var i=Math.round(g/1500*10)/10,j=i+"s";VMM.Element.css(a,"-webkit-transition","all "+j+" ease");VMM.Element.css(a,"-moz-transition","all "+j+" ease");VMM.Element.css(a,"-o-transition","all "+j+" ease");VMM.Element.css(a,"-ms-transition","all "+j+" ease");VMM.Element.css(a,"transition","all "+j+" ease");VMM.Element.cssmultiple(a,h)}else typeof jQuery!="undefined"&&(e!=null&&e!=""?$(a).animate(h,{queue:!1,duration:g,easing:f,complete:e}):$(a).animate(h,{queue:!1,duration:g,easing:f}))}}.init();VMM.TouchSlider={createPanel:function(a,b,c,d,e,f){VMM.TouchSlider.vertical=!1;VMM.TouchSlider.vertical=e;var g=d;VMM.TouchSlider.width=c;VMM.TouchSlider.height=f;VMM.TouchSlider.makeTouchable(a,b)},removePanel:function(a){VMM.unbindEvent(a,VMM.TouchSlider.onTouchStart,"touchstart");VMM.unbindEvent(a,VMM.TouchSlider.onTouchMove,"touchmove");VMM.unbindEvent(a,VMM.TouchSlider.onTouchEnd,"touchend")},makeTouchable:function(a,b){VMM.bindEvent(a,VMM.TouchSlider.onTouchStart,"touchstart",{element:b});VMM.bindEvent(a,VMM.TouchSlider.onTouchMove,"touchmove",{element:b});VMM.bindEvent(a,VMM.TouchSlider.onTouchEnd,"touchend",{element:b})},onTouchStart:function(a){VMM.TouchSlider.touchStart(a.data.element,a);a.preventDefault();a.stopPropagation();return!0},onTouchEnd:function(a){a.preventDefault();a.stopPropagation();if(VMM.TouchSlider.sliding){VMM.TouchSlider.sliding=!1;VMM.TouchSlider.touchEnd(a.data.element,a);return!1}return!0},onTouchMove:function(a){VMM.TouchSlider.touchMove(a.data.element,a);a.preventDefault();a.stopPropagation();return!1},getLeft:function(a){return parseInt(VMM.Element.css(a,"left").substring(0,VMM.Element.css(a,"left").length-2),10)},getTop:function(a){return parseInt(VMM.Element.css(a,"top").substring(0,VMM.Element.css(a,"top").length-2),10)},touchStart:function(a,b){VMM.Element.css(a,"-webkit-transition-duration","0");VMM.TouchSlider.startX=b.originalEvent.touches[0].screenX;VMM.TouchSlider.startY=b.originalEvent.touches[0].screenY;VMM.TouchSlider.startLeft=VMM.TouchSlider.getLeft(a);VMM.TouchSlider.startTop=VMM.TouchSlider.getTop(a);VMM.TouchSlider.touchStartTime=(new Date).getTime()},touchEnd:function(a,b){if(VMM.TouchSlider.getLeft(a)>0){VMM.TouchSlider.vertical?VMM.Element.animate(a,1e3,"",{top:0}):VMM.Element.animate(a,1e3,"",{left:0});VMM.TouchSlider.startX=null;VMM.TouchSlider.startY=null;VMM.fireEvent(a,"TOUCHUPDATE",[0])}else VMM.TouchSlider.slideMomentum(a,b)},slideMomentum:function(a,b){var c=((new Date).getTime()-VMM.TouchSlider.touchStartTime)*10,d=c,e=VMM.TouchSlider.getLeft(a),f=VMM.TouchSlider.getTop(a),g=6e3*(Math.abs(VMM.TouchSlider.startLeft)-Math.abs(e)),h=6e3*(Math.abs(VMM.TouchSlider.startTop)-Math.abs(f));c=Math.round(g/c);slideAdjustY=Math.round(h/c);var i=c+e,j=slideAdjustY+f,k=j%VMM.TouchSlider.height,l=i%VMM.TouchSlider.width,m={top:Math.min(0,j),left:Math.min(0,i),time:d};VMM.fireEvent(a,"TOUCHUPDATE",[m]);VMM.TouchSlider.startX=null;VMM.TouchSlider.startY=null},doSlide:function(a,b,c){VMM.Element.css(a,"-webkit-transition-property","left");VMM.Element.css(a,"-webkit-transition-duration",c);VMM.Element.css(a,"left",b)},touchMove:function(a,b){!!VMM.TouchSlider.sliding;VMM.TouchSlider.sliding=!0;if(VMM.TouchSlider.vertical)if(VMM.TouchSlider.startY>b.originalEvent.touches[0].screenY){VMM.Element.css(a,"top",-(VMM.TouchSlider.startY-b.originalEvent.touches[0].screenY-VMM.TouchSlider.startTop));VMM.TouchSlider.slidingTop=!0}else{var c=b.originalEvent.touches[0].screenY-VMM.TouchSlider.startY+VMM.TouchSlider.startTop;VMM.Element.css(a,"top",-(VMM.TouchSlider.startY-b.originalEvent.touches[0].screenY-VMM.TouchSlider.startTop));VMM.TouchSlider.slidingTop=!1}else if(VMM.TouchSlider.startX>b.originalEvent.touches[0].screenX){VMM.Element.css(a,"left",-(VMM.TouchSlider.startX-b.originalEvent.touches[0].screenX-VMM.TouchSlider.startLeft));VMM.TouchSlider.slidingLeft=!0}else{var d=b.originalEvent.touches[0].screenX-VMM.TouchSlider.startX+VMM.TouchSlider.startLeft;VMM.Element.css(a,"left",-(VMM.TouchSlider.startX-b.originalEvent.touches[0].screenX-VMM.TouchSlider.startLeft));VMM.TouchSlider.slidingLeft=!1}}};VMM.hideUrlBar=function(){var a=window,b=a.document;if(!location.hash||!a.addEventListener){window.scrollTo(0,1);var c=1,d=setInterval(function(){if(b.body){clearInterval(d);c="scrollTop"in b.body?b.body.scrollTop:1;a.scrollTo(0,c===1?0:1)}},15);a.addEventListener("load",function(){setTimeout(function(){a.scrollTo(0,c===1?0:1)},0)},!1)}};VMM.DragSlider={createPanel:function(a,b,c,d,e){var f=d;VMM.DragSlider.width=c;VMM.DragSlider.makeDraggable(a,b);VMM.DragSlider.drag_elem=a;VMM.DragSlider.sticky=e},makeDraggable:function(a,b){VMM.bindEvent(a,VMM.DragSlider.onDragStart,"mousedown",{element:b,delement:a});VMM.bindEvent(a,VMM.DragSlider.onDragEnd,"mouseup",{element:b,delement:a});VMM.bindEvent(a,VMM.DragSlider.onDragLeave,"mouseleave",{element:b,delement:a})},cancelSlide:function(a){VMM.unbindEvent(VMM.DragSlider.drag_elem,VMM.DragSlider.onDragMove,"mousemove");return!0},onDragLeave:function(a){VMM.unbindEvent(a.data.delement,VMM.DragSlider.onDragMove,"mousemove");a.preventDefault();a.stopPropagation();return!0},onDragStart:function(a){VMM.DragSlider.dragStart(a.data.element,a.data.delement,a);a.preventDefault();a.stopPropagation();return!0},onDragEnd:function(a){a.preventDefault();a.stopPropagation();if(VMM.DragSlider.sliding){VMM.DragSlider.sliding=!1;VMM.DragSlider.dragEnd(a.data.element,a.data.delement,a);return!1}return!0},onDragMove:function(a){VMM.DragSlider.dragMove(a.data.element,a);a.preventDefault();a.stopPropagation();return!1},dragStart:function(a,b,c){VMM.DragSlider.startX=c.pageX;VMM.DragSlider.startLeft=VMM.DragSlider.getLeft(a);VMM.DragSlider.dragStartTime=(new Date).getTime();VMM.DragSlider.dragWidth=VMM.Element.width(b);var d=Math.round(VMM.DragSlider.startX-c.pageX-VMM.DragSlider.startLeft);VMM.Element.stop(a);VMM.bindEvent(b,VMM.DragSlider.onDragMove,"mousemove",{element:a})},dragEnd:function(a,b,c){VMM.unbindEvent(b,VMM.DragSlider.onDragMove,"mousemove");VMM.DragSlider.getLeft(a)>0||VMM.DragSlider.dragMomentum(a,c)},dragMove:function(a,b){!!VMM.DragSlider.sliding;VMM.DragSlider.sliding=!0;if(VMM.DragSlider.startX>b.pageX){VMM.Element.css(a,"left",-(VMM.DragSlider.startX-b.pageX-VMM.DragSlider.startLeft));VMM.DragSlider.slidingLeft=!0}else{var c=b.pageX-VMM.DragSlider.startX+VMM.DragSlider.startLeft;VMM.Element.css(a,"left",-(VMM.DragSlider.startX-b.pageX-VMM.DragSlider.startLeft));VMM.DragSlider.slidingLeft=!1}},dragMomentum:function(a,b){var c=((new Date).getTime()-VMM.DragSlider.dragStartTime)*10,d=c,e=VMM.DragSlider.getLeft(a),f=6e3*(Math.abs(VMM.DragSlider.startLeft)-Math.abs(e));c=Math.round(f/c);var g=e+c,h=g%VMM.DragSlider.width,i={left:Math.min(g),time:d};VMM.fireEvent(a,"DRAGUPDATE",[i]);var j="easeOutExpo";i.time>0&&VMM.Element.animate(a,i.time,j,{left:i.left})},getLeft:function(a){return parseInt(VMM.Element.css(a,"left").substring(0,VMM.Element.css(a,"left").length-2),10)}};VMM.Browser={init:function(){this.browser=this.searchString(this.dataBrowser)||"An unknown browser";this.version=this.searchVersion(navigator.userAgent)||this.searchVersion(navigator.appVersion)||"an unknown version";this.OS=this.searchString(this.dataOS)||"an unknown OS";this.device=this.searchDevice(navigator.userAgent)},searchDevice:function(a){return a.match(/Android/i)||a.match(/iPhone|iPod/i)?"mobile":a.match(/iPad/i)?"tablet":a.match(/BlackBerry/i)||a.match(/IEMobile/i)?"other mobile":"desktop"},searchString:function(a){for(var b=0;b<a.length;b++){var c=a[b].string,d=a[b].prop;this.versionSearchString=a[b].versionSearch||a[b].identity;if(c){if(c.indexOf(a[b].subString)!=-1)return a[b].identity}else if(d)return a[b].identity}},searchVersion:function(a){var b=a.indexOf(this.versionSearchString);if(b==-1)return;return parseFloat(a.substring(b+this.versionSearchString.length+1))},dataBrowser:[{string:navigator.userAgent,subString:"Chrome",identity:"Chrome"},{string:navigator.userAgent,subString:"OmniWeb",versionSearch:"OmniWeb/",identity:"OmniWeb"},{string:navigator.vendor,subString:"Apple",identity:"Safari",versionSearch:"Version"},{prop:window.opera,identity:"Opera",versionSearch:"Version"},{string:navigator.vendor,subString:"iCab",identity:"iCab"},{string:navigator.vendor,subString:"KDE",identity:"Konqueror"},{string:navigator.userAgent,subString:"Firefox",identity:"Firefox"},{string:navigator.vendor,subString:"Camino",identity:"Camino"},{string:navigator.userAgent,subString:"Netscape",identity:"Netscape"},{string:navigator.userAgent,subString:"MSIE",identity:"Explorer",versionSearch:"MSIE"},{string:navigator.userAgent,subString:"Gecko",identity:"Mozilla",versionSearch:"rv"},{string:navigator.userAgent,subString:"Mozilla",identity:"Netscape",versionSearch:"Mozilla"}],dataOS:[{string:navigator.platform,subString:"Win",identity:"Windows"},{string:navigator.platform,subString:"Mac",identity:"Mac"},{string:navigator.userAgent,subString:"iPhone",identity:"iPhone/iPod"},{string:navigator.userAgent,subString:"iPad",identity:"iPad"},{string:navigator.platform,subString:"Linux",identity:"Linux"}]};VMM.Browser.init();VMM.MediaElement={init:function(){return this},thumbnail:function(a,b,c){_w=32;_h=32;b!=null&&b!=""&&(_w=b);c!=null&&c!=""&&(_h=c);if(a.media!=null&&a.media!=""){_valid=!0;var d="",e={};e=VMM.MediaType(a.media);if(e.type=="image"){d="<div class='thumbnail'><img src='"+e.id+"' width='"+_w+"px' height='"+_h+"px'></div>";return d}if(e.type=="flickr"){d="<div class='thumbnail'><img id='flickr_"+e.id+"_thumb' width='"+_w+"px' height='"+_h+"px'></div>";return d}if(e.type=="youtube"){d="<div class='thumbnail youtube'></div>";return d}if(e.type=="vimeo"){d="<div class='thumbnail vimeo'></div>";return d}if(e.type=="twitter"){d="<div class='thumbnail twitter'></div>";return d}if(e.type=="twitter-ready"){d="<div class='thumbnail twitter'></div>";return d}if(e.type=="soundcloud"){d="<div class='thumbnail soundcloud'></div>";return d}if(e.type=="google-map"){d="<div class='thumbnail map'></div>";return d}if(e.type=="unknown"){d="";return d}if(e.type=="website"){d="<div class='thumbnail website'></div>";return d}d="<div class='thumbnail'></div>";return d}},create:function(a,b,c,d,e){_return=c;_w=500;_h=400;$mediacontainer=a;var f=!1;d!=null&&d!=""&&(_w=d);e!=null&&e!=""&&(_h=e);if(b.media!=null&&b.media!=""){f=!0;var g="",h="",i="",j={},k=_h-50,l=!1;b.credit!=null&&b.credit!=""&&(i="<div class='credit'>"+b.credit+"</div>");b.caption!=null&&b.caption!=""&&(h="<div class='caption'>"+b.caption+"</div>");j=VMM.MediaType(b.media);if(j.type=="image")g="<img src='"+j.id+"'>";else if(j.type=="flickr"){var m="flickr_"+j.id;g="<img id='"+m+"_large"+"'>";VMM.ExternalAPI.flickr.getPhoto(j.id,"#"+m)}else if(j.type=="youtube"){g="<div class='media-frame video youtube' id='youtube_"+j.id+"'>Loading YouTube video...</div>";VMM.ExternalAPI.youtube.init(j.id)}else if(j.type=="vimeo")g="<iframe class='media-frame video vimeo' frameborder='0' width='100%' height='100%' src='http://player.vimeo.com/video/"+j.id+"?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff'></iframe>";else if(j.type=="twitter"){g="<div class='twitter' id='"+j.id+"'>Loading Tweet</div>";trace("TWITTER");VMM.ExternalAPI.twitter.prettyHTML(j.id);l=!0}else if(j.type=="twitter-ready")g=j.id;else if(j.type=="soundcloud"){var n="soundcloud_"+VMM.Util.unique_ID(5);g="<div class='media-frame soundcloud' id='"+n+"'>Loading Sound</div>";VMM.ExternalAPI.soundcloud.getSound(j.id,n)}else if(j.type=="google-map")g="<iframe class='media-frame map' frameborder='0' width='100%' height='100%' scrolling='no' marginheight='0' marginwidth='0' src='"+j.id+"&amp;output=embed'></iframe>";else if(j.type=="unknown"){trace("NO KNOWN MEDIA TYPE FOUND TRYING TO JUST PLACE THE HTML");g=VMM.Util.properQuotes(j.id)}else if(j.type=="website")g="<iframe class='media-frame' frameborder='0' width='100%' height='100%' scrolling='yes' marginheight='0' marginwidth='0' src='"+j.id+"'></iframe>";else{trace("NO KNOWN MEDIA TYPE FOUND");trace(j.type)}g="<div class='media-container' >"+g+i+h+"</div>";if(_return)return l?"<div class='media text-media'><div class='media-wrapper'>"+g+"</div></div>":"<div class='media'><div class='media-wrapper'>"+g+"</div></div>";VMM.appendElement($mediacontainer,g);VMM.appendElement($mediacontainer,i);VMM.appendElement($mediacontainer,h)}}}.init();VMM.MediaType=function(a){var b=!1,c={};if(a.match("div class='twitter'")){c.type="twitter-ready";c.id=a;b=!0}else if(a.match("(www.)?youtube|youtu.be")){a.match("embed")?youtube_id=a.split(/embed\//)[1].split('"')[0]:youtube_id=a.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];c.type="youtube";c.id=youtube_id;b=!0}else if(a.match("(player.)?vimeo.com")){vimeo_id=a.split(/video\/|\/\/vimeo\.com\//)[1].split(/[?&]/)[0];c.type="vimeo";c.id=vimeo_id;b=!0}else if(a.match("(player.)?soundcloud.com")){c.type="soundcloud";c.id=a;b=!0}else if(a.match("(www.)?twitter.com")){trace("TWITTER MATCH");a.match("status/")?twitter_id=a.split("status/")[1]:a.match("statuses/")?twitter_id=a.split("statuses/")[1]:twitter_id="";c.type="twitter";c.id=twitter_id;b=!0}else if(a.match("maps.google.com")){c.type="google-map";c.id=a.split(/src=['|"][^'|"]*?['|"]/gi);trace("google map "+c.id);b=!0}else if(a.match("flickr.com/photos")){c.type="flickr";c.id=a.split("photos/")[1].split("/")[1];trace("FLICKR "+c.id);b=!0}else if(a.match(/jpg|jpeg|png|gif/i)){c.type="image";c.id=a;b=!0}else if(a.indexOf("http://")==0){c.type="website";c.id=a;b=!0}else{trace("unknown media");c.type="unknown";c.id=a;b=!0}if(b)return c;trace("No valid media id detected");trace(a);return!1};VMM.Keys={flickr:"6d6f59d8d30d79f4f402a7644d5073e3"};VMM.ExternalAPI={twitter:{tweetArray:[],getHTML:function(a){var b="https://api.twitter.com/1/statuses/oembed.json?id="+a+"&callback=?";VMM.getJSON(b,function(b){VMM.ExternalAPI.twitter.onJSONLoaded(b,a)})},onJSONLoaded:function(a,b){VMM.attachElement("#"+b,VMM.ExternalAPI.twitter.linkify(a.html))},linkify:function(a){return a.replace(/[@]+[A-Za-z0-9-_]+/g,function(a){var b=a.replace("@","");return a.link("http://twitter.com/"+b)})},parseTwitterDate:function(a){var b=new Date(Date.parse(a));return b},prettyParseTwitterDate:function(a){var b=new Date(Date.parse(a));return VMM.Util.date.prettyDate(b,!0)},getTweets:function(a){var b=[],c=a.length;for(var d=0;d<a.length;d++){var e="";a[d].tweet.match("status/")?e=a[d].tweet.split("status/")[1]:a[d].tweet.match("statuses/")?e=a[d].tweet.split("statuses/")[1]:e="";var f="https://api.twitter.com/1/statuses/show.json?id="+e+"&include_entities=true&callback=?";VMM.getJSON(f,function(a){var d={},e="<div class='twitter'><blockquote><p>",f=VMM.Util.linkify(a.text);f=f.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");f=f.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");e+=f;e+="</p>";e+="â€” "+a.user.name+" (<a href='https://twitter.com/"+a.user.screen_name+"'>@"+a.user.screen_name+"</a>) <a href='https://twitter.com/"+a.user.screen_name+"/status/"+a.id+"'>"+VMM.ExternalAPI.twitter.prettyParseTwitterDate(a.created_at)+" </a></blockquote></div>";d.content=e;d.raw=a;b.push(d);if(b.length==c){var g={tweetdata:b};VMM.fireEvent(global,"TWEETSLOADED",g)}})}},getTweetSearch:function(a,b){var c=40;b!=null&&b!=""&&(c=b);var d="http://search.twitter.com/search.json?q="+a+"&rpp="+c+"&include_entities=true&result_type=mixed",e=[];VMM.getJSON(d,function(a){for(var b=0;b<a.results.length;b++){var c={},d="<div class='twitter'><blockquote><p>",f=VMM.Util.linkify(a.results[b].text);f=f.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");f=f.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");d+=f;d+="</p>";d+="â€” "+a.results[b].from_user_name+" (<a href='https://twitter.com/"+a.results[b].from_user+"'>@"+a.results[b].from_user+"</a>) <a href='https://twitter.com/"+a.results[b].from_user+"/status/"+a.id+"'>"+VMM.ExternalAPI.twitter.prettyParseTwitterDate(a.results[b].created_at)+" </a></blockquote></div>";c.content=d;c.raw=a.results[b];e.push(c)}var g={tweetdata:e};VMM.fireEvent(global,"TWEETSLOADED",g)})},prettyHTML:function(a){var b="https://api.twitter.com/1/statuses/show.json?id="+a+"&include_entities=true&callback=?";VMM.getJSON(b,function(b){VMM.ExternalAPI.twitter.formatJSON(b,a)})},formatJSON:function(a,b){var c="<blockquote><p>",d=VMM.Util.linkify(a.text);d=d.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");d=d.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");c+=d;c+="</p></blockquote>";c+=" <a href='https://twitter.com/"+a.user.screen_name+"/status/"+a.id+"' alt='link to original tweet' title='link to original tweet'>"+"<span class='created-at'></span>"+" </a>";c+="<div class='vcard author'>";c+="<a class='screen-name url' href='https://twitter.com/"+a.user.screen_name+"' data-screen-name='"+a.user.screen_name+"'>";c+="<span class='avatar'><img src=' "+a.user.profile_image_url+"'  alt=''></span>";c+="<span class='fn'>"+a.user.name+"</span>";c+="<span class='nickname'>@"+a.user.screen_name+"</span>";c+="</a>";c+="</div>";VMM.attachElement("#"+b,c)}},maps:{},flickr:{getPhoto:function(a,b){var c="http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+VMM.Keys.flickr+"&photo_id="+a+"&format=json&nojsoncallback=1";VMM.getJSON(c,function(a){var c=b+"_large",d=b+"_thumb",e=a.sizes.size[a.sizes.size.length-1].source,f=a.sizes.size[0].source;VMM.Element.attr(c,"src",e);VMM.Element.attr(d,"src",f)})}},soundcloud:{getSound:function(a,b){var c="http://soundcloud.com/oembed?iframe=true&url="+a+"";VMM.getJSON(c,function(a){VMM.attachElement("#"+b,a.html)})}},youtube:{init:function(a){if(VMM.master_config.youtube.active)VMM.master_config.youtube.createPlayer(a);else{VMM.master_config.youtube.que.push(a);if(!VMM.master_config.youtube.api_loaded){var b=document.createElement("script");b.src="http://www.youtube.com/player_api";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);VMM.master_config.youtube.api_loaded=!0}}},onAPIReady:function(){VMM.master_config.youtube.active=!0;for(var a=0;a<VMM.master_config.youtube.que.length;a++)VMM.ExternalAPI.youtube.createPlayer(VMM.master_config.youtube.que[a])},createPlayer:function(a){var b={active:!1,player:{},name:"youtube_"+a,playing:!1};b.player["youtube_"+a]=new YT.Player("youtube_"+a,{height:"390",width:"640",playerVars:{enablejsapi:1,color:"white",showinfo:0,theme:"light",rel:0,origin:"http://dev.verite.co"},videoId:a,events:{onReady:VMM.ExternalAPI.youtube.onPlayerReady,onStateChange:VMM.ExternalAPI.youtube.onStateChange}});VMM.master_config.youtube.array.push(b)},stopPlayers:function(){for(var a=0;a<VMM.master_config.youtube.array.length;a++)if(VMM.master_config.youtube.array[a].playing){var b=VMM.master_config.youtube.array[a].name;VMM.master_config.youtube.array[a].player[b].stopVideo()}},onStateChange:function(a){for(var b=0;b<VMM.master_config.youtube.array.length;b++){var c=VMM.master_config.youtube.array[b].name;VMM.master_config.youtube.array[b].player[c]==a.target&&a.data==YT.PlayerState.PLAYING&&(VMM.master_config.youtube.array[b].playing=!0)}},onPlayerReady:function(a){}}};VMM.Media=function(a,b,c,d){function n(){}var e={},f=!1,g={width:720,height:400,content_width:720,content_height:400,ease:"easeInOutExpo",duration:1e3,spacing:15},h="",i="",j="",k="",l=a;b!=null&&b!=""&&(g.width=b);c!=null&&c!=""&&(g.height=c);this.init=function(a){typeof a!="undefined"?this.setData(a):trace("WAITING ON DATA")};var m=function(a,b,c){h=VMM.appendAndGetElement(l,"<div>","media");i=VMM.appendAndGetElement(h,"<div>","container");j=VMM.appendAndGetElement(i,"<div>","media-container");if(e.media!=null&&e.media!=""){f=!0;var d={};d=VMM.MediaType(e.media);d.type=="image"?VMM.appendElement(j,"<img src='"+d.id+"'>"):d.type=="youtube"?VMM.appendElement(j,"<iframe frameborder='0' src='http://www.youtube.com/embed/"+d.id+"?&rel=0&theme=light&showinfo=0&hd=1&autohide=0&color=white' allowfullscreen>"):d.type=="vimeo"&&VMM.appendElement(j,"<iframe frameborder='0' src='http://player.vimeo.com/video/"+d.id+"?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff'>");e.credit!=null&&e.credit!=""&&VMM.appendElement(i,VMM.createElement("div",e.credit,"credit"));e.caption!=null&&e.caption!=""&&VMM.appendElement(i,VMM.createElement("div",e.caption,"caption"))}};this.setData=function(a){if(typeof a!="undefined"){e=a;m()}else trace("NO DATA")}};VMM.Media.prototype.height=function(a){if(a==null||a=="")return config.height;config.height=a;reSize()};VMM.Media.prototype.width=function(a){if(a==null||a=="")return config.width;config.width=a;reSize()};VMM.Media.prototype.getData=function(){return data};VMM.Media.prototype.setConfig=function(a){typeof a!="undefined"?config=a:trace("NO CONFIG DATA")};VMM.Media.prototype.getConfig=function(){return config};VMM.Media.prototype.setSize=function(a,b){a!=null&&(config.width=a);b!=null&&(config.height=b);_active&&reSize()};VMM.Media.prototype.active=function(){return _active}}Date.prototype.getWeek=function(){var a=new Date(this.getFullYear(),0,1);return Math.ceil(((this-a)/864e5+a.getDay()+1)/7)};Date.prototype.getDayOfYear=function(){var a=new Date(this.getFullYear(),0,1);return Math.ceil((this-a)/864e5)};var is={Null:function(a){return a===null},Undefined:function(a){return a===undefined},nt:function(a){return a===null||a===undefined},Function:function(a){return typeof a=="function"?a.constructor.toString().match(/Function/)!==null:!1},String:function(a){return typeof a=="string"?!0:typeof a=="object"?a.constructor.toString().match(/string/i)!==null:!1},Array:function(a){return typeof a=="object"?a.constructor.toString().match(/array/i)!==null||a.length!==undefined:!1},Boolean:function(a){return typeof a=="boolean"?!0:typeof a=="object"?a.constructor.toString().match(/boolean/i)!==null:!1},Date:function(a){return typeof a=="date"?!0:typeof a=="object"?a.constructor.toString().match(/date/i)!==null:!1},HTML:function(a){return typeof a=="object"?a.constructor.toString().match(/html/i)!==null:!1},Number:function(a){return typeof a=="number"?!0:typeof a=="object"?a.constructor.toString().match(/Number/)!==null:!1},Object:function(a){return typeof a=="object"?a.constructor.toString().match(/object/i)!==null:!1},RegExp:function(a){return typeof a=="function"?a.constructor.toString().match(/regexp/i)!==null:!1}},type={of:function(a){for(var b in is)if(is[b](a))return b.toLowerCase()}};if(typeof jQuery!="undefined"){jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeOutQuad",swing:function(a,b,c,d,e){return jQuery.easing[jQuery.easing.def](a,b,c,d,e)},easeInExpo:function(a,b,c,d,e){return b==0?c:d*Math.pow(2,10*(b/e-1))+c},easeOutExpo:function(a,b,c,d,e){return b==e?c+d:d*(-Math.pow(2,-10*b/e)+1)+c},easeInOutExpo:function(a,b,c,d,e){return b==0?c:b==e?c+d:(b/=e/2)<1?d/2*Math.pow(2,10*(b-1))+c:d/2*(-Math.pow(2,-10*--b)+2)+c},easeInQuad:function(a,b,c,d,e){return d*(b/=e)*b+c},easeOutQuad:function(a,b,c,d,e){return-d*(b/=e)*(b-2)+c},easeInOutQuad:function(a,b,c,d,e){return(b/=e/2)<1?d/2*b*b+c:-d/2*(--b*(b-2)-1)+c}})}typeof VMM!="undefined"&&typeof VMM.Sequence=="undefined"&&(VMM.Sequence=Class.extend({initialize:function(a,b){trace("sequence init");this.increment=1;this.decrement=1;this.wrap=!1;this.length=a==null?0:a;this.index=b==null?a==0?-1:0:b>=a?a-1:b;this.synced=[]},setLength:function(a){this.length=a;this.setIndex(this.index)},getLength:function(){return this.length},setIndex:function(a){if(this.length<=0){this.index=-1;return}a<0?a=this.wrap?this.length-a%this.length:0:a>=this.length&&(a=this.wrap?a%this.length:this.length-1);var b=this.index;this.index=a;if(b!=this.index)for(var c=0;c<this.synced.length;c++){var d=this.synced[c];d.getIndex()!=this.index&&d.setIndex(this.index)}},getIndex:function(){return this.index},next:function(){this.setIndex(this.index+this.increment)},prev:function(){this.setIndex(this.index-this.decrement)},sync:function(a,b){if(a instanceof NYTMM.Sequence&&a!=this){this.synced.push(a);b&&a.sync(this);return!0}return!1},unsync:function(a,b){for(var c=0;c<this.synced.length;c++)if(this.synced[c]==a){this.synced.splice(c,1);b&&a.unsync(this);return!0}return!1}}));typeof VMM!="undefined"&&typeof VMM.Slider=="undefined"&&(VMM.Slider=function(a,b,c,d){function y(){trace("onConfigSet")}function z(a,b){var c=!0,d=!1;a!=null&&(c=a);b!=null&&(d=b);l=o.width;o.nav_height=VMM.Element.height(w.prevBtnContainer);o.content_width=l-o.content_padding*2;VMM.Element.width(v,i.length*o.content_width);if(d){var e=VMM.Element.position(i[k]);VMM.Element.css(u,"left",e.left)}G();VMM.Element.css(w.nextBtn,"left",l-o.nav_width);VMM.Element.height(w.prevBtn,o.height);VMM.Element.height(w.nextBtn,o.height);VMM.Element.css(w.nextBtnContainer,"top",o.height/2-o.nav_height/2);VMM.Element.css(w.prevBtnContainer,"top",o.height/2-o.nav_height/2);VMM.Element.height(t,o.height);VMM.Element.width(t,l);c&&I(k,"linear",1);k==0&&VMM.Element.visible(w.prevBtn,!1)}function A(a){if(k==i.length-1)VMM.Element.animate(u,o.duration,o.ease,{left:-VMM.Element.position(i[k]).left});else{I(k+1);D()}}function B(a){if(k==0)I(k);else{I(k-1);D()}}function C(a,b){if(n.length==0)for(var c=0;c<i.length;c++){var d=VMM.Element.position(i[c]);n.push(d.left)}if(typeof b.left=="number"){var e=b.left;e<-VMM.Element.position(i[k]).left-o.width/3?A():e>-VMM.Element.position(i[k]).left+o.width/3?B():VMM.Element.animate(u,o.duration,o.ease,{left:-VMM.Element.position(i[k]).left})}else VMM.Element.animate(u,o.duration,o.ease,{left:-VMM.Element.position(i[k]).left});typeof b.top=="number"&&VMM.Element.animate(u,o.duration,o.ease,{top:-b.top})}function D(){VMM.fireEvent(x,"UPDATE")}var e="private",f={},g=[],h="",i=[],j=[],k=0,l=960,m={move:!1,x:10,y:0,off:0,dampen:48},n=[],o={interval:10,something:0,width:720,height:400,content_width:720,content_height:400,content_padding:130,ease:"easeInOutExpo",duration:1e3,nav_width:100,nav_height:200,timeline:!1,spacing:15},p=1e3;b!=null&&b!=""&&(o.width=b);c!=null&&c!=""&&(o.height=c);d!=null&&d!=""&&(o.timeline=d);var q="",r=!1,s="",t="",u="",v="",w={};w.nextBtn;w.prevBtn;w.nextDate;w.prevDate;w.nextTitle;w.prevTitle;this.ver="0.1";var x=a;this.init=function(a){typeof a!="undefined"?this.setData(a):trace("WAITING ON DATA")};this.width=function(a){if(a==null||a=="")return o.width;o.width=a;z()};this.height=function(a){if(a==null||a=="")return o.height;o.height=a;z()};this.setData=function(a){if(typeof a!="undefined"){g=a;K()}else trace("NO DATA")};this.getData=function(){return g};this.setConfig=function(a){typeof a!="undefined"?o=a:trace("NO CONFIG DATA")};this.getConfig=function(){return o};this.setSize=function(a,b){a!=null&&(o.width=a);b!=null&&(o.height=b);r&&z()};this.active=function(){return r};this.getCurrentNumber=function(){return k};this.setSlide=function(a){I(a)};var E=function(a){g=a},F=function(a){VMM.attachElement(v,"");for(var b=0;b<a.length;b++){var c="",d,e;c=VMM.createElement("div",a[b].content,"content");d=VMM.appendAndGetElement(v,"<div>","slider-item",c);i.push(d)}},G=function(){VMM.Element.css(".slider-item","width",o.content_width);VMM.Element.height(".slider-item",o.height);VMM.Element.css(".slider-item .layout-text-media .media .media-container img"
-,"max-height",o.height-50);VMM.Element.css(".slider-item .layout-media .media .media-container img","max-height",o.height-150);VMM.Element.css(".slider-item .media .media-container .soundcloud","max-height",168);var a=Math.round(o.height)-160,b=Math.round(a/9*16),c=o.content_width/100*60,d=Math.round(c/16*9)+25;VMM.Element.height(".slider-item .media .media-container .media-frame",d);VMM.Element.width(".slider-item .media .media-container .media-frame",c);VMM.Element.height(".slider-item .layout-media .media .media-container .media-frame",a);VMM.Element.width(".slider-item .layout-media .media .media-container .media-frame",b);VMM.Element.height(".slider-item .layout-media .media .media-container .soundcloud",o.height-150);VMM.Element.width(".slider-item .layout-media .media .media-container .soundcloud",o.content_width);VMM.Element.width(".slider-item .layout-text-media .media .media-container .soundcloud",c);VMM.Element.height(".slider-item .media .media-container .map",a);VMM.Element.css(".slider-item .layout-text-media .media .media-container .media-frame","max-width",o.content_width);var e=0;for(var f=0;f<i.length;f++){e=f*(o.width+o.spacing);VMM.Element.css(i[f],"left",e)}},H=function(a){var b="linear";for(var c=0;c<i.length;c++)c==k?VMM.Element.animate(i[c],o.duration,b,{opacity:1}):c==k-1?VMM.Element.animate(i[c],o.duration,b,{opacity:.1}):c==k+1?VMM.Element.animate(i[c],o.duration,b,{opacity:.1}):VMM.Element.css(i[c],"opacity",a)},I=function(a,b,c,d,e){VMM.ExternalAPI.youtube.stopPlayers();k=a;var f=o.ease,h=o.duration,j=!1,l=!1;k==0&&(l=!0);k+1==i.length&&(j=!0);b!=null&&b!=""&&(f=b);c!=null&&c!=""&&(h=c);var m=VMM.Element.position(i[k]);if(l)VMM.Element.visible(w.prevBtn,!1);else{VMM.Element.visible(w.prevBtn,!0);o.timeline&&VMM.attachElement(w.prevDate,g[k-1].date);VMM.attachElement(w.prevTitle,VMM.Util.unlinkify(g[k-1].title))}if(j)VMM.Element.visible(w.nextBtn,!1);else{VMM.Element.visible(w.nextBtn,!0);o.timeline&&VMM.attachElement(w.nextDate,g[k+1].date);VMM.attachElement(w.nextTitle,VMM.Util.unlinkify(g[k+1].title))}if(d)VMM.Element.css(u,"left",-(m.left-o.content_padding));else{VMM.Element.stop(u);VMM.Element.animate(u,h,f,{left:-(m.left-o.content_padding)})}e&&VMM.fireEvent(x,"LOADED");if(VMM.Element.height(i[k])>o.height)VMM.Element.css(".slider","overflow-y","scroll");else{VMM.Element.css(x,"overflow-y","hidden");VMM.Element.animate(x,h,f,{scrollTop:VMM.Element.prop(x,"scrollHeight")-VMM.Element.height(x)})}},J=function(){var a="<div class='icon'>&nbsp;</div>";w.nextBtn=VMM.appendAndGetElement(s,"<div>","nav-next");w.prevBtn=VMM.appendAndGetElement(s,"<div>","nav-previous");w.nextBtnContainer=VMM.appendAndGetElement(w.nextBtn,"<div>","nav-container",a);w.prevBtnContainer=VMM.appendAndGetElement(w.prevBtn,"<div>","nav-container",a);if(o.timeline){w.nextDate=VMM.appendAndGetElement(w.nextBtnContainer,"<div>","date","1957");w.prevDate=VMM.appendAndGetElement(w.prevBtnContainer,"<div>","date","1957")}w.nextTitle=VMM.appendAndGetElement(w.nextBtnContainer,"<div>","title","Title Goes Here");w.prevTitle=VMM.appendAndGetElement(w.prevBtnContainer,"<div>","title","Title Goes Here");VMM.bindEvent(".nav-next",A);VMM.bindEvent(".nav-previous",B)},K=function(){VMM.attachElement(x,"");s=VMM.getElement("div.slider");t=VMM.appendAndGetElement(s,"<div>","slider-container-mask");u=VMM.appendAndGetElement(t,"<div>","slider-container");v=VMM.appendAndGetElement(u,"<div>","slider-item-container");J();F(g);var a=3e3;if(VMM.Browser.device=="tablet"||VMM.Browser.device=="mobile"){o.duration=500;a=1e3;VMM.TouchSlider.createPanel(u,u,VMM.Element.width(i[0]),o.spacing,!0);VMM.bindEvent(u,C,"TOUCHUPDATE")}else VMM.Browser.device!="mobile";z(!1,!0);VMM.Element.visible(w.prevBtn,!1);I(0,"easeOutExpo",a,!0,!0);r=!0}});typeof VMM!="undefined"&&typeof VMM.Util=="undefined"&&(VMM.Util={init:function(){return this},randomBetween:function(a,b){return Math.floor(Math.random()*(b-a+1)+a)},customSort:function(a,b){var c=a,d=b;return c==d?0:c>d?1:-1},number2money:function(a,b,c){var b=b!==null?b:!0,c=c!==null?c:!1,d=VMM.Math2.floatPrecision(a,2),e=this.niceNumber(d);!e.split(/\./g)[1]&&c&&(e+=".00");b&&(e="$"+e);return e},wordCount:function(a){var b=a+" ",c=/^[^A-Za-z0-9\'\-]+/gi,d=b.replace(c,""),e=/[^A-Za-z0-9\'\-]+/gi,f=d.replace(e," "),g=f.split(" "),h=g.length-1;b.length<2&&(h=0);return h},parseDate:function(a){var b;if(a.match(/,/gi)){var c=a.split(",");for(var d=0;d<c.length;d++)c[d]=parseInt(c[d]);b=new Date;c[0]&&b.setFullYear(c[0]);c[1]>1?b.setMonth(c[1]-1):b.setMonth(0);c[2]>1?b.setDate(c[2]):b.setDate(1);c[3]>1?b.setHours(c[3]):b.setHours(0);c[4]>1?b.setMinutes(c[4]):b.setMinutes(0);c[5]>1?b.setSeconds(c[5]):b.setSeconds(0);c[6]>1?b.setMilliseconds(c[6]):b.setMilliseconds(0)}else if(a.match("/"))b=new Date(a);else if(a.length<5){b=new Date;b.setFullYear(parseInt(a));b.setMonth(0);b.setDate(1);b.setHours(0);b.setMinutes(0);b.setSeconds(0);b.setMilliseconds(0)}else b=new Date(parseInt(a.slice(0,4)),parseInt(a.slice(4,6))-1,parseInt(a.slice(6,8)),parseInt(a.slice(8,10)),parseInt(a.slice(10,12)));return b},ratio:{r16_9:function(a,b){if(a!==null&&a!=="")return Math.round(b/16*9);if(b!==null&&b!=="")return Math.round(a/9*16)},r4_3:function(a,b){if(a!==null&&a!=="")return Math.round(b/4*3);if(b!==null&&b!=="")return Math.round(a/3*4)}},date:{month:["January","February","March","April","May","June","July","August","September","October","November","December"],month_abbr:["Jan.","Feb.","March","April","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."],day:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],day_abbr:["Sun.","Mon.","Tues.","Wed.","Thurs.","Fri.","Sat."],hour:[1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],hour_suffix:["am"],prettyDate:function(a,b,c){var d="";if(type.of(a)=="date")a.getMonth()===0&&a.getDate()==1&&a.getHours()===0&&a.getMinutes()===0?d=a.getFullYear():a.getDate()<=1&&a.getHours()===0&&a.getMinutes()===0?b?d=VMM.Util.date.month_abbr[a.getMonth()]:d=VMM.Util.date.month[a.getMonth()]+" "+a.getFullYear():a.getHours()===0&&a.getMinutes()===0?b?d=VMM.Util.date.month_abbr[a.getMonth()]+" "+a.getDate():d=VMM.Util.date.month[a.getMonth()]+" "+a.getDate()+", "+a.getFullYear():a.getMinutes()===0?b?d=VMM.Util.date.get12HRTime(a):d=VMM.Util.date.get12HRTime(a)+"<br/><small>"+VMM.Util.date.month[a.getMonth()]+" "+a.getDate()+", "+a.getFullYear()+" </small> ":b?d=VMM.Util.date.day[a.getDay()]+", "+VMM.Util.date.month_abbr[a.getMonth()]+" "+a.getDate()+", "+a.getFullYear()+" at "+VMM.Util.date.get12HRTime(a):d=VMM.Util.date.get12HRTime(a)+"<br/><small>"+VMM.Util.date.day[a.getDay()]+", "+VMM.Util.date.month[a.getMonth()]+" "+a.getDate()+", "+a.getFullYear()+" </small> ";else{trace("NOT A VALID DATE?");trace(a)}return d},prettyMonth:function(a,b){var c="";type.of(t)!="date";return c},get12HRTime:function(a,b){var c="";if(type.of(a)=="date"){c=VMM.Util.date.theHour(a.getHours())+":"+VMM.Util.date.minuteZeroFill(a.getMinutes());b&&(c=c+":"+VMM.Util.date.minuteZeroFill(a.getSeconds()));c+=VMM.Util.date.hourSuffix(a.getHours())}return c},theHour:function(a){if(a>0&&a<13)return a;if(a=="0"){a=12;return a}return a===0?12:a-12},minuteZeroFill:function(a){return a>9?""+a:"0"+a},hourSuffix:function(a){return a<12?" am":" pm"}},doubledigit:function(a){return(a<10?"0":"")+a},truncateWords:function(a,b,c){b||(b=30);c||(c=b);var d=/^[^A-Za-z0-9\'\-]+/gi,e=a.replace(d,""),f=e.split(" "),g=[];b=Math.min(f.length,b);c=Math.min(f.length,c);for(var h=0;h<b;h++)g.push(f[h]);for(var i=b;h<c;h++){var j=f[h];g.push(j);if(j.charAt(j.length-1)==".")break}return g.join(" ")},linkify:function(a,b,c){if(!a)return a;a=a.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,function(a){var d=a,e="";a.search("^https?://")<0&&(a="http://"+a);e="onclick = 'void(0)'";c&&(e="onclick = 'void(0)'");onclick="void(0)";return b===null||b===""?'<a href="'+a+" "+e+'">'+a+"</a>":"<a href='"+a+" "+e+" target='"+b+"'>'"+a+"</a>"});return a},unlinkify:function(a){if(!a)return a;a=a.replace(/<a\b[^>]*>/i,"");a=a.replace(/<\/a>/i,"");return a},nl2br:function(a){return a.replace(/(\r\n|[\r\n]|\\n|\\r)/g,"<br/>")},unique_ID:function(a){var b=function(a){return Math.floor(Math.random()*a)},c=function(){var a="abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";return a.substr(b(62),1)},d=function(a){var b="";for(var d=0;d<a;d++)b+=c();return b};return d(a)},isEven:function(a){return a%2===0?!0:!1},getUrlVars:function(a){var b=[],c,d=a.slice(a.indexOf("?")+1).split("&");for(var e=0;e<d.length;e++){c=d[e].split("=");b.push(c[0]);b[c[0]]=c[1]}trace(b);return b},toHTML:function(a){a=this.nl2br(a);a=this.linkify(a);return a.replace(/\s\s/g,"&nbsp;&nbsp;")},toCamelCase:function(a,b){b!==!1&&(b=!0);var c=(b?a.toLowerCase():a).split(" ");for(var d=0;d<c.length;d++)c[d]=c[d].substr(0,1).toUpperCase()+c[d].substr(1);return c.join(" ")},properQuotes:function(a){return a.replace(/\"([^\"]*)\"/gi,"&#8220;$1&#8221;")},niceNumber:function(a){var b=String(Math.abs(Number(a))),c=b.split(/\./g)[0],d=b.split(/\./g)[1],e="",f=c.toArray();f.reverse();for(var g=1;g<=f.length;g++)g%3==0&&g<f.length?e=","+f[g-1]+e:e=f[g-1]+e;return d!=null&&d!=""&&d!=undefined?e+"."+d:e},toTitleCase:function(a){var b={__smallWords:["a","an","and","as","at","but","by","en","for","if","in","of","on","or","the","to","v[.]?","via","vs[.]?"],init:function(){this.__smallRE=this.__smallWords.join("|");this.__lowerCaseWordsRE=new RegExp("\\b("+this.__smallRE+")\\b","gi");this.__firstWordRE=new RegExp("^([^a-zA-Z0-9 \\r\\n\\t]*)("+this.__smallRE+")\\b","gi");this.__lastWordRE=new RegExp("\\b("+this.__smallRE+")([^a-zA-Z0-9 \\r\\n\\t]*)$","gi")},toTitleCase:function(a){var b="",c=a.split(/([:.;?!][ ]|(?:[ ]|^)["â€œ])/);for(var d=0;d<c.length;++d){var e=c[d];e=e.replace(/\b([a-zA-Z][a-z.'â€™]*)\b/g,this.__titleCaseDottedWordReplacer);e=e.replace(this.__lowerCaseWordsRE,this.__lowerReplacer);e=e.replace(this.__firstWordRE,this.__firstToUpperCase);e=e.replace(this.__lastWordRE,this.__firstToUpperCase);b+=e}b=b.replace(/ V(s?)\. /g," v$1. ");b=b.replace(/(['â€™])S\b/g,"$1s");b=b.replace(/\b(AT&T|Q&A)\b/ig,this.__upperReplacer);return b},__titleCaseDottedWordReplacer:function(a){return a.match(/[a-zA-Z][.][a-zA-Z]/)?a:b.__firstToUpperCase(a)},__lowerReplacer:function(a){return a.toLowerCase()},__upperReplacer:function(a){return a.toUpperCase()},__firstToUpperCase:function(a){var b=a.split(/(^[^a-zA-Z0-9]*[a-zA-Z0-9])(.*)$/);b[1]=b[1].toUpperCase();return b.join("")}};b.init();a=a.replace(/_/g," ");a=b.toTitleCase(a);return a}}.init());!function(a){"use strict";var b=function(a,b){this.init("tooltip",a,b)};b.prototype={constructor:b,init:function(b,c,d){var e,f;this.type=b;this.$element=a(c);this.options=this.getOptions(d);this.enabled=!0;if(this.options.trigger!="manual"){e=this.options.trigger=="hover"?"mouseenter":"focus";f=this.options.trigger=="hover"?"mouseleave":"blur";this.$element.on(e,this.options.selector,a.proxy(this.enter,this));this.$element.on(f,this.options.selector,a.proxy(this.leave,this))}this.options.selector?this._options=a.extend({},this.options,{trigger:"manual",selector:""}):this.fixTitle()},getOptions:function(b){b=a.extend({},a.fn[this.type].defaults,b,this.$element.data());b.delay&&typeof b.delay=="number"&&(b.delay={show:b.delay,hide:b.delay});return b},enter:function(b){var c=a(b.currentTarget)[this.type](this._options).data(this.type);if(!c.options.delay||!c.options.delay.show)c.show();else{c.hoverState="in";setTimeout(function(){c.hoverState=="in"&&c.show()},c.options.delay.show)}},leave:function(b){var c=a(b.currentTarget)[this.type](this._options).data(this.type);if(!c.options.delay||!c.options.delay.hide)c.hide();else{c.hoverState="out";setTimeout(function(){c.hoverState=="out"&&c.hide()},c.options.delay.hide)}},show:function(){var a,b,c,d,e,f,g;if(this.hasContent()&&this.enabled){a=this.tip();this.setContent();this.options.animation&&a.addClass("fade");f=typeof this.options.placement=="function"?this.options.placement.call(this,a[0],this.$element[0]):this.options.placement;b=/in/.test(f);a.remove().css({top:0,left:0,display:"block"}).appendTo(b?this.$element:document.body);c=this.getPosition(b);d=a[0].offsetWidth;e=a[0].offsetHeight;switch(b?f.split(" ")[1]:f){case"bottom":g={top:c.top+c.height,left:c.left+c.width/2-d/2};break;case"top":g={top:c.top-e,left:c.left+c.width/2-d/2};break;case"left":g={top:c.top+c.height/2-e/2,left:c.left-d};break;case"right":g={top:c.top+c.height/2-e/2,left:c.left+c.width}}a.css(g).addClass(f).addClass("in")}},setContent:function(){var a=this.tip();a.find(".tooltip-inner").html(this.getTitle());a.removeClass("fade in top bottom left right")},hide:function(){function d(){var b=setTimeout(function(){c.off(a.support.transition.end).remove()},500);c.one(a.support.transition.end,function(){clearTimeout(b);c.remove()})}var b=this,c=this.tip();c.removeClass("in");a.support.transition&&this.$tip.hasClass("fade")?d():c.remove()},fixTitle:function(){var a=this.$element;(a.attr("title")||typeof a.attr("data-original-title")!="string")&&a.attr("data-original-title",a.attr("title")||"").removeAttr("title")},hasContent:function(){return this.getTitle()},getPosition:function(b){return a.extend({},b?{top:0,left:0}:this.$element.offset(),{width:this.$element[0].offsetWidth,height:this.$element[0].offsetHeight})},getTitle:function(){var a,b=this.$element,c=this.options;a=b.attr("data-original-title")||(typeof c.title=="function"?c.title.call(b[0]):c.title);a=a.toString().replace(/(^\s*|\s*$)/,"");return a},tip:function(){return this.$tip=this.$tip||a(this.options.template)},validate:function(){if(!this.$element[0].parentNode){this.hide();this.$element=null;this.options=null}},enable:function(){this.enabled=!0},disable:function(){this.enabled=!1},toggleEnabled:function(){this.enabled=!this.enabled},toggle:function(){this[this.tip().hasClass("in")?"hide":"show"]()}};a.fn.tooltip=function(c){return this.each(function(){var d=a(this),e=d.data("tooltip"),f=typeof c=="object"&&c;e||d.data("tooltip",e=new b(this,f));typeof c=="string"&&e[c]()})};a.fn.tooltip.Constructor=b;a.fn.tooltip.defaults={animation:!0,delay:0,selector:!1,placement:"top",trigger:"hover",title:"",template:'<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'}}(window.jQuery);if(typeof VMM!="undefined"&&typeof VMM.Timeline=="undefined"){VMM.Timeline=function(a,b){function o(a,b){k=b.timeline;type.of(k.era)!="array"&&(k.era=[]);E()}function p(){A()}function q(){C();g.setSize(m.feature_width,m.feature_height);h.setSize(m.width,m.height);D()}function r(a){m.loaded.slider=!0;s()}function s(a){m.loaded.percentloaded=m.loaded.percentloaded+25;x("Loading Timeline "+m.loaded.percentloaded);m.loaded.slider&&m.loaded.timenav&&y()}function t(a){m.loaded.timenav=!0;s()}function u(a){h.setMarker(g.getCurrentNumber(),m.ease,m.duration)}function v(a){g.setSlide(h.getCurrentNumber())}var c=VMM.getElement("#timeline"),d,e,f=VMM.getElement("#timeline");d=VMM.appendAndGetElement(c,"<div>","feedback","");e=VMM.appendAndGetElement(d,"<div>","messege","Loading Timeline");var g=new VMM.Slider("div.slider",720,400,!0),h=new VMM.Timeline.TimeNav("div.navigation",720,400,!0),i="private",j={},k={},l=[],m={};m.interval=10;m.something=0;m.width=960;m.height=540;m.spacing=15;m.loaded={slider:!1,timenav:!1,percentloaded:0};m.ease="easeInOutExpo";m.duration=1e3;if(a!=null&&a!=""){m.width=a;VMM.Element.width(c,a)}else m.width=VMM.Element.width(c);if(b!=null&&b!=""){m.height=b;VMM.Element.height(c,b)}else m.height=VMM.Element.height(c);if(VMM.Browser.device=="mobile"){m.nav_width=m.width;m.nav_height=200;m.feature_width=m.width;m.feature_height=m.height}else{m.nav_width=m.width;m.nav_height=200;m.feature_width=m.width;m.feature_height=m.height-m.nav_height}var n=!1;$.browser.msie&&parseInt($.browser.version,10)==7&&(n=!0);this.ver="0.85";this.init=function(a){trace("init");VMM.bindEvent(global,o,"DATAREADY");if(n){d=VMM.appendAndGetElement(c,"<div>","feedback","");e=VMM.appendAndGetElement(d,"<div>","messege","Internet Explorer 7 is not supported by Timeline.")}else{type.of(a)=="string"?VMM.Timeline.DataObj.getData(a):VMM.Timeline.DataObj.getData(f);d=VMM.appendAndGetElement(c,"<div>","feedback","");e=VMM.appendAndGetElement(d,"<div>","messege","Loading Timeline")}};this.iframeLoaded=function(){trace("iframeLoaded")};var w=function(a){VMM.getJSON(a,function(a){k=VMM.Timeline.DataObj.getData(a);VMM.fireEvent(global,"DATAREADY")})},x=function(a){},y=function(){VMM.Element.animate(d,m.duration,m.ease*4,{opacity:0},z)},z=function(){VMM.Element.detach(d)},A=function(){VMM.attachElement(c,"");VMM.appendElement(c,"<div class='container main'><div class='feature'><div class='slider'></div></div><div class='navigation'></div></div>");q();VMM.bindEvent("div.slider",r,"LOADED");VMM.bindEvent("div.navigation",t,"LOADED");VMM.bindEvent("div.slider",u,"UPDATE");VMM.bindEvent("div.navigation",v,"UPDATE");g.init(l);h.init(l,k.era);VMM.bindEvent(global,q,"resize");VMM.bindEvent(global,function(a){a.preventDefault()},"touchmove")},B=function(a,b){C();var c=a,d="",e={};e._text="";e._media="";var f=!1,g=!1,h=!1;if(type.of(b)=="date"){f=!0;a.type!="start"&&(e._text+=VMM.createElement("h2",VMM.Util.date.prettyDate(b),"date"));c.headline!=null&&c.headline!=""&&c.type!="tweets"&&(a.type=="start"?e._text+=VMM.createElement("h2",c.headline,"start"):e._text+=VMM.createElement("h3",c.headline));if(c.text!=null&&c.text!=""){h=!0;e._text+=VMM.createElement("p",c.text)}e._text=VMM.createElement("div",e._text,"container");e._text=VMM.createElement("div",e._text,"text")}if(f&&c.asset!=null&&c.asset!=""&&c.asset.media!=null&&c.asset.media!=""){g=!0;e._media=VMM.MediaElement.create("",c.asset,!0,m.feature_width,m.feature_height)}if(f){var i="content-container layout";h&&(i+="-text");g&&(i+="-media");d=VMM.createElement("div",e._text+e._media,i)}return d},C=function(){m.width=VMM.Element.width(c);m.height=VMM.Element.height(c);m.nav_width=m.width;m.feature_width=m.width;VMM.Browser.device=="mobile"?m.feature_height=m.height:m.feature_height=m.height-m.nav_height-3},D=function(){if(m.width<500){VMM.Element.hide("div.navigation");VMM.Element.hide("div.nav-next");VMM.Element.hide("div.nav-previous");VMM.Element.height(".slider-container-mask",m.height)}else{VMM.Element.show("div.navigation");VMM.Element.show("div.nav-next");VMM.Element.show("div.nav-previous");VMM.Element.height(".slider-container-mask",m.feature_height)}m.width<820&&!(m.width<500)},E=function(){C();if(k.headline!=null&&k.headline!=""&&k.text!=null&&k.text!=""){trace("HAS STARTPAGE");var a={};if(k.type=="google spreadsheet"){trace("google spreadsheet startpage date"+k.startDate);a.startdate=new Date(Date.parse(k.startDate));trace(a.startdate)}else a.startdate=VMM.Util.parseDate(k.startDate);a.uniqueid=VMM.Util.unique_ID(5);a.enddate=a.startdate;a.title=k.headline;a.headline=k.headline;a.text=k.text;a.type="start";a.date=VMM.Util.date.prettyDate(k.startDate);a.asset=k.asset;a.fulldate=a.startdate.getTime();a.content=B(a,a.startdate);a.content!=null&&a.content!=""&&l.push(a)}for(var b=0;b<k.date.length;b++)if(k.date[b].startDate!=null&&k.date[b].startDate!=""){var a={};if(k.date[b].type=="tweets")a.startdate=VMM.ExternalAPI.twitter.parseTwitterDate(k.date[b].startDate);else if(k.date[b].type=="google spreadsheet"){a.startdate=new Date(Date.parse(k.date[b].startDate));trace(a.startdate)}else a.startdate=VMM.Util.parseDate(k.date[b].startDate);a.uniqueid=k.date[b].startDate.toString()+"-"+b.toString();k.date[b].endDate!=null&&k.date[b].endDate!=""?k.date[b].type=="tweets"?a.enddate=VMM.ExternalAPI.twitter.parseTwitterDate(k.date[b].endDate):k.date[b].type=="google spreadsheet"?a.enddate=new Date(Date.parse(k.date[b].endDate)):a.enddate=VMM.Util.parseDate(k.date[b].endDate):a.enddate=a.startdate;a.title=k.date[b].headline;a.type=k.date[b].type;a.date=VMM.Util.date.prettyDate(a.startdate);a.asset=k.date[b].asset;a.fulldate=a.startdate.getTime();a.content=B(k.date[b],a.startdate);a.content!=null&&a.content!=""&&l.push(a)}l.sort(function(a,b){return a.fulldate-b.fulldate});p()}};VMM.Timeline.TimeNav=function(a,b,c){function I(){trace("onConfigSet")}function J(a){VMM.Element.css(B,"left",Math.round(r.width/2)+2);Y(k,r.ease,r.duration,!0,a)}function K(){VMM.fireEvent(H,"UPDATE")}function L(){trace("CLICK");VMM.DragSlider.cancelSlide();if(r.multiplier>r.min_multiplier){r.multiplier=r.multiplier-1;r.multiplier<0&&(r.multiplier=r.min_multiplier);$()}}function M(){trace("CLICK");VMM.DragSlider.cancelSlide();if(r.multiplier<r.max_multiplier){r.multiplier=r.multiplier+1;r.multiplier!=r.max_multiplier;$()}}function N(a){VMM.DragSlider.cancelSlide();Y(0);K()}function O(a){VMM.DragSlider.cancelSlide();Y(a.data.number);K()}function P(a){VMM.Element.toggleClass(a.data.elem,"zFront")}function Q(a,b){VMM.Element.animate(t,b.time/2,r.ease,{left:b.left})}trace("VMM.Timeline.TimeNav");var d={},e=[],f,g=[],h=[],i=[],j={},k=0,l=!1,m={day:24,month:12,year:10,hour:60,minute:60,second:1e3,decade:10,century:100,millenium:1e3,week:4.34812141,days_in_month:30.4368499,days_in_week:7,weeks_in_month:4.34812141,weeks_in_year:52.177457,days_in_year:365.242199,hours_in_day:24},n={day:864e5,week:7,month:30.4166666667,year:12,hour:24,minute:1440,second:86400,decade:10,century:100,millenium:1e3},o={type:"year",number:10,first:1970,last:2011,multiplier:100},p={type:"year",number:10,first:1970,last:2011,multiplier:100},q={day:{},month:{},year:{},hour:{},minute:{},second:{},decade:{},century:{},millenium:{},week:{}},r={interval:10,something:0,width:900,height:150,ease:"easeInOutExpo",duration:1e3,nav_width:100,nav_height:200,timeline:!1,spacing:15,marker_width:150,marker_height:48,density:2,timeline_width:900,interval_width:200,rows:[1,1,1],multiplier:6,max_multiplier:16,min_multiplier:1,has_start_page:!1};r.rows=[r.marker_height,r.marker_height*2,1];b!=null&&b!=""&&(r.width=b);c!=null&&c!=""&&(r.height=c);var s="",l=!1,t="",u="",v="",w="",x="",y="",z="",A="",B="",C="",D="",E="",F="",G={};G.nextBtn;G.prevBtn;G.nextDate;G.prevDate;G.nextTitle;G.prevTitle;this.ver="0.1";var H=a;this.init=function(a,b){trace("VMM.Timeline.TimeNav init");typeof a!="undefined"?this.setData(a,b):trace("WAITING ON DATA")};this.setData=function(a,b){if(typeof a!="undefined"){e=a;f=b;Z()}else trace("NO DATA")};this.setSize=function(a,b){a!=null&&(r.width=a);b!=null&&(r.height=b);l&&J()};this.setMarker=function(a,b,c,d){Y(a,b,c)};this.getCurrentNumber=function(){return k};var R=function(){var a=2,b=0,c=0;for(var d=0;d<e.length;d++){var i="",j,k,l,m,n,o;j=VMM.appendAndGetElement(u,"<div>","marker");k=VMM.appendAndGetElement(j,"<div>","flag");l=VMM.appendAndGetElement(k,"<div>","flag-content");m=VMM.appendAndGetElement(j,"<div>","dot");n=VMM.appendAndGetElement(j,"<div>","line");o=VMM.appendAndGetElement(n,"<div>","event-line");e[d].asset!=null&&e[d].asset!=""&&VMM.appendElement(l,VMM.MediaElement.thumbnail(e[d].asset,32,32));VMM.appendElement(l,"<h3>"+VMM.Util.unlinkify(e[d].title)+"</h3><h4>"+e[d].date+"</h4>");VMM.Element.attr(j,"id",e[d].uniqueid.toString());VMM.bindEvent(k,O,"",{number:d});VMM.bindEvent(k,P,"mouseenter mouseleave",{number:d,elem:k});var p={marker:j,flag:k,lineevent:o,type:"marker"};if(e[d].type=="start"){trace("BUILD MARKER HAS START PAGE");r.has_start_page=!0;p.type="start"}h.push(p)}for(var q=0;q<f.length;q++){var i="",s={content:"",startdate:"",enddate:"",headline:"",uniqueid:"",color:""};s.title=f[q].headline;s.uniqueid=VMM.Util.unique_ID(4);s.color=f[q].color;s.content=VMM.appendAndGetElement(u,"<div>","era");VMM.Element.attr(s.content,"id",s.uniqueid);VMM.Element.css(s.content,"background",s.color);VMM.appendElement(s.content,"<h3>"+VMM.Util.unlinkify(s.title)+"</h3>");s.startdate=VMM.Util.parseDate(f[q].startDate);s.enddate=VMM.Util.parseDate(f[q].endDate);g.push(s)}T()},S=function(a,b,c){var d=a.type,e=a.multiplier,f=U(b),g=U(c),h=b.months,i=c.months;if(d=="millenium"){h=b.milleniums;i=c.milleniums}else if(d=="century"){h=f.centuries;i=g.centuries}else if(d=="decade"){h=f.decades;i=g.decades}else if(d=="year"){h=f.years;i=g.years}else if(d=="month"){h=f.months;i=g.months}else if(d=="week"){h=f.weeks;i=g.weeks}else if(d=="day"){h=f.days;i=g.days}else if(d=="hour"){h=f.hours;i=g.hours}else if(d=="minute"){h=f.minutes;i=g.minutes}_pos=(h-o.base)*(r.interval_width/r.multiplier);_pos_end=(i-o.base)*(r.interval_width/r.multiplier);return pos={begin:_pos,end:_pos_end}},T=function(a){var b=o.type,c=o.multiplier,d=2,f=0,i=0,j=150,l=6,m=0;VMM.Element.removeClass(".flag","row1");VMM.Element.removeClass(".flag","row2");VMM.Element.removeClass(".flag","row3");for(var n=0;n<h.length;n++){var p,q=h[n].marker,s=h[n].flag,u=h[n].lineevent,v=S(o,e[n].startdate,e[n].enddate);A=v.begin;_pos_end=v.end;var w=-2;A=Math.round(A+w);_pos_end=Math.round(_pos_end+w);p=Math.round(_pos_end-A);if(a){VMM.Element.stop(q);VMM.Element.animate(q,r.duration/2,r.ease,{left:A})}else VMM.Element.css(q,"left",A);n==k&&(m=A);if(p>5){VMM.Element.css(u,"height",l);VMM.Element.css(u,"width",p);VMM.Element.css(u,"top",j)}if(A-f<r.marker_width+r.spacing)if(d<r.rows.length-1)d++;else{d=0;i++}else{i=0;d=0}f=A;if(a){VMM.Element.stop(s);VMM.Element.animate(s,r.duration,r.ease,{top:r.rows[d]})}else VMM.Element.css(s,"top",r.rows[d]);r.has_start_page&&h[n].type=="start"&&VMM.Element.visible(q,!1)}for(var x=0;x<g.length;x++){var p,y=g[x],z=y.content,A=S(o,y.startdate,y.enddate),B=A.end-A.begin,C=25;VMM.Element.css(z,"left",A.begin);VMM.Element.css(z,"width",B)}if(a){VMM.Element.stop(t);VMM.Element.animate(t,r.duration/2,r.ease,{left:r.width/2-m})}},U=function(a,b){var c={};c.days=a/n.day;c.weeks=c.days/n.week;c.months=c.days/n.month;c.years=c.months/n.year;c.hours=c.days*n.hour;c.minutes=c.days*n.minute;c.seconds=c.days*n.second;c.decades=c.years/n.decade;c.centuries=c.years/n.century;c.milleniums=c.years/n.millenium;return c},V=function(){var a=U(e[0].startdate),b=U(e[e.length-1].enddate);q.millenium.type="millenium";q.millenium.first=a.milleniums;q.millenium.base=Math.floor(a.milleniums);q.millenium.last=b.milleniums;q.millenium.number=j.milleniums;q.millenium.multiplier=m.millenium;q.millenium.minor=m.millenium;q.century.type="century";q.century.first=a.centuries;q.century.base=Math.floor(a.centuries);q.century.last=b.centuries;q.century.number=j.centuries;q.century.multiplier=m.century;q.century.minor=m.century;q.decade.type="decade";q.decade.first=a.decades;q.decade.base=Math.floor(a.decades);q.decade.last=b.decades;q.decade.number=j.decades;q.decade.multiplier=m.decade;q.decade.minor=m.decade;q.year.type="year";q.year.first=a.years;q.year.base=Math.floor(a.years);q.year.last=b.years;q.year.number=j.years;q.year.multiplier=1;q.year.minor=m.month;q.month.type="month";q.month.first=a.months;q.month.base=Math.floor(a.months);q.month.last=b.months;q.month.number=j.months;q.month.multiplier=1;q.month.minor=Math.round(m.week);q.week.type="week";q.week.first=a.weeks;q.week.base=Math.floor(a.weeks);q.week.last=b.weeks;q.week.number=j.weeks;q.week.multiplier=1;q.week.minor=7;q.day.type="day";q.day.first=a.days;q.day.base=Math.floor(a.days);q.day.last=b.days;q.day.number=j.days;q.day.multiplier=1;q.day.minor=24;q.hour.type="hour";q.hour.first=a.hours;q.hour.base=Math.floor(a.hours);q.hour.last=b.hours;q.hour.number=j.hours;q.hour.multiplier=1;q.hour.minor=60;q.minute.type="minute";q.minute.first=a.minutes;q.minute.base=Math.floor(a.minutes);q.minute.last=b.minutes;q.minute.number=j.minutes;q.minute.multiplier=1;q.minute.minor=60;q.second.type="decade";q.second.first=a.seconds;q.second.base=Math.floor(a.seconds);q.second.last=b.seconds;q.second.number=j.seconds;q.second.multiplier=1;q.second.minor=10},W=function(){VMM.attachElement(x,"");VMM.attachElement(y,"");o.date=new Date(e[0].startdate.getFullYear(),0,1,0,0,0);p.date=new Date(e[0].startdate.getFullYear(),0,1,0,0,0);var a=0,b=0,c=!0,d=0,f=0,g=0;for(var h=0;h<o.number+1;h++){var i;if(o.type=="century"){c&&o.date.setFullYear(Math.floor(e[0].startdate.getFullYear()/100)*100);o.date.setFullYear(o.date.getFullYear()+a*100);i=Math.floor(o.date.getFullYear()/100)*100}else if(o.type=="decade"){c&&o.date.setFullYear(Math.floor(e[0].startdate.getFullYear()/10)*10);o.date.setFullYear(o.date.getFullYear()+a*10);i=Math.floor(o.date.getFullYear()/10)*10}else if(o.type=="year"){!c;o.date.setFullYear(o.date.getFullYear()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}else if(o.type=="month"){c&&o.date.setMonth(e[0].startdate.getMonth());o.date.setMonth(o.date.getMonth()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}else if(o.type=="week"){if(c){o.date.setMonth(e[0].startdate.getMonth());o.date.setDate(Math.floor(e[0].startdate.getDate()*7))}o.date.setDate(o.date.getDate()+a*7);i=VMM.Util.date.day_abbr[o.date.getDay()]+" "+VMM.Util.date.month_abbr[o.date.getMonth()]+" "+o.date.getDate()}else if(o.type=="day"){if(c){o.date.setMonth(e[0].startdate.getMonth());o.date.setDate(e[0].startdate.getDate())}o.date.setDate(o.date.getDate()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}else if(o.type=="hour"){if(c){o.date.setMonth(e[0].startdate.getMonth());o.date.setDate(e[0].startdate.getDate());o.date.setHours(e[0].startdate.getHours())}o.date.setHours(o.date.getHours()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}else if(o.type=="minute"){if(c){o.date.setMonth(e[0].startdate.getMonth());o.date.setDate(e[0].startdate.getDate());o.date.setHours(e[0].startdate.getHours());o.date.setMinutes(e[0].startdate.getMinutes())}o.date.setMinutes(o.date.getMinutes()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}else if(o.type=="second"){if(c){o.date.setMonth(e[0].startdate.getMonth());o.date.setDate(e[0].startdate.getDate());o.date.setHours(e[0].startdate.getHours());o.date.setMinutes(e[0].startdate.getMinutes());o.date.setSeconds(e[0].startdate.getSeconds())}o.date.setSeconds(o.date.getSeconds()+a);i=VMM.Util.date.prettyDate(o.date,!0,o.type)}a=1;c&&(d=k);c=!1;var j=S(o,o.date,o.date),k=j.begin;$interval_date=VMM.appendAndGetElement(x,"<div>","_idd");VMM.appendElement($interval_date,i);VMM.Element.css($interval_date,"left",k);VMM.Element.css($interval_date,"text-indent",-(VMM.Element.width($interval_date)/2));k-f<65?k-f<35?h%4==0?k==0?VMM.Element.css($interval_date,"display","none"):VMM.Element.css($interval_date,"display",""):VMM.Element.css($interval_date,"display","none"):VMM.Util.isEven(h)?VMM.Element.css($interval_date,"display","none"):VMM.Element.css($interval_date,"display",""):VMM.Element.css($interval_date,"display","");f=k}c=!0;_major_first_pos=0;_major_last_pos=0;for(var h=0;h<Math.ceil(p.number)+1;h++){var i;if(p.type=="century"){c&&p.date.setFullYear(Math.floor(e[0].startdate.getFullYear()/100)*100);p.date.setFullYear(p.date.getFullYear()+b*100);i=Math.floor(p.date.getFullYear()/100)*100}else if(p.type=="decade"){c&&p.date.setFullYear(Math.floor(e[0].startdate.getFullYear()/10)*10);p.date.setFullYear(p.date.getFullYear()+b*10);i=Math.floor(p.date.getFullYear()/10)*10}else if(p.type=="year"){!c;p.date.setFullYear(p.date.getFullYear()+b);i=p.date.getFullYear()}else if(p.type=="month"){c&&p.date.setMonth(e[0].startdate.getMonth());p.date.setMonth(p.date.getMonth()+b);i=VMM.Util.date.month[p.date.getMonth()]+" "+p.date.getFullYear()}else if(p.type=="week"){if(c){p.date.setMonth(e[0].startdate.getMonth());p.date.setDate(Math.floor(e[0].startdate.getDate()*7))}p.date.setDate(p.date.getDate()+b*7);i=VMM.Util.date.day_abbr[p.date.getDay()]+" "+VMM.Util.date.month_abbr[p.date.getMonth()]+" "+p.date.getDate()}else if(p.type=="day"){if(c){p.date.setMonth(e[0].startdate.getMonth());p.date.setDate(e[0].startdate.getDate())}p.date.setDate(p.date.getDate()+b);i=VMM.Util.date.prettyDate(p.date,!0,p.type)}else if(p.type=="hour"){if(c){p.date.setMonth(e[0].startdate.getMonth());p.date.setDate(e[0].startdate.getDate());p.date.setHours(e[0].startdate.getHours())}p.date.setHours(p.date.getHours()+b);i=VMM.Util.date.prettyDate(p.date,!0,p.type)}else if(p.type=="minute"){if(c){p.date.setMonth(e[0].startdate.getMonth());p.date.setDate(e[0].startdate.getDate());p.date.setHours(e[0].startdate.getHours());p.date.setMinutes(e[0].startdate.getMinutes())}p.date.setMinutes(p.date.getMinutes()+b);i=VMM.Util.date.prettyDate(p.date,!0,p.type)}else if(p.type=="second"){if(c){p.date.setMonth(e[0].startdate.getMonth());p.date.setDate(e[0].startdate.getDate());p.date.setHours(e[0].startdate.getHours());p.date.setMinutes(e[0].startdate.getMinutes());p.date.setSeconds(e[0].startdate.getSeconds())}p.date.setSeconds(p.date.getSeconds()+b);i=VMM.Util.date.prettyDate(p.date,!0,p.type)}trace("interval_major.type "+p.type);b=1;var j=S(o,p.date,p.date),k=j.begin;$interval_date=VMM.appendAndGetElement(y,"<div>","major");VMM.appendElement
-($interval_date,i);VMM.Element.css($interval_date,"left",k);VMM.Element.css($interval_date,"left",k);VMM.Element.css($interval_date,"text-indent",-(VMM.Element.width($interval_date)/2));c&&(_major_first_pos=k);c=!1;g=k;_major_last_pos=k}VMM.Element.width(u,o.number*(r.interval_width/r.multiplier));_minor_pos_offset=50;var l=_major_last_pos-_major_first_pos+_minor_pos_offset*6,m=f+_minor_pos_offset*6;l<m?VMM.Element.width(C,m):VMM.Element.width(C,l);VMM.Element.css(C,"left",_major_first_pos-_minor_pos_offset);r.timeline_width=VMM.Element.width(x)},X=function(){j=U(e[e.length-1].enddate-e[0].startdate,!0);V();if(j.milleniums>e.length/r.density)o=q.millenium;else if(j.centuries>e.length/r.density)o=Math.ceil(q.century);else if(j.decades>e.length/r.density)o=q.decade;else if(j.years>e.length/r.density)o=q.year;else if(j.months>e.length/r.density)o=q.month;else if(j.days>e.length/r.density)o=q.day;else if(j.hours>e.length/r.density)o=q.hour;else if(j.minutes>e.length/r.density)o=q.minute;else if(j.seconds>e.length/r.density)o=q.second;else{trace("NO FUCKING IDEA WHAT THE TYPE SHOULD BE");o.type="unknown"}if(j.milleniums>=1)p=q.millenium;else if(j.centuries>=1)p=q.century;else if(j.decades>=1)p=q.decade;else if(j.years>=1)p=q.year;else if(j.months>1)p=q.month;else if(j.weeks>1)p=q.month;else if(j.days>1)p=q.day;else if(j.hours>1)p=q.hour;else if(j.minutes>1)p=q.minute;else if(j.seconds>1)p=q.minute;else{trace("NO FUCKING IDEA WHAT THE TYPE SHOULD BE");p.type="unknown"}C=VMM.appendAndGetElement(w,"<div>","minor");W()},Y=function(a,b,c,d,e){k=a;var f=r.ease,g=r.duration,i=!1,j=!1;k==0&&(j=!0);k+1==h.length&&(i=!0);b!=null&&b!=""&&(f=b);c!=null&&c!=""&&(g=c);var l=VMM.Element.position(h[k].marker);for(var m=0;m<h.length;m++)VMM.Element.removeClass(h[m].marker,"active");if(r.has_start_page&&h[k].type=="start"){VMM.Element.visible(h[k].marker,!1);VMM.Element.addClass(h[k].marker,"start")}VMM.Element.addClass(h[k].marker,"active");!j;!i;VMM.Element.stop(t);VMM.Element.animate(t,g,f,{left:r.width/2-l.left})},Z=function(){VMM.attachElement(H,"");t=VMM.appendAndGetElement(H,"<div>","timenav");u=VMM.appendAndGetElement(t,"<div>","content");v=VMM.appendAndGetElement(t,"<div>","time");w=VMM.appendAndGetElement(v,"<div>","time-interval-minor");y=VMM.appendAndGetElement(v,"<div>","time-interval-major");x=VMM.appendAndGetElement(v,"<div>","time-interval");z=VMM.appendAndGetElement(H,"<div>","timenav-background");B=VMM.appendAndGetElement(z,"<div>","timenav-line");A=VMM.appendAndGetElement(z,"<div>","timenav-interval-background","<div class='top-highlight'></div>");X();R();J(!0);VMM.fireEvent(H,"LOADED");D=VMM.appendAndGetElement(H,"<div>","toolbar");if(r.has_start_page){$backhome=VMM.appendAndGetElement(D,"<div>","back-home","<div class='icon'></div>");VMM.bindEvent(".back-home",N,"click");VMM.Element.css(D,"top",27)}E=VMM.appendAndGetElement(D,"<div>","zoom-in","<div class='icon'></div>");F=VMM.appendAndGetElement(D,"<div>","zoom-out","<div class='icon'></div>");VMM.Element.attribute($backhome,"title","Return to Title");VMM.Element.attribute($backhome,"rel","tooltip");VMM.Element.attribute(E,"title","Expand Timeline");VMM.Element.attribute(E,"rel","tooltip");VMM.Element.attribute(F,"title","Contract Timeline");VMM.Element.attribute(F,"rel","tooltip");VMM.bindEvent(".zoom-in",L,"click");VMM.bindEvent(".zoom-out",M,"click");D.tooltip({selector:"div[rel=tooltip]",placement:"right"});if(VMM.Browser.device=="mobile"||VMM.Browser.device=="tablet"){VMM.TouchSlider.createPanel(z,t,r.width,r.spacing,!1);VMM.bindEvent(t,Q,"TOUCHUPDATE")}else VMM.DragSlider.createPanel(H,t,r.width,r.spacing,!1);l=!0},$=function(){W();T(!0)}};VMM.Timeline.DataObj={data_obj:{},model_array:[],getData:function(a){data=VMM.Timeline.DataObj.data_obj;if(type.of(a)!="string"){trace("DATA SOURCE: NOT JSON");trace("TRYING HTML PARSE");VMM.Timeline.DataObj.parseHTML(a)}else if(a.match("%23")){trace("DATA SOURCE: TWITTER SEARCH");VMM.Timeline.DataObj.model_Tweets.getData("%23medill")}else if(a.match("spreadsheet")){trace("DATA SOURCE: GOOGLE SPREADSHEET");VMM.Timeline.DataObj.model_GoogleSpreadsheet.getData(a)}else{trace("DATA SOURCE: JSON");VMM.getJSON(a,VMM.Timeline.DataObj.parseJSON)}},parseHTML:function(a){trace("parseHTML");var b=VMM.Timeline.DataObj.data_template_obj;if(VMM.Element.find("#timeline section","time")[0]){b.timeline.startDate=VMM.Element.html(VMM.Element.find("#timeline section","time")[0]);b.timeline.headline=VMM.Element.html(VMM.Element.find("#timeline section","h2"));b.timeline.text=VMM.Element.html(VMM.Element.find("#timeline section","article"));var c=!1;if(VMM.Element.find("#timeline section","figure img").length!=0){c=!0;b.timeline.asset.media=VMM.Element.attr(VMM.Element.find("#timeline section","figure img"),"src")}else if(VMM.Element.find("#timeline section","figure a").length!=0){c=!0;b.timeline.asset.media=VMM.Element.attr(VMM.Element.find("#timeline section","figure a"),"href")}if(c){VMM.Element.find("#timeline section","cite").length!=0&&(b.timeline.asset.credit=VMM.Element.html(VMM.Element.find("#timeline section","cite")));VMM.Element.find(this,"figcaption").length!=0&&(b.timeline.asset.caption=VMM.Element.html(VMM.Element.find("#timeline section","figcaption")))}}VMM.Element.each("#timeline li",function(a,c){var d=!1,e={type:"default",startDate:"",headline:"",text:"",asset:{media:"",credit:"",caption:""},tags:"Optional"};if(VMM.Element.find(this,"time")!=0){d=!0;e.startDate=VMM.Element.html(VMM.Element.find(this,"time")[0]);VMM.Element.find(this,"time")[1]&&(e.endDate=VMM.Element.html(VMM.Element.find(this,"time")[0]));e.headline=VMM.Element.html(VMM.Element.find(this,"h3"));e.text=VMM.Element.html(VMM.Element.find(this,"article"));var f=!1;if(VMM.Element.find(this,"figure img").length!=0){f=!0;e.asset.media=VMM.Element.attr(VMM.Element.find(this,"figure img"),"src")}else if(VMM.Element.find(this,"figure a").length!=0){f=!0;e.asset.media=VMM.Element.attr(VMM.Element.find(this,"figure a"),"href")}if(f){VMM.Element.find(this,"cite").length!=0&&(e.asset.credit=VMM.Element.html(VMM.Element.find(this,"cite")));VMM.Element.find(this,"figcaption").length!=0&&(e.asset.caption=VMM.Element.html(VMM.Element.find(this,"figcaption")))}trace(e);b.timeline.date.push(e)}});VMM.fireEvent(global,"DATAREADY",b)},parseJSON:function(a){if(a.timeline.type=="default"){trace("DATA SOURCE: JSON STANDARD TIMELINE");VMM.fireEvent(global,"DATAREADY",a)}else if(a.timeline.type=="twitter"){trace("DATA SOURCE: JSON TWEETS");VMM.Timeline.DataObj.model_Tweets.buildData(a)}else{trace("DATA SOURCE: NO IDEA");trace(type.of(a.timeline))}},model_Tweets:{type:"twitter",buildData:function(a){VMM.bindEvent(global,VMM.Timeline.DataObj.model_Tweets.onTwitterDataReady,"TWEETSLOADED");VMM.ExternalAPI.twitter.getTweets(a.timeline.tweets)},getData:function(a){VMM.bindEvent(global,VMM.Timeline.DataObj.model_Tweets.onTwitterDataReady,"TWEETSLOADED");VMM.ExternalAPI.twitter.getTweetSearch(a)},onTwitterDataReady:function(a,b){var c=VMM.Timeline.DataObj.data_template_obj;for(var d=0;d<b.tweetdata.length;d++){var e={type:"tweets",startDate:"",headline:"",text:"",asset:{media:"",credit:"",caption:""},tags:"Optional"};e.startDate=b.tweetdata[d].raw.created_at;type.of(b.tweetdata[d].raw.from_user_name)?e.headline=b.tweetdata[d].raw.from_user_name+" (<a href='https://twitter.com/"+b.tweetdata[d].raw.from_user+"'>"+"@"+b.tweetdata[d].raw.from_user+"</a>)":e.headline=b.tweetdata[d].raw.user.name+" (<a href='https://twitter.com/"+b.tweetdata[d].raw.user.screen_name+"'>"+"@"+b.tweetdata[d].raw.user.screen_name+"</a>)";e.asset.media=b.tweetdata[d].content;c.timeline.date.push(e)}VMM.fireEvent(global,"DATAREADY",c)}},model_GoogleSpreadsheet:{type:"google spreadsheet",getData:function(a){var b=VMM.Util.getUrlVars(a).key,c="https://spreadsheets.google.com/feeds/list/"+b+"/od6/public/values?alt=json";if($.browser.msie&&parseInt($.browser.version,10)>=8&&window.XDomainRequest){var d=new XDomainRequest;d.open("get",c);d.onload=function(){var a=$.parseJSON(d.responseText);VMM.Timeline.DataObj.model_GoogleSpreadsheet.buildData(a)};d.send()}else VMM.getJSON(c,VMM.Timeline.DataObj.model_GoogleSpreadsheet.buildData)},buildData:function(a){var b=VMM.Timeline.DataObj.data_template_obj;for(var c=0;c<a.feed.entry.length;c++){var d=a.feed.entry[c];if(d.gsx$titleslide.$t.match("start")){b.timeline.startDate=d.gsx$startdate.$t;b.timeline.headline=d.gsx$headline.$t;b.timeline.asset.media=d.gsx$media.$t;b.timeline.asset.caption=d.gsx$mediacaption.$t;b.timeline.asset.credit=d.gsx$mediacredit.$t;b.timeline.text=d.gsx$text.$t;b.timeline.type="google spreadsheet"}else{var e={type:"google spreadsheet",startDate:"",endDate:"",headline:"",text:"",type:"google spreadsheet",asset:{media:"",credit:"",caption:""},tags:"Optional"};e.endDate=d.gsx$enddate.$t;e.startDate=d.gsx$startdate.$t;e.headline=d.gsx$headline.$t;e.asset.media=d.gsx$media.$t;e.asset.caption=d.gsx$mediacaption.$t;e.asset.credit=d.gsx$mediacredit.$t;e.text=d.gsx$text.$t;b.timeline.date.push(e)}}VMM.fireEvent(global,"DATAREADY",b)}},data_template_obj:{timeline:{headline:"",description:"",asset:{media:"",credit:"",caption:""},date:[]}},date_obj:{startDate:"2012,2,2,11,30",headline:"",text:"",asset:{media:"http://youtu.be/vjVfu8-Wp6s",credit:"",caption:""},tags:"Optional"}}};
+================================================== */
+
+(function(){
+  var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+  // The base Class implementation (does nothing)
+  this.Class = function(){};
+  
+  // Create a new Class that inherits from this class
+  Class.extend = function(prop) {
+    var _super = this.prototype;
+    
+    // Instantiate a base class (but only create the instance,
+    // don't run the init constructor)
+    initializing = true;
+    var prototype = new this();
+    initializing = false;
+    
+    // Copy the properties over onto the new prototype
+    for (var name in prop) {
+      // Check if we're overwriting an existing function
+      prototype[name] = typeof prop[name] == "function" && 
+        typeof _super[name] == "function" && fnTest.test(prop[name]) ?
+        (function(name, fn){
+          return function() {
+            var tmp = this._super;
+            
+            // Add a new ._super() method that is the same method
+            // but on the super-class
+            this._super = _super[name];
+            
+            // The method only need to be bound temporarily, so we
+            // remove it when we're done executing
+            var ret = fn.apply(this, arguments);        
+            this._super = tmp;
+            
+            return ret;
+          };
+        })(name, prop[name]) :
+        prop[name];
+    }
+    
+    // The dummy class constructor
+    function Class() {
+      // All construction is actually done in the init method
+      if ( !initializing && this.init )
+        this.init.apply(this, arguments);
+    }
+    
+    // Populate our constructed prototype object
+    Class.prototype = prototype;
+    
+    // Enforce the constructor to be what we expect
+    Class.prototype.constructor = Class;
+
+    // And make this class extendable
+    Class.extend = arguments.callee;
+    
+    return Class;
+  };
+})();
+
+
+
+/* CLASS EXTEND EXAMPLE
+================================================== */
+/*
+var Person = Class.extend({
+  init: function(isDancing){
+    this.dancing = isDancing;
+  },
+  dance: function(){
+    return this.dancing;
+  }
+});
+var Ninja = Person.extend({
+  init: function(){
+    this._super( false );
+  },
+  dance: function(){
+    // Call the inherited version of dance()
+    return this._super();
+  },
+  swingSword: function(){
+    return true;
+  }
+});
+
+var p = new Person(true);
+p.dance(); // => true
+
+var n = new Ninja();
+n.dance(); // => false
+n.swingSword(); // => true
+
+// Should all be true
+p instanceof Person && p instanceof Class &&
+n instanceof Ninja && n instanceof Person && n instanceof Class
+*/
+
+
+
+/* Access to the Global Object
+ * access the global object without hard-coding the identifier window
+================================================== */
+
+var global = (function () {
+   return this || (1,eval)('this');
+}());
+
+
+/* VMM
+================================================== */
+
+if (typeof VMM == 'undefined') {
+	
+	/* Main Scope Container
+	================================================== */
+	//var VMM = {};
+	var VMM = Class.extend({
+
+	});
+	
+	/* Master Config
+	================================================== */
+	//VMM.master_config.youtube_array
+	VMM.master_config = ({
+		
+		init: function() {
+			return this;
+		},
+		
+		youtube: {
+			active: false,
+			array: [],
+			api_loaded:false
+		},
+		
+	}).init();
+	
+	VMM.master_config = ({
+		
+		init: function() {
+			return this;
+		},
+		
+		youtube: {
+			active: false,
+			array: [],
+			api_loaded:false,
+			que: []
+		},
+		
+	}).init();
+	
+	/* Abstract out DOM element creation to make independent of library
+	================================================== */
+	//VMM.createElement(tag, value, cName, attrs, styles);
+	VMM.createElement = function(tag, value, cName, attrs, styles) {
+		
+		var ce = "";
+		
+		if (tag != null && tag != "") {
+			
+			// TAG
+			ce += "<" + tag;
+			if (cName != null && cName != "") {
+				ce += " class='" + cName + "'";
+			};
+			
+			if (attrs != null && attrs != "") {
+				ce += " " + attrs;
+			};
+			
+			if (styles != null && styles != "") {
+				ce += " " + styles;
+			};
+			
+			ce += ">";
+			
+			if (value != null && value != "") {
+				ce += value;
+			}
+			
+			// CLOSE TAG
+			ce = ce + "</" + tag + ">";
+		}
+		
+		return ce;
+		
+    };
+
+	VMM.createMediaElement = function(media, caption, credit) {
+		
+		var ce = "";
+		
+		var _valid = false;
+		
+		ce += "<div class='media'>";
+		
+		if (media != null && media != "") {
+			
+			valid = true;
+			
+			ce += "<img src='" + media + "'>";
+			
+			// CREDIT
+			if (credit != null && credit != "") {
+				ce += VMM.createElement("div", credit, "credit");
+			}
+			
+			// CAPTION
+			if (caption != null && caption != "") {
+				ce += VMM.createElement("div", caption, "caption");
+			}
+
+		}
+		
+		ce += "</div>";
+		
+		return ce;
+		
+    };
+
+	
+	
+	/* LIBRARY ABSTRACTION
+	================================================== */
+	
+	//VMM.attachElement(element, content);
+	VMM.attachElement = function(element, content) {
+		if( typeof( jQuery ) != 'undefined' ){
+			$(element).html(content);
+		}
+		
+	};
+	//VMM.appendElement(element, content);
+	VMM.appendElement = function(element, content) {
+		
+		if( typeof( jQuery ) != 'undefined' ){
+			$(element).append(content);
+		}
+		
+	};
+	
+	VMM.getHTML = function(element) {
+		var e;
+		if( typeof( jQuery ) != 'undefined' ){
+			e = $(element).html();
+			return e;
+		}
+		
+	};
+	//VMM.getElement(element);
+	VMM.getElement = function(element, p) {
+		var e;
+		if( typeof( jQuery ) != 'undefined' ){
+			if (p) {
+				e = $(element).parent().get(0);
+				
+			} else {
+				e = $(element).get(0);
+			}
+			return e;
+		}
+		
+	};
+	//VMM.bindEvent(element, the_handler, the_event_type, event_data);
+	//VMM.bindEvent(window, the_handler, "event type", {event_data});
+	VMM.bindEvent = function(element, the_handler, the_event_type, event_data) {
+		var e;
+		var _event_type = "click";
+		var _event_data = {};
+		
+		if (the_event_type != null && the_event_type != "") {
+			_event_type = the_event_type;
+		}
+		
+		if (_event_data != null && _event_data != "") {
+			_event_data = event_data;
+		}
+		
+		if( typeof( jQuery ) != 'undefined' ){
+			$(element).bind(_event_type, _event_data, the_handler);
+			
+			//return e;
+		}
+		
+	};
+	//VMM.unbindEvent(window, the_handler, "event type");
+	VMM.unbindEvent = function(element, the_handler, the_event_type) {
+		var e;
+		var _event_type = "click";
+		var _event_data = {};
+		
+		if (the_event_type != null && the_event_type != "") {
+			_event_type = the_event_type;
+		}
+		
+		if( typeof( jQuery ) != 'undefined' ){
+			$(element).unbind(_event_type, the_handler);
+			
+			//return e;
+		}
+		
+	};
+	//VMM.fireEvent(element, "resize", [data]);
+	VMM.fireEvent = function(element, the_event_type, the_data) {
+		var e;
+		var _event_type = "click";
+		var _data = [];
+		
+		if (the_event_type != null && the_event_type != "") {
+			_event_type = the_event_type;
+		}
+		if (the_data != null && the_data != "") {
+			_data = the_data;
+		}
+		
+		if( typeof( jQuery ) != 'undefined' ){
+			$(element).trigger(_event_type, _data);
+			
+			//return e;
+		}
+		
+	};
+
+	// VMM.getJSON(url, the_function);
+	VMM.getJSON = function(url, the_function) {
+		if( typeof( jQuery ) != 'undefined' ){
+			$.getJSON(url, the_function);
+		}
+	}
+	// VMM.parseJSON(the_json);
+	VMM.parseJSON = function(the_json) {
+		if( typeof( jQuery ) != 'undefined' ){
+			return $.parseJSON(the_json);
+		}
+	}
+	// ADD ELEMENT AND RETURN IT
+	// VMM.appendAndGetElement(append_to_element, tag, cName, content, [attrib]);
+	VMM.appendAndGetElement = function(append_to_element, tag, cName, content) {
+		var e;
+		var _tag = "<div>";
+		var _class = "";
+		var _content = "";
+
+		
+		if (tag != null && tag != "") {
+			_tag = tag;
+		}
+		
+		if (cName != null && cName != "") {
+			_class = cName;
+		}
+		
+		if (content != null && content != "") {
+			_content = content;
+		}
+		
+		if( typeof( jQuery ) != 'undefined' ){
+			
+			e = $(tag);
+			
+			e.addClass(_class);
+			e.html(_content);
+			
+			$(append_to_element).append(e);
+			
+			//$(e).appendTo(element);
+			
+		}
+		
+		return e;
+		
+	};
+	
+	VMM.Element = ({
+		
+		init: function() {
+			return this;
+		},
+		// VMM.Element.hide(element);
+		hide: function(element, duration) {
+			if (duration != null && duration != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).hide(duration);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).hide();
+				}
+			}
+			
+		},
+		// VMM.Element.remove(element);
+		remove: function(element) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).remove();
+			}
+		},
+		// VMM.Element.detach(element);
+		detach: function(element) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).detach();
+			}
+		},
+		// VMM.Element.append(element, value);
+		append: function(element, value) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).append(value);
+			}
+		},
+		// VMM.Element.show(element);
+		show: function(element, duration) {
+			if (duration != null && duration != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).show(duration);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).show();
+				}
+			}
+			
+		},
+		// VMM.Element.load(element, callback_function, event_data);
+		load: function(element, callback_function, event_data) {
+			var _event_data = {elem:element}; // return element by default
+			if (_event_data != null && _event_data != "") {
+				_event_data = event_data;
+			}
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).load(_event_data, callback_function);
+			}
+		},
+		//VMM.Element.addClass(element, cName);
+		addClass: function(element, cName) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).addClass(cName);
+			}
+		},
+		//VMM.Element.removeClass(element, cName);
+		removeClass: function(element, cName) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).removeClass(cName);
+			}
+		},
+		//VMM.Element.attr(element, aName, value);
+		attr: function(element, aName, value) {
+			if (value != null && value != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).attr(aName, value);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					return $(element).attr(aName);
+				}
+			}
+		},
+		//VMM.Element.prop(element, aName, value);
+		prop: function(element, aName, value) {
+			if (typeof jQuery == 'undefined' || !/[1-9]\.[3-9].[1-9]/.test($.fn.jquery)) {
+			    VMM.Element.attribute(element, aName, value);
+			} else {
+				$(element).prop(aName, value);
+			}
+		},
+		//VMM.Element.attribute(element, aName, value);
+		attribute: function(element, aName, value) {
+			
+			if (value != null && value != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).attr(aName, value);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					return $(element).attr(aName);
+				}
+			}
+		},
+		/* Sets  or gets the visability of a dom element
+		================================================== */
+		//VMM.Element.visible(element, show);
+		visible: function(element, show) {
+			if (show != null) {
+				if( typeof( jQuery ) != 'undefined' ){
+					if (show) {
+						$(element).show(0);
+					} else {
+						$(element).hide(0);
+					}
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					if ( $(element).is(':visible')){
+						return true;
+					} else {
+						return false;
+					}
+				}
+			}
+		},
+		/* Sets a style for the specified element or gets the style
+		================================================== */
+		//VMM.Element.css(element, prop, value);
+		css: function(element, prop, value) {
+
+			if (value != null && value != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).css(prop, value);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					return $(element).css(prop);
+				}
+			}
+		},
+		
+		cssmultiple: function(element, propval) {
+
+			if( typeof( jQuery ) != 'undefined' ){
+				return $(element).css(propval);
+			}
+		},
+		/* Gets offset
+		================================================== */
+		//VMM.Element.offset(element);
+		offset: function(element) {
+			var p;
+			if( typeof( jQuery ) != 'undefined' ){
+				p = $(element).offset();
+			}
+			return p;
+		},
+		/* Gets position
+		================================================== */
+		//VMM.Element.position(element);
+		position: function(element) {
+			var p;
+			if( typeof( jQuery ) != 'undefined' ){
+				p = $(element).position();
+			}
+			return p;
+		},
+		/* Sets  or gets the width of a dom element
+		================================================== */
+		//VMM.Element.width(element, s);
+		width: function(element, s) {
+			if (s != null && s != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).width(s);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					return $(element).width();
+				}
+			}
+		},
+		/* Sets  or gets the width of a dom element
+		================================================== */
+		height: function(element, s) {
+			if (s != null && s != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).height(s);
+				}
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					return $(element).height();
+				}
+			}
+		},
+		/* TOGGLE CLASS
+		================================================== */
+		// VMM.Element.toggleClass(element, cName);
+		toggleClass: function(element, cName) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).toggleClass(cName);
+			}
+		},
+		/* Each
+		================================================== */
+		// VMM.Element.each(element, return_function);
+		each:function(element, return_function) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).each(return_function);
+			}
+			
+		},
+		/* Each
+		================================================== */
+		// VMM.Element.html(element, str);
+		html: function(element, str) {
+			var e;
+			if( typeof( jQuery ) != 'undefined' ){
+				e = $(element).html();
+				return e;
+			}
+			
+			if (str != null && str != "") {
+				if( typeof( jQuery ) != 'undefined' ){
+					$(element).html(str);
+				}
+			} else {
+				var e;
+				if( typeof( jQuery ) != 'undefined' ){
+					e = $(element).html();
+					return e;
+				}
+			}
+
+		},
+		/* Find
+		================================================== */
+		// VMM.Element.find(element, selec);
+		find: function(element, selec) {
+			if( typeof( jQuery ) != 'undefined' ){
+				return $(element).find(selec);
+			}
+		},
+		/* Animate
+		================================================== */
+		// VMM.Element.stop(element);
+		stop: function(element) {
+			if( typeof( jQuery ) != 'undefined' ){
+				$(element).stop();
+			}
+		},
+		// VMM.Element.animate(element, duration, ease, att, callback_function);
+		animate: function(element, duration, ease, att, callback_function) {
+			
+			var _ease = "easein";
+			var _duration = 1000;
+			var _att = {};
+			
+			if (duration != null) {
+				if (duration < 1) {
+					_duration = 1;
+				} else {
+					_duration = Math.round(duration);
+				}
+				
+			}
+			
+			if (ease != null && ease != "") {
+				_ease = ease;
+			}
+			
+			if (att != null) {
+				_att = att
+			} else {
+				_att = {opacity: 0}
+			}
+			
+			
+			if (VMM.Browser.device == "mobile" || VMM.Browser.device == "tablet") {
+				
+				var _tdd = Math.round((_duration/1500)*10)/10
+				var __duration = _tdd + 's';
+				VMM.Element.css(element, '-webkit-transition', 'all '+ __duration + ' ease');
+				VMM.Element.css(element, '-moz-transition', 'all '+ __duration + ' ease');
+				VMM.Element.css(element, '-o-transition', 'all '+ __duration + ' ease');
+				VMM.Element.css(element, '-ms-transition', 'all '+ __duration + ' ease');
+				VMM.Element.css(element, 'transition', 'all '+ __duration + ' ease');
+				VMM.Element.cssmultiple(element, _att);
+				
+				//callback_function();
+				/*
+				if( typeof( jQuery ) != 'undefined' ){
+					if (callback_function != null && callback_function != "") {
+						$(element).animate(_att, {queue:false, duration:_duration, easing:"ease", complete:callback_function} );
+					} else {
+						$(element).animate(_att, {queue:false, duration:_duration, easing:"ease"} );
+					}
+				}
+				*/
+				
+			} else {
+				if( typeof( jQuery ) != 'undefined' ){
+					if (callback_function != null && callback_function != "") {
+						$(element).animate(_att, {queue:false, duration:_duration, easing:_ease, complete:callback_function} );
+					} else {
+						$(element).animate(_att, {queue:false, duration:_duration, easing:_ease} );
+					}
+				}
+			}
+			
+			
+			/*
+			VMM.Element.cssmultiple(element, {
+				'-webkit-transition': 'all 1s ease-in-out',
+				'-moz-transition': 'all 1s ease-in-out',
+				'-o-transition': 'all 1s ease-in-out',
+				'-ms-transition': 'all 1s ease-in-out',
+				'transition': 'all 1s ease-in-out',
+				
+			});
+			*/
+		},
+		
+	}).init();
+	
+	/* TOUCH
+	================================================== */
+	// VMM.TouchSlider.createSlidePanel(touch_object, move_object, w, padding, vertical, h) ;
+	VMM.TouchSlider = {
+		createPanel: function(touch_object, move_object, w, padding, vertical, h) {
+			VMM.TouchSlider.vertical = false;
+			VMM.TouchSlider.vertical = vertical;
+			
+			var x = padding;
+			VMM.TouchSlider.width = w;
+			VMM.TouchSlider.height = h;
+			VMM.TouchSlider.makeTouchable(touch_object, move_object);
+			/*
+			if (sticky != null && sticky != "") {
+				VMM.TouchSlider.sticky = sticky;
+			} else {
+				VMM.TouchSlider.sticky = false;
+			}
+			*/
+			// VMM.TouchSlider.sticky = sticky;
+			
+		},
+		
+		removePanel: function(touch_object) {
+			VMM.unbindEvent(touch_object, VMM.TouchSlider.onTouchStart, "touchstart");
+			VMM.unbindEvent(touch_object, VMM.TouchSlider.onTouchMove, "touchmove");
+			VMM.unbindEvent(touch_object, VMM.TouchSlider.onTouchEnd, "touchend");
+		},
+		
+		makeTouchable: function(touch_object, move_object) {
+			VMM.bindEvent(touch_object, VMM.TouchSlider.onTouchStart, "touchstart", {element: move_object});
+			VMM.bindEvent(touch_object, VMM.TouchSlider.onTouchMove, "touchmove", {element: move_object});
+			VMM.bindEvent(touch_object, VMM.TouchSlider.onTouchEnd, "touchend", {element: move_object});
+	    },
+		onTouchStart: function(e) {
+			VMM.TouchSlider.touchStart(e.data.element, e);
+			e.preventDefault();
+			e.stopPropagation();
+			return true;
+		},
+		onTouchEnd: function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			if (VMM.TouchSlider.sliding) {
+				VMM.TouchSlider.sliding = false;
+				VMM.TouchSlider.touchEnd(e.data.element, e);
+				return false;
+			} else {
+				return true;
+			}
+			
+		},
+		onTouchMove: function(e) {
+			VMM.TouchSlider.touchMove(e.data.element, e);
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		},
+		getLeft: function(elem) {
+			return parseInt(VMM.Element.css(elem, 'left').substring(0, VMM.Element.css(elem, 'left').length - 2), 10);
+		},
+		getTop: function(elem) {
+			return parseInt(VMM.Element.css(elem, 'top').substring(0, VMM.Element.css(elem, 'top').length - 2), 10);
+		},
+	    touchStart: function(elem, e) {
+			
+			VMM.Element.css(elem, '-webkit-transition-duration', '0');
+			
+			VMM.TouchSlider.startX = e.originalEvent.touches[0].screenX;
+			VMM.TouchSlider.startY = e.originalEvent.touches[0].screenY;
+			
+			VMM.TouchSlider.startLeft = VMM.TouchSlider.getLeft(elem);
+			VMM.TouchSlider.startTop = VMM.TouchSlider.getTop(elem);
+			
+			VMM.TouchSlider.touchStartTime = new Date().getTime();
+
+	    },
+		touchEnd: function(elem, e) {
+			if (VMM.TouchSlider.getLeft(elem) > 0) {
+				
+				//This means they dragged to the right past the first item
+				
+				if (VMM.TouchSlider.vertical) {
+					VMM.Element.animate(elem, 1000, "", {"top": 0});
+				} else {
+					VMM.Element.animate(elem, 1000, "", {"left": 0});
+				}
+				
+				VMM.TouchSlider.startX = null;
+				VMM.TouchSlider.startY = null;
+				
+				VMM.fireEvent(elem, "TOUCHUPDATE", [0]);
+				
+			} else {
+				//This means they were just dragging within the bounds of the grid and we just need to handle the momentum and snap to the grid.
+				VMM.TouchSlider.slideMomentum(elem, e);
+	         }
+	    },
+		slideMomentum: function(elem, e) {
+			var slideAdjust = (new Date().getTime() - VMM.TouchSlider.touchStartTime) * 10;
+			var timeAdjust = slideAdjust;
+			
+			var left = VMM.TouchSlider.getLeft(elem);
+			var top = VMM.TouchSlider.getTop(elem);
+			
+			var changeX = 6000 * (Math.abs(VMM.TouchSlider.startLeft) - Math.abs(left));
+			var changeY = 6000 * (Math.abs(VMM.TouchSlider.startTop) - Math.abs(top));
+			
+			slideAdjust = Math.round(changeX / slideAdjust);
+			slideAdjustY = Math.round(changeY / slideAdjust);
+
+			var newLeft = slideAdjust + left;
+			var newTop = slideAdjustY + top;
+			
+			var y = newTop % VMM.TouchSlider.height;
+			var t = newLeft % VMM.TouchSlider.width;
+			
+			
+			var _r_object = {
+				top: Math.min(0, newTop),
+				left: Math.min(0, newLeft),
+				time: timeAdjust
+			}
+			VMM.fireEvent(elem, "TOUCHUPDATE", [_r_object]);
+			/*
+			if (VMM.TouchSlider.sticky) {
+				trace("sticky");
+				if ((Math.abs(t)) > ((VMM.TouchSlider.width / 2))) {
+					//Show the next cell
+					newLeft -= (VMM.TouchSlider.width - Math.abs(t));
+				} else {
+		             //Stay on the current cell
+					newLeft -= t;
+				}
+				
+				VMM.fireEvent(elem, "TOUCHUPDATE", [Math.min(0, newLeft)]);
+				
+			} else {
+				trace("not sticky");
+				//VMM.TouchSlider.doSlide(elem, Math.min(0, newLeft), '0.5s');
+				VMM.Element.animate(elem, 500, "", {"left": Math.min(0, newLeft)});
+			}
+			*/
+			
+			VMM.TouchSlider.startX = null;
+			VMM.TouchSlider.startY = null;
+			
+	    },
+		doSlide: function(elem, x, duration) {
+			VMM.Element.css(elem, '-webkit-transition-property', 'left');
+			VMM.Element.css(elem, '-webkit-transition-duration', duration);
+			VMM.Element.css(elem, 'left', x);
+		},
+		touchMove: function(elem, e) {
+			
+			if (!VMM.TouchSlider.sliding) {
+				//elem.parent().addClass('sliding');
+			}
+
+			VMM.TouchSlider.sliding = true;
+			
+			if (VMM.TouchSlider.vertical) {
+				
+				if (VMM.TouchSlider.startY > e.originalEvent.touches[0].screenY) {
+					VMM.Element.css(elem, 'top', -(VMM.TouchSlider.startY - e.originalEvent.touches[0].screenY - VMM.TouchSlider.startTop));
+					VMM.TouchSlider.slidingTop = true;
+				} else {
+					var top = (e.originalEvent.touches[0].screenY - VMM.TouchSlider.startY + VMM.TouchSlider.startTop);
+					VMM.Element.css(elem, 'top', -(VMM.TouchSlider.startY - e.originalEvent.touches[0].screenY - VMM.TouchSlider.startTop));
+					VMM.TouchSlider.slidingTop = false;
+				}
+				
+			} else {
+				
+				if (VMM.TouchSlider.startX > e.originalEvent.touches[0].screenX) {
+					VMM.Element.css(elem, 'left', -(VMM.TouchSlider.startX - e.originalEvent.touches[0].screenX - VMM.TouchSlider.startLeft));
+					VMM.TouchSlider.slidingLeft = true;
+				} else {
+					var left = (e.originalEvent.touches[0].screenX - VMM.TouchSlider.startX + VMM.TouchSlider.startLeft);
+					VMM.Element.css(elem, 'left', -(VMM.TouchSlider.startX - e.originalEvent.touches[0].screenX - VMM.TouchSlider.startLeft));
+					VMM.TouchSlider.slidingLeft = false;
+				}
+				
+			}
+			
+			
+		}
+	}
+	
+	// Hide URL Bar for iOS and Android by Scott Jehl
+	// https://gist.github.com/1183357
+
+	VMM.hideUrlBar = function () {
+		var win = window,
+			doc = win.document;
+
+		// If there's a hash, or addEventListener is undefined, stop here
+		if( !location.hash || !win.addEventListener ){
+
+			//scroll to 1
+			window.scrollTo( 0, 1 );
+			var scrollTop = 1,
+
+			//reset to 0 on bodyready, if needed
+			bodycheck = setInterval(function(){
+				if( doc.body ){
+					clearInterval( bodycheck );
+					scrollTop = "scrollTop" in doc.body ? doc.body.scrollTop : 1;
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}	
+			}, 15 );
+
+			win.addEventListener( "load", function(){
+				setTimeout(function(){
+					//reset to hide addr bar at onload
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}, 0);
+			}, false );
+		}
+	};
+	
+	/* DRAG
+	================================================== */
+	// VMM.DragSlider.createSlidePanel(drag_object, move_object, w, padding, sticky);
+	// VMM.DragSlider.cancelSlide();
+	VMM.DragSlider = {
+		createPanel: function(drag_object, move_object, w, padding, sticky) {
+			
+
+			
+			var x = padding;
+			VMM.DragSlider.width = w;
+			VMM.DragSlider.makeDraggable(drag_object, move_object);
+			VMM.DragSlider.drag_elem = drag_object;
+			/*
+			if (sticky != null && sticky != "") {
+				VMM.TouchSlider.sticky = sticky;
+			} else {
+				VMM.TouchSlider.sticky = false;
+			}
+			*/
+			VMM.DragSlider.sticky = sticky;
+		},
+		makeDraggable: function(drag_object, move_object) {
+			VMM.bindEvent(drag_object, VMM.DragSlider.onDragStart, "mousedown", {element: move_object, delement: drag_object});
+			//VMM.bindEvent(drag_object, VMM.DragSlider.onDragMove, "mousemove", {element: move_object});
+			VMM.bindEvent(drag_object, VMM.DragSlider.onDragEnd, "mouseup", {element: move_object, delement: drag_object});
+			VMM.bindEvent(drag_object, VMM.DragSlider.onDragLeave, "mouseleave", {element: move_object, delement: drag_object});
+	    },
+		cancelSlide: function(e) {
+			VMM.unbindEvent(VMM.DragSlider.drag_elem, VMM.DragSlider.onDragMove, "mousemove");
+			//VMM.DragSlider.drag_elem.preventDefault();
+			//VMM.DragSlider.drag_elem.stopPropagation();
+			return true;
+		},
+		onDragLeave: function(e) {
+
+			VMM.unbindEvent(e.data.delement, VMM.DragSlider.onDragMove, "mousemove");
+			e.preventDefault();
+			e.stopPropagation();
+			return true;
+		},
+		onDragStart: function(e) {
+			VMM.DragSlider.dragStart(e.data.element, e.data.delement, e);
+			
+			e.preventDefault();
+			e.stopPropagation();
+			return true;
+		},
+		onDragEnd: function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			if (VMM.DragSlider.sliding) {
+				VMM.DragSlider.sliding = false;
+				VMM.DragSlider.dragEnd(e.data.element, e.data.delement, e);
+				return false;
+			} else {
+				return true;
+			}
+			
+		},
+		onDragMove: function(e) {
+			VMM.DragSlider.dragMove(e.data.element, e);
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		},
+		dragStart: function(elem, delem, e) {
+			
+			VMM.DragSlider.startX = e.pageX;
+			
+			VMM.DragSlider.startLeft = VMM.DragSlider.getLeft(elem);
+			VMM.DragSlider.dragStartTime = new Date().getTime();
+			VMM.DragSlider.dragWidth = VMM.Element.width(delem);
+			
+			// CANCEL CURRENT ANIMATION IF ANIMATING
+			var _newx = Math.round(VMM.DragSlider.startX - e.pageX - VMM.DragSlider.startLeft);
+			
+			VMM.Element.stop(elem);
+			VMM.bindEvent(delem, VMM.DragSlider.onDragMove, "mousemove", {element: elem});
+
+	    },
+		dragEnd: function(elem, delem, e) {
+			VMM.unbindEvent(delem, VMM.DragSlider.onDragMove, "mousemove");
+			//VMM.DragSlider.dragMomentum(elem, e);
+			if (VMM.DragSlider.getLeft(elem) > 0) {
+				//(VMM.DragSlider.dragWidth/2)
+				//This means they dragged to the right past the first item
+				//VMM.Element.animate(elem, 1000, "linear", {"left": 0});
+				
+				//VMM.fireEvent(elem, "DRAGUPDATE", [0]);
+			} else {
+				//This means they were just dragging within the bounds of the grid and we just need to handle the momentum and snap to the grid.
+				VMM.DragSlider.dragMomentum(elem, e);
+	         }
+		},
+		dragMove: function(elem, e) {
+			if (!VMM.DragSlider.sliding) {
+				//elem.parent().addClass('sliding');
+			}
+			
+			VMM.DragSlider.sliding = true;
+			if (VMM.DragSlider.startX > e.pageX) {
+				//Sliding to the left
+				VMM.Element.css(elem, 'left', -(VMM.DragSlider.startX - e.pageX - VMM.DragSlider.startLeft));
+				VMM.DragSlider.slidingLeft = true;
+			} else {
+				//Sliding to the right
+				var left = (e.pageX - VMM.DragSlider.startX + VMM.DragSlider.startLeft);
+				VMM.Element.css(elem, 'left', -(VMM.DragSlider.startX - e.pageX - VMM.DragSlider.startLeft));
+				VMM.DragSlider.slidingLeft = false;
+			}
+		},
+		dragMomentum: function(elem, e) {
+			var slideAdjust = (new Date().getTime() - VMM.DragSlider.dragStartTime) * 10;
+			var timeAdjust = slideAdjust;
+			var left = VMM.DragSlider.getLeft(elem);
+
+			var changeX = 6000 * (Math.abs(VMM.DragSlider.startLeft) - Math.abs(left));
+			//var changeX = 6000 * (VMM.DragSlider.startLeft - left);
+			slideAdjust = Math.round(changeX / slideAdjust);
+			
+			var newLeft = left + slideAdjust;
+			
+			var t = newLeft % VMM.DragSlider.width;
+			//left: Math.min(0, newLeft),
+			var _r_object = {
+				left: Math.min(newLeft),
+				time: timeAdjust
+			}
+			
+			VMM.fireEvent(elem, "DRAGUPDATE", [_r_object]);
+			var _ease = "easeOutExpo";
+			if (_r_object.time > 0) {
+				VMM.Element.animate(elem, _r_object.time, _ease, {"left": _r_object.left});
+			};
+			
+			
+			//VMM.DragSlider.startX = null;
+		},
+		getLeft: function(elem) {
+			return parseInt(VMM.Element.css(elem, 'left').substring(0, VMM.Element.css(elem, 'left').length - 2), 10);
+		}
+	
+	}
+	
+	/* DEVICE
+	================================================== */
+	
+	VMM.Browser = {
+		init: function () {
+			this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+			this.version = this.searchVersion(navigator.userAgent)
+				|| this.searchVersion(navigator.appVersion)
+				|| "an unknown version";
+			this.OS = this.searchString(this.dataOS) || "an unknown OS";
+			this.device = this.searchDevice(navigator.userAgent);
+			
+		},
+		searchDevice: function(d) {
+			if (d.match(/Android/i) || d.match(/iPhone|iPod/i)) {
+				return "mobile";
+			} else if (d.match(/iPad/i)) {
+				return "tablet";
+			} else if (d.match(/BlackBerry/i) || d.match(/IEMobile/i)) {
+				return "other mobile";
+			} else {
+				return "desktop";
+			}
+		},
+		searchString: function (data) {
+			for (var i=0;i<data.length;i++)	{
+				var dataString = data[i].string;
+				var dataProp = data[i].prop;
+				this.versionSearchString = data[i].versionSearch || data[i].identity;
+				if (dataString) {
+					if (dataString.indexOf(data[i].subString) != -1)
+						return data[i].identity;
+				}
+				else if (dataProp)
+					return data[i].identity;
+			}
+		},
+		searchVersion: function (dataString) {
+			var index = dataString.indexOf(this.versionSearchString);
+			if (index == -1) return;
+			return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+		},
+		dataBrowser: [
+			{
+				string: navigator.userAgent,
+				subString: "Chrome",
+				identity: "Chrome"
+			},
+			{ 	string: navigator.userAgent,
+				subString: "OmniWeb",
+				versionSearch: "OmniWeb/",
+				identity: "OmniWeb"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Apple",
+				identity: "Safari",
+				versionSearch: "Version"
+			},
+			{
+				prop: window.opera,
+				identity: "Opera",
+				versionSearch: "Version"
+			},
+			{
+				string: navigator.vendor,
+				subString: "iCab",
+				identity: "iCab"
+			},
+			{
+				string: navigator.vendor,
+				subString: "KDE",
+				identity: "Konqueror"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Firefox",
+				identity: "Firefox"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Camino",
+				identity: "Camino"
+			},
+			{		// for newer Netscapes (6+)
+				string: navigator.userAgent,
+				subString: "Netscape",
+				identity: "Netscape"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "MSIE",
+				identity: "Explorer",
+				versionSearch: "MSIE"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Gecko",
+				identity: "Mozilla",
+				versionSearch: "rv"
+			},
+			{ 		// for older Netscapes (4-)
+				string: navigator.userAgent,
+				subString: "Mozilla",
+				identity: "Netscape",
+				versionSearch: "Mozilla"
+			}
+		],
+		dataOS : [
+			{
+				string: navigator.platform,
+				subString: "Win",
+				identity: "Windows"
+			},
+			{
+				string: navigator.platform,
+				subString: "Mac",
+				identity: "Mac"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "iPhone",
+				identity: "iPhone/iPod"
+		    },
+			{
+				string: navigator.userAgent,
+				subString: "iPad",
+				identity: "iPad"
+		    },
+			{
+				string: navigator.platform,
+				subString: "Linux",
+				identity: "Linux"
+			}
+		]
+
+	}
+	VMM.Browser.init();
+	
+	/* MEDIA TYPE
+	================================================== */
+	VMM.MediaElement = ({
+		
+		init: function() {
+			return this;
+		},
+		// somestring = VMM.MediaElement.thumbnail(data);
+		thumbnail: function(data, w, h) {
+			_w = 32;
+			_h = 32;
+			if (w != null && w != "") {
+				_w = w;
+			}
+			if (h != null && h != "") {
+				_h = h;
+			}
+			
+			if (data.media != null && data.media != "") {
+				_valid = true;
+				var mediaElem = "";
+				var m = {};
+				
+				// MEDIA TYPE
+				m = VMM.MediaType(data.media); //returns an object with .type and .id
+				
+				// CREATE MEDIA CODE 
+				if (m.type == "image") {
+					mediaElem = "<div class='thumbnail'><img src='" + m.id + "' width='" + _w + "px' height='" + _h + "px'></div>";
+					return mediaElem;
+				} else if (m.type == "flickr") {
+					mediaElem = "<div class='thumbnail'><img id='flickr_" + m.id + "_thumb' width='" + _w + "px' height='" + _h + "px'></div>";
+					return mediaElem;
+				} else if (m.type == "youtube") {
+					mediaElem = "<div class='thumbnail youtube'></div>";
+					return mediaElem;
+				} else if (m.type == "vimeo") {
+					mediaElem = "<div class='thumbnail vimeo'></div>";
+					return mediaElem;
+				} else if (m.type == "twitter"){
+					mediaElem = "<div class='thumbnail twitter'></div>";
+					return mediaElem;
+				} else if (m.type == "twitter-ready") {
+					mediaElem = "<div class='thumbnail twitter'></div>";
+					return mediaElem;
+				} else if (m.type == "soundcloud") {
+					mediaElem = "<div class='thumbnail soundcloud'></div>";
+					return mediaElem;
+				} else if (m.type == "google-map") {
+					mediaElem = "<div class='thumbnail map'></div>";
+					return mediaElem;
+				} else if (m.type == "unknown") {
+					mediaElem = "";
+					return mediaElem;
+				} else if (m.type == "website") {
+					mediaElem = "<div class='thumbnail website'></div>";
+					return mediaElem;
+				} else {
+					mediaElem = "<div class='thumbnail'></div>";
+					return mediaElem;
+				}
+			}
+		},
+		//VMM.MediaElement.create(element, data, returntrue);
+		create: function(element, data, __return, w, h) {
+			
+			_return = __return;
+			_w = 500;
+			_h = 400;
+			$mediacontainer = element;
+			//VMM.MediaElement.container = element;
+			var _valid = false;
+			if (w != null && w != "") {
+				_w = w;
+			}
+			if (h != null && h != "") {
+				_h = h;
+			}
+			
+			if (data.media != null && data.media != "") {
+
+				_valid = true;
+				var mediaElem = "";
+				var captionElem = "";
+				var creditElem = "";
+				var m = {};
+				var media_height = (_h - 50);
+				var isTextMedia = false;
+				
+				// CREDIT
+				if (data.credit != null && data.credit != "") {
+					creditElem = "<div class='credit'>" + data.credit + "</div>";
+				}
+				// CAPTION
+				if (data.caption != null && data.caption != "") {
+					captionElem = "<div class='caption'>" + data.caption + "</div>";
+				}
+				
+				// MEDIA TYPE
+				m = VMM.MediaType(data.media); //returns an object with .type and .id
+				
+				// CREATE MEDIA CODE 
+				if (m.type == "image") {
+					mediaElem = "<img src='" + m.id + "'>";
+				} else if (m.type == "flickr") {
+					var flickr_id = "flickr_" + m.id;
+					mediaElem = "<img id='" + flickr_id + "_large" + "'>";
+					VMM.ExternalAPI.flickr.getPhoto(m.id, "#" + flickr_id);
+				} else if (m.type == "youtube") {
+					mediaElem = "<div class='media-frame video youtube' id='youtube_" + m.id + "'>Loading YouTube video...</div>";
+					VMM.ExternalAPI.youtube.init(m.id);
+					//mediaElem = "<iframe class='media-frame youtube' onload='timeline.iframeLoaded()' frameborder='0' width='100%' height='100%' src='http://www.youtube.com/embed/" + m.id + "?&rel=0&theme=light&showinfo=0&hd=1&autohide=0&color=white&enablejsapi=1' allowfullscreen></iframe>";
+				} else if (m.type == "vimeo") {
+					mediaElem = "<iframe class='media-frame video vimeo' frameborder='0' width='100%' height='100%' src='http://player.vimeo.com/video/" + m.id + "?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff'></iframe>";
+				} else if (m.type == "twitter"){
+					mediaElem = "<div class='twitter' id='" + m.id + "'>Loading Tweet</div>";
+					//VMM.ExternalAPI.twitter.getHTML(m.id);
+					trace("TWITTER");
+					VMM.ExternalAPI.twitter.prettyHTML(m.id);
+					isTextMedia = true;
+				} else if (m.type == "twitter-ready") {
+					mediaElem = m.id;
+				} else if (m.type == "soundcloud") {
+					var soundcloud_id = "soundcloud_" + VMM.Util.unique_ID(5);
+					mediaElem = "<div class='media-frame soundcloud' id='" + soundcloud_id + "'>Loading Sound</div>";
+					VMM.ExternalAPI.soundcloud.getSound(m.id, soundcloud_id)
+				} else if (m.type == "google-map") {
+					mediaElem = "<iframe class='media-frame map' frameborder='0' width='100%' height='100%' scrolling='no' marginheight='0' marginwidth='0' src='" + m.id + "&amp;output=embed'></iframe>"
+				} else if (m.type == "unknown") { 
+					trace("NO KNOWN MEDIA TYPE FOUND TRYING TO JUST PLACE THE HTML"); 
+					mediaElem = VMM.Util.properQuotes(m.id); 
+				} else if (m.type == "website") { 
+					mediaElem = "<iframe class='media-frame' frameborder='0' width='100%' height='100%' scrolling='yes' marginheight='0' marginwidth='0' src='" + m.id + "'></iframe>"
+				} else {
+					trace("NO KNOWN MEDIA TYPE FOUND");
+					trace(m.type);
+				}
+				// WRAP THE MEDIA ELEMENT
+				mediaElem = "<div class='media-container' >" + mediaElem + creditElem + captionElem + "</div>";
+				
+				if (_return) {
+					if (isTextMedia) {
+						return "<div class='media text-media'><div class='media-wrapper'>" + mediaElem + "</div></div>";
+					} else {
+						return "<div class='media'><div class='media-wrapper'>" + mediaElem + "</div></div>";
+					}
+				} else {
+					VMM.appendElement($mediacontainer, mediaElem);
+					VMM.appendElement($mediacontainer, creditElem);
+					VMM.appendElement($mediacontainer, captionElem);
+				}
+			};
+			
+		},
+		
+	}).init();
+	
+	//VMM.mediaType.youtube(d); //should return a true or false
+	// VMM.MediaType(url); //returns an object with .type and .id
+	VMM.MediaType = function(d) {
+		var success = false;
+		var media   = {};
+		if (d.match("div class='twitter'")) {
+			media.type  = "twitter-ready";
+		    media.id    = d;
+		    success = true;
+		} else if (d.match('(www.)?youtube|youtu\.be')) {
+			if (d.match('embed')) { 
+				youtube_id = d.split(/embed\//)[1].split('"')[0];
+			} else { 
+				youtube_id = d.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
+			}
+			//youtube_id = d.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
+		    media.type  = "youtube";
+		    media.id    = youtube_id;
+		    success = true;
+		} else if (d.match('(player.)?vimeo\.com')) {
+		    //vimeo_id = d.split(/video\/|http:\/\/vimeo\.com\//)[1].split(/[?&]/)[0];
+		    vimeo_id = d.split(/video\/|\/\/vimeo\.com\//)[1].split(/[?&]/)[0];
+		
+		    media.type  = "vimeo";
+		    media.id    = vimeo_id;
+		    success = true;
+		} else if (d.match('(player.)?soundcloud\.com')) {
+			//soundcloud_url = unescape(d.split(/value="/)[1].split(/["]/)[0]);
+			//soundcloud_id = soundcloud_url.split(/tracks\//)[1].split(/[&"]/)[0];
+			media.type  = "soundcloud";
+			media.id    = d;
+			success = true;
+		} else if (d.match('(www.)?twitter\.com')) {
+			trace("TWITTER MATCH");
+			// https://twitter.com/#!/twitterapi/statuses/133640144317198338
+			// https://twitter.com/#!/DeliciousHot/status/23189589820702720
+			if (d.match("status\/")) {
+				twitter_id = d.split("status\/")[1];
+			} else if (d.match("statuses\/")) {
+				twitter_id = d.split("statuses\/")[1];
+			} else {
+				twitter_id = "";
+			}
+
+			media.type = "twitter";
+			media.id = twitter_id;
+			success = true;
+		} else if (d.match("maps.google.com")) {
+			//maps.google.com
+			media.type  = "google-map";
+		    media.id    = d.split(/src=['|"][^'|"]*?['|"]/gi);
+			trace("google map " + media.id);
+			success = true;
+		} else if (d.match("flickr.com/photos")) {
+			media.type = "flickr";
+			//media.id = d.split('/photos/[^/]+/([0-9]+)/gi');
+			
+			media.id = d.split("photos\/")[1].split("/")[1];
+			//media.id = media.id.split("/")[1];
+			trace("FLICKR " + media.id);
+			success = true;
+		} else if (d.match(/jpg|jpeg|png|gif/i)) {
+			media.type  = "image";
+			media.id    = d;
+			success = true;
+		} 	else if (d.indexOf('http://') == 0) {
+			media.type  = "website";
+			media.id    = d;
+			success = true;
+		} else {
+			trace("unknown media");  
+			media.type  = "unknown";
+			media.id    = d;
+			success = true;
+		}
+		
+		if (success) { 
+			return media;
+		} else {
+			trace("No valid media id detected");
+			trace(d);
+		}
+		return false;
+	}
+	
+	VMM.Keys = {
+		flickr: "6d6f59d8d30d79f4f402a7644d5073e3",
+	}
+	
+	VMM.ExternalAPI = {
+		
+		twitter: {
+			tweetArray: [],
+			// VMM.ExternalAPI.twitter.getHTML(id);
+			getHTML: function(id) {
+				var the_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + id+ "&callback=?";
+				
+				VMM.getJSON(the_url, function(d) {
+					VMM.ExternalAPI.twitter.onJSONLoaded(d, id);
+				});
+			},
+			onJSONLoaded: function(d, id) {
+				VMM.attachElement("#"+id, VMM.ExternalAPI.twitter.linkify(d.html) );
+			},
+			//somestring = VMM.ExternalAPI.twitter.linkify(d);
+			linkify: function(d) {
+				return d.replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
+					var username = u.replace("@","");
+					
+					return u.link("http://twitter.com/"+username);
+				});
+			},
+			// VMM.ExternalAPI.twitter.parseTwitterDate(date);
+			parseTwitterDate: function(d) {
+				var date = new Date(Date.parse(d));
+				/*
+				var t = d.replace(/(\d{1,2}[:]\d{2}[:]\d{2}) (.*)/, '$2 $1');
+				t = t.replace(/(\+\S+) (.*)/, '$2 $1');
+				var date = new Date(Date.parse(t)).toLocaleDateString();
+				var time = new Date(Date.parse(t)).toLocaleTimeString();
+				*/
+				return date;
+			},
+			
+			prettyParseTwitterDate: function(d) {
+				var date = new Date(Date.parse(d));
+				return VMM.Util.date.prettyDate(date, true);
+			},
+
+			// VMM.ExternalAPI.twitter.getTweets(tweets_array);
+			getTweets: function(tweets) {
+				var tweetArray = [];
+				var number_of_tweets = tweets.length;
+				
+				for(var i = 0; i < tweets.length; i++) {
+					
+					var twitter_id = "";
+					
+					
+					/* FIND THE TWITTER ID
+					================================================== */
+					if (tweets[i].tweet.match("status\/")) {
+						twitter_id = tweets[i].tweet.split("status\/")[1];
+					} else if (tweets[i].tweet.match("statuses\/")) {
+						twitter_id = tweets[i].tweet.split("statuses\/")[1];
+					} else {
+						twitter_id = "";
+					}
+					
+					/* FETCH THE DATA
+					================================================== */
+					var the_url = "https://api.twitter.com/1/statuses/show.json?id=" + twitter_id + "&include_entities=true&callback=?";
+					VMM.getJSON(the_url, function(d) {
+						
+						var tweet = {}
+						/* FORMAT RESPONSE
+						================================================== */
+						var twit = "<div class='twitter'><blockquote><p>";
+						var td = VMM.Util.linkify(d.text);
+						td = td.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");
+						td = td.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");
+						//twit += VMM.Util.linkify(d.text);
+						twit += td;
+						twit += "</p>";
+						
+						twit += "— " + d.user.name + " (<a href='https://twitter.com/" + d.user.screen_name + "'>@" + d.user.screen_name + "</a>) <a href='https://twitter.com/" + d.user.screen_name + "/status/" + d.id + "'>" + VMM.ExternalAPI.twitter.prettyParseTwitterDate(d.created_at) + " </a></blockquote></div>";
+						
+						tweet.content = twit;
+						tweet.raw = d;
+						
+						tweetArray.push(tweet);
+						
+						
+						/* CHECK IF THATS ALL OF THEM
+						================================================== */
+						if (tweetArray.length == number_of_tweets) {
+							var the_tweets = {tweetdata: tweetArray}
+							VMM.fireEvent(global, "TWEETSLOADED", the_tweets);
+						}
+					});
+					
+				}
+					
+				
+			},
+			
+			// VMM.ExternalAPI.twitter.getTweetSearch(search string);
+			getTweetSearch: function(tweets, number_of_tweets) {
+				
+				
+				var _number_of_tweets = 40;
+				if (number_of_tweets != null && number_of_tweets != "") {
+					_number_of_tweets = number_of_tweets;
+				}
+				
+				var the_url = "http://search.twitter.com/search.json?q=" + tweets + "&rpp=" + _number_of_tweets + "&include_entities=true&result_type=mixed";
+				var tweetArray = [];
+				VMM.getJSON(the_url, function(d) {
+					
+					/* FORMAT RESPONSE
+					================================================== */
+					for(var i = 0; i < d.results.length; i++) {
+						var tweet = {}
+						var twit = "<div class='twitter'><blockquote><p>";
+						var td = VMM.Util.linkify(d.results[i].text);
+						td = td.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");
+						td = td.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");
+						twit += td;
+						twit += "</p>";
+						twit += "— " + d.results[i].from_user_name + " (<a href='https://twitter.com/" + d.results[i].from_user + "'>@" + d.results[i].from_user + "</a>) <a href='https://twitter.com/" + d.results[i].from_user + "/status/" + d.id + "'>" + VMM.ExternalAPI.twitter.prettyParseTwitterDate(d.results[i].created_at) + " </a></blockquote></div>";
+						tweet.content = twit;
+						tweet.raw = d.results[i];
+						tweetArray.push(tweet);
+					}
+					var the_tweets = {tweetdata: tweetArray}
+					VMM.fireEvent(global, "TWEETSLOADED", the_tweets);
+				});
+				
+			},
+			// VMM.ExternalAPI.twitter.prettyHTML(id);
+			prettyHTML: function(id) {
+				
+				// https://api.twitter.com/1/statuses/show.json?id=164165553810976768&include_entities=true
+				var the_url = "https://api.twitter.com/1/statuses/show.json?id=" + id + "&include_entities=true&callback=?";
+				VMM.getJSON(the_url, function(d) {
+					VMM.ExternalAPI.twitter.formatJSON(d, id);
+				});
+			},
+			
+			formatJSON: function(d, id) {
+				var twit = "<blockquote><p>";
+				var td = VMM.Util.linkify(d.text);
+				td = td.replace(/(@([\w]+))/g,"<a href='http://twitter.com/$2'>$1</a>");
+				td = td.replace(/(#([\w]+))/g,"<a href='http://twitter.com/#search?q=%23$2'>$1</a>");
+				//twit += VMM.Util.linkify(d.text);
+				twit += td;
+				twit += "</p></blockquote>";
+				//twit += "— " + d.user.name + " (<a href='https://twitter.com/" + d.user.screen_name + "'>@" + d.user.screen_name + "</a>) <a href='https://twitter.com/" + d.user.screen_name + "/status/" + d.id + "'>" + d.created_at + " </a>";
+				//twit += "<a href='" +  + "'>" + VMM.ExternalAPI.twitter.prettyParseTwitterDate(d.created_at);
+				//twit += "<span class='created-at'><a href='https://twitter.com/" + d.user.screen_name + "/status/" + d.id + "'>" + VMM.ExternalAPI.twitter.prettyParseTwitterDate(d.created_at) + " </a></span>";
+				//twit += "<span class='created-at'><a href='https://twitter.com/" + d.user.screen_name + "/status/" + d.id + "'>" + "Tweet Details" + " </a></span>";
+				twit += " <a href='https://twitter.com/" + d.user.screen_name + "/status/" + d.id + "' alt='link to original tweet' title='link to original tweet'>" + "<span class='created-at'></span>" + " </a>";
+				twit += "<div class='vcard author'>"
+				twit += "<a class='screen-name url' href='https://twitter.com/" + d.user.screen_name + "' data-screen-name='" + d.user.screen_name + "'>";
+				twit += "<span class='avatar'><img src=' " + d.user.profile_image_url + "'  alt=''></span>";
+				twit += "<span class='fn'>" + d.user.name + "</span>";
+				twit += "<span class='nickname'>@" + d.user.screen_name + "</span>";
+				twit += "</a>"
+				twit += "</div>"
+				
+				
+				/*
+				<blockquote class="twitter-tweet">
+				<p>Tom Brokaw asks <a href="https://twitter.com/search/%2523Romney">#Romney</a> to remove from ads 1997 NBC report on <a href="https://twitter.com/search/%2523Gingrich">#Gingrich</a> legal troubles. Romney unmoved. <a href="http://t.co/re7vtLNt" title="http://thecaucus.blogs.nytimes.com/2012/01/28/nbc-news-asks-romney-campaign-to-remove-ad/?hp">thecaucus.blogs.nytimes.com/2012/01/28/nbc…</a></p>
+				— Jim Roberts (<a href="http://twitter.com/nytjim">@nytjim</a>) <a href="https://twitter.com/nytjim/status/163461388193366016" data-datetime="2012-01-29T03:20:06+00:00">January 29, 2012</a>
+				</blockquote>
+				*/
+				VMM.attachElement("#"+id, twit );
+				//VMM.attachElement("#"+id, VMM.ExternalAPI.twitter.linkify(twit) );
+			}
+			
+		},
+		
+		maps: {
+			
+		},
+		
+		flickr: {
+			
+			getPhoto: function(mid, id) {
+				// http://soundcloud.com/oembed?iframe=true&url=http://soundcloud.com/erasedtapes/olafur-arnalds-poland
+				var the_url = "http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + VMM.Keys.flickr + "&photo_id=" + mid + "&format=json&nojsoncallback=1";
+				VMM.getJSON(the_url, function(d) {
+					
+					var flickr_large_id = id + "_large";
+					var flickr_thumb_id = id + "_thumb";
+					var flickr_img_large = d.sizes.size[d.sizes.size.length - 1].source;
+					var flickr_img_thumb = d.sizes.size[0].source;
+					
+					VMM.Element.attr(flickr_large_id, "src", flickr_img_large);
+					VMM.Element.attr(flickr_thumb_id, "src", flickr_img_thumb);
+				});
+			},
+			
+			
+		},
+		
+		soundcloud: {
+			// VMM.ExternalAPI.soundcloud.getSound(url, id)
+			getSound: function(url, id) {
+				// http://soundcloud.com/oembed?iframe=true&url=http://soundcloud.com/erasedtapes/olafur-arnalds-poland
+				var the_url = "http://soundcloud.com/oembed?iframe=true&url=" + url + "";
+				VMM.getJSON(the_url, function(d) {
+					VMM.attachElement("#"+id, d.html );
+				});
+			},
+		},
+		
+		// VMM.ExternalAPI.youtube.init(id);
+		youtube: {
+			init: function(id) {
+				
+				if (VMM.master_config.youtube.active) {
+					VMM.master_config.youtube.createPlayer(id);
+				} else {
+					
+					VMM.master_config.youtube.que.push(id);
+					
+					if (VMM.master_config.youtube.api_loaded) {
+						
+					} else {
+						var tag = document.createElement('script');
+						tag.src = "http://www.youtube.com/player_api";
+						var firstScriptTag = document.getElementsByTagName('script')[0];
+						firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+						VMM.master_config.youtube.api_loaded = true;
+					}
+					
+				}
+			},
+			
+			onAPIReady: function() {
+				VMM.master_config.youtube.active = true;
+				
+				for(var i = 0; i < VMM.master_config.youtube.que.length; i++) {
+					VMM.ExternalAPI.youtube.createPlayer(VMM.master_config.youtube.que[i]);
+				}
+			},
+			// VMM.ExternalAPI.youtube.createPlayer(id);
+			createPlayer: function(id) {
+				var p = {
+					active:false,
+					player: {},
+					name:'youtube_'+id,
+					playing:false
+				};
+				
+				p.player['youtube_'+id] = new YT.Player('youtube_'+id, {
+					height: '390',
+					width: '640',
+					playerVars: {
+						enablejsapi:1,
+						color: 'white',
+						showinfo:0,
+						theme: 'light',
+						rel:0,
+						origin:'http://dev.verite.co'
+					},
+					videoId: id,
+					events: {
+						'onReady': VMM.ExternalAPI.youtube.onPlayerReady,
+						'onStateChange': VMM.ExternalAPI.youtube.onStateChange
+					}
+				});
+				
+				VMM.master_config.youtube.array.push(p);
+			},
+			
+			//VMM.ExternalAPI.youtube.stopPlayers();
+			stopPlayers: function() {
+				for(var i = 0; i < VMM.master_config.youtube.array.length; i++) {				
+					if (VMM.master_config.youtube.array[i].playing) {
+						var the_name = VMM.master_config.youtube.array[i].name;
+						VMM.master_config.youtube.array[i].player[the_name].stopVideo();
+					}
+				}
+			},
+			
+			onStateChange: function(e) {
+				for(var i = 0; i < VMM.master_config.youtube.array.length; i++) {
+					var the_name = VMM.master_config.youtube.array[i].name;
+					if (VMM.master_config.youtube.array[i].player[the_name] == e.target) {
+						if (e.data == YT.PlayerState.PLAYING) {
+							VMM.master_config.youtube.array[i].playing = true;
+						}
+					}
+				}
+			},
+			
+			onPlayerReady: function(e) {
+				
+			}
+			
+			
+		}
+	}
+	
+	
+	/* MEDIA
+	================================================== */
+	// something = new VMM.Media(parent, w, h, {thedata});
+	VMM.Media = function(parent, w, h, thedata) {  
+		
+		/* PRIVATE VARS
+		================================================== */
+		var data = {}; // HOLDS DATA
+		
+		var _valid = false;
+		
+		var config = {
+			width: 720,
+			height: 400,
+			content_width: 720,
+			content_height: 400,
+			ease: "easeInOutExpo",
+			duration: 1000,
+			spacing: 15
+		};
+		/* ELEMENTS
+		================================================== */
+		var $media = "";
+		var $container = "";
+		var $mediacontainer  = "";
+		var $mediaelement = "";
+		var layout = parent; // expecting media div
+		
+		if (w != null && w != "") {config.width = w};
+		if (h != null && h != "") {config.height = h};
+		/*
+		if (typeof thedata != "undefined") {
+			data = thedata;
+			this.init(data);
+		}
+		*/
+		/* PUBLIC FUNCTIONS
+		================================================== */
+		this.init = function(d) {
+			if(typeof d != 'undefined') {
+				this.setData(d);
+			} else {
+				trace("WAITING ON DATA");
+			}
+		};
+		
+		var build = function(media, caption, credit) {
+			
+			$media = VMM.appendAndGetElement(layout, "<div>", "media");
+			$container = VMM.appendAndGetElement($media, "<div>", "container");
+			$mediacontainer = VMM.appendAndGetElement($container, "<div>", "media-container");
+			
+
+			if (data.media != null && data.media != "") {
+
+				_valid = true;
+				var m = {};
+				
+				m = VMM.MediaType(data.media); //returns an object with .type and .id
+				
+				if (m.type == "image") {
+					VMM.appendElement($mediacontainer, "<img src='" + m.id + "'>");  
+				} else if (m.type == "youtube") {
+					VMM.appendElement($mediacontainer, "<iframe frameborder='0' src='http://www.youtube.com/embed/" + m.id + "?&rel=0&theme=light&showinfo=0&hd=1&autohide=0&color=white' allowfullscreen>");
+				} else if (m.type == "vimeo") {
+					VMM.appendElement($mediacontainer, "<iframe frameborder='0' src='http://player.vimeo.com/video/" + m.id + "?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff'>");
+				} else {
+					
+				}
+				
+				// CREDIT
+				if (data.credit != null && data.credit != "") {
+					VMM.appendElement($container, VMM.createElement("div", data.credit, "credit"));
+				}
+
+				// CAPTION
+				if (data.caption != null && data.caption != "") {
+					VMM.appendElement($container, VMM.createElement("div", data.caption, "caption"));
+				}
+
+			}
+	    };
+	
+		
+	
+		/* GETTERS AND SETTERS
+		================================================== */
+		
+		this.setData = function(d) {
+			if(typeof d != 'undefined') {
+				data = d;
+				build();
+			} else{
+				trace("NO DATA");
+			}
+		};
+		
+		/* RESIZE
+		================================================== */
+		
+		function reSize() {
+
+		}
+		
+
+
+	}
+	
+	// Less expensive to use prototype
+	
+	VMM.Media.prototype.height = function(h) {
+		if (h != null && h != "") {
+			config.height = h;
+			reSize();
+		} else {
+			return config.height;
+		}
+	};
+	
+	VMM.Media.prototype.width = function(w) {
+		if (w != null && w != "") {
+			config.width = w;
+			reSize();
+		} else {
+			return config.width;
+		}
+	};
+	
+	/* GETTERS AND SETTERS
+	================================================== */
+	
+	VMM.Media.prototype.getData = function() {
+		return data;
+	};
+	
+	VMM.Media.prototype.setConfig = function(d) {
+		if(typeof d != 'undefined') {
+			config = d;
+		} else{
+			trace("NO CONFIG DATA");
+		}
+	};
+	
+	VMM.Media.prototype.getConfig = function() {
+		return config;
+	};
+	
+	VMM.Media.prototype.setSize = function(w, h) {
+		if (w != null) {config.width = w};
+		if (h != null) {config.height = h};
+		if (_active) {
+			reSize();
+		}
+		
+	}
+	
+	
+	VMM.Media.prototype.active = function() {
+		return _active;
+	};
+	
+	
+}
+
+
+
+/* Trace (console.log)
+================================================== */
+function trace( msg ) {
+	if (window.console) {
+		console.log(msg);
+	} else if ( typeof( jsTrace ) != 'undefined' ) {
+		jsTrace.send( msg );
+	} else {
+		//alert(msg);
+	}
+}
+
+/* Extending Date to include Week
+================================================== */
+Date.prototype.getWeek = function() {
+	var onejan = new Date(this.getFullYear(),0,1);
+	return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+}
+
+/* Extending Date to include Day of Year
+================================================== */
+Date.prototype.getDayOfYear = function() {
+	var onejan = new Date(this.getFullYear(),0,1);
+	return Math.ceil((this - onejan) / 86400000);
+}
+
+/* A MORE SPECIFIC TYPEOF();
+//	http://rolandog.com/archives/2007/01/18/typeof-a-more-specific-typeof/
+================================================== */
+// type.of()
+var is={
+	Null:function(a){return a===null;},
+	Undefined:function(a){return a===undefined;},
+	nt:function(a){return(a===null||a===undefined);},
+	Function:function(a){return(typeof(a)==="function")?a.constructor.toString().match(/Function/)!==null:false;},
+	String:function(a){return(typeof(a)==="string")?true:(typeof(a)==="object")?a.constructor.toString().match(/string/i)!==null:false;},
+	Array:function(a){return(typeof(a)==="object")?a.constructor.toString().match(/array/i)!==null||a.length!==undefined:false;},
+	Boolean:function(a){return(typeof(a)==="boolean")?true:(typeof(a)==="object")?a.constructor.toString().match(/boolean/i)!==null:false;},
+	Date:function(a){return(typeof(a)==="date")?true:(typeof(a)==="object")?a.constructor.toString().match(/date/i)!==null:false;},
+	HTML:function(a){return(typeof(a)==="object")?a.constructor.toString().match(/html/i)!==null:false;},
+	Number:function(a){return(typeof(a)==="number")?true:(typeof(a)==="object")?a.constructor.toString().match(/Number/)!==null:false;},
+	Object:function(a){return(typeof(a)==="object")?a.constructor.toString().match(/object/i)!==null:false;},
+	RegExp:function(a){return(typeof(a)==="function")?a.constructor.toString().match(/regexp/i)!==null:false;}
+};
+var type={
+	of:function(a){
+		for(var i in is){
+			if(is[i](a)){
+				return i.toLowerCase();
+			}
+		}
+	}
+};
+
+/* YOUTUBE API
+================================================== */
+function onYouTubePlayerAPIReady() {
+	VMM.ExternalAPI.youtube.onAPIReady();
+}
+
+/*	jQuery Easing v1.3
+	http://gsgd.co.uk/sandbox/jquery/easing/
+================================================== */
+if( typeof( jQuery ) != 'undefined' ){
+	
+	jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+	jQuery.extend( jQuery.easing, {
+		def: 'easeOutQuad',
+		swing: function (x, t, b, c, d) {
+			//alert(jQuery.easing.default);
+			return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+		},
+		easeInExpo: function (x, t, b, c, d) {
+			return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+		},
+		easeOutExpo: function (x, t, b, c, d) {
+			return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+		},
+		easeInOutExpo: function (x, t, b, c, d) {
+			if (t==0) return b;
+			if (t==d) return b+c;
+			if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+			return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+		},
+		easeInQuad: function (x, t, b, c, d) {
+			return c*(t/=d)*t + b;
+		},
+		easeOutQuad: function (x, t, b, c, d) {
+			return -c *(t/=d)*(t-2) + b;
+		},
+		easeInOutQuad: function (x, t, b, c, d) {
+			if ((t/=d/2) < 1) return c/2*t*t + b;
+			return -c/2 * ((--t)*(t-2) - 1) + b;
+		},
+	});
+}
+
+
+
+
+
+/* CLONE OBJECTS
+================================================== */
+/*
+Object.prototype.clone = function() {
+  var newObj = (this instanceof Array) ? [] : {};
+  for (i in this) {
+    if (i == 'clone') continue;
+    if (this[i] && typeof this[i] == "object") {
+      newObj[i] = this[i].clone();
+    } else newObj[i] = this[i]
+  } return newObj;
+};
+*/
+
+
+/*********************************************** 
+     Begin VMM.Core.js 
+***********************************************/ 
+
+/* Core
+================================================== */
+
+
+/* Sequence
+================================================== */
+if(typeof VMM != 'undefined' && typeof VMM.Sequence == 'undefined') {
+	
+
+	VMM.Sequence = Class.extend({
+		
+		initialize: function(length,index) {
+			trace('sequence init');
+			
+			// PUBLIC
+			this.increment = 1;
+			this.decrement = 1;
+			this.wrap = false;
+			
+			// PRIVATE
+			this.length = (length == null) ? 0 : length;
+			this.index = (index == null) ? ((length == 0) ? -1 : 0) : (index >= length) ? length-1 : index;
+			this.synced = [];
+		},
+		setLength: function(i) {
+			
+			this.length = i;
+			
+			this.setIndex(this.index);
+		},
+		
+		getLength: function() {
+			
+			return this.length;
+		}, 
+		
+		setIndex: function(i) {
+			
+			if(this.length <= 0) {
+				
+				this.index = -1;
+				
+				return;
+			}
+			
+			if(i < 0) i = (this.wrap) ? this.length - (i%this.length) : 0;
+			else if(i >= this.length) i = (this.wrap) ? (i%this.length) : this.length-1;
+			
+			var pi = this.index;
+			
+			this.index = i;
+			
+			if(pi != this.index) {
+			
+				// update sequences
+				for(var j=0; j<this.synced.length; j++) {
+				
+					var s = this.synced[j];
+				
+					if(s.getIndex() != this.index) s.setIndex(this.index);
+				}
+			}
+		},
+		
+		getIndex: function() {
+			
+			return this.index;
+		},
+		
+		next: function() {
+			
+			this.setIndex(this.index+this.increment);
+		},
+		
+		prev: function () {
+			
+			this.setIndex(this.index-this.decrement);
+		},
+		
+		sync: function(s,bothWays) {
+			
+			if(s instanceof NYTMM.Sequence && s != this) {
+				
+				this.synced.push(s);
+				
+				if(bothWays) s.sync(this);
+				
+				return true;
+			}
+			
+			return false;
+		},
+		
+		unsync: function(s,bothWays) {
+			
+			// update sequences
+			for(var i=0; i<this.synced.length; i++) {
+				
+				if(this.synced[i] == s) {
+					
+					this.synced.splice(i,1);
+					
+					if(bothWays) s.unsync(this);
+					
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+	});
+	
+}
+
+/* Slider
+================================================== */
+if(typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
+	
+	VMM.Slider = function(parent, content_width, content_height, is_timeline) {
+		
+		/* DEVICE
+		================================================== */
+		/*
+		trace("VMM.Browser.OS");
+		trace(VMM.Browser.browser);
+		trace(VMM.Browser.version);
+		trace(VMM.Browser.OS);
+		trace(VMM.Browser.device);
+		*/
+		
+		/* PRIVATE VARS
+		================================================== */
+		var _private_var = "private";
+		var events = {}; // CUSTOM EVENT HOLDER
+		var data = []; // HOLDS SLIDE DATA
+		var slides_content = "";
+		var slides = [];
+		var medias = [];
+		var current_slide = 0;
+		var current_width = 960;
+		var touch = {
+			move: false,
+			x: 10,
+			y:0,
+			off: 0,
+			dampen: 48
+		};
+		var slide_positions = [];
+		
+		var config = {
+			interval: 10,
+			something: 0,
+			width: 720,
+			height: 400,
+			content_width: 720,
+			content_height: 400,
+			content_padding: 130,
+			ease: "easeInOutExpo",
+			duration: 1000,
+			nav_width: 100,
+			nav_height: 200,
+			timeline: false,
+			spacing: 15,
+		};
+		
+		
+		
+		var slider_width = 1000;
+		
+		if (content_width != null && content_width != "") {
+			config.width = content_width;
+		} 
+		if (content_height != null && content_height != "") {
+			config.height = content_height;
+		} 
+		if (is_timeline != null && is_timeline != "") {
+			config.timeline = is_timeline;
+		}
+		
+		var content = "";
+		var _active = false;
+		
+		/* ELEMENTS
+		================================================== */
+		var $slider = "";
+		var $slider_mask = "";
+		var $slider_container = "";
+		var $slides_items = "";
+		//var $slide = "";
+		var navigation = {};
+		// Nav Items
+		navigation.nextBtn;
+		navigation.prevBtn;
+		navigation.nextDate;
+		navigation.prevDate;
+		navigation.nextTitle;
+		navigation.prevTitle;
+		
+		/* PUBLIC VARS
+		================================================== */
+		this.ver = "0.1";
+		var layout = parent; // expecting slider div
+		
+		
+		/* PUBLIC FUNCTIONS
+		================================================== */
+		this.init = function(d) {
+			if(typeof d != 'undefined') {
+				this.setData(d);
+			} else {
+				trace("WAITING ON DATA");
+			}
+		};
+		
+		this.width = function(w) {
+			if (w != null && w != "") {
+				config.width = w;
+				reSize();
+			} else {
+				return config.width;
+			}
+		}
+		
+		this.height = function(h) {
+			if (h != null && h != "") {
+				config.height = h;
+				reSize();
+			} else {
+				return config.height;
+			}
+		}
+		/* GETTERS AND SETTERS
+		================================================== */
+		this.setData = function(d) {
+			if(typeof d != 'undefined') {
+				data = d;
+				build();
+			} else{
+				trace("NO DATA");
+			}
+		};
+		
+		this.getData = function() {
+			return data;
+		};
+		
+		this.setConfig = function(d) {
+			if(typeof d != 'undefined') {
+				config = d;
+				// TO DO
+				// FIRE AN EVENT ETC
+			} else{
+				trace("NO CONFIG DATA");
+			}
+		}
+		
+		this.getConfig = function() {
+			return config;
+		};
+		
+		this.setSize = function(w, h) {
+			if (w != null) {config.width = w};
+			if (h != null) {config.height = h};
+			if (_active) {
+				reSize();
+			}
+			
+		}
+		
+		this.active = function() {
+			return _active;
+		};
+		
+		this.getCurrentNumber = function() {
+			return current_slide;
+		};
+		
+		this.setSlide = function(n) {
+			goToSlide(n);
+		};
+
+		
+		/* ON EVENT
+		================================================== */
+		
+		function onConfigSet() {
+			trace("onConfigSet");
+		};
+		
+		
+		function reSize(go_to_slide, from_start) {
+			
+			var _go_to_slide = true;
+			var _from_start = false;
+			
+			if (go_to_slide != null) {_go_to_slide = go_to_slide};
+			if (from_start != null) {_from_start = from_start};
+			
+			current_width = config.width;
+			
+			config.nav_height = VMM.Element.height(navigation.prevBtnContainer);
+			
+			config.content_width = current_width - (config.content_padding *2);
+			
+			VMM.Element.width($slides_items, (slides.length * config.content_width));
+			
+			if (_from_start) {
+				var _pos = VMM.Element.position(slides[current_slide]);
+				VMM.Element.css($slider_container, "left", _pos.left);
+			}
+			
+			
+			// Position slides
+			positionSlides();
+			
+			// Position Nav
+			VMM.Element.css(navigation.nextBtn, "left", (current_width - config.nav_width));
+			VMM.Element.height(navigation.prevBtn, config.height);
+			VMM.Element.height(navigation.nextBtn, config.height);
+			VMM.Element.css(navigation.nextBtnContainer, "top", ( (config.height/2) - (config.nav_height/2) ) );
+			VMM.Element.css(navigation.prevBtnContainer, "top", ( (config.height/2) - (config.nav_height/2) ) );
+			
+			// Animate Changes
+			VMM.Element.height($slider_mask, config.height);
+			VMM.Element.width($slider_mask, current_width);
+			
+			if (_go_to_slide) {
+				goToSlide(current_slide, "linear", 1);
+			};
+			
+			if (current_slide == 0) {
+				VMM.Element.visible(navigation.prevBtn, false);
+			}
+			
+		}
+		
+		function onNextClick(e) {
+			if (current_slide == slides.length - 1) {
+				VMM.Element.animate($slider_container, config.duration, config.ease, {"left": -(VMM.Element.position(slides[current_slide]).left)});
+			} else {
+				goToSlide(current_slide+1);
+				upDate();
+			}
+			
+		}
+		
+		function onPrevClick(e) {
+			if (current_slide == 0) {
+				goToSlide(current_slide);
+			} else {
+				goToSlide(current_slide-1);
+				upDate();
+			}
+
+		}
+		
+		function onTouchUpdate(e, b) {
+			if (slide_positions.length == 0) {
+				for(var i = 0; i < slides.length; i++) {
+					var sp = VMM.Element.position(slides[i]);
+					slide_positions.push(sp.left);
+				}
+			}
+			if (typeof b.left == "number") {
+				var _pos = b.left;
+				if (_pos < -(VMM.Element.position(slides[current_slide]).left) - (config.width/3)) {
+					onNextClick();
+				} else if (_pos > -(VMM.Element.position(slides[current_slide]).left) + (config.width/3)) {
+					onPrevClick();
+				} else {
+					VMM.Element.animate($slider_container, config.duration, config.ease, {"left": -(VMM.Element.position(slides[current_slide]).left)});
+				}
+			} else {
+				VMM.Element.animate($slider_container, config.duration, config.ease, {"left": -(VMM.Element.position(slides[current_slide]).left)});
+			}
+			
+			if (typeof b.top == "number") {
+				VMM.Element.animate($slider_container, config.duration, config.ease, {"top": -b.top});
+				//VMM.Element.animate(layout, _duration, _ease, {scrollTop: VMM.Element.prop(layout, "scrollHeight")  + b.top });
+				//VMM.Element.animate(layout, _duration, _ease, {scrollTop: VMM.Element.prop(layout, "scrollHeight") + VMM.Element.height(layout) });
+				//VMM.Element.animate($slider_container, config.duration, config.ease, {"top": -400});
+			} else {
+				
+			}
+		};
+		
+		function upDate() {
+			VMM.fireEvent(layout, "UPDATE");
+		};
+		/* PRIVATE FUNCTIONS
+		================================================== */
+		
+		var getData = function(d) {
+			data = d;
+		};
+		
+		/* SLIDES
+		================================================== */
+		// BUILD SLIDES
+		var buildSlides = function(d) {
+			
+			// Clear out existing content
+			VMM.attachElement($slides_items, "");
+			
+			for(var i = 0; i < d.length; i++) {
+				var bw = "";
+				var _slide;
+				var _media;
+				
+				bw = VMM.createElement("div", d[i].content, "content");
+				_slide = VMM.appendAndGetElement($slides_items, "<div>", "slider-item" , bw);
+				slides.push(_slide);
+			}
+			
+			
+		}
+		
+		// POSITION SLIDES AND SIZE THEM
+		var positionSlides = function() {
+			
+			/* SIZE SLIDES
+			================================================== */
+			
+			VMM.Element.css(".slider-item", "width", config.content_width );
+			VMM.Element.height(".slider-item", config.height);
+			VMM.Element.css(".slider-item .layout-text-media .media .media-container img", "max-height", config.height - 50 );
+			VMM.Element.css(".slider-item .layout-media .media .media-container img", "max-height", config.height - 150 );
+			
+
+			
+			VMM.Element.css(".slider-item .media .media-container .soundcloud", "max-height", 168 );
+
+			/* RESIZE IFRAME MEDIA ELEMENTS
+			================================================== */
+			//var _iframe_height = Math.round(config.height) - 60;
+			var _iframe_height_full = Math.round(config.height) - 160;
+			//var _iframe_width = Math.round((_iframe_height / 9) * 16);
+			var _iframe_width_full = Math.round((_iframe_height_full / 9) * 16);
+			
+			var _iframe_width =  (config.content_width/100)*60 ;
+			var _iframe_height = Math.round((_iframe_width / 16) * 9) + 25;
+
+
+			// NORMAL
+			VMM.Element.height(".slider-item .media .media-container .media-frame", _iframe_height);
+			VMM.Element.width(".slider-item .media .media-container .media-frame", _iframe_width);
+			//VMM.Element.width(".slider-item .media .media-container .media-frame", _iframe_width);
+			//VMM.Element.css(".slider-item .media .media-container .media-frame", "max-width", config.content_width );
+			
+			// IFRAME FULL SIZE VIDEO
+			VMM.Element.height(".slider-item .layout-media .media .media-container .media-frame", _iframe_height_full);
+			VMM.Element.width(".slider-item .layout-media .media .media-container .media-frame", _iframe_width_full);
+
+			// IFRAME FULL SIZE NON VIDEO
+			VMM.Element.height(".slider-item .layout-media .media .media-container .soundcloud", config.height - 150);
+			VMM.Element.width(".slider-item .layout-media .media .media-container .soundcloud", config.content_width);
+			VMM.Element.width(".slider-item .layout-text-media .media .media-container .soundcloud", _iframe_width);
+			
+			// MAPS
+			VMM.Element.height(".slider-item .media .media-container .map", _iframe_height_full);
+			
+			// MAX WIDTH
+			VMM.Element.css(".slider-item .layout-text-media .media .media-container .media-frame", "max-width", config.content_width );
+			//VMM.Element.width(".slider-item .layout-text-media .media .media-container .media-frame", _iframe_width);
+			//VMM.Element.css(".slider-item .layout-text-media .media .media-container .media-frame", "max-height", _iframe_height );
+			
+			/* POSITION SLIDES
+			================================================== */
+			var pos = 0;
+			for(var i = 0; i < slides.length; i++) {
+				pos = i * (config.width+config.spacing);
+				VMM.Element.css(slides[i], "left", pos);
+			}
+			
+		}
+		
+		var opacitySlides = function(n) {
+			var _ease = "linear";
+			for(var i = 0; i < slides.length; i++) {
+				if (i == current_slide) {
+					VMM.Element.animate(slides[i], config.duration, _ease, {"opacity": 1});
+				} else if (i == current_slide - 1) {
+					VMM.Element.animate(slides[i], config.duration, _ease, {"opacity": 0.1});	
+				} else if (i == current_slide + 1) {
+					VMM.Element.animate(slides[i], config.duration, _ease, {"opacity": 0.1});	
+				} else {
+					VMM.Element.css(slides[i], "opacity", n);	
+				}
+				
+			}
+		}
+		
+		// Go to slide
+		//goToSlide(n, ease, duration);
+		var goToSlide = function(n, ease, duration, fast, firstrun) {
+			
+			/* STOP ANY VIDEO PLAYERS ACTIVE
+			================================================== */
+			VMM.ExternalAPI.youtube.stopPlayers();
+			
+			// Set current slide
+			current_slide = n;
+			
+			var _ease = config.ease;
+			var _duration = config.duration;
+			var is_last = false;
+			var is_first = false;
+			
+			if (current_slide == 0) {
+				is_first = true;
+			}
+			if (current_slide +1 == slides.length) {
+				is_last = true
+			}
+			
+			if (ease != null && ease != "") {_ease = ease};
+			if (duration != null && duration != "") {_duration = duration};
+			
+			/* get slide position
+			================================================== */
+			var _pos = VMM.Element.position(slides[current_slide]);
+			
+			/* set proper nav titles and dates etc.
+			================================================== */
+			if (is_first) {
+				VMM.Element.visible(navigation.prevBtn, false);
+			} else {
+				VMM.Element.visible(navigation.prevBtn, true);
+				if (config.timeline) {
+					VMM.attachElement(navigation.prevDate, data[current_slide - 1].date);
+				}
+				VMM.attachElement(navigation.prevTitle, VMM.Util.unlinkify(data[current_slide - 1].title));
+			}
+			if (is_last) {
+				VMM.Element.visible(navigation.nextBtn, false);
+			} else {
+				VMM.Element.visible(navigation.nextBtn, true);
+				if (config.timeline) {
+					VMM.attachElement(navigation.nextDate, data[current_slide + 1].date);
+				}
+				VMM.attachElement(navigation.nextTitle,  VMM.Util.unlinkify(data[current_slide + 1].title) );
+			}
+			
+			/* ANIMATE SLIDE
+			================================================== */
+			if (fast) {
+				VMM.Element.css($slider_container, "left", -(_pos.left - config.content_padding));	
+			} else{
+				VMM.Element.stop($slider_container);
+				VMM.Element.animate($slider_container, _duration, _ease, {"left": -(_pos.left - config.content_padding)});
+			}
+			
+			if (firstrun) {
+				VMM.fireEvent(layout, "LOADED");
+			}
+			
+			/* SET Vertical Scoll
+			================================================== */
+			//opacitySlides(0.85);
+			if (VMM.Element.height(slides[current_slide]) > config.height) {
+				VMM.Element.css(".slider", "overflow-y", "scroll" );
+			} else {
+				VMM.Element.css(layout, "overflow-y", "hidden" );
+			   VMM.Element.animate(layout, _duration, _ease, {scrollTop: VMM.Element.prop(layout, "scrollHeight") - VMM.Element.height(layout) });
+				
+			}
+			
+			
+		}
+
+		/* NAVIGATION
+		================================================== */
+		var buildNavigation = function() {
+			
+			var temp_icon = "<div class='icon'>&nbsp;</div>";
+			
+			navigation.nextBtn = VMM.appendAndGetElement($slider, "<div>", "nav-next");
+			navigation.prevBtn = VMM.appendAndGetElement($slider, "<div>", "nav-previous");
+			navigation.nextBtnContainer = VMM.appendAndGetElement(navigation.nextBtn, "<div>", "nav-container", temp_icon);
+			navigation.prevBtnContainer = VMM.appendAndGetElement(navigation.prevBtn, "<div>", "nav-container", temp_icon);
+			if (config.timeline) {
+				navigation.nextDate = VMM.appendAndGetElement(navigation.nextBtnContainer, "<div>", "date", "1957");
+				navigation.prevDate = VMM.appendAndGetElement(navigation.prevBtnContainer, "<div>", "date", "1957");
+			}
+			navigation.nextTitle = VMM.appendAndGetElement(navigation.nextBtnContainer, "<div>", "title", "Title Goes Here");
+			navigation.prevTitle = VMM.appendAndGetElement(navigation.prevBtnContainer, "<div>", "title", "Title Goes Here");
+			
+			VMM.bindEvent(".nav-next", onNextClick);
+			VMM.bindEvent(".nav-previous", onPrevClick);
+		}
+		
+		/* BUILD
+		================================================== */
+		var build = function() {
+			
+			// Clear out existing content
+			VMM.attachElement(layout, "");
+			
+			// Get DOM Objects to local objects
+			$slider = VMM.getElement("div.slider");
+			$slider_mask = VMM.appendAndGetElement($slider, "<div>", "slider-container-mask");
+			$slider_container = VMM.appendAndGetElement($slider_mask, "<div>", "slider-container");
+			$slides_items = VMM.appendAndGetElement($slider_container, "<div>", "slider-item-container");
+			
+			// BUILD NAVIGATION
+			buildNavigation();
+
+			// ATTACH SLIDES
+			buildSlides(data);
+			
+			/* MAKE SLIDER TOUCHABLE
+			================================================== */
+			
+			var __duration = 3000;
+			
+			if (VMM.Browser.device == "tablet" || VMM.Browser.device == "mobile") {
+				config.duration = 500;
+				__duration = 1000;
+				VMM.TouchSlider.createPanel($slider_container, $slider_container, VMM.Element.width(slides[0]), config.spacing, true);
+				VMM.bindEvent($slider_container, onTouchUpdate, "TOUCHUPDATE");
+			} else if (VMM.Browser.device == "mobile") {
+				
+			} else {
+				//VMM.DragSlider.createPanel($slider_container, $slider_container, VMM.Element.width(slides[0]), config.spacing, true);
+			}
+			
+			reSize(false, true);
+			VMM.Element.visible(navigation.prevBtn, false);
+			// GO TO FIRST SLIDE
+			goToSlide(0, "easeOutExpo", __duration, true, true);
+			
+			_active = true;
+		};
+		
+	};
+	
+	
+	
+
+}
+
+
+
+
+
+
+/*********************************************** 
+     Begin VMM.Util.js 
+***********************************************/ 
+
+/* Utilities and Useful Functions
+================================================== */
+if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
+	
+	VMM.Util = ({
+		
+		init: function() {
+			return this;
+		},
+
+		/* RANDOM BETWEEN
+		================================================== */
+		//VMM.Util.randomBetween(1, 3)
+		randomBetween: function(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		},
+		/* CUSTOM SORT
+		================================================== */
+		
+		customSort: function(a, b) {
+			var a1= a, b1= b;
+			if(a1== b1) return 0;
+			return a1> b1? 1: -1;
+		},
+		
+		/* Given an int or decimal, turn that into string in $xxx,xxx.xx format.
+		================================================== */
+		number2money: function(n, symbol, padding) {
+			var symbol = (symbol !== null) ? symbol : true; // add $
+			var padding = (padding !== null) ? padding : false; //pad with .00
+			var number = VMM.Math2.floatPrecision(n,2); // rounded correctly to two digits, if decimals passed
+			var formatted = this.niceNumber(number);
+			// no decimal and padding is enabled
+			if (!formatted.split(/\./g)[1] && padding) formatted = formatted + ".00";
+			// add money sign
+			if (symbol) formatted = "$"+formatted;
+			return formatted;
+		},
+		
+		
+		/* Returns a word count number
+		================================================== */
+		wordCount: function(s) {
+			var fullStr = s + " ";
+			var initial_whitespace_rExp = /^[^A-Za-z0-9\'\-]+/gi;
+			var left_trimmedStr = fullStr.replace(initial_whitespace_rExp, "");
+			var non_alphanumerics_rExp = /[^A-Za-z0-9\'\-]+/gi;
+			var cleanedStr = left_trimmedStr.replace(non_alphanumerics_rExp, " ");
+			var splitString = cleanedStr.split(" ");
+			var word_count = splitString.length -1;
+			if (fullStr.length <2) {
+				word_count = 0;
+			}
+			return word_count;
+		},
+		/* Parse Date
+		================================================== */
+		// VMM.Util.parseDate(str)
+		parseDate: function(d) {
+			var _date;
+			
+			if ( d.match(/,/gi) ) {
+				
+
+				var _d_array = d.split(",");
+				
+				
+				for(var i = 0; i < _d_array.length; i++) {
+					_d_array[i] = parseInt(_d_array[i]);
+					
+				}
+				
+				_date = new Date();
+				if (_d_array[0]			) {	_date.setFullYear(_d_array[0]);			}
+				if (_d_array[1]	> 1		) {	_date.setMonth(_d_array[1] - 1);		}	else {		_date.setMonth(0);				}
+				if (_d_array[2]	> 1		) {	_date.setDate(_d_array[2]);				}	else {		_date.setDate(1);				}
+				if (_d_array[3]	> 1		) {	_date.setHours(_d_array[3]);			}	else {		_date.setHours(0);				}
+				if (_d_array[4]	> 1		) {	_date.setMinutes(_d_array[4]);			}	else {		_date.setMinutes(0);			}
+				if (_d_array[5]	> 1		) {	_date.setSeconds(_d_array[5]);			}	else {		_date.setSeconds(0);			}
+				if (_d_array[6]	> 1		) {	_date.setMilliseconds(_d_array[6]);		}	else {		_date.setMilliseconds(0);		}
+			} else if (d.match("/")) {
+				_date = new Date(d);
+			} else if (d.length < 5) {
+				_date = new Date();
+				_date.setFullYear(parseInt(d));
+				_date.setMonth(0);
+				_date.setDate(1);
+				_date.setHours(0);
+				_date.setMinutes(0);
+				_date.setSeconds(0);
+				_date.setMilliseconds(0);
+			}else {
+				_date = new Date(
+					parseInt(d.slice(0,4)), 
+					parseInt(d.slice(4,6)) - 1, 
+					parseInt(d.slice(6,8)), 
+					parseInt(d.slice(8,10)), 
+					parseInt(d.slice(10,12))
+				);
+			}
+			
+			return _date;
+		},
+		/* Get the corresponding ratio number
+		================================================== */
+		// VMM.Util.ratio.r16_9(w, h) // Returns corresponding number
+		ratio: {
+			r16_9: function(w,h) {
+				if (w !== null && w !== "") {
+					return Math.round((h / 16) * 9);
+				} else if (h !== null && h !== "") {
+					return Math.round((w / 9) * 16);
+				}
+			},
+			r4_3: function(w,h) {
+				if (w !== null && w !== "") {
+					return Math.round((h / 4) * 3);
+				} else if (h !== null && h !== "") {
+					return Math.round((w / 3) * 4);
+				}
+			}
+		},
+		// VMM.Util.date.day[0];
+		// VMM.Util.date.get12HRTime(time, seconds_true);
+		date: {
+			// somestring = VMM.Util.date.month[2]; // Returns March
+			month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			// somestring = VMM.Util.date.month_abbrev[1]; // Returns Feb.
+			month_abbr: ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."],
+			day: ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+			day_abbr: ["Sun.","Mon.", "Tues.", "Wed.", "Thurs.", "Fri.", "Sat."],
+			hour: [1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12],
+			hour_suffix: ["am"],
+			//VMM.Util.date.prettyDate(d, is_abbr)
+			prettyDate: function(d, is_abbr, date_type) {
+				var _date = "";
+				
+				if (type.of(d) == "date") {
+					if (d.getMonth() === 0 && d.getDate() == 1 && d.getHours() === 0 && d.getMinutes() === 0 ) {
+						// trace("YEAR ONLY");
+						_date = d.getFullYear();
+					} else {
+						if (d.getDate() <= 1 && d.getHours() === 0 && d.getMinutes() === 0) {
+							// trace("YEAR MONTH");
+							if (is_abbr) {
+								_date = VMM.Util.date.month_abbr[d.getMonth()];
+								
+							} else {
+								_date = VMM.Util.date.month[d.getMonth()] + " " + d.getFullYear() ;
+							}
+							
+						} else if (d.getHours() === 0 && d.getMinutes() === 0) {
+							// trace("YEAR MONTH DAY");
+							if (is_abbr) {
+								_date = VMM.Util.date.month_abbr[d.getMonth()] + " " + d.getDate();
+							} else {
+								_date = VMM.Util.date.month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() ;
+							}
+						} else  if (d.getMinutes() === 0) {
+							// trace("YEAR MONTH DAY HOUR");
+							if (is_abbr){
+								//_date = VMM.Util.date.get12HRTime(d) + " " + (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear() ;
+								_date = VMM.Util.date.get12HRTime(d);
+							} else {
+								_date = VMM.Util.date.get12HRTime(d) + "<br/><small>" + VMM.Util.date.month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() + " </small> ";
+							}
+						} else {
+							// trace("YEAR MONTH DAY HOUR MINUTE");
+							if (is_abbr){
+								_date = VMM.Util.date.day[d.getDay()] + ", " + VMM.Util.date.month_abbr[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() + " at " + VMM.Util.date.get12HRTime(d);
+							} else {
+								_date = VMM.Util.date.get12HRTime(d) + "<br/><small>" + VMM.Util.date.day[d.getDay()] + ", " + VMM.Util.date.month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() + " </small> ";
+							}
+						}
+						
+					}	
+					//_date = d.getFullYear();
+					
+					
+				} else {
+					trace("NOT A VALID DATE?");
+					trace(d);
+				}
+				
+				return _date;
+			},
+			
+			prettyMonth: function(m, is_year) {
+				var _month = "";
+				if (type.of(t) == "date") {
+					
+					
+				}
+				return _month;
+			},
+			
+			get12HRTime: function(t, is_seconds) {
+				var _time = "";
+				
+				if (type.of(t) == "date") {
+					
+					_time = VMM.Util.date.theHour(t.getHours()) + ":" + VMM.Util.date.minuteZeroFill(t.getMinutes());
+					
+					if (is_seconds) {
+						_time = _time + ":" + VMM.Util.date.minuteZeroFill(t.getSeconds());
+					}
+					
+					_time = _time +  VMM.Util.date.hourSuffix(t.getHours());
+					
+				}
+				
+				return _time;
+			},
+
+			theHour: function(hr) {
+				if (hr > 0 && hr < 13) {
+					return (hr);
+				}
+				if (hr == "0") {
+					hr = 12;
+					return (hr);
+				}
+				if (hr === 0) {
+					return (12);
+				}
+				return (hr-12);
+			},
+			minuteZeroFill: function(v) {
+				if (v > 9) {
+					return "" + v;
+				}
+				return "0" + v;
+			},
+			hourSuffix: function(t) {
+				if (t < 12) {
+					return (" am");
+				}
+				return (" pm");
+			}
+		},
+		
+		// VMM.Util.doubledigit(number).
+		doubledigit: function(n) {
+			return (n < 10 ? '0' : '') + n;
+		},
+		
+		
+		/* Returns a truncated segement of a long string of between min and max words. If possible, ends on a period (otherwise goes to max).
+		================================================== */
+		truncateWords: function(s, min, max) {
+			
+			if (!min) min = 30;
+			if (!max) max = min;
+			
+			var initial_whitespace_rExp = /^[^A-Za-z0-9\'\-]+/gi;
+			var left_trimmedStr = s.replace(initial_whitespace_rExp, "");
+			var words = left_trimmedStr.split(" ");
+			
+			var result = [];
+			
+			min = Math.min(words.length, min);
+			max = Math.min(words.length, max);
+			
+			for (var i = 0; i<min; i++) {
+				result.push(words[i]);
+			}		
+			
+			for (var j = min; i<max; i++) {
+				var word = words[i];
+				
+				result.push(word);
+				
+				if (word.charAt(word.length-1) == '.') {
+					break;
+				}
+			}		
+			
+			return (result.join(' '));
+		},
+		
+		/* Turns plain text links into real links
+		================================================== */
+		// VMM.Util.linkify();
+		linkify: function(text,targets,is_touch) {
+			
+			if(!text) return text;
+			
+			text = text.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi, function(url) {
+
+				var nice = url;
+				var _touch = "";
+				if(url.search('^https?:\/\/') < 0) url = 'http://'+url;
+				_touch = "onclick = 'void(0)'";
+				if(is_touch) {
+					_touch = "onclick = 'void(0)'";
+				}
+				
+				onclick = "void(0)";
+				if(targets === null || targets === "") return '<a href="'+ url + " " + _touch + '">'+ url +'</a>';
+				else return "<a href='"+ url + " " + _touch + " target='" +targets+"'>'" + url + "</a>" ;
+			});
+			
+			return text;
+		},
+		/* Turns plain text links into real links
+		================================================== */
+		// VMM.Util.unlinkify();
+		unlinkify: function(text) {
+			if(!text) return text;
+			text = text.replace(/<a\b[^>]*>/i,"");
+			text = text.replace(/<\/a>/i, "");
+			return text;
+		},
+		
+		/* TK
+		================================================== */
+		nl2br: function(text) {
+			return text.replace(/(\r\n|[\r\n]|\\n|\\r)/g,"<br/>");
+		},
+		
+		/* Generate a Unique ID
+		================================================== */
+		// VMM.Util.unique_ID(size);
+		unique_ID: function(size) {
+			
+			var getRandomNumber = function(range) {
+				return Math.floor(Math.random() * range);
+			};
+
+			var getRandomChar = function() {
+				var chars = "abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
+				return chars.substr( getRandomNumber(62), 1 );
+			};
+
+			var randomID = function(size) {
+				var str = "";
+				for(var i = 0; i < size; i++) {
+					str += getRandomChar();
+				}
+				return str;
+			};
+			
+			return randomID(size);
+		},
+		/* Tells you if a number is even or not
+		================================================== */
+		// VMM.Util.isEven(n)
+		isEven: function(n){
+			return (n%2 === 0) ? true : false;
+		},
+		/* Get URL Variables
+		================================================== */
+		//	var somestring = VMM.Util.getUrlVars(str_url)["varname"];
+		getUrlVars: function(str) {
+			var vars = [], hash;
+			var hashes = str.slice(str.indexOf('?') + 1).split('&');
+			for(var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			trace(vars);
+			return vars;
+		},
+		
+		/* Cleans up strings to become real HTML
+		================================================== */
+		toHTML: function(text) {
+			
+			text = this.nl2br(text);
+			text = this.linkify(text);
+			
+			return text.replace(/\s\s/g,"&nbsp;&nbsp;");
+		},
+		
+		/* Returns text strings as CamelCase
+		================================================== */
+		toCamelCase: function(s,forceLowerCase) {
+			
+			if(forceLowerCase !== false) forceLowerCase = true;
+			
+			var sps = ((forceLowerCase) ? s.toLowerCase() : s).split(" ");
+			
+			for(var i=0; i<sps.length; i++) {
+				
+				sps[i] = sps[i].substr(0,1).toUpperCase() + sps[i].substr(1);
+			}
+			
+			return sps.join(" ");
+		},
+		
+		/* Replaces dumb quote marks with smart ones
+		================================================== */
+		properQuotes: function(str) {
+			return str.replace(/\"([^\"]*)\"/gi,"&#8220;$1&#8221;");
+		},
+		/* Given an int or decimal, return a string with pretty commas in the correct spot.
+		================================================== */
+		niceNumber: function(n){
+		
+			var amount = String( Math.abs(Number(n) ) );
+		    
+			var leftOfDecimal = amount.split(/\./g)[0];
+			var rightOfDecimal = amount.split(/\./g)[1];
+		    
+			var formatted_text = '';
+		    
+			var num_a = leftOfDecimal.toArray();
+			num_a.reverse();
+		    
+			for (var i=1; i <= num_a.length; i++) {
+				if ( (i%3 == 0) && (i < num_a.length ) ) {
+					formatted_text = "," + num_a[i-1] + formatted_text;
+				} else {
+					formatted_text = num_a[i-1] + formatted_text;
+				}
+		    }
+			if (rightOfDecimal != null && rightOfDecimal != '' && rightOfDecimal != undefined) {
+				return formatted_text + "." + rightOfDecimal;
+			} else {
+				return formatted_text;
+			}
+		},
+		
+		/* Transform text to Title Case
+		================================================== */
+		toTitleCase: function(t){
+			
+			var __TitleCase = {
+				__smallWords: ['a', 'an', 'and', 'as', 'at', 'but','by', 'en', 'for', 'if', 'in', 'of', 'on', 'or','the', 'to', 'v[.]?', 'via', 'vs[.]?'],
+
+				init: function() {
+					this.__smallRE = this.__smallWords.join('|');
+					this.__lowerCaseWordsRE = new RegExp('\\b(' + this.__smallRE + ')\\b', 'gi');
+					this.__firstWordRE = new RegExp('^([^a-zA-Z0-9 \\r\\n\\t]*)(' + this.__smallRE + ')\\b', 'gi');
+					this.__lastWordRE = new RegExp('\\b(' + this.__smallRE + ')([^a-zA-Z0-9 \\r\\n\\t]*)$', 'gi');
+				},
+
+				toTitleCase: function(string) {
+					var line = '';
+
+					var split = string.split(/([:.;?!][ ]|(?:[ ]|^)["“])/);
+
+					for (var i = 0; i < split.length; ++i) {
+						var s = split[i];
+
+						s = s.replace(/\b([a-zA-Z][a-z.'’]*)\b/g,this.__titleCaseDottedWordReplacer);
+
+		 				// lowercase the list of small words
+						s = s.replace(this.__lowerCaseWordsRE, this.__lowerReplacer);
+
+						// if the first word in the title is a small word then capitalize it
+						s = s.replace(this.__firstWordRE, this.__firstToUpperCase);
+
+						// if the last word in the title is a small word, then capitalize it
+						s = s.replace(this.__lastWordRE, this.__firstToUpperCase);
+
+						line += s;
+					}
+
+					// special cases
+					line = line.replace(/ V(s?)\. /g, ' v$1. ');
+					line = line.replace(/(['’])S\b/g, '$1s');
+					line = line.replace(/\b(AT&T|Q&A)\b/ig, this.__upperReplacer);
+
+					return line;
+				},
+
+				__titleCaseDottedWordReplacer: function (w) {
+					return (w.match(/[a-zA-Z][.][a-zA-Z]/)) ? w : __TitleCase.__firstToUpperCase(w);
+				},
+
+				__lowerReplacer: function (w) { return w.toLowerCase() },
+
+				__upperReplacer: function (w) { return w.toUpperCase() },
+
+				__firstToUpperCase: function (w) {
+					var split = w.split(/(^[^a-zA-Z0-9]*[a-zA-Z0-9])(.*)$/);
+					split[1] = split[1].toUpperCase();
+					return split.join('');
+				},
+			};
+
+			__TitleCase.init();
+			
+			t = t.replace(/_/g," ");
+			t = __TitleCase.toTitleCase(t);
+			
+			return t;
+		},
+		
+	}).init();
+	
+	
+	
+}
+
+/*********************************************** 
+     Begin bootstrap-tooltip.js 
+***********************************************/ 
+
+/* ===========================================================
+ * bootstrap-tooltip.js v2.0.1
+ * http://twitter.github.com/bootstrap/javascript.html#tooltips
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ===========================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================== */
+
+!function( $ ) {
+
+  "use strict"
+
+ /* TOOLTIP PUBLIC CLASS DEFINITION
+  * =============================== */
+
+  var Tooltip = function ( element, options ) {
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.prototype = {
+
+    constructor: Tooltip
+
+  , init: function ( type, element, options ) {
+      var eventIn
+        , eventOut
+
+      this.type = type
+      this.$element = $(element)
+      this.options = this.getOptions(options)
+      this.enabled = true
+
+      if (this.options.trigger != 'manual') {
+        eventIn  = this.options.trigger == 'hover' ? 'mouseenter' : 'focus'
+        eventOut = this.options.trigger == 'hover' ? 'mouseleave' : 'blur'
+        this.$element.on(eventIn, this.options.selector, $.proxy(this.enter, this))
+        this.$element.on(eventOut, this.options.selector, $.proxy(this.leave, this))
+      }
+
+      this.options.selector ?
+        (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+        this.fixTitle()
+    }
+
+  , getOptions: function ( options ) {
+      options = $.extend({}, $.fn[this.type].defaults, options, this.$element.data())
+
+      if (options.delay && typeof options.delay == 'number') {
+        options.delay = {
+          show: options.delay
+        , hide: options.delay
+        }
+      }
+
+      return options
+    }
+
+  , enter: function ( e ) {
+      var self = $(e.currentTarget)[this.type](this._options).data(this.type)
+
+      if (!self.options.delay || !self.options.delay.show) {
+        self.show()
+      } else {
+        self.hoverState = 'in'
+        setTimeout(function() {
+          if (self.hoverState == 'in') {
+            self.show()
+          }
+        }, self.options.delay.show)
+      }
+    }
+
+  , leave: function ( e ) {
+      var self = $(e.currentTarget)[this.type](this._options).data(this.type)
+
+      if (!self.options.delay || !self.options.delay.hide) {
+        self.hide()
+      } else {
+        self.hoverState = 'out'
+        setTimeout(function() {
+          if (self.hoverState == 'out') {
+            self.hide()
+          }
+        }, self.options.delay.hide)
+      }
+    }
+
+  , show: function () {
+      var $tip
+        , inside
+        , pos
+        , actualWidth
+        , actualHeight
+        , placement
+        , tp
+
+      if (this.hasContent() && this.enabled) {
+        $tip = this.tip()
+        this.setContent()
+
+        if (this.options.animation) {
+          $tip.addClass('fade')
+        }
+
+        placement = typeof this.options.placement == 'function' ?
+          this.options.placement.call(this, $tip[0], this.$element[0]) :
+          this.options.placement
+
+        inside = /in/.test(placement)
+
+        $tip
+          .remove()
+          .css({ top: 0, left: 0, display: 'block' })
+          .appendTo(inside ? this.$element : document.body)
+
+        pos = this.getPosition(inside)
+
+        actualWidth = $tip[0].offsetWidth
+        actualHeight = $tip[0].offsetHeight
+
+        switch (inside ? placement.split(' ')[1] : placement) {
+          case 'bottom':
+            tp = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2}
+            break
+          case 'top':
+            tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2}
+            break
+          case 'left':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth}
+            break
+          case 'right':
+            tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
+            break
+        }
+
+        $tip
+          .css(tp)
+          .addClass(placement)
+          .addClass('in')
+      }
+    }
+
+  , setContent: function () {
+      var $tip = this.tip()
+      $tip.find('.tooltip-inner').html(this.getTitle())
+      $tip.removeClass('fade in top bottom left right')
+    }
+
+  , hide: function () {
+      var that = this
+        , $tip = this.tip()
+
+      $tip.removeClass('in')
+
+      function removeWithAnimation() {
+        var timeout = setTimeout(function () {
+          $tip.off($.support.transition.end).remove()
+        }, 500)
+
+        $tip.one($.support.transition.end, function () {
+          clearTimeout(timeout)
+          $tip.remove()
+        })
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        removeWithAnimation() :
+        $tip.remove()
+    }
+
+  , fixTitle: function () {
+      var $e = this.$element
+      if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
+        $e.attr('data-original-title', $e.attr('title') || '').removeAttr('title')
+      }
+    }
+
+  , hasContent: function () {
+      return this.getTitle()
+    }
+
+  , getPosition: function (inside) {
+      return $.extend({}, (inside ? {top: 0, left: 0} : this.$element.offset()), {
+        width: this.$element[0].offsetWidth
+      , height: this.$element[0].offsetHeight
+      })
+    }
+
+  , getTitle: function () {
+      var title
+        , $e = this.$element
+        , o = this.options
+
+      title = $e.attr('data-original-title')
+        || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+      title = title.toString().replace(/(^\s*|\s*$)/, "")
+
+      return title
+    }
+
+  , tip: function () {
+      return this.$tip = this.$tip || $(this.options.template)
+    }
+
+  , validate: function () {
+      if (!this.$element[0].parentNode) {
+        this.hide()
+        this.$element = null
+        this.options = null
+      }
+    }
+
+  , enable: function () {
+      this.enabled = true
+    }
+
+  , disable: function () {
+      this.enabled = false
+    }
+
+  , toggleEnabled: function () {
+      this.enabled = !this.enabled
+    }
+
+  , toggle: function () {
+      this[this.tip().hasClass('in') ? 'hide' : 'show']()
+    }
+
+  }
+
+
+ /* TOOLTIP PLUGIN DEFINITION
+  * ========================= */
+
+  $.fn.tooltip = function ( option ) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('tooltip')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.tooltip.Constructor = Tooltip
+
+  $.fn.tooltip.defaults = {
+    animation: true
+  , delay: 0
+  , selector: false
+  , placement: 'top'
+  , trigger: 'hover'
+  , title: ''
+  , template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+  }
+
+}( window.jQuery );
+
+/*********************************************** 
+     Begin timeline.js 
+***********************************************/ 
+
+/*!
+	Verite Timeline 0.85
+	Designed and built by Zach Wise digitalartwork.net
+	Date: March 30, 2012
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    http://www.gnu.org/licenses/
+
+*/  
+
+/*!
+	TODO
+	-	
+	-	
+	FUTURE PLANS
+	-	Better iPhone usability
+	-	Support feeds from popular sources
+	-	Storify integration
+	-	Code optimization
+	-	Clean up config flow
+	-	Possible tagging of events (depends on usability factors)
+	
+*/
+
+/* 	CodeKit Import
+	http://incident57.com/codekit/
+================================================== */
+
+// @codekit-prepend "VMM.js";
+// @codekit-prepend "VMM.Core.js";
+// @codekit-prepend "VMM.Util.js";
+// @codekit-prepend "bootstrap-tooltip.js";
+
+/* Timeline Class contained in VMM (verite) namespace
+================================================== */
+
+if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
+	
+	VMM.Timeline = function(w, h) {
+		
+		var $timeline = VMM.getElement("#timeline"); // expecting name only for parent
+		var $feedback;
+		var $messege;
+		
+		var html_string = VMM.getElement("#timeline");
+		
+		/* CREATE DOM STRUCTURE
+		================================================== */
+		//VMM.attachElement($timeline, "");
+		
+		$feedback = VMM.appendAndGetElement($timeline, "<div>", "feedback", "");
+		$messege = VMM.appendAndGetElement($feedback, "<div>", "messege", "Loading Timeline");
+		
+		//VMM.appendElement($timeline, "<div class='container main'><div class='feature'><div class='slider'></div></div><div class='navigation'></div></div>");
+		
+		
+		/* CREATE COMPONENTS
+		================================================== */
+		// SLIDER
+		var slider = new VMM.Slider("div.slider", 720, 400, true);
+
+		// TIMENAV
+		var timenav = new VMM.Timeline.TimeNav("div.navigation", 720, 400, true);
+		
+		/* PRIVATE VARS
+		================================================== */
+		var _private_var = 'private';
+		var events = {}; // CUSTOM EVENT HOLDER
+		var data = {}; // HOLDS DATA
+		var _dates = []; // HOLDES PROCESSED DATES
+		
+		/* CONFIG
+		================================================== */
+		var config = {};
+		config.interval = 10;
+		config.something = 0;
+		config.width = 960;
+		config.height = 540;
+		config.spacing = 15;
+		config.loaded = {slider: false, timenav: false, percentloaded:0};
+		config.ease = "easeInOutExpo";
+		config.duration = 1000;
+		
+		if (w != null && w != "") {
+			config.width = w;
+			VMM.Element.width($timeline, w);
+		} else {
+			config.width = VMM.Element.width($timeline);
+		}
+		
+		if (h != null && h != "") {
+			config.height = h;
+			VMM.Element.height($timeline, h);
+		} else {
+			config.height = VMM.Element.height($timeline);
+		}
+		
+		if (VMM.Browser.device == "mobile") {
+			config.nav_width = config.width;
+			config.nav_height = 200;
+			config.feature_width = config.width;
+			config.feature_height = config.height;
+		} else {
+			config.nav_width = config.width;
+			config.nav_height = 200;
+			config.feature_width = config.width;
+			config.feature_height = config.height - config.nav_height;
+		}
+		
+		/* CHECK FOR IE7
+		================================================== */
+		var ie7 = false;
+		if (VMM.Browser.browser == "MSIE") {
+			if ( parseInt(VMM.Browser.version, 10) == 7) {
+				ie7 = true;
+			}
+		}
+		
+
+		
+		/* VER
+		================================================== */
+		this.ver = "0.85";
+		
+		
+		/* ON EVENT
+		================================================== */
+
+		function onDataReady(e, d) {
+			
+			data = d.timeline;
+			
+			if (type.of(data.era) == "array") {
+				
+			} else {
+				data.era = [];
+			}
+			
+			buildDates();
+			
+		};
+		
+		function onDatesProcessed() {
+			build();
+		}
+		
+		function reSize() {
+			updateSize();
+			slider.setSize(config.feature_width, config.feature_height);
+			timenav.setSize(config.width, config.height);
+			resizeSlides();
+		};
+		
+		function onSliderLoaded(e) {
+			config.loaded.slider = true;
+			onComponentLoaded();
+		};
+		
+		function onComponentLoaded(e) {
+			config.loaded.percentloaded = config.loaded.percentloaded + 25;
+			showMessege("Loading Timeline " + config.loaded.percentloaded);
+			if (config.loaded.slider && config.loaded.timenav) {
+				hideMessege();
+			}
+		}
+		
+		function onTimeNavLoaded(e) {
+			config.loaded.timenav = true;
+			onComponentLoaded();
+		}
+		
+		function onSlideUpdate(e) {
+			timenav.setMarker(slider.getCurrentNumber(), config.ease,config.duration);
+		};
+		
+		function onMarkerUpdate(e) {
+			slider.setSlide(timenav.getCurrentNumber());
+		};
+		
+		/* PUBLIC FUNCTIONS
+		================================================== */
+		this.init = function(d) {
+			
+			trace('init');
+			
+			VMM.bindEvent(global, onDataReady, "DATAREADY");
+			
+			/* GET DATA
+			================================================== */
+			if (ie7) {
+				$feedback = VMM.appendAndGetElement($timeline, "<div>", "feedback", "");
+				$messege = VMM.appendAndGetElement($feedback, "<div>", "messege", "Internet Explorer 7 is not supported by Timeline.");
+			} else {
+				if (type.of(d) == "string") {
+					VMM.Timeline.DataObj.getData(d);
+				} else {
+					VMM.Timeline.DataObj.getData(html_string);
+					//VMM.attachElement(element, content);
+				}
+
+				//VMM.attachElement($timeline, "");
+
+				$feedback = VMM.appendAndGetElement($timeline, "<div>", "feedback", "");
+				$messege = VMM.appendAndGetElement($feedback, "<div>", "messege", "Loading Timeline");
+			}
+			
+			
+		};
+		
+		this.iframeLoaded = function() {
+			trace("iframeLoaded");
+		};
+		
+		this.setMarker = function() {
+			timenav.setMarker.apply(this, arguments);
+		}
+
+		/* DATA 
+		================================================== */
+		var getData = function(url) {
+			VMM.getJSON(url, function(d) {
+				data = VMM.Timeline.DataObj.getData(d);
+				VMM.fireEvent(global, "DATAREADY");
+			});
+		};
+		
+		/* MESSEGES 
+		================================================== */
+		var showMessege = function(msg) {
+			//VMM.Element.append($timeline, $feedback);
+			//VMM.attachElement($messege, msg);
+			
+			//VMM.Element.animate($feedback, config.duration, config.ease, {"opacity": 1});
+			
+		};
+		//VMM.Element.animate(element, duration, ease, att, callback_function);
+		var hideMessege = function() {
+			
+			VMM.Element.animate($feedback, config.duration, config.ease*4, {"opacity": 0}, detachMessege);
+			
+		};
+		
+		var detachMessege = function() {
+			VMM.Element.detach($feedback);
+		}
+		
+		/* BUILD DISPLAY
+		================================================== */
+		var build = function() {
+			
+			/* CREATE DOM STRUCTURE
+			================================================== */
+			VMM.attachElement($timeline, "");
+			VMM.appendElement($timeline, "<div class='container main'><div class='feature'><div class='slider'></div></div><div class='navigation'></div></div>");
+			
+			reSize();
+			
+			/* INIT THE OBJECTS
+			================================================== */
+			VMM.bindEvent("div.slider", onSliderLoaded, "LOADED");
+			VMM.bindEvent("div.navigation", onTimeNavLoaded, "LOADED");
+			VMM.bindEvent("div.slider", onSlideUpdate, "UPDATE");
+			VMM.bindEvent("div.navigation", onMarkerUpdate, "UPDATE");
+			
+			
+			slider.init(_dates);
+			timenav.init(_dates, data.era);
+			
+			
+			/* RESIZE EVENT LISTENERS
+			================================================== */
+			VMM.bindEvent(global, reSize, "resize");
+			VMM.bindEvent(global, function(e) {e.preventDefault()}, "touchmove");
+			
+		};
+		
+		// BUILD SLIDE CONTENT	pass in json object
+		var buildSlide = function(dd, d_date) {
+			updateSize();
+			var d = dd;
+			var slide = "";
+			
+			var c = {};
+			c._text = "";
+			c._media = "";
+			
+			var _valid = false;
+			var _hasmedia = false;
+			var _hastext = false;
+			// NEEDS DATE IN ORDER TO USE
+			// TEXT
+			//if (d_date != null && d_date != "") {
+			if (type.of(d_date) == "date") {
+				_valid = true;
+				if (dd.type == "start") {
+					
+				} else {
+					c._text += VMM.createElement("h2", VMM.Util.date.prettyDate(d_date), "date");
+				}
+				//c._text += VMM.createElement("h2", d.strDate, "date");
+				
+				if (d.headline != null && d.headline != "") {
+					if (d.type == "tweets") {
+						
+					} else if (dd.type == "start") {
+						c._text += VMM.createElement("h2", d.headline, "start");
+					} else {
+						c._text += VMM.createElement("h3", d.headline);
+					}
+				}
+				if (d.text != null && d.text != "") {
+					_hastext = true;
+					c._text += VMM.createElement("p", d.text);
+				}
+				
+				c._text = VMM.createElement("div", c._text, "container");
+				c._text = VMM.createElement("div", c._text, "text");
+				
+				//trace(c._text);
+			}
+			
+			// MEDIA
+			if (_valid) {
+				
+				if (d.asset != null && d.asset != "") {
+					
+					if (d.asset.media != null && d.asset.media != "") {
+						_hasmedia = true;
+						c._media = VMM.MediaElement.create("", d.asset, true, config.feature_width, config.feature_height);
+					}
+					
+				}
+				
+			}
+			
+			if (_valid) {
+				var _layout_class = "content-container layout";
+				
+				if (_hastext) {
+					_layout_class += "-text"
+				}
+				if (_hasmedia) {
+					_layout_class += "-media";
+				} 
+				//c._media = VMM.createElement("div", c._media, "media-wrapper");
+				
+				slide = VMM.createElement("div", c._text + c._media, _layout_class);
+				//trace(slide);
+
+			}
+			return slide;
+		}
+		
+		var updateSize = function() {
+			config.width = VMM.Element.width($timeline);
+			config.height = VMM.Element.height($timeline);
+			
+			config.nav_width = config.width;
+			config.feature_width = config.width;
+			
+			if (VMM.Browser.device == "mobile") {
+				config.feature_height = config.height;
+			} else {
+				config.feature_height = config.height - config.nav_height - 3;
+			}
+		};
+		
+		var resizeSlides = function() {
+			
+			/* CHECK FOR MOBILE 
+			================================================== */
+			if (config.width < 500) {
+				// MOBILE
+				VMM.Element.hide("div.navigation");
+				VMM.Element.hide("div.nav-next");
+				VMM.Element.hide("div.nav-previous");
+				//VMM.Element.css(".slider-item .content", "max-width", "100%");
+				//VMM.Element.width(".slider-item .content", "90%");
+				VMM.Element.height(".slider-container-mask", config.height);
+			} else {
+				// DESKTOP OR TABLET
+				VMM.Element.show("div.navigation");
+				VMM.Element.show("div.nav-next");
+				VMM.Element.show("div.nav-previous");
+				VMM.Element.height(".slider-container-mask", config.feature_height);
+			}
+			/* CHECK FOR TABLET
+			================================================== */
+			if (config.width < 820) {
+				// TABLET OR MOBILE
+				//VMM.Element.width(".slider-item .media", "100%");
+				//VMM.Element.width(".slider-item .text", "100%");
+				//VMM.Element.css(".slider-item .container", "max-width", "100%");
+				//VMM.Element.width(".slider-item .media .media-container .media-frame", (config.feature_width - config.spacing) );
+				//VMM.Element.css(".slider-item .media .media-container", "margin-bottom", 5);
+				
+				if (config.width < 500) {
+					// MOBILE
+					//VMM.Element.height(".slider-item .media", Math.round(config.height/1.5));
+					//VMM.Element.css(".slider-item .media .media-container", "max-height", Math.round(config.height/1.5) - 50);
+					//VMM.Element.height(".slider-item .media .media-container .media-frame", Math.round(config.height/1.5) - 60);
+					
+				} else {
+					// TABLET
+					//VMM.Element.height(".slider-item .media", Math.round(config.feature_height/1.5));
+					//VMM.Element.css(".slider-item .media .media-container", "max-height", Math.round(config.feature_height/1.5) - 50);
+					//VMM.Element.height(".slider-item .media .media-container .media-frame", Math.round(config.feature_height/1.5) - 60);
+				}
+				
+			} else {
+				// DESKTOP
+				//VMM.Element.width(".slider-item .layout-media .media", "100%");
+				
+				//VMM.Element.width(".slider-item .layout-text-media .media", "75%");
+				//VMM.Element.width(".slider-item .layout-text-media .text", "25%");
+				
+				//VMM.Element.width(".slider-item .layout-text .text", "100%");
+				
+				//VMM.Element.css(".slider-item .layout-text-media .container", "max-width", 200);
+				
+				//VMM.Element.height(".slider-item .media", config.feature_height);
+				//VMM.Element.height(".slider-item .layout-text-media .media .media-container .media-frame", config.feature_height - 60);
+				//VMM.Element.height(".slider-item .layout-media .media .media-container .media-frame", config.feature_height - 160);
+				//VMM.Element.width(".slider-item .media .media-container .media-frame", Math.round(((config.feature_width/4) * 3) - config.spacing) );
+
+				//VMM.Element.css(".slider-item .media .media-container", "max-height", config.feature_height- 50);
+				//VMM.Element.css(".slider-item .media .media-container", "margin-bottom", 5);
+			}
+			
+		};
+		
+		// BUILD DATE OBJECTS
+		var buildDates = function() {
+			
+			updateSize();
+			
+			/* CREATE START PAGE IF AVAILABLE
+			================================================== */
+			if (data.headline != null && data.headline != "" && data.text != null && data.text != "") {
+				trace("HAS STARTPAGE");
+				var _date = {};
+				if (data.type == "google spreadsheet") {
+					trace("google spreadsheet startpage date" + data.startDate);
+					_date.startdate = new Date(Date.parse(data.startDate));
+					trace(_date.startdate);
+				} else {
+					_date.startdate = VMM.Util.parseDate(data.startDate);
+				}
+				_date.uniqueid = VMM.Util.unique_ID(5);
+				_date.enddate = _date.startdate;
+				_date.title = data.headline;
+				_date.headline = data.headline;
+				_date.text = data.text;
+				_date.type = "start";
+				_date.date = VMM.Util.date.prettyDate(data.startDate);
+				_date.asset = data.asset;
+				_date.fulldate = _date.startdate.getTime();
+				_date.content = buildSlide(_date, _date.startdate);
+				if (_date.content != null && _date.content != "") {
+					_dates.push(_date);
+				}
+			}
+			
+			for(var i = 0; i < data.date.length; i++) {
+				
+				if (data.date[i].startDate != null && data.date[i].startDate != "") {
+					
+					var _date = {};
+					// START DATE
+					
+					if (data.date[i].type == "tweets") {
+						_date.startdate = VMM.ExternalAPI.twitter.parseTwitterDate(data.date[i].startDate);
+					} else if (data.date[i].type == "google spreadsheet") {
+						_date.startdate = new Date(Date.parse(data.date[i].startDate));
+						trace(_date.startdate);
+					} else {
+						_date.startdate = VMM.Util.parseDate(data.date[i].startDate);
+					}
+					
+					_date.uniqueid = (data.date[i].startDate).toString() + "-" + i.toString();
+					
+					// END DATE
+					if (data.date[i].endDate != null && data.date[i].endDate != "") {
+						if (data.date[i].type == "tweets") {
+							_date.enddate = VMM.ExternalAPI.twitter.parseTwitterDate(data.date[i].endDate);
+						} else if (data.date[i].type == "google spreadsheet") {
+							_date.enddate = new Date(Date.parse(data.date[i].endDate));
+						} else {
+							_date.enddate = VMM.Util.parseDate(data.date[i].endDate);
+						}
+					} else {
+						_date.enddate = _date.startdate;
+					}
+					
+					// TITLE
+					_date.title = data.date[i].headline;
+					_date.type = data.date[i].type;
+					
+					// DATE
+					_date.date = VMM.Util.date.prettyDate(_date.startdate);
+					
+					// ASSET
+					_date.asset = data.date[i].asset;
+					
+					/* NEED FULL FRACTIONAL DATE
+					================================================== */
+
+					_date.fulldate = _date.startdate.getTime();
+					// BUILD SLIDE CONTENT
+					// Won't be added unless there is content
+					_date.content = buildSlide(data.date[i], _date.startdate);
+					
+					if (_date.content != null && _date.content != "") {
+						_dates.push(_date);
+					}
+					
+				}
+				
+					
+			};
+			
+			/* CUSTOM SORT
+			================================================== */
+			//VMM.Util.customSort(a,b);
+			/*
+			for(var j = 0; j < _dates.length; j++) {
+				trace(_dates[j].startdate);
+			}
+			trace("============================");
+			*/
+			//_dates.reverse(VMM.Util.customSort(_dates.fulldate,_dates.fulldate));
+			_dates.sort(function(a, b){
+				return a.fulldate - b.fulldate
+			});
+			//_dates.reverse()
+			/*
+			for(var k = 0; k < _dates.length; k++) {
+				trace(_dates[k].startdate);
+			}
+			*/
+			
+
+			onDatesProcessed();
+		}
+		
+	};
+
+
+	VMM.Timeline.TimeNav = function(parent, content_width, content_height) {
+		trace("VMM.Timeline.TimeNav");
+		
+		var events = {}; // CUSTOM EVENT HOLDER
+		var data = []; // HOLDS DATA
+		var eras;
+		var era_markers = [];
+		var markers = []; // HOLDS MARKER DOM OBJECTS
+		var interval_array = [];
+		var timespan = {};
+		var current_marker = 0; // CURRENT MARKER
+		var _active = false;
+		
+		var timelookup = {
+			day: 24 ,
+			month: 12,
+			year: 10,
+			hour: 60,
+			minute: 60, 
+			second: 1000,
+			decade: 10,
+			century: 100,
+			millenium: 1000,
+			week: 4.34812141,
+			days_in_month: 30.4368499,
+			days_in_week: 7,
+			weeks_in_month:4.34812141,
+			weeks_in_year:52.177457,
+			days_in_year: 365.242199,
+			hours_in_day: 24
+		};
+		
+		var dateFractionBrowser = {
+			day: 86400000 ,
+			week: 7,
+			month: 30.4166666667,
+			year: 12,
+			hour: 24,
+			minute: 1440, 
+			second: 86400,
+			decade: 10,
+			century: 100,
+			millenium: 1000
+		}
+		
+		// somestring = VMM.Util.date.month[2]; // Returns March
+		// somestring = VMM.Util.date.month_abbrev[1]; // Returns Feb.
+		
+		var interval = {
+			type: "year",
+			number: 10,
+			first: 1970,
+			last: 2011,
+			multiplier: 100
+		};
+		
+		var interval_major = {
+			type: "year",
+			number: 10,
+			first: 1970,
+			last: 2011,
+			multiplier: 100
+		};
+		
+		var interval_calc = {
+			day: {} ,
+			month: {},
+			year: {},
+			hour: {},
+			minute: {}, 
+			second: {},
+			decade: {},
+			century: {},
+			millenium: {},
+			week: {}
+		};
+		
+		var config = {
+			interval: 10,
+			something: 0,
+			width: 900,
+			height: 150,
+			ease: "easeInOutExpo",
+			duration: 1000,
+			nav_width: 100,
+			nav_height: 200,
+			timeline: false,
+			spacing: 15,
+			marker_width: 150,
+			marker_height: 48,
+			density: 2,
+			timeline_width: 900,
+			interval_width: 200,
+			rows: [1, 1, 1],
+			multiplier: 6,
+			max_multiplier:16,
+			min_multiplier:1,
+			has_start_page:false,
+		};
+		 
+		
+		
+		//config.rows = [1, config.marker_height, config.marker_height*2];
+		config.rows = [config.marker_height, config.marker_height*2, 1];
+		
+		if (content_width != null && content_width != "") {
+			config.width = content_width;
+		} 
+		if (content_height != null && content_height != "") {
+			config.height = content_height;
+		} 
+		
+		var content = "";
+		var _active = false;
+		
+		/* ELEMENTS
+		================================================== */
+		var $timenav = "";
+		//var $timenav_container_mask = "";
+		//var $timenav_container = "";
+		
+		var $content = "";
+		var $time = "";
+		var $timeintervalminor = "";
+		var $timeinterval = "";
+		var $timeintervalmajor = "";
+		var $timebackground = "";
+		var $timeintervalbackground = "";
+		var $timenavline = "";
+		var $timeintervalminor_minor = "";
+		var $toolbar = "";
+		var $zoomin = "";
+		var $zoomout = "";
+		
+		var navigation = {};
+		// Nav Items
+		navigation.nextBtn;
+		navigation.prevBtn;
+		navigation.nextDate;
+		navigation.prevDate;
+		navigation.nextTitle;
+		navigation.prevTitle;
+		
+		/* PUBLIC VARS
+		================================================== */
+		this.ver = "0.1";
+		var layout = parent; // expecting slider div
+		
+		
+		/* PUBLIC FUNCTIONS
+		================================================== */
+		this.init = function(d,e) {
+			trace('VMM.Timeline.TimeNav init');
+			// need to evaluate d
+			// some function to determine type of data and prepare it
+			if(typeof d != 'undefined') {
+				this.setData(d, e);
+			} else {
+				trace("WAITING ON DATA");
+			}
+		};
+		
+		/* GETTERS AND SETTERS
+		================================================== */
+		this.setData = function(d,e) {
+			if(typeof d != 'undefined') {
+				data = d;
+				eras = e;
+				build();
+			} else{
+				trace("NO DATA");
+			}
+		};
+		
+		this.setSize = function(w, h) {
+			if (w != null) {config.width = w};
+			if (h != null) {config.height = h};
+			if (_active) {
+				reSize();
+			}
+
+			
+		}
+		
+		this.setMarker = function(n, ease, duration, fast) {
+			goToMarker(n, ease, duration);
+		}
+		
+		this.getCurrentNumber = function() {
+			return current_marker;
+		}
+		
+		/* ON EVENT
+		================================================== */
+		
+		function onConfigSet() {
+			trace("onConfigSet");
+		};
+		
+		function reSize(firstrun) {
+			VMM.Element.css($timenavline, "left", Math.round(config.width/2)+2);
+			//VMM.Element.css($toolbar, "left", Math.round(config.width/2)-19);
+			
+			goToMarker(current_marker, config.ease, config.duration, true, firstrun);
+		};
+		
+		function upDate() {
+			VMM.fireEvent(layout, "UPDATE");
+		}
+		
+		function onZoomIn() {
+			trace("CLICK");
+			VMM.DragSlider.cancelSlide();
+			if (config.multiplier > config.min_multiplier) {
+				config.multiplier = config.multiplier - 1;
+				if (config.multiplier < 0) {
+					config.multiplier = config.min_multiplier;
+				}
+				refreshTimeline();
+			}
+		}
+		
+
+		
+		function onZoomOut() {
+			trace("CLICK");
+			VMM.DragSlider.cancelSlide();
+			if (config.multiplier < config.max_multiplier) {
+				config.multiplier = config.multiplier + 1;
+				if (config.multiplier == config.max_multiplier) {
+					
+				}
+				refreshTimeline();
+			}
+		}
+		
+		
+		function onBackHome(e) {
+			VMM.DragSlider.cancelSlide();
+			goToMarker(0);
+			upDate();
+		}
+		/* MARKER EVENTS
+		================================================== */
+		function onMarkerClick(e) {
+			VMM.DragSlider.cancelSlide();
+			goToMarker(e.data.number);
+			upDate();
+		};
+		
+		function onMarkerHover(e) {
+			VMM.Element.toggleClass(e.data.elem, "zFront");
+			
+		};
+		
+		/* TOUCH EVENTS
+		================================================== */
+		function onTouchUpdate(e, b) {
+			VMM.Element.animate($timenav, b.time/2, config.ease, {"left": b.left});
+			
+			
+		};
+		
+		/* NAVIGATION
+		================================================== */
+		var buildMarkers = function() {
+			
+			var row = 2; //row
+			var lpos = 0; // last marker pos;
+			var row_depth = 0;
+			
+			for(var i = 0; i < data.length; i++) {
+				
+				var bw = "";
+				var _marker;
+				var _marker_flag;
+				var _marker_content;
+				
+				var _marker_dot;
+				var _marker_line;
+				var _marker_line_event;
+				
+				/* CREATE ELEMENTS
+				================================================== */
+				_marker = VMM.appendAndGetElement($content, "<div>", "marker");
+				_marker_flag = VMM.appendAndGetElement(_marker, "<div>", "flag");
+				_marker_content = VMM.appendAndGetElement(_marker_flag, "<div>", "flag-content");
+				_marker_dot = VMM.appendAndGetElement(_marker, "<div>", "dot");
+				_marker_line = VMM.appendAndGetElement(_marker, "<div>", "line");
+				_marker_line_event = VMM.appendAndGetElement(_marker_line, "<div>", "event-line");
+				
+				
+				/* CREATE THUMBNAIL
+				================================================== */
+				if (data[i].asset != null && data[i].asset != "") {
+					VMM.appendElement(_marker_content, VMM.MediaElement.thumbnail(data[i].asset, 32, 32));
+				}
+				
+				/* ADD DATE AND TITLE
+				================================================== */
+				VMM.appendElement(_marker_content, "<h3>" + VMM.Util.unlinkify(data[i].title) + "</h3><h4>" + data[i].date + "</h4>");
+				
+				/* ADD ID
+				================================================== */
+				VMM.Element.attr(_marker, "id", (data[i].uniqueid).toString());
+				
+				/* MARKER CLICK
+				================================================== */
+				VMM.bindEvent(_marker_flag, onMarkerClick, "", {number: i});
+				VMM.bindEvent(_marker_flag, onMarkerHover, "mouseenter mouseleave", {number: i, elem:_marker_flag});
+
+				
+
+				/* ADD MARKER OBJ TO ARRAY FOR RETRIEVAL LATER
+				================================================== */
+				var _marker_obj = {
+					marker: _marker,
+					flag:_marker_flag,
+					lineevent: _marker_line_event,
+					type: "marker"
+				};
+				
+				
+				if (data[i].type == "start") {
+					trace("BUILD MARKER HAS START PAGE")
+					config.has_start_page = true;
+					_marker_obj.type = "start";
+				}
+				
+				markers.push(_marker_obj);
+				
+				
+				
+			}
+			
+			/* CREATE ERAS
+			================================================== */
+			for(var j = 0; j < eras.length; j++) {
+				
+				var bw = "";
+				var era = {
+					content:"",
+					startdate:"",
+					enddate:"",
+					headline:"",
+					uniqueid:"",
+					color:""
+				};
+				
+				era.title = eras[j].headline;
+				era.uniqueid = VMM.Util.unique_ID(4);
+				era.color = eras[j].color;
+				/* CREATE ELEMENTS
+				================================================== */
+				era.content = VMM.appendAndGetElement($content, "<div>", "era");
+				VMM.Element.attr(era.content, "id", era.uniqueid);
+				VMM.Element.css(era.content, "background", era.color);
+				/* ADD DATE AND TITLE
+				================================================== */
+				VMM.appendElement(era.content, "<h3>" + VMM.Util.unlinkify(era.title) + "</h3>");
+				
+				
+				era.startdate = VMM.Util.parseDate(eras[j].startDate);
+				era.enddate = VMM.Util.parseDate(eras[j].endDate);
+				
+				era_markers.push(era);
+			}
+			
+			positionMarkers();
+		}
+		
+		
+		var positionOnTimeline = function(the_interval, first, last) {
+			
+			var _type = the_interval.type;
+			var _multiplier = the_interval.multiplier;
+			
+			var _first = getDateFractions(first);
+			var _last = getDateFractions(last);
+			
+			/* CALCULATE POSITION ON TIMELINE
+			================================================== */
+			var tsd = first.months;
+			var ted = last.months;
+			
+			if (_type == "millenium") {
+				tsd = first.milleniums;
+				ted = last.milleniums;
+			} else if (_type == "century") {
+				tsd = _first.centuries;
+				ted = _last.centuries;
+			} else if (_type == "decade") {
+				tsd = _first.decades;
+				ted = _last.decades;
+			} else if (_type == "year") {
+				tsd = _first.years;
+				ted = _last.years;
+			} else if (_type == "month") {
+				tsd = _first.months;
+				ted = _last.months;
+			} else if (_type == "week") {
+				tsd = _first.weeks;
+				ted = _last.weeks;
+			} else if (_type == "day") {
+				tsd = _first.days;
+				ted = _last.days;
+			} else if (_type == "hour") {
+				tsd = _first.hours;
+				ted = _last.hours;
+			} else if (_type == "minute") {
+				tsd = _first.minutes;
+				ted = _last.minutes;
+			}
+			
+			
+			_pos = 		( tsd	 - 	interval.base	 ) * (config.interval_width		/	 config.multiplier);
+			_pos_end = 	( ted	 - 	interval.base	 ) * (config.interval_width		/	 config.multiplier);
+			
+			return pos = {begin:_pos ,end:_pos_end};
+			
+		}
+
+		var positionMarkers = function(is_animated) {
+			
+			var _type = interval.type;
+			var _multiplier = interval.multiplier;
+			
+			// ROWS
+			var row = 2; //row
+			var lpos = 0; // last marker pos;
+			var row_depth = 0;
+			var _line_last_height_pos = 150;
+			var _line_height = 6;
+			
+			var cur_mark = 0;
+			
+			VMM.Element.removeClass(".flag", "row1");
+			VMM.Element.removeClass(".flag", "row2");
+			VMM.Element.removeClass(".flag", "row3");
+			
+			for(var i = 0; i < markers.length; i++) {
+				
+				//var pos; // X POSITION OF BEGINNING OF EVENT
+				var _line; // EVENT LENGTH
+				//var _pos_end; // X POSITION OF END OF EVENT
+				
+				var _marker = markers[i].marker;
+				var _marker_flag = markers[i].flag;
+				var _marker_line_event = markers[i].lineevent;
+				
+				
+				
+				var _pos = positionOnTimeline(interval, data[i].startdate, data[i].enddate);
+				
+				
+				pos = _pos.begin;
+				_pos_end = _pos.end;
+				
+				/* COMPENSATE FOR DATES BEING POITIONED IN THE MIDDLE
+				================================================== */
+				var _pos_offset = -2;
+				pos = Math.round(pos +  _pos_offset);
+				_pos_end = Math.round(_pos_end + _pos_offset);
+				_line = Math.round(_pos_end - pos);
+				
+				/* APPLY POSITION TO MARKER
+				================================================== */
+				if (is_animated) {
+					VMM.Element.stop(_marker);
+					VMM.Element.animate(_marker, config.duration/2, config.ease, {"left": pos});
+				} else {
+					VMM.Element.css(_marker, "left", pos);
+				}
+				if (i == current_marker) {
+					cur_mark = pos;
+					//trace("=========================== cur_mark " + cur_mark)
+				}
+				
+				/* EVENT LENGTH LINE
+				================================================== */
+				if (_line > 5) {
+					VMM.Element.css(_marker_line_event, "height", _line_height);
+					VMM.Element.css(_marker_line_event, "width", _line);
+					VMM.Element.css(_marker_line_event, "top", _line_last_height_pos);
+					//_line_last_height_pos = _line_last_height_pos - _line_height;
+				}
+				
+				/* CONTROL ROW POSITION
+				================================================== */
+				if (pos - lpos < (config.marker_width + config.spacing)) {
+					if (row < config.rows.length - 1) {
+						row ++;
+						
+					} else {
+						row = 0;
+						row_depth ++;
+					}
+				} else {
+					row_depth = 0;
+					row = 0;
+				}
+				
+				/* SET LAST MARKER POSITION
+				================================================== */
+				lpos = pos;
+				
+				if (is_animated) {
+					VMM.Element.stop(_marker_flag);
+					VMM.Element.animate(_marker_flag, config.duration, config.ease, {"top": config.rows[row]});
+				} else {
+					VMM.Element.css(_marker_flag, "top", config.rows[row]);
+				}
+				
+				/* IS THE MARKER A REPRESENTATION OF A START SCREEN?
+				================================================== */
+				if (config.has_start_page && markers[i].type == "start") {
+					VMM.Element.visible(_marker, false);
+				}
+				
+			}
+			
+			for(var j = 0; j < era_markers.length; j++) {
+				//var pos; // X POSITION OF BEGINNING OF EVENT
+				var _line; // EVENT LENGTH
+				//var _pos_end; // X POSITION OF END OF EVENT
+				
+				var era = era_markers[j];
+				var era_elem = era.content;
+				var pos = positionOnTimeline(interval, era.startdate, era.enddate);
+				var era_length = pos.end - pos.begin;
+				var era_height = 25;
+				
+				/* APPLY POSITION TO MARKER
+				================================================== */
+				VMM.Element.css(era_elem, "left", pos.begin);
+				VMM.Element.css(era_elem, "width", era_length);
+			}
+			
+			
+			/* ANIMATE THE TIMELINE TO ADJUST TO CHANGES
+			================================================== */
+			if (is_animated) {
+				VMM.Element.stop($timenav);
+				VMM.Element.animate($timenav, config.duration/2, config.ease, {"left": (config.width/2) - (cur_mark)});
+			}
+
+		
+		}
+		
+		var getDateFractions = function(the_date, is_utc) {
+			
+			var _time = {};
+			_time.days			= 		the_date / dateFractionBrowser.day;
+			_time.weeks 		= 		_time.days / dateFractionBrowser.week;
+			_time.months 		= 		_time.days / dateFractionBrowser.month;
+			_time.years 		= 		_time.months / dateFractionBrowser.year;
+			_time.hours 		= 		_time.days * dateFractionBrowser.hour;
+			_time.minutes 		= 		_time.days * dateFractionBrowser.minute;
+			_time.seconds 		= 		_time.days * dateFractionBrowser.second;
+			_time.decades 		= 		_time.years / dateFractionBrowser.decade;
+			_time.centuries 	= 		_time.years / dateFractionBrowser.century;
+			_time.milleniums 	= 		_time.years / dateFractionBrowser.millenium;
+			/*
+			trace("MILLENIUMS "	 + 		_time.milleniums);
+			trace("CENTURIES "	 + 		_time.centuries);
+			trace("DECADES "	 + 		_time.decades);
+			trace("YEARS "		 + 		_time.years);
+			trace("MONTHS "		 + 		_time.months);
+			trace("WEEKS "		 + 		_time.weeks);
+			trace("DAYS "		 + 		_time.days);
+			trace("HOURS "		 + 		_time.hours);
+			trace("MINUTES "	 + 		_time.minutes);
+			trace("SECONDS "	 + 		_time.seconds);
+			*/
+			return _time;
+		}
+		
+		var calculateInterval = function() {
+			
+			var _first = getDateFractions(data[0].startdate);
+			var _last = getDateFractions(data[data.length - 1].enddate);
+			
+			/* MILLENIUM
+			================================================== */
+			// NOT DONE
+			interval_calc.millenium.type 			= "millenium";
+			interval_calc.millenium.first 			= _first.milleniums;
+			interval_calc.millenium.base 			= Math.floor(_first.milleniums);
+			interval_calc.millenium.last 			= _last.milleniums;
+			interval_calc.millenium.number 			= timespan.milleniums;
+			interval_calc.millenium.multiplier	 	= timelookup.millenium;
+			interval_calc.millenium.minor 			= timelookup.millenium;
+			
+			/* CENTURY
+			================================================== */
+			// NOT DONE
+			interval_calc.century.type 				= "century";
+			interval_calc.century.first 			= _first.centuries;
+			interval_calc.century.base 				= Math.floor(_first.centuries);
+			interval_calc.century.last 				= _last.centuries;
+			interval_calc.century.number 			= timespan.centuries;
+			interval_calc.century.multiplier	 	= timelookup.century;
+			interval_calc.century.minor 			= timelookup.century;
+			
+			/* DECADE
+			================================================== */
+			interval_calc.decade.type 				= "decade";
+			interval_calc.decade.first 				= _first.decades;
+			interval_calc.decade.base 				= Math.floor(_first.decades);
+			interval_calc.decade.last 				= _last.decades;
+			interval_calc.decade.number 			= timespan.decades;
+			interval_calc.decade.multiplier 		= timelookup.decade;
+			interval_calc.decade.minor 				= timelookup.decade;
+			
+			/* YEAR
+			================================================== */
+			
+			interval_calc.year.type					= "year";
+			interval_calc.year.first 				= _first.years;
+			interval_calc.year.base 				= Math.floor(_first.years);
+			interval_calc.year.last					= _last.years;
+			interval_calc.year.number 				= timespan.years;
+			interval_calc.year.multiplier 			= 1;
+			interval_calc.year.minor 				= timelookup.month;
+			
+			/* MONTH
+			================================================== */
+			interval_calc.month.type 				= "month";
+			interval_calc.month.first 				= _first.months;
+			interval_calc.month.base 				= Math.floor(_first.months);
+			interval_calc.month.last 				= _last.months;
+			interval_calc.month.number 				= timespan.months;
+			interval_calc.month.multiplier 			= 1;
+			interval_calc.month.minor 				= Math.round(timelookup.week);
+			
+			/* WEEK
+			================================================== */
+			// NOT DONE
+			interval_calc.week.type 				= "week";
+			
+			interval_calc.week.first 				= _first.weeks;
+			interval_calc.week.base 				= Math.floor(_first.weeks);
+			interval_calc.week.last 				= _last.weeks;
+			interval_calc.week.number 				= timespan.weeks;
+			interval_calc.week.multiplier 			= 1;
+			interval_calc.week.minor 				= 7;
+			
+			/* DAY
+			================================================== */
+			// NOT DONE
+			interval_calc.day.type 					= "day";
+			interval_calc.day.first 				= _first.days;
+			interval_calc.day.base	 				= Math.floor(_first.days);
+			interval_calc.day.last 					= _last.days;
+			interval_calc.day.number 				= timespan.days;
+			interval_calc.day.multiplier 			= 1;
+			interval_calc.day.minor 				= 24;
+			
+			/* HOUR
+			================================================== */
+			// NOT DONE
+			interval_calc.hour.type 				= "hour";
+			interval_calc.hour.first 				= _first.hours;
+			interval_calc.hour.base 				= Math.floor(_first.hours);
+			interval_calc.hour.last 				= _last.hours;
+			interval_calc.hour.number 				= timespan.hours;
+			interval_calc.hour.multiplier 			= 1;
+			interval_calc.hour.minor 				= 60;
+			
+			/* MINUTE
+			================================================== */
+			// NOT DONE
+			interval_calc.minute.type 				= "minute";
+			interval_calc.minute.first 				= _first.minutes;
+			interval_calc.minute.base 				= Math.floor(_first.minutes);
+			interval_calc.minute.last 				= _last.minutes;
+			interval_calc.minute.number 			= timespan.minutes;
+			interval_calc.minute.multiplier 		= 1;
+			interval_calc.minute.minor 				= 60;
+			
+			/* SECOND
+			================================================== */
+			// NOT DONE
+			interval_calc.second.type 				= "decade";
+			interval_calc.second.first 				= _first.seconds;
+			interval_calc.second.base 				= Math.floor(_first.seconds);
+			interval_calc.second.last 				= _last.seconds;
+			interval_calc.second.number 			= timespan.seconds;
+			interval_calc.second.multiplier 		= 1;
+			interval_calc.second.minor 				= 10;
+		}
+		
+		var positionInterval = function() {
+			
+			VMM.attachElement($timeinterval, "");
+			VMM.attachElement($timeintervalmajor, "");
+			
+			interval.date = new Date(data[0].startdate.getFullYear(), 0, 1, 0,0,0);
+			interval_major.date = new Date(data[0].startdate.getFullYear(), 0, 1, 0,0,0);
+			
+			//interval.date_major_start = new Date(data[0].startdate.getFullYear(), 0, 1, 0,0,0);
+			//interval.date_major_end = new Date(data[0].startdate.getFullYear(), 0, 1, 0,0,0);
+			
+			var inc_time = 0;
+			var inc_time_major = 0;
+			var _first_run = true;
+			var _normal_first_pos = 0;
+			var _last_pos = 0;
+			var _last_pos_major = 0;
+			
+			for(var i = 0; i < interval.number + 1; i++) {
+				
+				var _idd;
+				if (interval.type == "century") {
+					if (_first_run) {
+						interval.date.setFullYear(		Math.floor(data[0].startdate.getFullYear() / 100) * 100		);
+					}
+					interval.date.setFullYear(interval.date.getFullYear() + (inc_time * 100));
+					_idd = Math.floor(interval.date.getFullYear() / 100) * 100;
+				} else if (interval.type == "decade") {
+					if (_first_run) {
+						interval.date.setFullYear(		Math.floor(data[0].startdate.getFullYear() / 10) * 10		);
+					}
+					interval.date.setFullYear(interval.date.getFullYear() + (inc_time * 10));
+					_idd = Math.floor(interval.date.getFullYear() / 10) * 10;
+				} else if (interval.type == "year") {
+					if (_first_run) {
+						
+					}
+					interval.date.setFullYear(interval.date.getFullYear() + inc_time);
+					//_idd = interval.date.getFullYear();
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+				} else if (interval.type == "month") {
+					if (_first_run) {
+						interval.date.setMonth(data[0].startdate.getMonth());
+					}
+					interval.date.setMonth(interval.date.getMonth() + inc_time);
+					//_idd = VMM.Util.date.month[interval.date.getMonth()] + ", " + interval.date.getFullYear() ;
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+				} else if (interval.type == "week") {
+					if (_first_run) {
+						interval.date.setMonth(		data[0].startdate.getMonth()		);
+						interval.date.setDate(		Math.floor(data[0].startdate.getDate() *7)			);
+					}
+					interval.date.setDate(interval.date.getDate() + (inc_time * 7) );
+					_idd = VMM.Util.date.day_abbr[interval.date.getDay()] + " " + VMM.Util.date.month_abbr[interval.date.getMonth()] + " " + interval.date.getDate();
+				} else if (interval.type == "day") {
+					if (_first_run) {
+						interval.date.setMonth(		data[0].startdate.getMonth()			);
+						interval.date.setDate(		data[0].startdate.getDate()				);
+					}
+					interval.date.setDate(interval.date.getDate() + inc_time);
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+					//_idd = VMM.Util.date.day_abbr[interval.date.getDay()] + " " +VMM.Util.date.month[interval.date.getMonth()] + " " + interval.date.getDate();
+				} else if (interval.type == "hour") {
+					if (_first_run) {
+						interval.date.setMonth(		data[0].startdate.getMonth()			);
+						interval.date.setDate(		data[0].startdate.getDate()				);
+						interval.date.setHours(		data[0].startdate.getHours()			);
+					}
+					interval.date.setHours(interval.date.getHours() + inc_time);
+					//_idd = VMM.Util.date.get12HRTime(interval.date, false); //interval.date.getHours() + ":00";
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+				} else if (interval.type == "minute") {
+					if (_first_run) {
+						interval.date.setMonth(		data[0].startdate.getMonth()			);
+						interval.date.setDate(		data[0].startdate.getDate()				);
+						interval.date.setHours(		data[0].startdate.getHours()			);
+						interval.date.setMinutes(	data[0].startdate.getMinutes()			);
+					}
+					interval.date.setMinutes(interval.date.getMinutes() + inc_time);
+					//_idd = interval.date.getHours() + ":" + VMM.Util.doubledigit(interval.date.getMinutes());
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+				} else if (interval.type == "second") {
+					if (_first_run) {
+						interval.date.setMonth(		data[0].startdate.getMonth()			);
+						interval.date.setDate(		data[0].startdate.getDate()				);
+						interval.date.setHours(		data[0].startdate.getHours()			);
+						interval.date.setMinutes(	data[0].startdate.getMinutes()			);
+						interval.date.setSeconds(	data[0].startdate.getSeconds()			);
+					}
+					interval.date.setSeconds(interval.date.getSeconds() + inc_time);
+					//_idd = interval.date.getHours() + ":" + VMM.Util.doubledigit(interval.date.getMinutes()) + ":" + VMM.Util.doubledigit(interval.date.getSeconds());
+					_idd = VMM.Util.date.prettyDate(interval.date, true, interval.type);
+				}
+				
+				inc_time = 1;
+				
+				if (_first_run) {
+					_normal_first_pos = pos; 
+				}
+				_first_run = false;
+				
+				var _pos = positionOnTimeline(interval, interval.date, interval.date);
+				var pos = _pos.begin;
+				
+				$interval_date = VMM.appendAndGetElement($timeinterval, "<div>", "_idd");
+				VMM.appendElement($interval_date, _idd);
+				
+				VMM.Element.css($interval_date, "left", pos);
+				VMM.Element.css($interval_date, "text-indent", -(VMM.Element.width($interval_date)/2));
+				
+				if ((pos - _last_pos) < 65 ) {
+					if ((pos - _last_pos) < 35 ) {
+						if (i%4 == 0) {
+							if (pos == 0) {
+								VMM.Element.css($interval_date, "display", "none");
+							} else {
+								VMM.Element.css($interval_date, "display", "");
+							}
+							
+						} else {
+							VMM.Element.css($interval_date, "display", "none");
+						}
+					} else {
+						if (VMM.Util.isEven(i)) {
+							VMM.Element.css($interval_date, "display", "none");
+						} else {
+							VMM.Element.css($interval_date, "display", "");
+						}
+					}
+					
+				} else {
+					VMM.Element.css($interval_date, "display", "");
+				}
+				
+				_last_pos = pos;
+			}
+			
+			_first_run = true;
+			_major_first_pos = 0;
+			_major_last_pos = 0;
+			
+			for(var i = 0; i < Math.ceil(interval_major.number) + 1; i++) {
+				var _idd;
+				
+				if (interval_major.type == "century") {
+					if (_first_run) {
+						interval_major.date.setFullYear(		Math.floor(data[0].startdate.getFullYear() / 100) * 100		);
+					}
+					interval_major.date.setFullYear(interval_major.date.getFullYear() + (inc_time_major * 100));
+					_idd = Math.floor(interval_major.date.getFullYear() / 100) * 100;
+				} else if (interval_major.type == "decade") {
+					if (_first_run) {
+						interval_major.date.setFullYear(		Math.floor(data[0].startdate.getFullYear() / 10) * 10		);
+					}
+					interval_major.date.setFullYear(interval_major.date.getFullYear() + (inc_time_major * 10));
+					_idd = Math.floor(interval_major.date.getFullYear() / 10) * 10;
+				} else if (interval_major.type == "year") {
+					if (_first_run) {
+
+					}
+					interval_major.date.setFullYear(interval_major.date.getFullYear() + inc_time_major);
+					_idd = interval_major.date.getFullYear();
+					//_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				} else if (interval_major.type == "month") {
+					if (_first_run) {
+						interval_major.date.setMonth(data[0].startdate.getMonth());
+					}
+					interval_major.date.setMonth(interval_major.date.getMonth() + inc_time_major);
+					_idd = VMM.Util.date.month[interval_major.date.getMonth()] + " " + interval_major.date.getFullYear();
+					//_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				} else if (interval_major.type == "week") {
+					if (_first_run) {
+						interval_major.date.setMonth(		data[0].startdate.getMonth()		);
+						interval_major.date.setDate(		Math.floor(data[0].startdate.getDate() *7)			);
+					}
+					interval_major.date.setDate(interval_major.date.getDate() + (inc_time_major * 7) );
+					_idd = VMM.Util.date.day_abbr[interval_major.date.getDay()] + " " + VMM.Util.date.month_abbr[interval_major.date.getMonth()] + " " + interval_major.date.getDate();
+				} else if (interval_major.type == "day") {
+					if (_first_run) {
+						interval_major.date.setMonth(		data[0].startdate.getMonth()			);
+						interval_major.date.setDate(		data[0].startdate.getDate()				);
+					}
+					interval_major.date.setDate(interval_major.date.getDate() + inc_time_major);
+					//_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+					//_idd = VMM.Util.date.day[interval_major.date.getDay()] + " " + VMM.Util.date.month_abbr[interval_major.date.getMonth()] + " " + interval_major.date.getDate();
+					_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				} else if (interval_major.type == "hour") {
+					if (_first_run) {
+						interval_major.date.setMonth(		data[0].startdate.getMonth()			);
+						interval_major.date.setDate(		data[0].startdate.getDate()				);
+						interval_major.date.setHours(		data[0].startdate.getHours()			);
+					}
+					interval_major.date.setHours(interval_major.date.getHours() + inc_time_major);
+					//_idd = VMM.Util.date.get12HRTime(interval_major.date, false); //interval_major.date.getHours() + ":00";
+					_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				} else if (interval_major.type == "minute") {
+					if (_first_run) {
+						interval_major.date.setMonth(		data[0].startdate.getMonth()			);
+						interval_major.date.setDate(		data[0].startdate.getDate()				);
+						interval_major.date.setHours(		data[0].startdate.getHours()			);
+						interval_major.date.setMinutes(		data[0].startdate.getMinutes()			);
+					}
+					interval_major.date.setMinutes(interval_major.date.getMinutes() + inc_time_major);
+					//_idd = interval_major.date.getHours() + ":" + VMM.Util.doubledigit(interval_major.date.getMinutes());
+					_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				} else if (interval_major.type == "second") {
+					if (_first_run) {
+						interval_major.date.setMonth(		data[0].startdate.getMonth()			);
+						interval_major.date.setDate(		data[0].startdate.getDate()				);
+						interval_major.date.setHours(		data[0].startdate.getHours()			);
+						interval_major.date.setMinutes(		data[0].startdate.getMinutes()			);
+						interval_major.date.setSeconds(		data[0].startdate.getSeconds()			);
+					}
+					interval_major.date.setSeconds(interval_major.date.getSeconds() + inc_time_major);
+					//_idd = interval_major.date.getHours() + ":" + VMM.Util.doubledigit(interval_major.date.getMinutes()) + ":" + VMM.Util.doubledigit(interval_major.date.getSeconds());
+					_idd = VMM.Util.date.prettyDate(interval_major.date, true, interval_major.type);
+				}
+				trace("interval_major.type " + interval_major.type);
+				
+				inc_time_major = 1;
+				
+				
+				
+				/* 	BUILD DATE USING SAME METHODOLOGY AS MARKER POSITON
+					CREATE A DATE
+				//================================================== */
+				
+				var _pos = positionOnTimeline(interval, interval_major.date, interval_major.date);
+				var pos = _pos.begin;
+				
+				$interval_date = VMM.appendAndGetElement($timeintervalmajor, "<div>", "major");
+				VMM.appendElement($interval_date, _idd);
+				
+				VMM.Element.css($interval_date, "left", pos);
+				VMM.Element.css($interval_date, "left", pos);
+				VMM.Element.css($interval_date, "text-indent", -(VMM.Element.width($interval_date)/2));
+				
+				if (_first_run) {
+					_major_first_pos = pos; 
+				}
+				_first_run = false;
+				
+				_last_pos_major = pos;
+				_major_last_pos = pos;
+				
+			}
+			
+			VMM.Element.width($content, interval.number * (config.interval_width / config.multiplier) );
+			
+			//VMM.Element.width($timeintervalminor_minor, (interval.number * (config.interval_width / config.multiplier)) + 200 );
+			_minor_pos_offset = 50;
+			var _minor_width = (_major_last_pos - _major_first_pos)+(_minor_pos_offset*6);
+			var _normal_width = (_last_pos)+(_minor_pos_offset*6);
+			
+			if (_minor_width < _normal_width) {
+				VMM.Element.width($timeintervalminor_minor, _normal_width);
+			} else {
+				VMM.Element.width($timeintervalminor_minor, _minor_width);
+			}
+			
+
+			VMM.Element.css($timeintervalminor_minor, "left", _major_first_pos - _minor_pos_offset);
+			
+			config.timeline_width = VMM.Element.width($timeinterval);
+			
+			
+		}
+		
+		var buildInterval = function() {
+			
+			/* CALCULATE INTERVAL
+			================================================== */
+			timespan = getDateFractions((data[data.length - 1].enddate) - (data[0].startdate), true);
+			calculateInterval();
+			
+			/* DETERMINE DEFAULT INTERVAL TYPE
+			================================================== */
+			
+			if (timespan.milleniums > data.length / config.density) {
+				interval = interval_calc.millenium;
+				//interval_major = interval_calc.millenium;
+			} else if (timespan.centuries > data.length / config.density) {
+				interval = Math.ceil(interval_calc.century);
+				//interval_major = interval_calc.millenium;
+			} else if (timespan.decades > data.length / config.density) {
+				interval = interval_calc.decade;
+				//interval_major = Math.ceil(interval_calc.century);
+			} else if (timespan.years > data.length / config.density) {	
+				interval = interval_calc.year;
+				//interval_major = interval_calc.decade;
+			} else if (timespan.months > data.length / config.density) {
+				interval = interval_calc.month;
+				//interval_major = interval_calc.year;
+			//} else if (timespan.weeks > data.length / config.density) {
+				//interval = interval_calc.week;
+				//interval = interval_calc.month;
+				//interval_major = interval_calc.month;
+			} else if (timespan.days > data.length / config.density) {
+				interval = interval_calc.day;
+				//interval_major = interval_calc.month;
+			} else if (timespan.hours > data.length / config.density) {
+				interval = interval_calc.hour;
+				//interval_major = interval_calc.day;
+			} else if (timespan.minutes > data.length / config.density) {
+				interval = interval_calc.minute;
+				//interval_major = interval_calc.hour;
+			} else if (timespan.seconds > data.length / config.density) {
+				interval = interval_calc.second;
+				//interval_major = interval_calc.minute;
+			} else {
+				trace("NO FUCKING IDEA WHAT THE TYPE SHOULD BE");
+				interval.type = "unknown";
+			}
+			
+			/* DETERMINE MAJOR TYPE
+			================================================== */
+			
+			if (timespan.milleniums >= 1) {
+				interval_major = interval_calc.millenium;
+			} else if (timespan.centuries >= 1) {
+				interval_major = interval_calc.century;
+			} else if (timespan.decades >= 1) {
+				interval_major = interval_calc.decade;
+			} else if (timespan.years >= 1) {	
+				interval_major = interval_calc.year;
+			} else if (timespan.months > 1) {
+				interval_major = interval_calc.month;
+			} else if (timespan.weeks > 1) {
+				interval_major = interval_calc.month;
+			} else if (timespan.days > 1) {
+				interval_major = interval_calc.day;
+			} else if (timespan.hours > 1) {
+				interval_major = interval_calc.hour;
+			} else if (timespan.minutes > 1) {
+				interval_major = interval_calc.minute;
+			} else if (timespan.seconds > 1) {
+				interval_major = interval_calc.minute;
+			} else {
+				trace("NO FUCKING IDEA WHAT THE TYPE SHOULD BE");
+				interval_major.type = "unknown";
+			}
+			
+			//trace(interval_major.type);
+			
+			$timeintervalminor_minor = VMM.appendAndGetElement($timeintervalminor, "<div>", "minor");
+			
+			positionInterval();
+			
+		}
+		
+		/* GO TO TIME MARKER
+		================================================== */
+		var goToMarker = function(n, ease, duration, fast, firstrun) {
+			
+			// Set current slide
+			current_marker = n;
+			
+			var _ease = config.ease;
+			var _duration = config.duration;
+			var is_last = false;
+			var is_first = false;
+			
+			if (current_marker == 0) {
+				is_first = true;
+			}
+			if (current_marker +1 == markers.length) {
+				is_last = true
+			}
+			if (ease != null && ease != "") {_ease = ease};
+			if (duration != null && duration != "") {_duration = duration};
+			
+			/* get marker position
+			================================================== */
+			var _pos = VMM.Element.position(markers[current_marker].marker);
+			
+			/* set marker style
+			================================================== */
+			for(var i = 0; i < markers.length; i++) {
+				VMM.Element.removeClass(markers[i].marker, "active");
+			}
+			
+			if (config.has_start_page && markers[current_marker].type == "start") {
+				VMM.Element.visible(markers[current_marker].marker, false);
+				VMM.Element.addClass(markers[current_marker].marker, "start");
+			}
+			
+			VMM.Element.addClass(markers[current_marker].marker, "active");
+			
+			/* set proper nav titles and dates etc.
+			================================================== */
+			if (is_first) {
+				//VMM.Element.visible(navigation.prevBtn, false);
+			} else {
+				//VMM.Element.visible(navigation.prevBtn, true);
+			}
+			if (is_last) {
+				//VMM.Element.visible(navigation.nextBtn, false);
+			} else {
+				//VMM.Element.visible(navigation.nextBtn, true);
+			}
+			
+			/* ANIMATE MARKER
+			================================================== */
+			VMM.Element.stop($timenav);
+			VMM.Element.animate($timenav, _duration, _ease, {"left": (config.width/2) - (_pos.left)});
+			
+			
+		}
+		
+		
+		/* BUILD
+		================================================== */
+		var build = function() {
+			// Clear out existing content
+			VMM.attachElement(layout, "");
+			
+			$timenav = VMM.appendAndGetElement(layout, "<div>", "timenav");
+
+			
+			$content = VMM.appendAndGetElement($timenav, "<div>", "content");
+			$time = VMM.appendAndGetElement($timenav, "<div>", "time");
+			$timeintervalminor = VMM.appendAndGetElement($time, "<div>", "time-interval-minor");
+			$timeintervalmajor = VMM.appendAndGetElement($time, "<div>", "time-interval-major");
+			$timeinterval = VMM.appendAndGetElement($time, "<div>", "time-interval");
+			$timebackground = VMM.appendAndGetElement(layout, "<div>", "timenav-background");
+			$timenavline = VMM.appendAndGetElement($timebackground, "<div>", "timenav-line");
+			$timeintervalbackground = VMM.appendAndGetElement($timebackground, "<div>", "timenav-interval-background", "<div class='top-highlight'></div>");
+			
+			buildInterval();
+			buildMarkers();
+			reSize(true);
+			VMM.fireEvent(layout, "LOADED");
+			
+			$toolbar = VMM.appendAndGetElement(layout, "<div>", "toolbar");
+			
+			if (config.has_start_page) {
+				$backhome = VMM.appendAndGetElement($toolbar, "<div>", "back-home", "<div class='icon'></div>");
+				VMM.bindEvent(".back-home", onBackHome, "click");
+				VMM.Element.css($toolbar, "top", 27);
+				
+			}
+			$zoomin = VMM.appendAndGetElement($toolbar, "<div>", "zoom-in", "<div class='icon'></div>");
+			$zoomout = VMM.appendAndGetElement($toolbar, "<div>", "zoom-out", "<div class='icon'></div>");
+			
+			VMM.Element.attribute($backhome, "title", "Return to Title");
+			VMM.Element.attribute($backhome, "rel", "tooltip");
+			
+			VMM.Element.attribute($zoomin, "title", "Expand Timeline");
+			VMM.Element.attribute($zoomin, "rel", "tooltip");
+			
+			VMM.Element.attribute($zoomout, "title", "Contract Timeline");
+			VMM.Element.attribute($zoomout, "rel", "tooltip");
+			
+			VMM.bindEvent(".zoom-in", onZoomIn, "click");
+			VMM.bindEvent(".zoom-out", onZoomOut, "click");
+			
+
+			$toolbar.tooltip({
+				selector: "div[rel=tooltip]",
+				placement: "right"
+			})
+			/* MAKE TIMELINE TOUCHABLE
+			================================================== */
+			if (VMM.Browser.device == "mobile" || VMM.Browser.device == "tablet") {
+				VMM.TouchSlider.createPanel($timebackground, $timenav, config.width, config.spacing, false);
+				VMM.bindEvent($timenav, onTouchUpdate, "TOUCHUPDATE");
+			} else {
+				
+				VMM.DragSlider.createPanel(layout, $timenav, config.width, config.spacing, false);
+				//VMM.bindEvent($timenav, onDragUpdate, "DRAGUPDATE");
+			}
+			
+			
+			
+			_active = true;
+			
+		};
+		
+		var refreshTimeline = function() {
+			positionInterval();
+			positionMarkers(true);
+			//reSize();
+		};
+		
+		
+		
+	};
+	
+
+	/* 	SOURCE DATA PROCESSOR
+	================================================== */
+	VMM.Timeline.DataObj = {
+		
+		data_obj: {},
+		
+		model_array: [],
+		
+		getData: function(raw_data) {
+			
+			data = VMM.Timeline.DataObj.data_obj;
+
+			
+			if (type.of(raw_data) != "string") {
+				
+				trace("DATA SOURCE: NOT JSON");
+				trace("TRYING HTML PARSE");
+				VMM.Timeline.DataObj.parseHTML(raw_data);
+				
+			} else {
+				
+				if (raw_data.match("%23")) {
+					
+					trace("DATA SOURCE: TWITTER SEARCH");
+					VMM.Timeline.DataObj.model_Tweets.getData("%23medill");
+					
+				} else if (	raw_data.match("spreadsheet")	) {
+					
+					trace("DATA SOURCE: GOOGLE SPREADSHEET");
+					VMM.Timeline.DataObj.model_GoogleSpreadsheet.getData(raw_data);
+					
+				} else {
+					
+					trace("DATA SOURCE: JSON");
+					VMM.getJSON(raw_data, VMM.Timeline.DataObj.parseJSON);
+					
+				}
+				
+			}
+			
+		},
+		
+		parseHTML: function(d) {
+			trace("parseHTML");
+			
+			var _data_obj = VMM.Timeline.DataObj.data_template_obj;
+			
+			/*	Timeline start slide
+			================================================== */
+			if (VMM.Element.find("#timeline section", "time")[0]) {
+				_data_obj.timeline.startDate = VMM.Element.html(VMM.Element.find("#timeline section", "time")[0]);
+				_data_obj.timeline.headline = VMM.Element.html(VMM.Element.find("#timeline section", "h2"));
+				_data_obj.timeline.text = VMM.Element.html(VMM.Element.find("#timeline section", "article"));
+				
+				var found_main_media = false;
+				
+				if (VMM.Element.find("#timeline section", "figure img").length != 0) {
+					found_main_media = true;
+					_data_obj.timeline.asset.media = VMM.Element.attr(VMM.Element.find("#timeline section", "figure img"), "src");
+				} else if (VMM.Element.find("#timeline section", "figure a").length != 0) {
+					found_main_media = true;
+					_data_obj.timeline.asset.media = VMM.Element.attr(VMM.Element.find("#timeline section", "figure a"), "href");
+				} else {
+					//trace("NOT FOUND");
+				}
+
+				if (found_main_media) {
+					if (VMM.Element.find("#timeline section", "cite").length != 0) {
+						_data_obj.timeline.asset.credit = VMM.Element.html(VMM.Element.find("#timeline section", "cite"));
+					}
+					if (VMM.Element.find(this, "figcaption").length != 0) {
+						_data_obj.timeline.asset.caption = VMM.Element.html(VMM.Element.find("#timeline section", "figcaption"));
+					}
+				}
+			}
+			
+			/*	Timeline Date Slides
+			================================================== */
+			VMM.Element.each("#timeline li", function(i, elem){
+				
+				var valid_date = false;
+				
+				var _date = {
+					"type":"default",
+					"startDate":"",
+		            "headline":"",
+		            "text":"",
+		            "asset":
+		            {
+		                "media":"",
+		                "credit":"",
+		                "caption":""
+		            },
+		            "tags":"Optional"
+				};
+				
+				if (VMM.Element.find(this, "time") != 0) {
+					
+					valid_date = true;
+					
+					_date.startDate = VMM.Element.html(VMM.Element.find(this, "time")[0]);
+
+					if (VMM.Element.find(this, "time")[1]) {
+						_date.endDate = VMM.Element.html(VMM.Element.find(this, "time")[0]);
+					}
+
+					_date.headline = VMM.Element.html(VMM.Element.find(this, "h3"));
+
+					_date.text = VMM.Element.html(VMM.Element.find(this, "article"));
+
+					var found_media = false;
+					if (VMM.Element.find(this, "figure img").length != 0) {
+						found_media = true;
+						_date.asset.media = VMM.Element.attr(VMM.Element.find(this, "figure img"), "src");
+					} else if (VMM.Element.find(this, "figure a").length != 0) {
+						found_media = true;
+						_date.asset.media = VMM.Element.attr(VMM.Element.find(this, "figure a"), "href");
+					} else {
+						//trace("NOT FOUND");
+					}
+
+					if (found_media) {
+						if (VMM.Element.find(this, "cite").length != 0) {
+							_date.asset.credit = VMM.Element.html(VMM.Element.find(this, "cite"));
+						}
+						if (VMM.Element.find(this, "figcaption").length != 0) {
+							_date.asset.caption = VMM.Element.html(VMM.Element.find(this, "figcaption"));
+						}
+					}
+					
+					trace(_date);
+					_data_obj.timeline.date.push(_date);
+					
+				}
+				
+			});
+			
+			VMM.fireEvent(global, "DATAREADY", _data_obj);
+			
+		},
+		
+		parseJSON: function(d) {
+			
+			if (d.timeline.type == "default") {
+				
+				trace("DATA SOURCE: JSON STANDARD TIMELINE");
+				
+				VMM.fireEvent(global, "DATAREADY", d);
+				//return _data_obj.timeline;
+				
+			} else if (d.timeline.type == "twitter") {
+				
+				trace("DATA SOURCE: JSON TWEETS");
+				
+				VMM.Timeline.DataObj.model_Tweets.buildData(d);
+				
+				
+			} else {
+				trace("DATA SOURCE: NO IDEA");
+				trace(type.of(d.timeline));
+			};
+			
+		},
+		
+		/*	MODEL OBJECTS 
+			New Types of Data can be formatted for the timeline here
+		================================================== */
+		
+		model_Tweets: {
+			
+			type: "twitter",
+			
+			buildData: function(raw_data) {
+				
+				VMM.bindEvent(global, VMM.Timeline.DataObj.model_Tweets.onTwitterDataReady, "TWEETSLOADED");
+				VMM.ExternalAPI.twitter.getTweets(raw_data.timeline.tweets);
+				
+			},
+			
+			getData: function(raw_data) {
+				
+				VMM.bindEvent(global, VMM.Timeline.DataObj.model_Tweets.onTwitterDataReady, "TWEETSLOADED");
+				VMM.ExternalAPI.twitter.getTweetSearch(raw_data);
+				
+			},
+			
+			onTwitterDataReady: function(e, d) {
+				
+				var _data_obj = VMM.Timeline.DataObj.data_template_obj;
+
+				for(var i = 0; i < d.tweetdata.length; i++) {
+
+					var _date = {
+						"type":"tweets",
+						"startDate":"",
+			            "headline":"",
+			            "text":"",
+			            "asset":
+			            {
+			                "media":"",
+			                "credit":"",
+			                "caption":""
+			            },
+			            "tags":"Optional"
+					};
+					// pass in the 'created_at' string returned from twitter //
+					// stamp arrives formatted as Tue Apr 07 22:52:51 +0000 2009 //
+					
+					//var twit_date = VMM.ExternalAPI.twitter.parseTwitterDate(d.tweetdata[i].raw.created_at);
+					//trace(twit_date);
+					_date.startDate = d.tweetdata[i].raw.created_at;
+					
+					if (type.of(d.tweetdata[i].raw.from_user_name)) {
+						_date.headline = d.tweetdata[i].raw.from_user_name + " (<a href='https://twitter.com/" + d.tweetdata[i].raw.from_user + "'>" + "@" + d.tweetdata[i].raw.from_user + "</a>)" ;						
+					} else {
+						_date.headline = d.tweetdata[i].raw.user.name + " (<a href='https://twitter.com/" + d.tweetdata[i].raw.user.screen_name + "'>" + "@" + d.tweetdata[i].raw.user.screen_name + "</a>)" ;
+						
+					}
+					
+					_date.asset.media = d.tweetdata[i].content;
+					_data_obj.timeline.date.push(_date);
+					
+				};
+				
+				VMM.fireEvent(global, "DATAREADY", _data_obj);
+				
+			}
+		},
+		
+		model_GoogleSpreadsheet: {
+			
+			/*
+				TEMPLATE CAN BE FOUND HERE
+				https://docs.google.com/previewtemplate?id=0AppSVxABhnltdEhzQjQ4MlpOaldjTmZLclQxQWFTOUE&mode=public
+				
+			*/
+			type: "google spreadsheet",
+			
+			getData: function(raw_data) {
+				var _key = VMM.Util.getUrlVars(raw_data)["key"];
+				var _url = "https://spreadsheets.google.com/feeds/list/" + _key + "/od6/public/values?alt=json";
+				
+				if ( VMM.Browser.browser == "Explorer" && parseInt(VMM.Browser.version, 10) >= 8 && window.XDomainRequest) {
+					// Use Microsoft XDR
+					// going to move this to VMM.getJSON
+					trace("it's ie");
+					var ie_xdr = new XDomainRequest();
+					var _url = "//spreadsheets.google.com/feeds/list/" + _key + "/od6/public/values?alt=json";
+					
+					ie_xdr.open("get", _url);
+					ie_xdr.onload = function() {
+						var ie_j = {};
+						var ie_json = VMM.parseJSON(ie_xdr.responseText);
+						VMM.Timeline.DataObj.model_GoogleSpreadsheet.buildData(ie_json);
+						
+					}
+					ie_xdr.send();
+				} else {
+					trace("not ie");
+					VMM.getJSON(_url, VMM.Timeline.DataObj.model_GoogleSpreadsheet.buildData);
+				}
+				
+			},
+			
+			buildData: function(d) {
+				
+				var _data_obj = VMM.Timeline.DataObj.data_template_obj;
+
+				for(var i = 0; i < d.feed.entry.length; i++) {
+					
+					
+					var dd = d.feed.entry[i];
+					
+					if (dd.gsx$titleslide.$t.match("start")) {
+						_data_obj.timeline.startDate = dd.gsx$startdate.$t;
+						_data_obj.timeline.headline = dd.gsx$headline.$t;
+						_data_obj.timeline.asset.media = dd.gsx$media.$t;
+						_data_obj.timeline.asset.caption = dd.gsx$mediacaption.$t;
+						_data_obj.timeline.asset.credit = dd.gsx$mediacredit.$t;
+						_data_obj.timeline.text = dd.gsx$text.$t;
+						_data_obj.timeline.type = "google spreadsheet";
+					} else {
+						var _date = {
+							"type":"google spreadsheet",
+							"startDate":"",
+							"endDate":"",
+				            "headline":"",
+				            "text":"",
+							"type":"google spreadsheet",
+				            "asset":
+				            {
+				                "media":"",
+				                "credit":"",
+				                "caption":""
+				            },
+				            "tags":"Optional"
+						};
+
+						_date.endDate = dd.gsx$enddate.$t;
+						_date.startDate = dd.gsx$startdate.$t;
+						_date.headline = dd.gsx$headline.$t;
+						_date.asset.media = dd.gsx$media.$t;
+						_date.asset.caption = dd.gsx$mediacaption.$t;
+						_date.asset.credit = dd.gsx$mediacredit.$t;
+						_date.text = dd.gsx$text.$t;
+
+						_data_obj.timeline.date.push(_date);
+					}
+					
+					
+					
+				};
+				
+				VMM.fireEvent(global, "DATAREADY", _data_obj);
+				
+			}
+			
+		},
+		
+		
+		/*	TEMPLATE OBJECTS
+		================================================== */
+		
+		data_template_obj: {
+			"timeline": {
+		        "headline":"",
+		        "description":"",
+				"asset": {
+					"media":"",
+					"credit":"",
+					"caption":""
+				},
+		        "date": []
+		    }
+		},
+		
+		date_obj: {
+			"startDate":"2012,2,2,11,30",
+            "headline":"",
+            "text":"",
+            "asset":
+            {
+                "media":"http://youtu.be/vjVfu8-Wp6s",
+                "credit":"",
+                "caption":""
+            },
+            "tags":"Optional"
+		}
+
+	};
+
+};
+
+
+
+
+/*
+$(document).ready(function() {
+
+	//Instantiate 
+	timeline = new VMM.Timeline(960, 550); // Pass in width and height or set it in your stylesheet;
+	
+	// Initialize
+	timeline.init("example.json"); // Pass in the data
+	
+});
+*/
