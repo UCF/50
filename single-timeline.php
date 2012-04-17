@@ -40,6 +40,7 @@ if(isset($_GET['json'])) {
 			'startDate' => get_post_meta($timeline_event->ID, 'timeline_event_start_date', True),
 			'headline'  => $timeline_event->post_title,
 			'text'      => $timeline_event->post_content,
+			'post_id'   => $timeline_event->ID,
 			'asset'     => array(
 				'media'   => '',
 				'credit'  => '',
@@ -59,6 +60,22 @@ if(isset($_GET['json'])) {
 		}
 		$to_json['timeline']['date'][] = $timeline_event_json;
 	}
+
+	function timeline_event_compare($te1, $te2) {
+		$te1_start = (int)$te1['startDate'];
+		$te2_start = (int)$te2['startDate'];
+
+		if($te1_start > $te_2start) {
+			return 1;
+		} else if ($te1_start < $te2_start) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+
+	usort($to_json['timeline']['date'], 'timeline_event_compare');
+
 	header('Content-Type:application/json;');
 	echo json_encode($to_json);
 } else { ?>
@@ -70,8 +87,25 @@ if(isset($_GET['json'])) {
 	<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>
 		<script type="text/javascript">
 			$().ready(function() {
-				var timeline = new VMM.Timeline();
+				var timeline = new VMM.Timeline(),
+					event_post_title = <?= isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
+					marker_index = false;
 				timeline.init('<?=get_permalink($post->ID);?>?json=true');
+				$('#timeline').bind('LOADED',
+					function() {
+						if(event_post_title != false) {
+							$('#timeline .marker > .flag > .flag-content > h3')
+								.each(function(index, element) {
+									if($(element).text() == event_post_title) {
+										marker_index = index;
+										return false
+									}
+								});
+						}
+						if(marker_index != false) {
+							timeline.setMarker(marker_index);
+						}
+					});
 			});
 		</script>
 	<? } ?> 
