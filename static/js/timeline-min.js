@@ -709,7 +709,7 @@ if (typeof VMM == 'undefined') {
 				
 			});
 			*/
-		},
+		}
 		
 	}).init();
 	
@@ -1389,7 +1389,7 @@ if (typeof VMM == 'undefined') {
 				}
 			};
 			
-		},
+		}
 		
 	}).init();
 	
@@ -1949,7 +1949,7 @@ if (typeof VMM == 'undefined') {
 					});
 				}
 				
-			},
+			}
 			
 		},
 		
@@ -1987,7 +1987,7 @@ if (typeof VMM == 'undefined') {
 				VMM.getJSON(the_url, function(d) {
 					VMM.attachElement("#"+id, d.html );
 				});
-			},
+			}
 			
 		},
 		
@@ -2345,7 +2345,7 @@ if( typeof( jQuery ) != 'undefined' ){
 		easeInOutQuad: function (x, t, b, c, d) {
 			if ((t/=d/2) < 1) return c/2*t*t + b;
 			return -c/2 * ((--t)*(t-2) - 1) + b;
-		},
+		}
 	});
 }
 
@@ -2399,7 +2399,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Slider == 'undefined') {
 			nav_width: 100,
 			nav_height: 200,
 			timeline: false,
-			spacing: 15,
+			spacing: 15
 		};
 		
 		
@@ -3407,7 +3407,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 					var split = w.split(/(^[^a-zA-Z0-9]*[a-zA-Z0-9])(.*)$/);
 					split[1] = split[1].toUpperCase();
 					return split.join('');
-				},
+				}
 			};
 
 			__TitleCase.init();
@@ -3416,7 +3416,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 			t = __TitleCase.toTitleCase(t);
 			
 			return t;
-		},
+		}
 		
 	}).init();
 	
