@@ -29,13 +29,17 @@ if(isset($_GET['json'])) {
 	}
 
 	// Timeline events
-	$timeline_events = get_posts(array(
+	$timeline_events_args = array(
 		'post_type'   => 'timeline_event',
 		'numberposts' => -1,
 		'meta_key'    => 'timeline_event_timeline',
 		'meta_value'  => $post->ID
-	));
-	foreach($timeline_events as $timeline_event) {
+	);
+
+	if(isset($_GET['category']) && ($category = get_category_by_slug($_GET['category'])) !== False) {
+		$timeline_events_args['category'] = $category->term_id;
+	}
+	foreach(get_posts($timeline_events_args) as $timeline_event) {
 		$timeline_event_json = array(
 			'startDate' => get_post_meta($timeline_event->ID, 'timeline_event_start_date', True),
 			'headline'  => $timeline_event->post_title,
@@ -90,7 +94,7 @@ if(isset($_GET['json'])) {
 				var timeline = new VMM.Timeline(),
 					event_post_title = <?= isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
 					marker_index = false;
-				timeline.init('<?=get_permalink($post->ID);?>?json=true');
+				timeline.init('<?=get_permalink($post->ID);?>?json=true<?=isset($_GET['category']) ? '&category='.$_GET['category'] : ''?>');
 				$('#timeline').bind('LOADED',
 					function() {
 						if(event_post_title != false) {

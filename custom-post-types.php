@@ -530,7 +530,7 @@ class TimelineEvent extends CustomPostType{
 		$edit_item      = 'Edit Timeline Event',
 		$new_item       = 'New Timeline Event',
 		$public         = True,
-		$use_categories = False,
+		$use_categories = True,
 		$use_tags       = False,
 		$use_thumbnails = True,
 		$use_editor     = True,
