@@ -85,35 +85,38 @@ if(isset($_GET['json'])) {
 } else { ?>
 <!DOCTYPE html>
 <html>
-<body>
-	<div id="timeline"></div>
-	<?="\n".footer_()."\n"?>
-	<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>
-		<script type="text/javascript">
-			$().ready(function() {
-				var timeline = new VMM.Timeline(),
-					event_post_title = <?= isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
-					marker_index = false;
-				timeline.init('<?=get_permalink($post->ID);?>?json=true<?=isset($_GET['category']) ? '&category='.$_GET['category'] : ''?>');
-				$('#timeline').bind('LOADED',
-					function() {
-						if(event_post_title != false) {
-							$('#timeline .marker > .flag > .flag-content > h3')
-								.each(function(index, element) {
-									if($(element).text() == event_post_title) {
-										marker_index = index;
-										return false
-									}
-								});
-						}
-						if(marker_index != false) {
-							timeline.jumpToEvent(marker_index);
-						}
-					});
-			});
-		</script>
-	<? } ?> 
-</body>
+	<head>
+		<title><?=get_bloginfo('blog_title')?> - <?=$post->post_title?></title>
+	</head>
+	<body>
+		<div id="timeline"></div>
+		<?="\n".footer_()."\n"?>
+		<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>
+			<script type="text/javascript">
+				$().ready(function() {
+					var timeline = new VMM.Timeline(),
+						event_post_title = <?= isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
+						marker_index = false;
+					timeline.init('<?=get_permalink($post->ID);?>?json=true<?=isset($_GET['category']) ? '&category='.$_GET['category'] : ''?>');
+					$('#timeline').bind('LOADED',
+						function() {
+							if(event_post_title != false) {
+								$('#timeline .marker > .flag > .flag-content > h3')
+									.each(function(index, element) {
+										if($(element).text() == event_post_title) {
+											marker_index = index;
+											return false
+										}
+									});
+							}
+							if(marker_index != false) {
+								timeline.jumpToEvent(marker_index);
+							}
+						});
+				});
+			</script>
+		<? } ?> 
+	</body>
 </html>
 <?
 }
