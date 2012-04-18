@@ -103,7 +103,7 @@ if(isset($_GET['json'])) {
 								});
 						}
 						if(marker_index != false) {
-							timeline.setMarker(marker_index);
+							timeline.jumpToEvent(marker_index);
 						}
 					});
 			});
