@@ -1392,6 +1392,38 @@ function save_default($post_id, $field){
 	return;
 }
 
+
+/**
+ * Field type save functions.
+ */
+function save_file($post_id, $field){
+	$file_uploaded = @!empty($_FILES[$field['id']]);
+	if ($file_uploaded){
+		require_once(ABSPATH.'wp-admin/includes/file.php');
+		$override['action'] = 'editpost';
+		$file               = $_FILES[$field['id']];
+		$uploaded_file      = wp_handle_upload($file, $override);
+		
+		# TODO: Pass reason for error back to frontend
+		if ($uploaded_file['error']){return;}
+		
+		$attachment = array(
+			'post_title'     => $file['name'],
+			'post_content'   => '',
+			'post_type'      => 'attachment',
+			'post_parent'    => $post_id,
+			'post_mime_type' => $file['type'],
+			'guid'           => $uploaded_file['url'],
+		);
+		$id = wp_insert_attachment($attachment, $file['file'], $post_id);
+		wp_update_attachment_metadata(
+			$id,
+			wp_generate_attachment_metadata($id, $file['file'])
+		);
+		update_post_meta($post_id, $field['id'], $id);
+	}
+}
+
 /**
  * Handles saving a custom post as well as it's custom fields and metadata.
  *
@@ -1420,6 +1452,9 @@ function _save_meta_data($post_id, $meta_box){
 	
 	foreach ($meta_box['fields'] as $field) {
 		switch ($field['type']){
+			case 'file':
+				save_file($post_id, $field);
+				break;
 			default:
 				save_default($post_id, $field);
 				break;
@@ -1473,6 +1508,24 @@ function _show_meta_boxes($post, $meta_box){
 				<input type="checkbox" name="<?=$field['id']?>" id="<?=$field['id']?>"<?=($current_value) ? ' checked="checked"' : ''?> />
 			
 			<?php break; case 'help':?><!-- Do nothing for help -->
+			<?php break; case 'file':?>
+						<?php
+							$document_id = get_post_meta($post->ID, $field['id'], True);
+							if ($document_id){
+								$document = get_post($document_id);
+								$url      = wp_get_attachment_url($document->ID);
+							}else{
+								$document = null;
+							}
+						?>
+						<label for="file_<?=$post->ID?>"><?=$field['desc'];?></label><br />
+						<?php if($document):?>
+						<a href="<?=$url?>" class="file_link" data-file-id="<?=$document_id?>"><?=$document->post_title?></a><br /><br />
+						<?php endif;?>
+						<input type="file" id="file_<?=$post->ID?>" name="<?=$field['id']?>" data-field-id="<?=$field['id']?>"> 
+						<?php if($document):?>
+						<a href="#" class="clear_file">[Delete]</a><br />
+						<?php endif ?>
 			<?php break; default:?>
 				<p class="error">Don't know how to handle field of type '<?=$field['type']?>'</p>
 			<?php break; endswitch;?>

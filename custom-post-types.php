@@ -433,7 +433,7 @@ class Story extends CustomPostType{
 		$use_order      = False,
 		$use_title      = True,
 		$use_shortcode  = True,
-		$use_metabox    = False;
+		$use_metabox    = True;
 
 	public function objectsToHTML($objects){
 		$class = get_custom_post_type($objects[0]->post_type);
@@ -469,6 +469,36 @@ class Story extends CustomPostType{
 		$outputs[] = '<a class="more-stories clear"><img src="'.get_bloginfo('stylesheet_directory').'/static/img/more.png" /><span>View More Stories</span></a>';
 
 		return implode("\n", $outputs);
+	}
+
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Name',
+				'desc' => '',
+				'id'   => $prefix.'name',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Email',
+				'desc' => '',
+				'id'   => $prefix.'email',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Class Year',
+				'desc' => '',
+				'id'   => $prefix.'class_year',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Photo',
+				'desc' => '',
+				'id'   => $prefix.'photo',
+				'type' => 'file',
+			)
+		);
 	}
 }
 
