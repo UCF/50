@@ -234,15 +234,6 @@
 						});
 				});
 
-				// Hide post body until the More button is clicked
-				var post_body = $('#front-page #post-body');
-				post_body.hide();
-				$('#more')
-					.click(function() {
-						post_body.show();
-						$(this).hide();
-					});
-
 				// Hide stories until `View More Stories` is clicked
 				$('.stories > li:gt(5)').hide();
 				$('.more-stories')
