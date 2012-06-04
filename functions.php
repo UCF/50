@@ -149,7 +149,7 @@ Config::$styles = array(
 	THEME_CSS_URL.'/yahoo.css',
 	THEME_CSS_URL.'/blueprint-screen.css',
 	THEME_CSS_URL.'/jquery.lightbox-0.5.css',
-	'http://veritetimeline.appspot.com/latest/timeline.css',
+	THEME_CSS_URL.'/timeline.css',
 	array('media' => 'print', 'src' => THEME_CSS_URL.'/blueprint-print.css',),
 	THEME_CSS_URL.'/webcom-base.css',
 	get_bloginfo('stylesheet_url')
