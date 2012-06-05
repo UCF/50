@@ -155,10 +155,11 @@ html, body {width:100%;height:100%;}
 .ie8 .photoset .images {
 	margin-top:30px;
 }
-.photoset .images > li {list-style-type:none;float:left;margin-left:25px;margin-bottom:20px;width:250px;height:250px;padding:40px;}
+.photoset .images > li {list-style-type:none;float:left;margin-left:95px;margin-bottom:20px;width:250px;}
 .photoset .images > li.no-margin-left {margin-left:0;}
 .photoset .images > li a {font-weight:normal;text-decoration:none;}
-.photoset .images > li img {box-shadow:3px 5px 10px #CCC;margin:auto;display:block;margin-bottom:10px;max-width:300px;max-height:243px;}
+.photoset .images > li .image {height:250px;margin-bottom:15px;text-align:center;}
+.photoset .images > li .image img {box-shadow:3px 5px 10px #CCC;margin:auto;max-width:250px;max-height:250px;}
 .photoset .images > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 auto;width:290px;}
 .photoset .pagination {margin:20px 0 0 0;padding:0;}
 .photoset .pagination li {margin:0;list-style-type:none;float:left;}

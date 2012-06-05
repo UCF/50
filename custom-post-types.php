@@ -394,7 +394,7 @@ class PhotoSet extends CustomPostType{
 				if($details !== False) {
 					$css   = ($count % 3) == 0 ? ' class="no-margin-left clear" ' : '';
 
-					$outputs[] = '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /><p>'.$image->post_content.'</p></a></li>';
+					$outputs[] = '<li'.$css.'><a href="'.$details[0].'"><div class="image"><img src="'.$details[0].'" /></div><p>'.$image->post_content.'</p></a></li>';
 				}
 				$count++;
 			}
@@ -496,7 +496,7 @@ class Story extends CustomPostType{
 				'name' => 'Photo',
 				'desc' => '',
 				'id'   => $prefix.'photo',
-				'type' => 'file',
+				'type' => 'text',
 			)
 		);
 	}
