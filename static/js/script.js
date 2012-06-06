@@ -80,6 +80,7 @@
 				.each(function(index, photoset) {
 					var photoset     = $(photoset);
 					var images       = photoset.find('.images li'),
+						descriptions = photoset.find('.descriptions li')
 						left         = photoset.find('.left'),
 						right        = photoset.find('.right'),
 						in_progress  = false,
@@ -100,6 +101,7 @@
 
 					// Hide images on pages greater than 1
 					images.filter(':gt(2)').hide();
+					descriptions.filter(':gt(2)').hide();
 
 					// Hide pagination if there is only 1 page
 					if(pages == 1) {
@@ -125,15 +127,19 @@
 								in_progress = true;
 								var range_start = (current_page - 1) * 3,
 									range_end   = current_page * 3;
-								images
-									.slice(range_start,range_end)
-										.fadeOut('slow', function() {
-											images
-												.slice(range_end, range_end + 3)
-													.fadeIn('slow', function() {
-														in_progress = false;
-													});
-										});
+								var hide_images = images.slice(range_start, range_end),
+									show_images = images.slice(range_end, range_end + 3),
+									hide_descriptions = descriptions.slice(range_start, range_end),
+									show_descriptions = descriptions.slice(range_end, range_end + 3);
+
+								$.merge(hide_images,hide_descriptions)
+									.fadeOut('slow', function() {
+										$.merge(show_images, show_descriptions)
+											.fadeIn('slow', function() {
+												in_progress = false;
+											});
+									});
+
 								current_page += 1;
 								activate_current_page();
 
@@ -154,15 +160,19 @@
 								in_progress = true;
 								var range_end   = (current_page - 1) * 3,
 									range_start = (current_page - 2) * 3;
-								images
-									.slice(range_end, range_end + 3)
-										.fadeOut('slow', function() {
-											images
-												.slice(range_start, range_end)
-													.fadeIn('slow', function() {
-														in_progress = false;
-													});
-										});
+								var hide_images = images.slice(range_end, range_end + 3),
+									show_images = images.slice(range_start, range_end),
+									hide_descriptions = images.slice(range_end, range_end + 3),
+									show_descriptions = images.slice(range_start, range_end);
+
+								$.merge(hide_images, hide_descriptions)
+									.fadeOut('slow', function() {
+										$.merge(show_images, show_descriptions)
+											.fadeIn('slow', function() {
+												in_progress = false;
+											});
+									});
+
 								current_page -= 1;
 								activate_current_page();
 								// If the next page to the left is at the left edege of the
@@ -177,20 +187,21 @@
 						});
 					page_links
 						.click(function() {
-							var page_num = page_links.index($(this)) + 1;
+							var page_num = photoset.find('.page').index($(this)) + 1;
 							if(!in_progress && page_num != current_page) {
 								in_progress = true;
 								var range_end   = page_num * 3,
 									range_start = (page_num - 1) * 3,
 									going_left  = page_num < current_page ? true : false;
-								images
+								$.merge(images, descriptions)
 									.filter(':visible')
 										.fadeOut('slow', function() {
-											images
-												.slice(range_start, range_end)
-													.fadeIn('slow', function() {
-														in_progress = false;
-													});
+											$.merge(
+												images.slice(range_start, range_end),
+												descriptions.slice(range_start, range_end)
+											).fadeIn('slow', function() {
+												in_progress = false;
+											});
 										});
 								current_page = page_num;
 								activate_current_page();
@@ -215,21 +226,22 @@
 					show_all
 						.click(function(event) {
 							event.preventDefault();
-							var visible_images = images.filter(':visible');
 
-							if(visible_images.length <= 3) { // Show the rest of the images
+							if($(this).text() == 'Show All') { // Show the rest of the images
 								images.show();
-								show_all.text('Hide All');
-								pagination.hide();
+								descriptions.show();
+								$(this).text('Hide All');
+								photoset.find('.pagination').hide();
 							} else { // Hide everything except the first page
 								images.filter(':gt(2)').hide();
+								descriptions.filter(':gt(2)').hide();
 								current_page = 1;
 								page_links
 									.filter(':lt(2)').show().end()
 									.filter(':gt(2)').hide();
 								activate_current_page();
-								pagination.show();
-								show_all.text('Show All')
+								photoset.find('.pagination').show();
+								$(this).text('Show All')
 							}
 						});
 				});

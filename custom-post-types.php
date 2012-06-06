@@ -387,18 +387,34 @@ class PhotoSet extends CustomPostType{
 
 			$outputs[] = '<fieldset class="photoset clear span-24 last" id="photoset-'.$o->post_title.'">';
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
-			$outputs[] = '<ul class="images clearfix">';
+
 			$count = 0;
+			$images_html       = '';
+			$description_html  = '';
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'large');
 				if($details !== False) {
+					if(($count % 3) == 0) {
+						if(strlen($images_html) == 0) {
+							$images_html       = '<ul class="images clearfix">';
+							$description_html  = '<ul class="descriptions clearfix">';
+						} else {
+							$outputs[]         = $images_html.'</ul>'.$description_html.'</ul>';
+							$images_html       = '<ul class="images clearfix">';
+							$description_html  = '<ul class="descriptions clearfix">';
+						}
+					}
 					$css   = ($count % 3) == 0 ? ' class="no-margin-left clear" ' : '';
 
-					$outputs[] = '<li'.$css.'><a href="'.$details[0].'"><div class="image"><img src="'.$details[0].'" /></div><p>'.$image->post_content.'</p></a></li>';
+					$images_html      .= '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></li>';
+					$description_html .= '<li'.$css.'><p>'.$image->post_content.'</p></li>';
 				}
 				$count++;
 			}
-			$outputs[] = '</ul><div class="clear">&nbsp;</div>';
+			if(strlen($images_html) != 0) {
+				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
+			}
+			$outputs[] = '<div class="clear">&nbsp;</div>';
 			$outputs[] = '<div class="span-18 clear"><ul class="pagination"><li><a class="left">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page">'.$i.'</a></li>';

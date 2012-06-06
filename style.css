@@ -150,17 +150,18 @@ html, body {width:100%;height:100%;}
 	padding-bottom:0;
 }
 .photoset legend {font-family:"Helvetica Neue",Helvetica,sans-serif !important;font-weight:200;font-size:30px;padding-right:10px;}
-.photoset .images {margin:0 0 5px 0;padding:0;}
+.photoset .images,
+.photoset .descriptions {margin:0 0 5px 0;padding:0;}
 .ie7 .photoset .images,
 .ie8 .photoset .images {
 	margin-top:30px;
 }
-.photoset .images > li {list-style-type:none;float:left;margin-left:95px;margin-bottom:20px;width:250px;}
-.photoset .images > li.no-margin-left {margin-left:0;}
-.photoset .images > li a {font-weight:normal;text-decoration:none;}
-.photoset .images > li .image {height:250px;margin-bottom:15px;text-align:center;}
-.photoset .images > li .image img {box-shadow:3px 5px 10px #CCC;margin:auto;max-width:250px;max-height:250px;}
-.photoset .images > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 auto;width:290px;}
+.photoset .images > li,
+.photoset .descriptions > li {list-style-type:none;float:left;margin-left:95px;margin-bottom:20px;width:250px;}
+.photoset li.no-margin-left {margin-left:0;}
+.photoset li a {font-weight:normal;text-decoration:none;}
+.photoset .images > li img {box-shadow:3px 5px 10px #CCC;margin:auto;max-width:250px;max-height:250px;display:block;}
+.photoset .descriptions > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 auto;width:290px;}
 .photoset .pagination {margin:20px 0 0 0;padding:0;}
 .photoset .pagination li {margin:0;list-style-type:none;float:left;}
 .photoset .pagination li a {
