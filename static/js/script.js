@@ -232,6 +232,7 @@
 								descriptions.show();
 								$(this).text('Hide All');
 								photoset.find('.pagination').hide();
+								photoset.find('.descriptions:not(:last)').css('margin-bottom', '50px');
 							} else { // Hide everything except the first page
 								images.filter(':gt(2)').hide();
 								descriptions.filter(':gt(2)').hide();
@@ -241,7 +242,8 @@
 									.filter(':gt(2)').hide();
 								activate_current_page();
 								photoset.find('.pagination').show();
-								$(this).text('Show All')
+								$(this).text('Show All');
+								photoset.find('.descriptions').css('margin-bottom', '0');
 							}
 						});
 				});
