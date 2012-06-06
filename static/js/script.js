@@ -90,6 +90,26 @@
 					var pages        = Math.ceil(images.length / 3),
 						current_page = 1;
 
+					$(window)
+						.load(function() {
+							var tallest = null;
+							images
+								.find('img')
+									.each(function(_index, img) {
+										var img = $(img);
+										if(tallest == null) {
+											tallest = img;
+										} else if(img.height() > tallest.height()) {
+											tallest = img
+										}
+									})
+								.end()
+								.height(tallest.height())
+								.find('img')
+									.css('position', 'absolute')
+									.css('bottom', '0');
+ 						});
+					
 
 					// Lightbox
 					images.find('a').lightBox({
