@@ -286,4 +286,4 @@ html, body {width:100%;height:100%;}
 #tag-stories > li > a {text-decoration:none;font-weight:normal;}
 #tag-stories > li > a > h2 {margin-bottom:10px;}
 
-#back_link {position:absolute;top:0;left:20px;text-indent:-500em;background-image:url('static/img/logo-highlight-small.png');background-repeat:no-repeat;height:58px;width:100px;}
+#back_link {position:absolute;top:0;left:20px;text-indent:-500em;background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:58px;width:233px;height:135px;}
