@@ -276,6 +276,16 @@
 						$(this).prev('ul').find('li').show();
 						$(this).hide();
 					});
+
+				if(navigator.userAgent.match(/iPad/i)) {
+					$('#feature-wrap')
+						.css('width', '100%')
+						.css('height', '100%')
+						.css('left', '0')
+						.css('top', '0');
+					$('#header #header-menu li').css('margin-left', '-6px');
+
+				};
 		})();
 	});
 }else{console.log('jQuery dependancy failed to load');}
