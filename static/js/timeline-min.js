@@ -3042,7 +3042,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 						// trace("YEAR ONLY");
 						_date = d.getFullYear();
 					} else {
-						if (d.getDate() <= 1 && d.getHours() === 0 && d.getMinutes() === 0) {
+						if (d.getDate() < 1 && d.getHours() === 0 && d.getMinutes() === 0) {
 							// trace("YEAR MONTH");
 							if (is_abbr) {
 								_date = VMM.Util.date.month_abbr[d.getMonth()];
