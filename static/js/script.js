@@ -287,20 +287,17 @@
 					$('#header #header-menu li').css('margin-left', '-6px');
 
 				};
-
 				if(ipad) {
 					function on_orientation_change() {
 						if(orientation == '0' || orientation == '180') {
-							//$('#feature-wrap img').width('768px');
 							$('#UCFHBHeader div.UCFHBWrapper').width('768px');
 							$('body').scrollLeft(0)
 							$('#blueprint-container').width('768px');
-							$('#feature-wrap div').width('768px');
-							//alert($('#feature-wrap div').width())
+							$('#header-wrap.front-page').width('768px');
 						} else {
 							$('#UCFHBHeader div.UCFHBWrapper').width('974px');
 							$('#blueprint-container').width('950px');
-							$('#feature-wrap div').width('100%');
+							$('#header-wrap.front-page').width('100%');
 						}
 					}
 					$(window).bind('orientationchange', on_orientation_change);
