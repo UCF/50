@@ -25,6 +25,7 @@ html, body {width:100%;height:100%;}
 #wp-search-results .results article.odd {background-color:#f9f9f9;}
 
 /* Header */
+#header {border-bottom:0;}
 #header-wrap {
 	position:absolute;
 	top:37px;
@@ -32,7 +33,7 @@ html, body {width:100%;height:100%;}
 	width:100%;
 	z-index:2;}
 #header-wrap.front-page {overflow:hidden;}
-#header {margin-left:auto;margin-right:auto;float:none;border:none;}
+#header {margin-left:auto;margin-right:auto;float:none;}
 #header h1 a {margin:1px auto 0 auto;display:block;text-indent:-500em;background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:138px;width:232px;}
 #header #header-menu {margin-left:65px;margin-top:45px;padding-top:0;}
 #header #header-menu li {margin:0 0 0 -5px;padding:0;}
@@ -64,7 +65,7 @@ html, body {width:100%;height:100%;}
 .subpage #header #header-menu li a {background:none;}
 
 /* Front Page */
-#front-page {width:100%;height:100%;margin-top:0;display:none;}
+#front-page {width:100%;height:100%;margin-top:0;}
 /** Deep Magic **/
 #front-page #feature-wrap {
 	z-index:1;
@@ -78,6 +79,10 @@ html, body {width:100%;height:100%;}
 #front-page #feature-wrap > div {
 	display:table-cell;
 	vertical-align:middle;
+}
+#front-page #feature-wrap {
+	overflow:hidden;
+	display:block;
 }
 #front-page #feature-wrap img {
 	position:relative;
