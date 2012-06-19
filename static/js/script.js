@@ -10,7 +10,8 @@
 		
 		/* Theme Specific Code Here */
 		(function() {
-			var ie7 = false;
+			var ie7 = false,
+				ipad = (navigator.userAgent.match(/iPad/i) != null);
 
 			if($.browser.msie && $.browser.version == '7.0') {
 				ie7 = true
@@ -62,7 +63,7 @@
 					var aspect_ratio = front_page_image.width() / front_page_image.height();
 
 					var target_width = Math.round(window_height * aspect_ratio);
-					
+
 					front_page_image.width((window_width > target_width ? window_width : target_width));
 
 					center_browser_support();
@@ -286,6 +287,25 @@
 					$('#header #header-menu li').css('margin-left', '-6px');
 
 				};
+
+				if(ipad) {
+					function on_orientation_change() {
+						if(orientation == '0' || orientation == '180') {
+							//$('#feature-wrap img').width('768px');
+							$('#UCFHBHeader div.UCFHBWrapper').width('768px');
+							$('body').scrollLeft(0)
+							$('#blueprint-container').width('768px');
+							$('#feature-wrap div').width('768px');
+							//alert($('#feature-wrap div').width())
+						} else {
+							$('#UCFHBHeader div.UCFHBWrapper').width('974px');
+							$('#blueprint-container').width('950px');
+							$('#feature-wrap div').width('100%');
+						}
+					}
+					$(window).bind('orientationchange', on_orientation_change);
+					on_orientation_change();
+				}
 		})();
 	});
 }else{console.log('jQuery dependancy failed to load');}
