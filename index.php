@@ -1,18 +1,16 @@
 <?php get_header();?>
-<div class="page-content" id="post-list">
-	<div class="span9">
-		<?php while(have_posts()): the_post();?>
-		<article class="<?=$post->post_status?>">
-			<h1><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
-			<div class="meta">
-				<span class="date"><?php the_time("F j, Y");?></span>
-				<span class="author">by <?php the_author_posts_link();?></span>
-			</div>
-			<div class="summary">
-				<?php the_excerpt();?>
-			</div>
-		</article>
-		<?php endwhile;?>
+<div class="page-content" id="front-page">
+	<? extract(get_front_page_post()); ?>
+	<div id="feature-wrap">
+		<div>
+			<img src="<?=$featured_image[0]?>" />
+		</div>
+	</div>
+	<div id="post-content">
+		<h2 class="sans"><?=$post->post_title?></h2>
+		<div id="post-body">
+			<?=apply_filters('the_content', $post->post_content)?>
+		</div>
 	</div>
 </div>
 <?php get_footer();?>
