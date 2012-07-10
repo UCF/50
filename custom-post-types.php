@@ -454,16 +454,16 @@ class Story extends CustomPostType{
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
 		
-		$outputs = array('<ul class="stories clear">');
+		$outputs = array('<ul class="stories row">');
 
 		$o_count = 1;
 		foreach($objects as $o){
 
 			if($o_count == 4) {
-				$outputs[] = '</ul><ul class="stories clear">';
+				$outputs[] = '</ul><ul class="stories row">';
 			}
 
-			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'>';
+			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left span4"':' class="span4"').'>';
 			$outputs[] = '<a href="'.get_permalink($o->ID).'">';
 			$outputs[] = '<div class="title"><strong>'.$o->post_title.'</strong></div>';
 			$outputs[] = '<div class="content">'.truncate(strip_tags($o->post_content), 40).'</div></a>';
@@ -473,7 +473,7 @@ class Story extends CustomPostType{
 			$num_tags  = count($tags);
 			$tag_count = 1;
 			foreach($tags as $tag) {
-				$outputs[] = '<li><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
+				$outputs[] = '<li class="span4"><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
 				$tag_count++;
 			}
 			
