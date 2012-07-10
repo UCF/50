@@ -1,21 +1,38 @@
 		<div id="footer">	
 			<div class="container">
 				<div class="row">
-					<div class="span3">
-						<strong>title</strong>
-						<p>some stuff will go here</p>
+					<div class="footer-widget-1 span3">
+						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column One')):?>
+							<a class="ignore-external" href="http://www.ucf.edu"><img src="<?=THEME_IMG_URL?>/logo.png" alt="" title="" /></a>
+						<?php endif;?>
 					</div>
-					<div class="span3">
-						<strong>title</strong>
-						<p>some stuff will go here</p>
+					<div class="footer-widget-2 span3">
+						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>
+						&nbsp;
+						<?php endif;?>
 					</div>
-					<div class="span3">
-						<strong>title</strong>
-						<p>some stuff will go here</p>
+					<div class="footer-widget-3 span3">
+						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Three')):?>
+						&nbsp;
+						<?php endif;?>
 					</div>
-					<div class="span3">
-						<strong>title</strong>
-						<p>some stuff will go here</p>
+					<div class="footer-widget-4 span3">
+						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Four')):?>
+							<?php $options = get_option(THEME_OPTIONS_NAME);?>
+							<?php if($options['site_contact'] or $options['organization_name']):?>
+								<div class="maintained">
+									Site maintained by the <br />
+									<?php if($options['site_contact'] and $options['organization_name']):?>
+									<a href="mailto:<?=$options['site_contact']?>"><?=$options['organization_name']?></a>
+									<?php elseif($options['site_contact']):?>
+									<a href="mailto:<?=$options['site_contact']?>"><?=$options['site_contact']?></a>
+									<?php elseif($options['organization_name']):?>
+									<?=$options['organization_name']?>
+									<?php endif;?>
+								</div>
+								<?php endif;?>
+							<div class="copyright">&copy; University of Central Florida</div>
+						<?php endif;?>
 					</div>
 				</div><!-- .row -->
 			</div><!-- .container -->
