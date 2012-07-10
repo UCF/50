@@ -101,6 +101,10 @@ body { background: #fff; }
 	background: #333;
 	color: #fff;
 }
+#footer a, #footer p { color: #fff; font-size: 13px;}
+#footer h2.widgettitle { font-size: 13px; color: #fff; line-height: 20px; }
+#footer ul.menu { list-style-type: none; margin-left: 0;}
+#footer a.underline { text-decoration:underline; }
 
 /* Front Page */
 #front-page {width:100%;height:100%;margin-top:0;}
