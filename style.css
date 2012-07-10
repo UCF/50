@@ -66,7 +66,7 @@ body { background: #fff; }
 #header {margin-left:auto;margin-right:auto;float:none;}
 #header h1 a {margin:1px auto 0 auto;display:block;text-indent:-500em;background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:138px;width:232px;}
 #header #header-menu {margin-left:65px;margin-top:45px;padding-top:0;}
-#header #header-menu li {margin:0 0 0 -5px;padding:0;}
+#header #header-menu li {margin:0 0 0 -1px;padding:0;}
 .ie9 #header #header-menu li {margin-left:0;}
 #header #header-menu li:after {content:'';}
 #header #header-menu li a {
