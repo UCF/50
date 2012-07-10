@@ -347,6 +347,8 @@ Config::$links = array(
 Config::$styles = array(
 	array('admin' => True, 'src' => THEME_CSS_URL.'/admin.css',),
 	'http://universityheader.ucf.edu/bar/css/bar.css',
+	THEME_CSS_URL.'/jquery.lightbox-0.5.css',
+	THEME_CSS_URL.'/timeline.css',
 	THEME_STATIC_URL.'/bootstrap/build/css/bootstrap.css',
 );
 
