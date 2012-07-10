@@ -11,65 +11,14 @@
 function __init__(){
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails');
-	add_image_size('homepage', 620);
-	add_image_size('homepage-secondary', 540);
 	register_nav_menu('header-menu', __('Header Menu'));
 	register_nav_menu('footer-menu', __('Footer Menu'));
 	register_sidebar(array(
 		'name'          => __('Sidebar'),
 		'id'            => 'sidebar',
-		'description'   => 'Sidebar found on two column page templates and search pages',
+		'description'   => 'Sidebar found throughout site',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
-	));
-	register_sidebar(array(
-		'name'          => __('Below the Fold - Left'),
-		'id'            => 'bottom-left',
-		'description'   => 'Left column on the bottom of pages, after flickr images if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	));
-	register_sidebar(array(
-		'name'          => __('Below the Fold - Center'),
-		'id'            => 'bottom-center',
-		'description'   => 'Center column on the bottom of pages, after news if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	));
-	register_sidebar(array(
-		'name'          => __('Below the Fold - Right'),
-		'id'            => 'bottom-right',
-		'description'   => 'Right column on the bottom of pages, after events if enabled.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column One'),
-		'id' => 'bottom-one',
-		'description' => 'Far left column in footer on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column Two'),
-		'id' => 'bottom-two',
-		'description' => 'Second column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column Three'),
-		'id' => 'bottom-three',
-		'description' => 'Third column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column Four'),
-		'id' => 'bottom-four',
-		'description' => 'Far right in footer on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
 	));
 	foreach(Config::$styles as $style){Config::add_css($style);}
 	foreach(Config::$scripts as $script){Config::add_script($script);}
@@ -78,7 +27,6 @@ function __init__(){
 	$timer = Timer::start();
 	
 	wp_deregister_script('l10n');
-	set_defaults_for_options();
 }
 add_action('after_setup_theme', '__init__');
 
@@ -112,15 +60,7 @@ define('CB_DOMAIN', $theme_options['cb_domain']);
  * object.
  **/
 Config::$custom_post_types = array(
-	'Video',
-	'Document',
-	'Publication',
-	'Page',
-	'Person'
-);
-
-Config::$custom_taxonomies = array(
-	'OrganizationalGroups'
+	'FrontPage', 'PhotoSet', 'Story', 'Timeline', 'TimelineEvent'
 );
 
 Config::$body_classes = array('default',);
@@ -430,10 +370,12 @@ if ($theme_options['bootstrap_enable_responsive'] == 1) {
 
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
-	'http://universityheader.ucf.edu/bar/js/university-header.js',
+	//'http://universityheader.ucf.edu/bar/js/university-header.js',
 	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.7.1.min.js',),
 	THEME_STATIC_URL.'/bootstrap/build/js/bootstrap.js',
-	//THEME_JS_URL.'/jquery-extras.js',
+	THEME_JS_URL.'/jquery-extras.js',
+	THEME_JS_URL.'/jquery.lightbox-0.5.pack.js',
+	THEME_JS_URL.'/timeline-min.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );
