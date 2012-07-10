@@ -1,12 +1,12 @@
 <?php disallow_direct_load('single.php');?>
 <?php get_header(); the_post();?>
 	
-	<div class="span-24 last page-content" id="photoset-page">
-		<div class="span-24">
+	<div class="row page-content" id="photoset-page">
+		<div class="span12">
 			<article>
 				<h1><?php the_title();?></h1>
 				<?php the_content();?>
-				<ul id="images" class="span-24 last">
+				<ul id="images">
 					<? $images = get_posts(array(
 									'post_type'   => 'attachment',
 									'numberposts' => -1,
