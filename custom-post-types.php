@@ -240,403 +240,397 @@ abstract class CustomPostType{
 }
 
 
-class Document extends CustomPostType{
-	public
-		$name           = 'document',
-		$plural_name    = 'Documents',
-		$singular_name  = 'Document',
-		$add_new_item   = 'Add New Document',
-		$edit_item      = 'Edit Document',
-		$new_item       = 'New Document',
-		$use_title      = True,
-		$use_editor     = False,
-		$use_shortcode  = True,
-		$use_metabox    = True;
-	
-	public function fields(){
-		$fields   = parent::fields();
-		$fields[] = array(
-			'name' => __('URL'),
-			'desc' => __('Associate this document with a URL.  This will take precedence over any uploaded file, so leave empty if you want to use a file instead.'),
-			'id'   => $this->options('name').'_url',
-			'type' => 'text',
-		);
-		$fields[] = array(
-			'name'    => __('File'),
-			'desc'    => __('Associate this document with an already existing file.'),
-			'id'      => $this->options('name').'_file',
-			'type'    => 'file',
-		);
-		return $fields;
-	}
-	
-	
-	static function get_document_application($form){
-		return mimetype_to_application(self::get_mimetype($form));
-	}
-	
-	
-	static function get_mimetype($form){
-		if (is_numeric($form)){
-			$form = get_post($form);
-		}
-		
-		$prefix   = post_type($form);
-		$document = get_post(get_post_meta($form->ID, $prefix.'_file', True));
-		
-		$is_url = get_post_meta($form->ID, $prefix.'_url', True);
-		
-		return ($is_url) ? "text/html" : $document->post_mime_type;
-	}
-	
-	
-	static function get_title($form){
-		if (is_numeric($form)){
-			$form = get_post($form);
-		}
-		
-		$prefix = post_type($form);
-		
-		return $form->post_title;
-	}
-	
-	static function get_url($form){
-		if (is_numeric($form)){
-			$form = get_post($form);
-		}
-		
-		$prefix = post_type($form);
-		
-		$x = get_post_meta($form->ID, $prefix.'_url', True);
-		$y = wp_get_attachment_url(get_post_meta($form->ID, $prefix.'_file', True));
-		
-		if (!$x and !$y){
-			return '#';
-		}
-		
-		return ($x) ? $x : $y;
-	}
-	
-	
-	/**
-	 * Handles output for a list of objects, can be overridden for descendants.
-	 * If you want to override how a list of objects are outputted, override
-	 * this, if you just want to override how a single object is outputted, see
-	 * the toHTML method.
-	 **/
-	public function objectsToHTML($objects, $css_classes){
-		if (count($objects) < 1){ return '';}
-		
-		$class_name = get_custom_post_type($objects[0]->post_type);
-		$class      = new $class_name;
-		
-		ob_start();
-		?>
-		<ul class="nobullet <?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
-			<?php foreach($objects as $o):?>
-			<li class="document <?=$class_name::get_document_application($o)?>">
-				<?=$class->toHTML($o)?>
-			</li>
-			<?php endforeach;?>
-		</ul>
-		<?php
-		$html = ob_get_clean();
-		return $html;
-	}
-	
-	
-	/**
-	 * Outputs this item in HTML.  Can be overridden for descendants.
-	 **/
-	public function toHTML($object){
-		$title = Document::get_title($object);
-		$url   = Document::get_url($object);
-		$html = "<a href='{$url}'>{$title}</a>";
-		return $html;
-	}
-}
-
-
-class Video extends CustomPostType{
+class Example extends CustomPostType{
 	public 
-		$name           = 'video',
-		$plural_name    = 'Videos',
-		$singular_name  = 'Video',
-		$add_new_item   = 'Add New Video',
-		$edit_item      = 'Edit Video',
-		$new_item       = 'New Video',
+		$name           = 'example',
+		$plural_name    = 'Examples',
+		$singular_name  = 'Example',
+		$add_new_item   = 'Add New Example',
+		$edit_item      = 'Edit Example',
+		$new_item       = 'New Example',
 		$public         = True,
-		$use_editor     = False,
+		$use_categories = True,
 		$use_thumbnails = True,
-		$use_order      = True,
-		$use_title      = True,
-		$use_metabox    = True;
-	
-	public function get_player_html($video){
-		return sc_video(array('video' => $video));
-	}
-	
-	public function metabox(){
-		$metabox = parent::metabox();
-		
-		$metabox['title']   = 'Videos on Media Page';
-		$metabox['helptxt'] = 'Video icon will be resized to width 210px, height 118px.';
-		return $metabox;
-	}
-	
-	public function fields(){
-		$prefix = $this->options('name').'_';
-		return array(
-			array(
-				'name' => 'URL',
-				'desc' => 'YouTube URL pointing to video.<br>  Example: http://www.youtube.com/watch?v=IrSeMg7iPbM',
-				'id'   => $prefix.'url',
-				'type' => 'text',
-				'std'  => ''
-			),
-			array(
-				'name' => 'Video Description',
-				'desc' => 'Short description of the video.',
-				'id'   => $prefix.'description',
-				'type' => 'textarea',
-				'std'  => ''
-			),
-			array(
-				'name' => 'Shortcode',
-				'desc' => 'To include this video in other posts, use the following shortcode:',
-				'id'   => 'video_shortcode',
-				'type' => 'shortcode',
-				'value' => '[video name="TITLE"]',
-			),
-		);
-	}
-}
-
-
-class Publication extends CustomPostType{
-	public 
-		$name           = 'publication',
-		$plural_name    = 'Publications',
-		$singular_name  = 'Publication',
-		$add_new_item   = 'Add New Publication',
-		$edit_item      = 'Edit Publication',
-		$new_item       = 'New Publication',
-		$public         = True,
-		$use_editor     = False,
-		$use_thumbnails = True,
-		$use_order      = True,
-		$use_title      = True,
-		$use_metabox    = True;
-	
-	public function toHTML($pub){
-		return sc_publication(array('pub' => $pub));
-	}
-	
-	public function metabox(){
-		$metabox = parent::metabox();
-		
-		$metabox['title']   = 'Publications on Media Page';
-		$metabox['helptxt'] = 'Publication cover icon will be resized to width 153px, height 198px.';
-		return $metabox;
-	}
-	
-	public function fields(){
-		$prefix = $this->options('name').'_';
-		return array(
-			array(
-				'name'  => 'Publication URL',
-				'desc' => 'Example: <span style="font-family:monospace;font-weight:bold;color:#21759B;">http://publications.smca.ucf.edu/admissions/viewbook.html</span>',
-				'id'   => $prefix.'url',
-				'type' => 'text',
-				'std'  => '',
-			),
-			array(
-				'name' => 'Shortcode',
-				'desc' => 'To include this publication in other posts, use the following shortcode: <input disabled="disabled" type="text" value="[publication name=]" />',
-				'id'   => 'publication_shortcode',
-				'type' => 'help',
-				'value' => '[publication name="TITLE"]',
-			),
-		);
-	}
-}
-
-class Page extends CustomPostType {
-	public
-		$name           = 'page',
-		$plural_name    = 'Pages',
-		$singular_name  = 'Page',
-		$add_new_item   = 'Add New Page',
-		$edit_item      = 'Edit Page',
-		$new_item       = 'New Page',
-		$public         = True,
 		$use_editor     = True,
-		$use_thumbnails = False,
 		$use_order      = True,
 		$use_title      = True,
-		$use_metabox    = True,
-		$built_in       = True;
-
-	public function fields() {
-		$prefix = $this->options('name').'_';
+		$use_shortcode  = True,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+	
+	public function fields(){
 		return array(
 			array(
-				'name' => 'Hide Lower Section',
-				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',
-				'id'   => $prefix.'hide_fold',
-				'type' => 'checkbox',
+				'name'  => 'Helpy Help',
+				'desc'  => 'Help Example, static content to assist the nice users.',
+				'id'    => $this->options('name').'_help',
+				'type'  => 'help',
 			),
-				array(
-					'name' => 'Stylesheet',
-					'desc' => '',
-					'id' => $prefix.'stylesheet',
-					'type' => 'file',
-				),
+			array(
+				'name' => 'Text',
+				'desc' => 'Text field example',
+				'id'   => $this->options('name').'_text',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Textarea',
+				'desc' => 'Textarea example',
+				'id'   => $this->options('name').'_textarea',
+				'type' => 'textarea',
+			),
+			array(
+				'name'    => 'Select',
+				'desc'    => 'Select example',
+				'default' => '(None)',
+				'id'      => $this->options('name').'_select',
+				'options' => array('Select One' => 1, 'Select Two' => 2,),
+				'type'    => 'select',
+			),
+			array(
+				'name'    => 'Radio',
+				'desc'    => 'Radio example',
+				'id'      => $this->options('name').'_radio',
+				'options' => array('Key One' => 1, 'Key Two' => 2,),
+				'type'    => 'radio',
+			),
+			array(
+				'name'  => 'Checkbox',
+				'desc'  => 'Checkbox example',
+				'id'    => $this->options('name').'_checkbox',
+				'type'  => 'checkbox',
+			),
 		);
 	}
 }
 
-/**
- * Describes a staff member
- *
- * @author Chris Conover
- **/
-class Person extends CustomPostType
-{
-	/*
-	The following query will pre-populate the person_orderby_name
-	meta field with a guess of the last name extracted from the post title.
-	
-	>>>BE SURE TO REPLACE wp_<number>_... WITH THE APPROPRIATE SITE ID<<<
-	
-	INSERT INTO wp_29_postmeta(post_id, meta_key, meta_value) 
-	(	SELECT	id AS post_id, 
-						'person_orderby_name' AS meta_key, 
-						REVERSE(SUBSTR(REVERSE(post_title), 1, LOCATE(' ', REVERSE(post_title)))) AS meta_value
-		FROM		wp_29_posts AS posts
-		WHERE		post_type = 'person' AND
-						(	SELECT meta_id 
-							FROM wp_29_postmeta 
-							WHERE post_id = posts.id AND
-										meta_key = 'person_orderby_name') IS NULL)
-	*/
-
-	public
-		$name           = 'person',
-		$plural_name    = 'People',
-		$singular_name  = 'Person',
-		$add_new_item   = 'Add Person',
-		$edit_item      = 'Edit Person',
-		$new_item       = 'New Person',
+class FrontPage extends CustomPostType{
+	public 
+		$name           = 'frontpage',
+		$plural_name    = 'Front Pages',
+		$singular_name  = 'Front PAge',
+		$add_new_item   = 'Add New Front Page',
+		$edit_item      = 'Edit Front Page',
+		$new_item       = 'New Front Page',
 		$public         = True,
-		$use_shortcode  = True,
-		$use_metabox    = True,
+		$use_categories = false,
 		$use_thumbnails = True,
-		$use_order      = True,
-		$taxonomies     = array('org_groups', 'category');
+		$use_editor     = True,
+		$use_order      = false,
+		$use_title      = True,
+		$use_shortcode  = false,
+		$use_metabox    = false;
+		
+}
 
-		public function fields(){
-			$fields = array(
-				array(
-					'name'    => __('Title Prefix'),
-					'desc'    => '',
-					'id'      => $this->options('name').'_title_prefix',
-					'type'    => 'text',
-				),
-				array(
-					'name'    => __('Title Suffix'),
-					'desc'    => __('Be sure to include leading comma or space if neccessary.'),
-					'id'      => $this->options('name').'_title_suffix',
-					'type'    => 'text',
-				),
-				array(
-					'name'    => __('Job Title'),
-					'desc'    => __(''),
-					'id'      => $this->options('name').'_jobtitle',
-					'type'    => 'text',
-				),
-				array(
-					'name'    => __('Phone'),
-					'desc'    => __('Separate multiple entries with commas.'),
-					'id'      => $this->options('name').'_phones',
-					'type'    => 'text',
-				),
-				array(
-					'name'    => __('Email'),
-					'desc'    => __(''),
-					'id'      => $this->options('name').'_email',
-					'type'    => 'text',
-				),
-				array(
-					'name'    => __('Order By Name'),
-					'desc'    => __('Name used for sorting. Leaving this field blank may lead to an unexpected sort order.'),
-					'id'      => $this->options('name').'_orderby_name',
-					'type'    => 'text',
-				),
-			);
-			return $fields;
+class PhotoSet extends CustomPostType{
+	public 
+		$name           = 'photoset',
+		$plural_name    = 'Photo Sets',
+		$singular_name  = 'Photo Set',
+		$add_new_item   = 'Add New Photo Set',
+		$edit_item      = 'Edit Photo Set',
+		$new_item       = 'New Photo Set',
+		$public         = True,
+		$use_categories = False,
+		$use_thumbnails = True,
+		$use_editor     = False,
+		$use_order      = True,
+		$use_title      = True,
+		$use_shortcode  = True,
+		$use_metabox    = False;
+	
+	public function get_objects($options=array()){
+		//Overriden to order by menu_order
+		parent::get_objects(array_merge(array('orderby'=>'menu_order'), $options));
+	}
+
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		// Photoset Navigation
+		$outputs = array('<ul class="photoset-nav span-24 last">');
+		foreach($objects as $o){
+			$outputs[] = '<li><a href="#photoset-'.$o->post_title.'">'.$o->post_title.'</a></li>';
+		}
+		$outputs[] = '</ul>';
+
+		// Photosets
+		foreach($objects as $o){
+			// Attachemnts - Assume they are all images
+			$images = get_posts(array(
+				'post_type'   => 'attachment',
+				'numberposts' => -1,
+				'post_status' => NULL,
+				'post_parent' => $o->ID,
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC'));
+
+			$outputs[] = '<fieldset class="photoset clear span-24 last" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<legend>'.$o->post_title.'</legend>';
+
+			$count = 0;
+			$images_html       = '';
+			$description_html  = '';
+			foreach($images as $image) {
+				$details = wp_get_attachment_image_src($image->ID, 'large');
+				if($details !== False) {
+					if(($count % 3) == 0) {
+						if(strlen($images_html) == 0) {
+							$images_html       = '<ul class="images clearfix">';
+							$description_html  = '<ul class="descriptions clearfix">';
+						} else {
+							$outputs[]         = $images_html.'</ul>'.$description_html.'</ul>';
+							$images_html       = '<ul class="images clearfix">';
+							$description_html  = '<ul class="descriptions clearfix">';
+						}
+					}
+					$css   = ($count % 3) == 0 ? ' class="no-margin-left clear" ' : '';
+
+					$images_html      .= '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></li>';
+					$description_html .= '<li'.$css.'><p>'.$image->post_content.'</p></li>';
+				}
+				$count++;
+			}
+			if(strlen($images_html) != 0) {
+				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
+			}
+			$outputs[] = '<div class="clear">&nbsp;</div>';
+			$outputs[] = '<div class="span-18 clear"><ul class="pagination"><li><a class="left">&larr;</a></li>';
+			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
+				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
+			}
+			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a class="show_all">Show All</a></div>';
+			$outputs[] = '<div class="instructions span-6 last">Click on an image to see it larger.</span>';
+			$outputs[] = '</fieldset>';
 		}
 
-	public function get_objects($options=array()){
-		$options['order']    = 'ASC';
-		$options['orderby']  = 'person_orderby_name';
-		$options['meta_key'] = 'person_orderby_name';
-		return parent::get_objects($options);
+		return implode("\n", $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+}
+
+class Story extends CustomPostType{
+	public 
+		$name           = 'story',
+		$plural_name    = 'Stories',
+		$singular_name  = 'Story',
+		$add_new_item   = 'Add New Story',
+		$edit_item      = 'Edit Story',
+		$new_item       = 'New Story',
+		$public         = True,
+		$use_tags       = True,
+		$use_thumbnails = False,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = True,
+		$use_metabox    = True;
+
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array('<ul class="stories clear">');
+
+		$o_count = 1;
+		foreach($objects as $o){
+
+			if($o_count == 4) {
+				$outputs[] = '</ul><ul class="stories clear">';
+			}
+
+			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'>';
+			$outputs[] = '<a href="'.get_permalink($o->ID).'">';
+			$outputs[] = '<div class="title"><strong>'.$o->post_title.'</strong></div>';
+			$outputs[] = '<div class="content">'.truncate(strip_tags($o->post_content), 40).'</div></a>';
+			$outputs[] = '<ul class="tags">';
+
+			$tags      = wp_get_post_tags($o->ID);
+			$num_tags  = count($tags);
+			$tag_count = 1;
+			foreach($tags as $tag) {
+				$outputs[] = '<li><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
+				$tag_count++;
+			}
+			
+			$outputs[] = '</ul></li>';
+			$o_count++;
+		}
+		$outputs[] = '</ul>';
+		$outputs[] = '<a class="more-stories clear"><img src="'.get_bloginfo('stylesheet_directory').'/static/img/more.png" /><span>View More Stories</span></a>';
+
+		return implode("\n", $outputs);
 	}
 
-	public static function get_name($person) {
-		$prefix = get_post_meta($person->ID, 'person_title_prefix', True);
-		$suffix = get_post_meta($person->ID, 'person_title_suffix', True);
-		$name = $person->post_title;
-		return $prefix.' '.$name.' '.$suffix;
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Name',
+				'desc' => '',
+				'id'   => $prefix.'name',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Email',
+				'desc' => '',
+				'id'   => $prefix.'email',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Class Year',
+				'desc' => '',
+				'id'   => $prefix.'class_year',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Photo',
+				'desc' => '',
+				'id'   => $prefix.'photo',
+				'type' => 'text',
+			)
+		);
+	}
+}
+
+class Timeline extends CustomPostType{
+	public 
+		$name           = 'timeline',
+		$plural_name    = 'Timelines',
+		$singular_name  = 'Timeline',
+		$add_new_item   = 'Add New Timeline',
+		$edit_item      = 'Edit Timeline',
+		$new_item       = 'New Timeline',
+		$public         = True,
+		$use_categories = False,
+		$use_tags       = False,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
 	}
 
-	public static function get_phones($person) {
-		$phones = get_post_meta($person->ID, 'person_phones', True);
-		return ($phones != '') ? explode(',', $phones) : array();
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Start Year',
+				'desc' => 'Format: YYYY',
+				'id'   => $prefix.'start_year',
+				'type' => 'text',
+			)
+		);
 	}
+}
 
-	public function objectsToHTML($people, $css_classes) {
-		ob_start();?>
-		<div class="row">
-			<div class="span12">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col" class="name">Name</th>
-							<th scope="col" class="job_title">Title</th>
-							<th scope="col" class="phones">Phone</th>
-							<th scope="col" class="email">Email</th>
-						</tr>
-					</thead>
-					<tbody>
-				<?
-				foreach($people as $person) { 
-					$email = get_post_meta($person->ID, 'person_email', True); 
-					$link = ($person->post_content == '') ? False : True; ?>
-						<tr>
-							<td class="name">
-								<?if($link) {?><a href="<?=get_permalink($person->ID)?>"><?}?>
-									<?=$this->get_name($person)?>
-								<?if($link) {?></a><?}?>
-							</td>
-							<td class="job_title">
-								<?if($link) {?><a href="<?=get_permalink($person->ID)?>"><?}?>
-								<?=get_post_meta($person->ID, 'person_jobtitle', True)?>
-								<?if($link) {?></a><?}?>
-							</td> 
-							<td class="phones"><?php if(($link) && ($this->get_phones($person))) {?><a href="<?=get_permalink($person->ID)?>">
-								<?php } if($this->get_phones($person)) {?>
-									<ul class="unstyled"><?php foreach($this->get_phones($person) as $phone) { ?><li><?=$phone?></li><?php } ?></ul>
-								<?php } if(($link) && ($this->get_phones($person))) {?></a><?php }?></td>
-							<td class="email"><?=(($email != '') ? '<a href="mailto:'.$email.'">'.$email.'</a>' : '')?></td>
-						</tr>
-				<? } ?>
-				</tbody>
-			</table> 
-		</div>
-	</div><?
-	return ob_get_clean();
+class TimelineEvent extends CustomPostType{
+	public 
+		$name           = 'timeline_event',
+		$plural_name    = 'Timeline Events',
+		$singular_name  = 'Timeline Event',
+		$add_new_item   = 'Add New Timeline Event',
+		$edit_item      = 'Edit Timeline Event',
+		$new_item       = 'New Timeline Event',
+		$public         = True,
+		$use_categories = True,
+		$use_tags       = False,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
 	}
-} // END class 
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		$timeline_options = array();
+		foreach(get_posts(array('post_type'=>'timeline','orderby'=>'title')) as $timeline) {
+			$timeline_options[$timeline->post_title] = $timeline->ID;
+		}
+		return array(
+			array(
+				'name' => 'Start Date',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted in needed.',
+				'id'   => $prefix.'start_date',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'End Date',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted. If left blank, end date will default to the start date.',
+				'id'   => $prefix.'end_date',
+				'type' => 'text',
+			),
+			array(
+				'name'    => 'Timelines',
+				'desc'    => 'Which timeline should this even be associated with?',
+				'default' => '(None)',
+				'id'      => $prefix.'timeline',
+				'options' => $timeline_options,
+				'type'    => 'select',
+			)
+		);
+	}
+}
 ?>
