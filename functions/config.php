@@ -12,7 +12,6 @@ function __init__(){
 	add_theme_support('menus');
 	add_theme_support('post-thumbnails');
 	register_nav_menu('header-menu', __('Header Menu'));
-	register_nav_menu('footer-menu', __('Footer Menu'));
 	register_sidebar(array(
 		'name'          => __('Sidebar'),
 		'id'            => 'sidebar',
