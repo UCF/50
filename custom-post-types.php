@@ -367,7 +367,7 @@ class PhotoSet extends CustomPostType{
 		$class = new $class;
 		
 		// Photoset Navigation
-		$outputs = array('<ul class="photoset-nav span-24 last">');
+		$outputs = array('<ul class="photoset-nav">');
 		foreach($objects as $o){
 			$outputs[] = '<li><a href="#photoset-'.$o->post_title.'">'.$o->post_title.'</a></li>';
 		}
@@ -384,7 +384,7 @@ class PhotoSet extends CustomPostType{
 				'orderby'     => 'menu_order',
 				'order'       => 'ASC'));
 
-			$outputs[] = '<fieldset class="photoset clear span-24 last" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
 
 			$count = 0;
@@ -395,15 +395,15 @@ class PhotoSet extends CustomPostType{
 				if($details !== False) {
 					if(($count % 3) == 0) {
 						if(strlen($images_html) == 0) {
-							$images_html       = '<ul class="images clearfix">';
-							$description_html  = '<ul class="descriptions clearfix">';
+							$images_html       = '<ul class="images">';
+							$description_html  = '<ul class="descriptions">';
 						} else {
 							$outputs[]         = $images_html.'</ul>'.$description_html.'</ul>';
-							$images_html       = '<ul class="images clearfix">';
-							$description_html  = '<ul class="descriptions clearfix">';
+							$images_html       = '<ul class="images">';
+							$description_html  = '<ul class="descriptions">';
 						}
 					}
-					$css   = ($count % 3) == 0 ? ' class="no-margin-left clear" ' : '';
+					$css   = ($count % 3) == 0 ? ' class="no-margin-left" ' : '';
 
 					$images_html      .= '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></li>';
 					$description_html .= '<li'.$css.'><p>'.$image->post_content.'</p></li>';
@@ -413,14 +413,14 @@ class PhotoSet extends CustomPostType{
 			if(strlen($images_html) != 0) {
 				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
 			}
-			$outputs[] = '<div class="clear">&nbsp;</div>';
-			$outputs[] = '<div class="span-18 clear"><ul class="pagination"><li><a class="left">&larr;</a></li>';
+			$outputs[] = '</div>';
+			$outputs[] = '<div class="span6"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
-				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
+				$outputs[] = '<li><a class="page" href="#">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a class="show_all">Show All</a></div>';
-			$outputs[] = '<div class="instructions span-6 last">Click on an image to see it larger.</span>';
-			$outputs[] = '</fieldset>';
+			$outputs[] = '<li><a class="right" href="#">&rarr;</a></li><a class="show_all" href="#">Show All</a></ul></div>';
+			$outputs[] = '<div class="instructions span6">Click on an image to see it larger.</span>';
+			$outputs[] = '</div></fieldset></div>';
 		}
 
 		return implode("\n", $outputs);
