@@ -398,6 +398,10 @@ function dump(){
  * @return void
  * @author Jared Lang
  **/
+ /*
+ 
+THIS FUNCTION MUST BE DISABLED IN THIS THEME FOR THE TIMELINE TO LOAD:
+ 
 if (DEBUG){
 	function debug($string){
 		print "<!-- DEBUG: {$string} -->\n";
@@ -405,7 +409,7 @@ if (DEBUG){
 }else{
 	function debug($string){return;}
 }
-
+*/
 
 /**
  * Will execute the function $func with the arguments passed via $args if the
