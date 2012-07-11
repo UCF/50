@@ -50,6 +50,11 @@
 	.table.table-striped td.phones ul li {
 		line-height: 16px;
 	}
+	
+	/* Header */
+	
+	#header .span8 { width: 100%; }
+	#header-menu { margin-left: 0 !important; width: 100%; }
 
 }
 
