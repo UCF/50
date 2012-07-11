@@ -400,10 +400,10 @@ if ($theme_options['bootstrap_enable_responsive'] == 1) {
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
 	//'http://universityheader.ucf.edu/bar/js/university-header.js',
-	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.7.1.min.js',),
-	THEME_STATIC_URL.'/bootstrap/build/js/bootstrap.js',
+	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.7.2.min.js',),
 	THEME_JS_URL.'/jquery-extras.js',
 	THEME_JS_URL.'/jquery.lightbox-0.5.pack.js',
+	THEME_STATIC_URL.'/bootstrap/build/js/bootstrap.js',
 	THEME_JS_URL.'/timeline-min.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
