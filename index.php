@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div id="post-content">
-			<h2 class="sans"><?=$post->post_title?></h2>
+			<h2><?=$post->post_title?></h2>
 			<div id="post-body">
 				<?=apply_filters('the_content', $post->post_content)?>
 			</div>
