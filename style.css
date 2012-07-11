@@ -105,6 +105,7 @@ body { background: #fff; }
 	position: relative;
 	z-index: 2;
 }
+.front-page #footer { position: absolute; bottom: 0; }
 #footer a, #footer p { color: #fff; font-size: 13px;}
 #footer h2.widgettitle { font-size: 13px; color: #fff; line-height: 20px; }
 #footer ul.menu { list-style-type: none; margin-left: 0;}
@@ -134,7 +135,7 @@ body { background: #fff; }
 }
 #front-page #post-content {
 	position:absolute;
-	bottom:100px;
+	top:250px;
 	z-index:2;
 	background-color:rgba(0,0,0,.6);
 	color:#FFF;
