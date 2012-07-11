@@ -40,6 +40,7 @@ html {background:none;background-color:#fff;}
 html.front-page {overflow: hidden;}
 html, body {width:100%;height:100%;}
 body { background: #fff; }
+img { max-width: none; }
 #UCFHBHeader {z-index:2;position:absolute;top:0;left:0;width:100%;}
 #UCFHBHeader div.UCFHBWrapper {position:relative;}
 #UCFHBHeader #UCFHBSearch_and_links {position:absolute;right:10px;}
@@ -57,14 +58,26 @@ body { background: #fff; }
 /* Header */
 #header {border-bottom:0;}
 #header-wrap {
-	position:absolute;
+	/*position:absolute;*/
+	position: relative;
 	top:37px;
-	left:0;
-	width:100%;
-	z-index:2;}
+	/*left:0;*/
+	/*width:100%;*/
+	z-index:2;
+}
+.front-page #header-wrap { position: absolute; }
 #header-wrap.front-page {overflow:hidden;}
 #header {margin-left:auto;margin-right:auto;float:none;}
-#header h1 a {margin:1px auto 0 auto;display:block;text-indent:-500em;background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:138px;width:232px;}
+#header h1 a {
+	margin:1px auto 0 auto;
+	display:block;
+	text-indent:-500em;
+	background-image:url('static/img/logo-highlight.png');
+	background-repeat:no-repeat;
+	height:138px;
+	width:232px;
+	float: left;
+}
 #header #header-menu {margin-left:65px;margin-top:45px;padding-top:0;}
 #header #header-menu li {margin:0 0 0 -1px; height:41px;}
 .ie9 #header #header-menu li {margin-left:0;}
@@ -118,10 +131,10 @@ body { background: #fff; }
 	z-index:1;
 	display:table;
 	position:absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
 }
 #front-page #feature-wrap > div {
 	display:table-cell;
@@ -184,7 +197,7 @@ body { background: #fff; }
 }
 
 /* Interior Pages */
-.page-content {margin-top:200px;margin-bottom:20px;}
+.page-content {margin-top:105px;margin-bottom:20px;}
 .page-content h1 {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 
 /* Photo Set */
