@@ -85,7 +85,13 @@ if (typeof jQuery != 'undefined'){
 
 					var target_width = Math.round(window_height * aspect_ratio);
 
+					if ($(window).width() <= 480) {
+						window_width = window_width / 1.1;
+						//target_width = target_width / 1.1;
+					}
+					
 					front_page_image.width((window_width > target_width ? window_width : target_width));
+					
 
 					center_browser_support();
 				})
@@ -96,6 +102,21 @@ if (typeof jQuery != 'undefined'){
 					// will report 0 for the height and width
 					$(this).trigger('resize');
 				});
+
+			// Front Page mobile navigation
+			var header_menu = $('#header-menu');
+			if ($(window).width() <= 480) {
+				header_menu.addClass('nav nav-tabs nav-stacked');
+			}
+			$(window).resize(function() {
+				if ($(window).width() > 480) {
+					header_menu.removeClass('nav nav-tabs nav-stacked');
+				}
+				else { 
+					header_menu.addClass('nav nav-tabs nav-stacked'); 
+				}
+			});
+			
 
 			// Photo Set
 			$('.photoset')
