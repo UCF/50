@@ -40,7 +40,6 @@ html {background:none;background-color:#fff;}
 html.front-page {overflow: hidden;}
 html, body {width:100%;height:100%;}
 body { background: #fff; }
-img { max-width: none; }
 #UCFHBHeader {z-index:2;position:absolute;top:0;left:0;width:100%;}
 #UCFHBHeader div.UCFHBWrapper {position:relative;}
 #UCFHBHeader #UCFHBSearch_and_links {position:absolute;right:10px;}
@@ -145,6 +144,7 @@ img { max-width: none; }
 	position:relative;
 	margin:0 auto;
 	display:block;
+	max-width: none; 
 }
 #front-page #post-content {
 	position:absolute;
