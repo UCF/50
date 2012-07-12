@@ -82,7 +82,6 @@ if (typeof jQuery != 'undefined'){
 					var front_page_image = $('#front-page #feature-wrap img'),
 						window_width     = $(window).width(),
 						window_height    = $(window).height();
-						alert('window width is: ' + window_width);
 					if(ie7) {
 						window_height = window_height * 1.5; // why? who knows
 					}
