@@ -88,11 +88,6 @@ if (typeof jQuery != 'undefined'){
 					var aspect_ratio = front_page_image.width() / front_page_image.height();
 
 					var target_width = Math.round(window_height * aspect_ratio);
-
-					if ($(window).width() <= 480) {
-						window_width = window_width / 1.1;
-						//target_width = target_width / 1.1;
-					}
 					
 					front_page_image.width((window_width > target_width ? window_width : target_width));
 					
