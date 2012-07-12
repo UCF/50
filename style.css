@@ -337,8 +337,8 @@ body { background: #fff; }
 .stories > li .title {font-family:"Helvetica Neue",Helvetica,sans-serif;font-style:italic;font-size: 16px;margin-bottom:5px;padding:15px 15px 0 15px;}
 .stories > li .content {font-family:Georgia, Times, serif;font-size:14px;padding: 0 15px 15px 15px;}
 .stories > li .tags {margin:0;padding:0 15px 15px 15px;overflow:auto;}
-.stories > li .tags {overflow:hidden;}
-.ie7 .stories > li .tags > li {/*display:inline-block;*/float:left;width:auto;margin-left:0;padding-right:5px;list-style-type:none;color:#bb1111;}
+.ie7 .stories > li .tags {overflow:hidden;}
+.stories > li .tags > li {/*display:inline-block;*/float:left;width:auto;margin-left:0;padding-right:5px;list-style-type:none;color:#bb1111;}
 .stories > li .tags > li a {color:#bb1111;font-size:12px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:bold;text-decoration:underline;}
 
 .more-stories {
