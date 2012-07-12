@@ -77,6 +77,7 @@
 }
 
 @media (max-width: 480px) {	
+	html.front-page { overflow: hidden !important; }
 	/* Header */
 	#header-wrap { width: 100% !important; margin-left: 0; }
 	#header-wrap { margin-left: -20px; }
@@ -100,6 +101,15 @@
 		text-shadow: 0px 1px 0px #fff;
 	}
 	
+	/* Footer */
+	#footer { height: 473px; }
+	
 	/* Front Page */
 	#front-page #post-content { display: none; }
+	
+	/* Subpages */
+	#content-wrap { margin: 0 auto -473px; } /* = the negative value of the footer's height, plus the height of the UCF Header */
+	.push { height: 473px; }
+	.search-field {width:205px !important;}
+	input.gform_button[type="submit"] { width: 100%; }
 }
