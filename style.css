@@ -95,9 +95,9 @@ body { background: #fff; }
 .ie7 #header #header-menu li a,
 .ie8 #header #header-menu li a {
 	background-color:#FFF;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	background: url('static/img/ie-nav.gif') repeat;
 }
-.ie7 #header #header-menu li a, .ie9 #header #header-menu li a {
+.ie7 #header #header-menu li a, .ie8 #header #header-menu li a, .ie9 #header #header-menu li a {
 	font-size:23px;
 	margin-left:-1px;
 }
@@ -161,7 +161,7 @@ body { background: #fff; }
 .ie8 #front-page #post-content,
 .ie9 #front-page #post-content {
 	background-color:#333;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	background: url('static/img/ie-frontpage-gray.gif');
 	padding-left: 20px;
 	padding-bottom: 20px;
 }
@@ -171,7 +171,6 @@ body { background: #fff; }
 	color:rgba(255,255,255,.9);
 	margin:0;
 	padding:20px 20px 0 0;
-	font-weight:normal;
 	font-size:32px;
 	text-shadow: 0px 0px 5px rgba(0,0,0,1);
 	filter: dropshadow(color=#000000, offx=0, offy=0);
