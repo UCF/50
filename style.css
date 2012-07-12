@@ -96,6 +96,7 @@ body { background: #fff; }
 .ie7 #header #header-menu li a,
 .ie8 #header #header-menu li a {
 	background-color:#FFF;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 .ie9 #header #header-menu li a {
 	font-size:23px;
@@ -155,14 +156,15 @@ body { background: #fff; }
 	z-index:2;
 	/*background-color:rgba(0,0,0,.6);*/
 	color:#FFF;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
 	width: 430px;
 }
 .ie7 #front-page #post-content,
 .ie8 #front-page #post-content,
 .ie9 #front-page #post-content {
 	background-color:#333;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
 	padding-left: 20px;
+	padding-bottom: 20px;
 }
 
 #front-page #post-content * {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
