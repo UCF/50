@@ -109,7 +109,7 @@
 			Internet Explorer 7+, Firefox 10+, Chrome 17+, and Safari 5+. 
 		</div>
 		
-		<div class="container">
+		<div class="container" id="content-wrap">
 			<div class="row<? if(is_front_page()):?> front-page<? endif ?>" id="header-wrap">
 				<div id="header">
 					<h1 class="span4"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
