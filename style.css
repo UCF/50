@@ -88,7 +88,6 @@ body { background: #fff; }
 	font-weight:200;
 	color:#333;
 	background-color:rgba(239,239,239,0.7);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2EFEFEF,endColorstr=#B2EFEFEF);
 	padding:5px 10px;
 	margin:0;
 }
@@ -98,7 +97,7 @@ body { background: #fff; }
 	background-color:#FFF;
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
-.ie9 #header #header-menu li a {
+.ie7 #header #header-menu li a, .ie9 #header #header-menu li a {
 	font-size:23px;
 	margin-left:-1px;
 }
@@ -162,7 +161,7 @@ body { background: #fff; }
 .ie8 #front-page #post-content,
 .ie9 #front-page #post-content {
 	background-color:#333;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 	padding-left: 20px;
 	padding-bottom: 20px;
 }
