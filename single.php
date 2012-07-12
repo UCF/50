@@ -12,7 +12,6 @@
 			<?=get_sidebar();?>
 		</div>
 		
-		<?php get_template_part('includes/below-the-fold'); ?>
 	</div>
 
 <?php get_footer();?>
