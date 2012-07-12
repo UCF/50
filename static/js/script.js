@@ -32,10 +32,14 @@ if (typeof jQuery != 'undefined'){
 		
 		(function() {
 			var ie7 = false,
+				ie8 = false,
 				ipad = (navigator.userAgent.match(/iPad/i) != null);
 
 			if($.browser.msie && $.browser.version == '7.0') {
 				ie7 = true
+			}
+			if($.browser.msie && $.browser.version == '8.0') {
+				ie8 = true
 			}
 
 			// UCF Header Bar Links
@@ -104,18 +108,22 @@ if (typeof jQuery != 'undefined'){
 				});
 
 			// Front Page mobile navigation
-			var header_menu = $('#header-menu');
-			if ($(window).width() <= 480) {
-				header_menu.addClass('nav nav-tabs nav-stacked');
+			// Don't run in IE 7 or 8 as they won't see any 
+			// other media query effects anyway
+			if (ie7 == false && ie8 == false) {
+				var header_menu = $('#header-menu');
+				if ($(window).width() <= 480) {
+					header_menu.addClass('nav nav-tabs nav-stacked');
+				}
+				$(window).resize(function() {
+					if ($(window).width() > 480) {
+						header_menu.removeClass('nav nav-tabs nav-stacked');
+					}
+					else { 
+						header_menu.addClass('nav nav-tabs nav-stacked'); 
+					}
+				});
 			}
-			$(window).resize(function() {
-				if ($(window).width() > 480) {
-					header_menu.removeClass('nav nav-tabs nav-stacked');
-				}
-				else { 
-					header_menu.addClass('nav nav-tabs nav-stacked'); 
-				}
-			});
 			
 
 			// Photo Set
