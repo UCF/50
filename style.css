@@ -138,7 +138,7 @@ body { background: #fff; }
 }
 #front-page #feature-wrap > div {
 	display:table-cell;
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 #front-page #feature-wrap img {
@@ -196,6 +196,7 @@ body { background: #fff; }
 #front-page #post-body {
 	padding:10px 20px 0 20px;
 }
+.front-page #footer { height: 175px; }
 
 /* Interior Pages */
 .page-content {margin-top:105px;margin-bottom:20px;}
