@@ -87,7 +87,7 @@ if (typeof jQuery != 'undefined'){
 						window_height = window_height * 1.5; // why? who knows
 					}
 					if (!null(iphone) || !null(ipod)) {
-						window_height = window_height + 400
+						window_height = window_height + 150
 					}
 					
 
