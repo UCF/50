@@ -77,7 +77,7 @@
 }
 
 @media (max-width: 480px) {	
-	html.front-page { overflow-x:hidden !important; max-width: 100%; }
+	html.front-page { height: 520px; overflow-y: auto; /* why not */ }
 	/* Header */
 	#header-wrap { width: 100% !important; margin-left: 0; }
 	#header-wrap { margin-left: -20px; }

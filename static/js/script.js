@@ -34,6 +34,8 @@ if (typeof jQuery != 'undefined'){
 			var ie7 = false,
 				ie8 = false,
 				ipad = (navigator.userAgent.match(/iPad/i) != null);
+				iphone = (navigator.userAgent.match(/iPhone/i) != null);
+				ipod = (navigator.userAgent.match(/iPod/i) != null);
 
 			if($.browser.msie && $.browser.version == '7.0') {
 				ie7 = true
@@ -84,6 +86,10 @@ if (typeof jQuery != 'undefined'){
 					if(ie7) {
 						window_height = window_height * 1.5; // why? who knows
 					}
+					if (!null(iphone) || !null(ipod)) {
+						window_height = window_height + 400
+					}
+					
 
 					var aspect_ratio = front_page_image.width() / front_page_image.height();
 
