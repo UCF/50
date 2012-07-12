@@ -175,7 +175,6 @@ body { background: #fff; }
 }
 .ie7 #front-page #post-content h2, .ie8 #front-page #post-content h2 {
 	color:#FFF;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 #front-page #post-content #post-body > p {
 	color:/*rgba(255,255,255,.75)*/#fff;
@@ -196,7 +195,6 @@ body { background: #fff; }
 }
 .ie7 #front-page #post-content a, .ie8 #front-page #post-content a {
 	color:#FFF;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 #front-page #post-body {
 	padding:10px 20px 0 0;
