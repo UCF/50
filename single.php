@@ -11,7 +11,7 @@
 		<div id="sidebar" class="span4">
 			<?=get_sidebar();?>
 		</div>
-		
 	</div>
+</div><!-- .container -->
 
 <?php get_footer();?>
