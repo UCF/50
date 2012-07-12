@@ -6,6 +6,7 @@
 			<?php the_content();?>
 		</article>
 	</div>
+	<div class="push"></div>
 </div>
 
 <?php get_footer();?>

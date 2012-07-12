@@ -12,6 +12,7 @@
 			<?=get_sidebar();?>
 		</div>
 	</div>
+	<div class="push"></div>
 </div><!-- .container -->
 
 <?php get_footer();?>

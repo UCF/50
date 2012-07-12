@@ -117,6 +117,7 @@ body { background: #fff; }
 	border-top: 0;
 	position: relative;
 	z-index: 2;
+	height: 170px;
 }
 .front-page #footer { position: absolute; bottom: 0; }
 #footer a, #footer p { color: #fff; font-size: 13px;}
@@ -125,7 +126,7 @@ body { background: #fff; }
 #footer a.underline { text-decoration:underline; }
 
 /* Front Page */
-.front-page #content-wrap { }
+.front-page #content-wrap { margin: 0 auto; min-height: 0; }
 #front-page {width:100%;height:100%;margin-top:0;}
 /** Deep Magic **/
 #front-page #feature-wrap {
@@ -202,6 +203,14 @@ body { background: #fff; }
 .front-page #footer { height: 175px; }
 
 /* Interior Pages */
+#content-wrap { 
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -308px; /* = the negative value of the footer's height, plus the height of the UCF Header */
+}
+.push { height: 308px; } /* necessary for sticky footer */
+
 .page-content {margin-top:105px;margin-bottom:20px;}
 .page-content h1 {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 
@@ -302,9 +311,11 @@ body { background: #fff; }
 	line-height: 1em;
 }
 
+/* Search */
+.search-field {width:285px !important;}
+
 /* Stories */
 #stories .search-form {margin-top:5px;}
-#stories .search-field {width:285px;margin-top}
 
 .stories {margin:0;padding:0;}
 .stories > li {
