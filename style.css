@@ -94,7 +94,6 @@ body { background: #fff; }
 .ie7 #header #header-menu li a { line-height: 40px; }
 .ie7 #header #header-menu li a,
 .ie8 #header #header-menu li a {
-	background-color:#FFF;
 	background: url('static/img/ie-nav.gif') repeat;
 }
 .ie7 #header #header-menu li a, .ie8 #header #header-menu li a, .ie9 #header #header-menu li a {
@@ -160,7 +159,6 @@ body { background: #fff; }
 .ie7 #front-page #post-content,
 .ie8 #front-page #post-content,
 .ie9 #front-page #post-content {
-	background-color:#333;
 	background: url('static/img/ie-frontpage-gray.gif');
 	padding-left: 20px;
 	padding-bottom: 20px;
