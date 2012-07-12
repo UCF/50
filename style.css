@@ -159,7 +159,7 @@ body { background: #fff; }
 .ie7 #front-page #post-content,
 .ie8 #front-page #post-content,
 .ie9 #front-page #post-content {
-	background: url('static/img/ie-frontpage-gray.gif');
+	background: url('static/img/ie-frontpage-gray.png');
 	padding-left: 20px;
 	padding-bottom: 20px;
 }
