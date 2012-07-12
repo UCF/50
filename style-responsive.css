@@ -105,7 +105,7 @@
 	#footer { height: 473px; }
 	
 	/* Front Page */
-	#front-page { overflow: hidden; }
+	#front-page { overflow-x: hidden; }
 	#front-page #post-content { display: none; }
 	
 	/* Subpages */
