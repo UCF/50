@@ -1,6 +1,10 @@
 @media (max-width: 979px) {
 	#UCFHBSearch_and_links { display: none; }
 	#UCFHBHeader div.UCFHBWrapper { width: 100%; }
+	
+	/* Header */
+	#header .span8 { width: 470px; }
+	#header #header-menu li a { font-size: 22px; }
 }
 
 @media (max-width: 767px) {		
@@ -62,17 +66,21 @@
 	/* Footer */
 	.front-page #footer { display: none; }	
 	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; }
+	
+	/* Subpages */
+	.page-content { margin-top: 75px; }
 
 }
 
 @media (max-width: 480px) {	
 	/* Header */
-	#header-wrap { width: 100% !important; margin-left: -20px !important; }
-	#header { padding: 0 20px; }
+	#header-wrap { width: 100% !important; margin-left: 0; }
+	#header-wrap { margin-left: -20px; }
+	.front-page #header { padding: 0 20px; }
 	#header h1.span4 { width: 100%; }
 	#header h1.span4 a { float: none !important; }
 	#header .span8 { margin-left: 0; }
-	#header #header-menu { margin-top: 30px !important; }
+	#header #header-menu { margin-top: 30px !important; margin-left: 20px !important; }
 	#header #header-menu li { 
 		height: 35px;
 		float: none !important;
