@@ -51,17 +51,30 @@ if (typeof jQuery != 'undefined'){
 			// other media query effects anyway
 			if (ie7 == false && ie8 == false) {
 				var header_menu = $('#header-menu');
-				if ($(window).width() < 480) {
+				
+				var menuAppendFooter = function() {
 					header_menu.addClass('nav nav-tabs nav-stacked');
 					$('#footer, .push').hide();
 					$('#menu-wrap').remove().appendTo('#content-wrap');
 				}
+				var menuAppendHeader = function() {
+					// If #menu-wrap is not already in the header, 
+					// re-add it:
+					if ($('#header:not(:has(#menu-wrap))')) {
+						header_menu.removeClass('nav nav-tabs nav-stacked');
+						$('#menu-wrap').remove().appendTo('#header');
+					}
+				}
+				
+				if ($(window).width() < 480) {
+					menuAppendFooter();
+				}
 				$(window).resize(function() {
 					if ($(window).width() > 480) {
-						header_menu.removeClass('nav nav-tabs nav-stacked');
+						menuAppendHeader();
 					}
 					else { 
-						header_menu.addClass('nav nav-tabs nav-stacked'); 
+						menuAppendFooter();
 					}
 				});
 			}
