@@ -370,6 +370,9 @@ if (typeof jQuery != 'undefined'){
 					$(window).bind('orientationchange', on_orientation_change);
 					on_orientation_change();
 				}
+				
+				// Bootstrap submit buttons
+				$('button, input[type="submit"]').addClass('btn');
 		})();
 		
 	});

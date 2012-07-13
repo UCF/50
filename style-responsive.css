@@ -125,4 +125,8 @@
 	.push { height: 473px; }
 	.search-field {width:205px !important;}
 	input.gform_button[type="submit"] { width: 100%; }
+	
+	/* Search, text fields */
+	.search-field {width:200px !important;}
+	textarea, .ginput_container input[type="text"] { width: 100% !important; }
 }

@@ -49,7 +49,7 @@ body { background: #fff; }
 	position:absolute;
 }
 .page-content h1 { margin: 0 0 1em 0; }
-h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times, serif; font-size: 16px; color: #444; }
+h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times, serif; font-size: 16px; color: #444; margin: 1em 0 0.8em; }
 
 /* WP Search Results */
 #wp-search-results .results h1 {margin-bottom:5px;font-size:20px;}
@@ -376,3 +376,6 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 #back_link {position:absolute;top:0;left:20px;text-indent:-500em;background-image:url('static/img/logo-highlight.png');background-repeat:no-repeat;height:58px;width:233px;height:135px;}
 
 .box { background: none repeat scroll 0 0 #E5ECF9; padding: 1.5em; }
+
+/* Search, Input fields */
+input, textarea, select, .uneditable-input { margin-bottom: 0; }
