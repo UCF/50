@@ -344,10 +344,11 @@ if (typeof jQuery != 'undefined'){
 					
 					function on_orientation_change() {
 						if(orientation == '0' || orientation == '180') {
-							$('#UCFHBHeader div.UCFHBWrapper').width('768px');
+							$('#UCFHBHeader div.UCFHBWrapper').width('768px');/*
 							$('body').scrollLeft(0)
 							$('.container').width('768px');
 							$('#header-wrap.front-page').width('768px');
+							*/
 							if(!$('#front-page').length) {
 								$('body').css('zoom', '.65');
 							}

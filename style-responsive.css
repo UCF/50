@@ -7,6 +7,19 @@
 	#header #header-menu li a { font-size: 22px; }
 }
 
+@media (max-width: 768px) {
+	/* iPad width specifically messes up content margins for some reason */
+	.page-content .row, #footer .row {
+		margin-left: 0;	
+	}
+	.box { margin-bottom: 20px; }
+	
+	/* Footer */
+	.front-page #footer { display: none; }	
+	#footer { height: 380px; }
+	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; }
+}
+
 @media (max-width: 767px) {		
 	/* Shrinkable bootstrap tables for tablets/phones.
 	Responsive table guide via css-tricks.com/responsive-data-tables/ */
@@ -63,16 +76,10 @@
 	/* Front page */
 	#front-page #post-content { top: 300px !important; }
 	
-	/* Footer */
-	.front-page #footer { display: none; }	
-	#footer { height: 380px; }
-	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; }
-	
 	/* Subpages */
 	.page-content { margin-top: 75px; }
 	#content-wrap { margin: 0 auto -453px; /* = the negative value of the footer's height, plus the height of the UCF Header */ }
 	.push { height: 453px; }
-	.box { margin-bottom: 20px; }
 
 }
 
