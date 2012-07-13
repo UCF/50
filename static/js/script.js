@@ -46,13 +46,15 @@ if (typeof jQuery != 'undefined'){
 			$('#UCFHBHeader a').removeClass('external');
 
 
-			// Front Page mobile navigation
+			// Mobile navigation
 			// Don't run in IE 7 or 8 as they won't see any 
 			// other media query effects anyway
 			if (ie7 == false && ie8 == false) {
 				var header_menu = $('#header-menu');
 				if ($(window).width() < 480) {
 					header_menu.addClass('nav nav-tabs nav-stacked');
+					$('#footer, .push').hide();
+					$('#header .span8').remove().appendTo('#content-wrap');
 				}
 				$(window).resize(function() {
 					if ($(window).width() > 480) {

@@ -97,15 +97,15 @@
 	#header-wrap { margin-left: -20px; }
 	#header h1.span4 { width: 100%; margin-left: 20px; }
 	#header h1.span4 a { float: none !important; }
-	#header .span8 { margin-left: 0; }
-	#header #header-menu { margin-top: 30px !important; margin-left: 20px !important; }
-	#header #header-menu li { 
+	#menu-wrap { margin-left: 0; width: 100%; padding: 20px 0; border-top: 1px solid #ddd }
+	#header-menu li { 
 		height: 35px;
 		float: none !important;
 		margin: 0 !important;
 		display: block;
 	}
-	#header #header-menu li a {
+	#header-menu li:after { content: ""; }
+	#header-menu li a {
 		padding: 10px 5px 10px 10px;	
 		font-size: 16px;
 		font-weight: bold;
@@ -125,6 +125,7 @@
 	
 	/* Subpages */
 	#content-wrap { margin: 0 auto -473px; } /* = the negative value of the footer's height, plus the height of the UCF Header */
+	.page-content h1 { margin-bottom: 0.5em; }
 	.push { height: 473px; }
 	.search-field {width:205px !important;}
 	input.gform_button[type="submit"] { width: 100%; }
