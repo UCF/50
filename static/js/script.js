@@ -130,6 +130,10 @@ if (typeof jQuery != 'undefined'){
 						$('body').css({'background-image' : 'url('+front_page_image_src+')'});
 					}
 					else {
+						if ($('#feature-wrap').is(":hidden")) {
+							$('#feature-wrap').css('display', 'table');
+							$('body').css('background-image', 'none');
+						}
 						front_page_image.width((window_width > target_width ? window_width : target_width));
 					}
 
