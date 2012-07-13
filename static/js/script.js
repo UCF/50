@@ -63,6 +63,7 @@ if (typeof jQuery != 'undefined'){
 					if ($('#header:not(:has(#menu-wrap))')) {
 						header_menu.removeClass('nav nav-tabs nav-stacked');
 						$('#menu-wrap').remove().appendTo('#header');
+						$('#footer, .push').show();
 					}
 				}
 				
