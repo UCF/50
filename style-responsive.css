@@ -11,7 +11,7 @@
 	html.front-page, .front-page body { position: relative; overflow-y: hidden; }
 	
 	/* iPad width specifically messes up content margins for some reason */
-	.page-content .row, #footer .row {
+	.page-content .row, .page-content.row, #footer .row {
 		margin-left: 0;	
 	}
 	.box { margin-bottom: 20px; }

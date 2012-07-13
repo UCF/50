@@ -51,7 +51,7 @@ if (typeof jQuery != 'undefined'){
 			// other media query effects anyway
 			if (ie7 == false && ie8 == false) {
 				var header_menu = $('#header-menu');
-				if ($(window).width() <= 480) {
+				if ($(window).width() < 480) {
 					header_menu.addClass('nav nav-tabs nav-stacked');
 				}
 				$(window).resize(function() {
