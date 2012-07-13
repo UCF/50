@@ -5,6 +5,9 @@
 	/* Header */
 	#header .span8 { width: 470px; }
 	#header #header-menu li a { font-size: 22px; }
+	
+	/* Search */
+	.search-field {width:auto !important;}
 }
 
 @media (max-width: 768px) {
@@ -16,13 +19,13 @@
 	}
 	.box { margin-bottom: 20px; }
 	
-	/* Search */
-	.search-field {width:215px !important;}
-	
 	/* Footer */
 	.front-page #footer { display: none; }	
 	#footer { height: 380px; }
 	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; }
+	
+	/* Search */
+	.search-field {width:200px !important;}
 }
 
 @media (max-width: 767px) {		
@@ -126,7 +129,6 @@
 	.search-field {width:205px !important;}
 	input.gform_button[type="submit"] { width: 100%; }
 	
-	/* Search, text fields */
-	.search-field {width:200px !important;}
+	/* Text fields */
 	textarea, .ginput_container input[type="text"] { width: 100% !important; }
 }
