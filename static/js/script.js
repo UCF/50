@@ -45,6 +45,26 @@ if (typeof jQuery != 'undefined'){
 			// UCF Header Bar Links
 			$('#UCFHBHeader a').removeClass('external');
 
+
+			// Front Page mobile navigation
+			// Don't run in IE 7 or 8 as they won't see any 
+			// other media query effects anyway
+			if (ie7 == false && ie8 == false) {
+				var header_menu = $('#header-menu');
+				if ($(window).width() <= 480) {
+					header_menu.addClass('nav nav-tabs nav-stacked');
+				}
+				$(window).resize(function() {
+					if ($(window).width() > 480) {
+						header_menu.removeClass('nav nav-tabs nav-stacked');
+					}
+					else { 
+						header_menu.addClass('nav nav-tabs nav-stacked'); 
+					}
+				});
+			}
+			
+
 			// Browser Support
 			var browser_support = $('#browser_support'),
 				browser_version = parseFloat($.browser.version);
@@ -106,25 +126,7 @@ if (typeof jQuery != 'undefined'){
 					// will report 0 for the height and width
 					$(this).trigger('resize');
 				});
-
-			// Front Page mobile navigation
-			// Don't run in IE 7 or 8 as they won't see any 
-			// other media query effects anyway
-			if (ie7 == false && ie8 == false) {
-				var header_menu = $('#header-menu');
-				if ($(window).width() <= 480) {
-					header_menu.addClass('nav nav-tabs nav-stacked');
-				}
-				$(window).resize(function() {
-					if ($(window).width() > 480) {
-						header_menu.removeClass('nav nav-tabs nav-stacked');
-					}
-					else { 
-						header_menu.addClass('nav nav-tabs nav-stacked'); 
-					}
-				});
-			}
-			
+							
 
 			// Photo Set
 			$('.photoset')
@@ -327,7 +329,7 @@ if (typeof jQuery != 'undefined'){
 						$(this).prev('ul').find('li').show();
 						$(this).hide();
 					});
-
+				/*
 				if(navigator.userAgent.match(/iPad/i)) {
 					$('#feature-wrap')
 						.css('width', '100%')
@@ -336,7 +338,7 @@ if (typeof jQuery != 'undefined'){
 						.css('top', '0');
 					$('#header #header-menu li').css('margin-left', '-6px');
 
-				};
+				};*/
 				if(ipad) {
 					if($('#front-page').length) {
 						$('#feature-wrap img').wrap('<span />');
