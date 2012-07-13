@@ -113,7 +113,7 @@
 			<div class="row<? if(is_front_page()):?> front-page<? endif ?>" id="header-wrap">
 				<div id="header">
 					<h1 class="span4"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-					<div class="span8" id="menu-wrap">
+					<div class="span8" id="<? if(is_front_page() == false):?>menu-wrap<? endif ?>">
 						<?=wp_nav_menu(array(
 							'theme_location' => 'header-menu', 
 							'container' => 'false', 

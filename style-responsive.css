@@ -93,19 +93,27 @@
 
 @media (max-width: 480px) {	
 	/* Header */
+	/* Note that the front page menu does not have the id 'menu-wrap'
+	   attached to the wrapping .span8, so styles that need to be 
+	   applied to the front end menu and subpage menu need to be
+	   explicitly called by their separate parent containers, i.e.
+	   #header #header-menu li, #header-menu li.
+	   Styles applied only to the subpage nav (appended to the footer)
+	   should be called by #menu-wrap (element).
+	*/
 	#header-wrap { width: 100% !important; margin-left: 0; }
 	#header-wrap { margin-left: -20px; }
 	#header h1.span4 { width: 100%; margin-left: 20px; }
 	#header h1.span4 a { float: none !important; }
 	#menu-wrap { margin-left: 0; width: 100%; padding: 20px 0; border-top: 1px solid #ddd }
-	#header-menu li { 
+	#header #header-menu li, #header-menu li { 
 		height: 35px;
 		float: none !important;
 		margin: 0 !important;
 		display: block;
 	}
-	#header-menu li:after { content: ""; }
-	#header-menu li a {
+	#header #header-menu li:after, #header-menu li:after { content: ""; }
+	#header #header-menu li a, #header-menu li a {
 		padding: 10px 5px 10px 10px;	
 		font-size: 16px;
 		font-weight: bold;
@@ -119,17 +127,21 @@
 	html.front-page, .front-page body { overflow-y: auto; }
 	.front-page body { background: center center no-repeat; }
 	.front-page #header { padding: 0 20px; }
+	
 	.front-page #header h1.span4 { margin-left: 0; }
-	.front-page #header #header-menu { margin-left: 0 !important; }
+	#header .span8 { margin-left: -20px !important; }
+	#header #header-menu { margin-top: 30px !important; margin-left: 20px !important; }
+	
 	#front-page #post-content { /*position: relative; padding: 60px 0 20px; width: 100%;*/display:none; }
 	
 	/* Subpages */
 	#content-wrap { margin: 0 auto -473px; } /* = the negative value of the footer's height, plus the height of the UCF Header */
 	.page-content h1 { margin-bottom: 0.5em; }
 	.push { height: 473px; }
-	.search-field {width:205px !important;}
+	.search-field {width:200px !important;}
 	input.gform_button[type="submit"] { width: 100%; }
 	
 	/* Text fields */
 	textarea, .ginput_container input[type="text"] { width: 100% !important; }
+	
 }

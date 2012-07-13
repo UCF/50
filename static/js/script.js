@@ -54,7 +54,7 @@ if (typeof jQuery != 'undefined'){
 				if ($(window).width() < 480) {
 					header_menu.addClass('nav nav-tabs nav-stacked');
 					$('#footer, .push').hide();
-					$('#header .span8').remove().appendTo('#content-wrap');
+					$('#menu-wrap').remove().appendTo('#content-wrap');
 				}
 				$(window).resize(function() {
 					if ($(window).width() > 480) {
