@@ -8,6 +8,8 @@
 }
 
 @media (max-width: 768px) {
+	html, body { position: relative; overflow-y: hidden; }
+	
 	/* iPad width specifically messes up content margins for some reason */
 	.page-content .row, #footer .row {
 		margin-left: 0;	
@@ -84,6 +86,8 @@
 }
 
 @media (max-width: 480px) {	
+	html, body { overflow-y: auto; }
+
 	/* Header */
 	#header-wrap { width: 100% !important; margin-left: 0; }
 	#header-wrap { margin-left: -20px; }

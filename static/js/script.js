@@ -339,6 +339,8 @@ if (typeof jQuery != 'undefined'){
 					$('#header #header-menu li').css('margin-left', '-6px');
 
 				};*/
+				
+				// iPad Orientation change fix
 				if(ipad) {
 					if($('#front-page').length) {
 						$('#feature-wrap img').wrap('<span />');
