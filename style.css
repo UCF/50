@@ -313,9 +313,6 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 	line-height: 1em;
 }
 
-/* Search */
-.search-field {width:285px !important;}
-
 /* Stories */
 #stories .search-form {margin-top:5px;}
 

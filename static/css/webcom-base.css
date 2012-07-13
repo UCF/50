@@ -22,7 +22,7 @@ ul.dropdown-menu li a { margin-right: 0; white-space: pre-wrap; }
 .page-content { clear: both; }
 
 .search-form label{display: none;}
-.search-form .search-field{width:50px;}
+/*.search-form .search-field{width:50px;}*/
 .search-form .search-submit{}
 
 .slideshow{overflow: hidden; margin: 0 0 1em 0;}
