@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 768px) {
-	html, body { position: relative; overflow-y: hidden; }
+	html.front-page, .front-page body { position: relative; overflow-y: hidden; }
 	
 	/* iPad width specifically messes up content margins for some reason */
 	.page-content .row, #footer .row {
@@ -86,8 +86,6 @@
 }
 
 @media (max-width: 480px) {	
-	html, body { overflow-y: auto; }
-
 	/* Header */
 	#header-wrap { width: 100% !important; margin-left: 0; }
 	#header-wrap { margin-left: -20px; }
@@ -112,6 +110,7 @@
 	#footer { height: 473px; }
 	
 	/* Front Page */
+	html.front-page, .front-page body { overflow-y: auto; }
 	.front-page body { background: center center no-repeat; }
 	.front-page #header { padding: 0 20px; }
 	.front-page #header h1.span4 { margin-left: 0; }
