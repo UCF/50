@@ -443,15 +443,16 @@ class PhotoSet extends CustomPostType{
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
 
 			$count = 0;
-			$images_html       = '';
-			$description_html  = '';
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'large');
 				
-				$outputs[] = '<div class="span3" style="text-align: center; min-height: 250px; display: -moz-inline-stack; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 250px; float: none; margin-bottom: 20px;">
+				$css   = ($count % 3) == 0 ? ' no-margin-left' : '';
+				
+				$outputs[] = '<div class="span3'.$css.'" style="text-align: center; min-height: 250px; display: -moz-inline-stack; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 250px; float: none; margin-bottom: 20px;">
 							      <p style="line-height: 250px; display:inline;"><a href="'.$details[0].'"><img src="'.$details[0].'" style="box-shadow:3px 5px 10px #CCC;max-height:250px;vertical-align:bottom;" /></a></p>
 								  <p style="margin-top: 20px; text-align: left;">'.$image->post_content.'</p>
 							  </div>';
+				$count++;
 			}/*
 			$outputs[] = '<div class="span12"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {

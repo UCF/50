@@ -235,7 +235,7 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 }
 .photoset .images > li,
 .photoset .descriptions > li {position:relative;list-style-type:none;float:left;margin-left:95px;margin-bottom:20px;width:250px;}
-.photoset li.no-margin-left {margin-left:0;}
+/*.photoset li*/.no-margin-left {margin-left:0;}
 .photoset li a {font-weight:normal;text-decoration:none;}
 .photoset .images > li a {font-weight:normal;text-decoration:none;}
 .photoset .images > li img {box-shadow:3px 5px 10px #CCC;margin:auto;max-width:250px;max-height:250px;}
@@ -298,6 +298,9 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 	cursor:pointer;
 }
 */
+
+.photoset .span3 { width: 30%; }
+
 /* Photoset Page */
 #photoset-page {}
 #photoset-page #images {margin:0;padding:0;}

@@ -88,6 +88,9 @@
 	.page-content { margin-top: 75px; }
 	#content-wrap { margin: 0 auto -453px; /* = the negative value of the footer's height, plus the height of the UCF Header */ }
 	.push { height: 453px; }
+	
+	/* Photosets */
+	.photoset .span3 { width: auto; }
 
 }
 
