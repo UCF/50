@@ -49,6 +49,7 @@
 		</div>
 	</div>
 	<div class="push"></div>
+</div>
 <?php get_footer();?>
 
 <?php else:?>
@@ -80,5 +81,6 @@
 		</div>
 	</div>
 	<div class="push"></div>
+</div>
 <?php get_footer();?>
 <?php endif;?>
