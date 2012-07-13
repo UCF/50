@@ -374,6 +374,7 @@ class PhotoSet extends CustomPostType{
 		$outputs[] = '</ul>';
 
 		// Photosets
+		/*
 		foreach($objects as $o){
 			// Attachemnts - Assume they are all images
 			$images = get_posts(array(
@@ -413,18 +414,59 @@ class PhotoSet extends CustomPostType{
 			if(strlen($images_html) != 0) {
 				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
 			}
-			$outputs[] = '</div>';
+			//$outputs[] = '</div>';
 			$outputs[] = '<div class="span6"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
 				$outputs[] = '<li><a class="page" href="#">'.$i.'</a></li>';
 			}
 			$outputs[] = '<li><a class="right" href="#">&rarr;</a></li><a class="show_all" href="#">Show All</a></ul></div>';
-			$outputs[] = '<div class="instructions span6">Click on an image to see it larger.</span>';
-			$outputs[] = '</div></fieldset></div>';
+			$outputs[] = '<div class="instructions span6">Click on an image to see it larger.</div>';
+			$outputs[] = '</fieldset>';
 		}
+
+
+		*/
+		
+		
+		// Photosets
+		foreach($objects as $o){
+			// Attachemnts - Assume they are all images
+			$images = get_posts(array(
+				'post_type'   => 'attachment',
+				'numberposts' => -1,
+				'post_status' => NULL,
+				'post_parent' => $o->ID,
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC'));
+
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<legend>'.$o->post_title.'</legend>';
+
+			$count = 0;
+			$images_html       = '';
+			$description_html  = '';
+			foreach($images as $image) {
+				$details = wp_get_attachment_image_src($image->ID, 'large');
+				
+				$outputs[] = '<div class="span3" style="text-align: center; min-height: 250px; display: -moz-inline-stack; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 250px; float: none; margin-bottom: 20px;">
+							      <p style="line-height: 250px; display:inline;"><a href="'.$details[0].'"><img src="'.$details[0].'" style="box-shadow:3px 5px 10px #CCC;max-height:250px;vertical-align:bottom;" /></a></p>
+								  <p style="margin-top: 20px; text-align: left;">'.$image->post_content.'</p>
+							  </div>';
+			}/*
+			$outputs[] = '<div class="span12"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
+			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
+				$outputs[] = '<li><a class="page" href="#">'.$i.'</a></li>';
+			}
+			$outputs[] = '<li><a class="right" href="#">&rarr;</a></li><li><a class="show_all" href="#">Show All</a></li></ul></div>';
+			$outputs[] = '<div class="instructions span12">Click on an image to see it larger.</div>';*/
+			$outputs[] = '</fieldset>';
+		}
+		
 
 		return implode("\n", $outputs);
 	}
+	
+	
 	
 	
 	public function toHTML($object){

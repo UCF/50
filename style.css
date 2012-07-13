@@ -228,7 +228,7 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 }
 .photoset legend {font-family:"Helvetica Neue",Helvetica,sans-serif !important;font-weight:200;font-size:30px;padding-right:10px;}
 .photoset .images,
-.photoset .descriptions {margin:0 0 5px 0;padding:0;}
+.photoset .descriptions {margin:0 0 5px 0;padding:0;clear:left;}
 .ie7 .photoset .images,
 .ie8 .photoset .images {
 	margin-top:30px;
@@ -240,14 +240,14 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 .photoset .images > li a {font-weight:normal;text-decoration:none;}
 .photoset .images > li img {box-shadow:3px 5px 10px #CCC;margin:auto;max-width:250px;max-height:250px;}
 .photoset .descriptions > li p {font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;margin:0 auto;width:290px;}
-.photoset .pagination {margin:20px 0 0 0;padding:0;}
+/*.photoset .pagination {margin:20px 0 0 0;padding:0;}
 .photoset .pagination li {margin:0;list-style-type:none;float:left;}
 .photoset .pagination li a {
 	background-color:#c9b06f;
 	background: -webkit-gradient(linear, center top, center center, from(#e4c984), to(#c9b06f));
 	background: -moz-linear-gradient(top, #e4c984, #c9b06f);
 	/*background: -webkit-gradient(radial, 40% 40%, 0, 40% 40%, 60, from(#c9b06f), to(#FFF));*/
-	padding:5px 10px;
+	/*padding:5px 10px;
 	font-family:"Helvetica Neue",Helvetica,sans-serif;
 	font-weight:200;
 	font-size:16px;
@@ -297,7 +297,7 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 .photoset .show_all:hover {
 	cursor:pointer;
 }
-
+*/
 /* Photoset Page */
 #photoset-page {}
 #photoset-page #images {margin:0;padding:0;}

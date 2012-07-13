@@ -149,6 +149,8 @@ if (typeof jQuery != 'undefined'){
 							
 
 			// Photo Set
+			
+			/*
 			$('.photoset')
 				.each(function(index, photoset) {
 					var photoset     = $(photoset);
@@ -169,7 +171,7 @@ if (typeof jQuery != 'undefined'){
 							images
 								.find('img')
 									.each(function(_index, img) {
-										var img = $(img);
+										var img = $('img');
 										if(tallest == null) {
 											tallest = img;
 										} else if(img.height() > tallest.height()) {
@@ -340,6 +342,7 @@ if (typeof jQuery != 'undefined'){
 							}
 						});
 				});
+				*/
 
 				// Hide stories until `View More Stories` is clicked
 				$('.stories > li:gt(5)').hide();
