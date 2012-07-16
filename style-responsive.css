@@ -26,6 +26,9 @@
 	
 	/* Search */
 	.search-field {width:200px !important;}
+	
+	/* Photosets */
+	.photoset { width: 100%; }
 }
 
 @media (max-width: 767px) {		
@@ -91,7 +94,6 @@
 	
 	/* Photosets */
 	.photoset-nav > li { margin-left: 20px; margin-bottom: 10px; }
-	.photoset { width: 100%; }
 	.photoset legend { margin-bottom: 0; }
 	.photoset .span3 { width: 100%; margin-left: 0; min-height: 0 !important; }
 	.photoset .span3 .photo-wrap { line-height: 0 !important; }
