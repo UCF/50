@@ -185,15 +185,15 @@ if (typeof jQuery != 'undefined'){
 									.css('bottom', '0');
  						});
 					
-
+					*/
 					// Lightbox
-					images.find('a').lightBox({
+					/*images*/$('.photoset .span3 p').find('a').lightBox({
 						imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
 						imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
 						imageBtnPrev  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-prev.gif',
 						imageBtnNext  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-next.gif'
 					});
-
+/*
 					// Hide images on pages greater than 1
 					images.filter(':gt(2)').hide();
 					descriptions.filter(':gt(2)').hide();
