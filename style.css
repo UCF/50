@@ -299,7 +299,22 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 }
 */
 
-.photoset .span3 { width: 30%; }
+.photoset .span3 { 
+	width: 30%; 
+	text-align: center; 
+	min-height: 250px; 
+	display: -moz-inline-stack; 
+	display: inline-block; 
+	vertical-align: top; 
+	zoom: 1; 
+	*display: inline; 
+	_height: 250px; 
+	float: none; 
+	margin-bottom: 20px; 
+}
+.photoset .span3 .photo-wrap { line-height: 250px; display:inline; }
+.photoset .span3 .photo-wrap img { box-shadow:3px 5px 10px #CCC;max-height:250px;vertical-align:bottom; }
+.photoset .span3 .photo-desc { margin-top: 20px; text-align: left; }
 
 /* Photoset Page */
 #photoset-page {}

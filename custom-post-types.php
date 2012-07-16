@@ -448,9 +448,9 @@ class PhotoSet extends CustomPostType{
 				
 				$css   = ($count % 3) == 0 ? ' no-margin-left' : '';
 				
-				$outputs[] = '<div class="span3'.$css.'" style="text-align: center; min-height: 250px; display: -moz-inline-stack; display: inline-block; vertical-align: top; zoom: 1; *display: inline; _height: 250px; float: none; margin-bottom: 20px;">
-							      <p style="line-height: 250px; display:inline;"><a href="'.$details[0].'"><img src="'.$details[0].'" style="box-shadow:3px 5px 10px #CCC;max-height:250px;vertical-align:bottom;" /></a></p>
-								  <p style="margin-top: 20px; text-align: left;">'.$image->post_content.'</p>
+				$outputs[] = '<div class="span3'.$css.'">
+							      <p class="photo-wrap"><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></p>
+								  <p class="photo-desc">'.$image->post_content.'</p>
 							  </div>';
 				$count++;
 			}/*

@@ -90,7 +90,8 @@
 	.push { height: 453px; }
 	
 	/* Photosets */
-	.photoset .span3 { width: auto; }
+	.photoset .span3 { width: 100%; margin-left: 0; }
+	.photoset .span3 .photo-desc { text-align: center; }
 
 }
 
