@@ -377,16 +377,16 @@ if (typeof jQuery != 'undefined'){
 							$('body').scrollLeft(0)
 							$('.container').width('768px');
 							$('#header-wrap.front-page').width('768px');
-							*/
+							
 							if(!$('#front-page').length) {
 								$('body').css('zoom', '.65');
-							}
-						} else {
+							}*/
+						} else {/*
 							$('#UCFHBHeader div.UCFHBWrapper').width('974px');
-							$('.container').width('950px');
+							$('.container').width('768px');
 							$('#header-wrap.front-page').width('100%');
 							$('#footer').css({'height':'180px','padding':'10px 0'});
-							$('body').css('overflow-y', 'hidden');
+							$('body').css('overflow-y', 'hidden');*/
 							if(!$('#front-page').length) {
 								$('body').css('zoom', '1');
 							}
