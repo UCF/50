@@ -187,7 +187,8 @@ if (typeof jQuery != 'undefined'){
 					
 					*/
 					// Lightbox
-					if ($(window).width() > 480) {
+					
+					if ($(window).width() > 480 && $('body #timeline').length < 1) {
 						/*images*/$('.photoset .span3 p').find('a').lightBox({
 							imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
 							imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
