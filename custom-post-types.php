@@ -325,7 +325,7 @@ class FrontPage extends CustomPostType{
 	public 
 		$name           = 'frontpage',
 		$plural_name    = 'Front Pages',
-		$singular_name  = 'Front PAge',
+		$singular_name  = 'Front Page',
 		$add_new_item   = 'Add New Front Page',
 		$edit_item      = 'Edit Front Page',
 		$new_item       = 'New Front Page',
@@ -336,7 +336,19 @@ class FrontPage extends CustomPostType{
 		$use_order      = false,
 		$use_title      = True,
 		$use_shortcode  = false,
-		$use_metabox    = false;
+		$use_metabox    = True;
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Tooltip Content',
+				'desc' => 'Designate a tooltip description of the front page piece here.  This content will display when the user hovers over the front page background image.',
+				'id'   => $prefix.'tooltip',
+				'type' => 'textarea',
+			),
+		);
+	}
 		
 }
 
