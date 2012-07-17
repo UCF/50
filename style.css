@@ -233,6 +233,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	max-width: none; 
 }
 #tooltip-desc { display: none; }
+.ui-tooltip { border: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; }
 .front-page #footer { height: 175px; }
 
 

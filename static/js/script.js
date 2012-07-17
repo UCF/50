@@ -417,13 +417,13 @@ if (typeof jQuery != 'undefined'){
 							target: 'mouse',
 							viewport: $(window), // Keep it on-screen at all times if possible
 							adjust: {
-								x: 0,  y: -25
+								x: 8,  y: -10
 							},
 						},
 						hide: {
 							fixed: true // Helps to prevent the tooltip from hiding ocassionally when tracking!
 						},
-						style: 'ui-tooltip-plain'
+						style: 'ui-tooltip'
 					});
 				}
 			
