@@ -6,12 +6,12 @@
 							<h2 id="footer-logo"><a href="<?php echo site_url(); ?>">UCF's 50th Anniversary</a></h2>
 						<?php endif;?>
 					</div>
-					<div class="footer-widget-2 span8">
+					<div class="footer-widget-2 span6">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>
 						&nbsp;
 						<?php endif;?>
 					</div>
-					<div class="footer-widget-3 span2">
+					<div class="footer-widget-3 span4">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Three')):?>
 							<?php $options = get_option(THEME_OPTIONS_NAME);?>
 							<?php if($options['site_contact'] or $options['organization_name']):?>
