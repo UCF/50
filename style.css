@@ -94,8 +94,8 @@ a.gold-btn:active {
 .front-page #header-wrap { position: absolute; }
 #header-wrap.front-page {overflow:hidden;}
 #header {margin-left:auto;margin-right:auto;float:none;}
-#header h1, #footer-logo { width: 196px; }
-#header h1 a, #footer-logo a {
+#header h1 { width: 196px; }
+#header h1 a {
 	margin:1px auto 0 auto;
 	display:block;
 	text-indent:-500em;
@@ -107,7 +107,7 @@ a.gold-btn:active {
 }
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
-	#header h1 a, #footer-logo a {
+	#header h1 a {
 		background-image: url('static/img/50-logo-lg.png');
 		background-size: 196px 110px;	
 	}
@@ -158,7 +158,25 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	-moz-box-shadow: inset 0 8px 8px -8px #000;
 }
 #footer a, #footer p { color: #fff; font-size: 13px;}
-#footer-logo a { margin-top: -25px; }
+.footer-widget-1 { overflow: auto; }
+#footer-logo { width: 98px; }
+#footer-logo a {
+	margin:1px auto 0 auto;
+	display:block;
+	text-indent:-500em;
+	background-image:url('static/img/50-logo-v-sm.png');
+	background-repeat:no-repeat;
+	height:150px;
+	width:98px;
+	float: left;
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	#footer-logo a {
+		background-image: url('static/img/50-logo-v-lg.png');
+		background-size: 980px 150px;	
+	}
+}
 #footer h2.widgettitle { font-size: 13px; color: #fff; line-height: 20px; }
 #footer ul.menu { list-style-type: none; margin-left: 0;}
 #footer a.underline { text-decoration:underline; }
