@@ -26,7 +26,7 @@
 	.box { margin-bottom: 20px; }
 	
 	/* Footer */
-	.front-page #footer { /*display: none !important;*/ }	
+	.front-page #footer { height: auto !important; padding-bottom: 40px;/*display: none !important;*/ }	
 	#footer { height: 380px; }
 	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; clear: both; }
 	.front-page .footer-widget-2, .front-page .footer-widget-3 { display: none !important; }
