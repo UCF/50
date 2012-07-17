@@ -75,7 +75,7 @@ a.gold-btn:hover {
 a.gold-btn:active {
 	background: #c9b06f;	
 }
-.ie7 a.gold-btn, .ie8 a.gold-btn { background: #e4c984 !important; }
+.ie7 a.gold-btn, .ie8 a.gold-btn { filter: none !important; }
 
 /* WP Search Results */
 #wp-search-results .results h1 {margin-bottom:5px;font-size:20px;}
