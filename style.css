@@ -74,11 +74,18 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 	margin:1px auto 0 auto;
 	display:block;
 	text-indent:-500em;
-	background-image:url('static/img/logo-highlight.png');
+	background-image:url('static/img/50-logo-sm.png');
 	background-repeat:no-repeat;
-	height:138px;
-	width:232px;
+	height:110px;
+	width:196px;
 	float: left;
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	#header h1 a {
+		background-image: url('static/img/50-logo-lg.png');
+		background-size: 196px 110px;	
+	}
 }
 #header #header-menu {margin-left:20px;margin-top:45px;padding-top:0;}
 #header #header-menu li {margin:0 0 0 -1px; height:41px;}
