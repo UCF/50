@@ -113,13 +113,16 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 #footer {
 	padding: 20px 0 80px 0;
 	margin: 40px 0 0 0;
-	background: #333;
+	background: #282828;
 	color: #fff;
 	width: 100%;
 	border-top: 0;
 	position: relative;
 	z-index: 2;
 	height: 170px;
+	box-shadow: inset 0 8px 8px -8px #000;
+	-webkit-box-shadow: inset 0 8px 8px -8px #000;
+	-moz-box-shadow: inset 0 8px 8px -8px #000;
 }
 .front-page #footer { position: absolute; bottom: 0; }
 #footer a, #footer p { color: #fff; font-size: 13px;}
