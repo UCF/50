@@ -50,6 +50,31 @@ body { background: #fff; }
 }
 .page-content h1 { margin: 0 0 1em 0; }
 h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times, serif; font-size: 16px; color: #444; margin: 1em 0 0.8em; }
+a.gold-btn { 
+	background: #e4c984; /* Old browsers */
+	background: -moz-linear-gradient(top, #e4c984 0%, #c9b06f 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4c984), color-stop(100%,#c9b06f)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #e4c984 0%,#c9b06f 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #e4c984 0%,#c9b06f 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #e4c984 0%,#c9b06f 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #e4c984 0%,#c9b06f 100%); /* W3C */
+	text-shadow: 0 1px 0px rgba(0, 0, 0, 0.7);
+	border: 1px solid #c9b06f;
+}
+a.gold-btn:hover {
+	background-position: 0 0;
+	background: #e4c984; /* Old browsers */
+	background: -moz-linear-gradient(top, #c9b06f 0%, #e4c984 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9b06f), color-stop(100%,#e4c984)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #c9b06f 0%,#e4c984 100%); /* W3C */
+	text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.7);
+}
+a.gold-btn:active {
+	background: #c9b06f;	
+}
 
 /* WP Search Results */
 #wp-search-results .results h1 {margin-bottom:5px;font-size:20px;}
