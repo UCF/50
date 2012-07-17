@@ -3,21 +3,16 @@
 				<div class="row">
 					<div class="footer-widget-1 span3">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column One')):?>
-							<a class="ignore-external" href="http://www.ucf.edu"><img src="<?=THEME_IMG_URL?>/logo.png" alt="" title="" /></a>
+							<h2 id="footer-logo"><a href="<?php echo site_url(); ?>">UCF's 50th Anniversary</a></h2>
 						<?php endif;?>
 					</div>
-					<div class="footer-widget-2 span3">
+					<div class="footer-widget-2 span6">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>
 						&nbsp;
 						<?php endif;?>
 					</div>
 					<div class="footer-widget-3 span3">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Three')):?>
-						&nbsp;
-						<?php endif;?>
-					</div>
-					<div class="footer-widget-4 span3">
-						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Four')):?>
 							<?php $options = get_option(THEME_OPTIONS_NAME);?>
 							<?php if($options['site_contact'] or $options['organization_name']):?>
 								<div class="maintained">
