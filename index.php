@@ -6,7 +6,7 @@
 				<img src="<?=$featured_image[0]?>" />
 			</div>
 		</div>
-		<div id="tooltip-desc"><?=get_post_meta($post->ID, 'frontpage_tooltip', true);?></div>
+		<div id="tooltip-desc"><? $tooltip = get_post_meta($post->ID, 'frontpage_tooltip', true); print empty($tooltip) ? 'notooltip' : $tooltip; ?></div>
 	</div>
 </div><!--.container -->
 <div id="footer">	

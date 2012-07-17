@@ -403,7 +403,7 @@ if (typeof jQuery != 'undefined'){
 				
 				// Front Page Tooltips
 				var tooltip_content = $('#tooltip-desc').html();
-				if (tooltip_content) {
+				if (tooltip_content !== "notooltip") {
 					$('#feature-wrap div img').qtip({
 						content: tooltip_content,
 						show: {
