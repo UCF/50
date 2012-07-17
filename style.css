@@ -225,13 +225,14 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	display:table-cell;
 	vertical-align: middle;
 }
-
 #front-page #feature-wrap img {
 	position:relative;
 	margin:0 auto;
 	display:block;
 	max-width: none; 
 }
+#tooltip-desc { display: none; }
+.qtip { position: relative; z-index: 999; }
 .front-page #footer { height: 175px; }
 
 

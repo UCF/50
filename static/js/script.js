@@ -399,6 +399,34 @@ if (typeof jQuery != 'undefined'){
 				
 				// Bootstrap submit buttons
 				$('button, input[type="submit"]').addClass('btn');
+				
+				
+				// Front Page Tooltips
+				var tooltip_content = $('#tooltip-desc').html();
+				if (tooltip_content) {
+					$('#feature-wrap div img').qtip({
+						content: tooltip_content,
+						show: {
+							delay: 1500,
+							effect: function(offset) {
+								$(this).fadeIn(500); // "this" refers to the tooltip
+							}
+						},
+						position: {
+							my: 'top left',
+							target: 'mouse',
+							viewport: $(window), // Keep it on-screen at all times if possible
+							adjust: {
+								x: 0,  y: -25
+							},
+						},
+						hide: {
+							fixed: true // Helps to prevent the tooltip from hiding ocassionally when tracking!
+						},
+						style: 'ui-tooltip-plain'
+					});
+				}
+			
 		})();
 		
 	});
