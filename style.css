@@ -90,7 +90,7 @@ h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times
 	font-weight:200;
 	color:#333;
 	background-color:rgba(239,239,239,0.7);
-	padding:5px 10px;
+	padding:5px 15px;
 	margin:0;
 }
 .ie7 #header #header-menu li a { line-height: 40px; }
