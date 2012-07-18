@@ -89,7 +89,7 @@ if(isset($_GET['json'])) {
 		<title><?=get_bloginfo('blog_title')?> - <?=$post->post_title?></title>
 	</head>
 	<body>
-		<div id="header">
+		<div id="header" style="padding-bottom:0;">
 			<h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 		</div>
 		<div id="timeline"></div>
