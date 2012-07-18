@@ -106,7 +106,7 @@
 		<div id="browser_support" class="error" style="display:none;">
 			Your browser, !BROWSER!, is not supported by this website. Various features may work
 			in unexpected ways or not at all. The following browsers are supported:
-			Internet Explorer 7+, Firefox 10+, Chrome 17+, and Safari 5+. 
+			Internet Explorer 8+, Firefox 10+, Chrome 17+, and Safari 5+. 
 		</div>
 		
 		<div class="container" id="content-wrap">
