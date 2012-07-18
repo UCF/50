@@ -404,6 +404,12 @@ if (typeof jQuery != 'undefined'){
 				// Front Page Tooltips
 				var tooltip_content = $('#tooltip-desc').html();
 				if (tooltip_content !== "notooltip") {
+					xval = 8;
+					yval = -10;
+					if (ie7 == true || ie8 == true) {
+						xval = 9;
+						yval = 18;
+					}
 					$('#feature-wrap div img').qtip({
 						content: tooltip_content,
 						show: {
@@ -417,8 +423,8 @@ if (typeof jQuery != 'undefined'){
 							target: 'mouse',
 							viewport: $(window), // Keep it on-screen at all times if possible
 							adjust: {
-								x: 8,  y: -10
-							},
+								x: xval,  y: yval
+							}
 						},
 						hide: {
 							fixed: true // Helps to prevent the tooltip from hiding ocassionally when tracking!
