@@ -91,7 +91,7 @@ a.gold-btn:active {
 #header-wrap {
 	/*position:absolute;*/
 	position: relative;
-	top:37px;
+	top:38px;
 	/*left:0;*/
 	/*width:100%;*/
 	z-index:2;
@@ -101,7 +101,7 @@ a.gold-btn:active {
 #header {margin-left:auto;margin-right:auto;float:none;position:relative;z-index:999;}
 #header h1 { width: 196px; }
 #header h1 a {
-	margin:1px auto 0 auto;
+	margin:0 auto;
 	display:block;
 	text-indent:-500em;
 	background-image:url('static/img/50-logo-sm.png');
