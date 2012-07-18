@@ -2,7 +2,8 @@
 	#header h1 { margin-left: 26px; }
 }
 @media (max-width: 1199px) {
-	#header h1 { margin-left: 16px; }	
+	#header h1 { margin-left: 16px; }
+	.stories > li.span4 { width: 299px; }
 }
 @media (max-width: 979px) {
 	#UCFHBSearch_and_links { display: none; }
@@ -14,6 +15,9 @@
 	
 	/* Front Page */
 	.front-page #footer { padding-bottom: 80px; }
+	
+	/* Stories */
+	.stories > li.span4 { width: 227px; }
 	
 	/* Search */
 	.search-field {width:auto !important;}
@@ -36,6 +40,9 @@
 	
 	/* Search */
 	.search-field {width:200px !important;}
+	
+	/* Stories */
+	.stories > li.span4 { width: 100% !important; margin-left: 0; }
 	
 	/* Photosets */
 	.photoset { width: 100%; }

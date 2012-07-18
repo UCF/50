@@ -346,15 +346,14 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .photoset .span3 { 
 	width: 30%; 
 	text-align: center; 
-	min-height: 250px; 
-	display: -moz-inline-stack; 
 	display: inline-block; 
 	vertical-align: top; 
-	zoom: 1; 
-	*display: inline; 
-	_height: 250px; 
 	float: none; 
 	margin-bottom: 20px; 
+}
+.ie7 .photoset .span3, .ie8 .photoset .span3 {
+	min-height: 250px;
+	
 }
 .photoset .span3 .photo-wrap { line-height: 250px; display:inline; }
 .photoset .span3 .photo-wrap a { display:block; height:250px; margin-bottom: 30px; }
@@ -382,10 +381,12 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #stories .search-form {margin-top:5px;}
 
 .stories {margin:0;padding:0;}
-.stories > li {
+.stories > li.span4 {
 	list-style-type:none;
-	float:left;
+	/*float:left;*/
 	/*width:275px;*/
+	display:inline-block;
+	float: none;
 	vertical-align:top;
 	margin-left:17px;
 	margin-bottom: 20px;
@@ -403,7 +404,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 .ie7 .stories > li,
 .ie8 .stories > li {
-	background-color:#bfa664;
+	min-height: 250px;
+	width: 299px;
 }
 .stories > li.no-margin-left {margin-left:0;}
 .stories > li > a {text-decoration:none;font-weight:normal;}
