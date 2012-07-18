@@ -92,7 +92,7 @@ if (typeof jQuery != 'undefined'){
 
 			}
 			center_browser_support();
-			if($.browser.msie && browser_version < 7) {
+			if($.browser.msie && browser_version < 8) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version));
 			} else if($.browser.opera) {
