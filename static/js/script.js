@@ -405,10 +405,14 @@ if (typeof jQuery != 'undefined'){
 				var tooltip_content = $('#tooltip-desc').html();
 				if (tooltip_content !== "notooltip") {
 					xval = 8;
-					yval = -10;
+					yval = 14;
 					if (ie7 == true || ie8 == true) {
 						xval = 9;
 						yval = 18;
+					}
+					if ($.browser.mozilla) {
+						xval = 8;
+						yval = -10;
 					}
 					$('#feature-wrap div img').qtip({
 						content: tooltip_content,
