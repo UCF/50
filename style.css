@@ -351,7 +351,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	float: none; 
 	margin-bottom: 20px; 
 }
-.photoset .span3 .photo-wrap { line-height: 250px; display:inline; overflow:auto; }
+.photoset .span3 .photo-wrap { line-height: 250px; display:inline; }
+.photoset .span3 .photo-wrap a { display:block; height:250px; margin-bottom: 30px; }
 .photoset .span3 .photo-wrap img { box-shadow:3px 5px 10px #CCC;max-height:250px;vertical-align:bottom; }
 .photoset .span3 .photo-desc { margin-top: 20px; text-align: left; font-family: "Helvetica Neue",Helvetica,sans-serif;font-size:14px; }
 
