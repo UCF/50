@@ -12,6 +12,9 @@
 	#header .span8 { width: 470px; }
 	#header #header-menu li a { font-size: 22px; }
 	
+	/* Front Page */
+	.front-page #footer { padding-bottom: 80px; }
+	
 	/* Search */
 	.search-field {width:auto !important;}
 }

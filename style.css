@@ -149,7 +149,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 /* Footer */
 #footer {
-	padding: 20px 0 80px 0;
+	padding: 20px 0 20px 0;
 	margin: 40px 0 0 0;
 	background: #282828;
 	color: #fff;
@@ -186,7 +186,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #footer ul.menu { list-style-type: none; margin-left: 0;}
 #footer a.underline { text-decoration:underline; }
 /* Front Pg Footer */
-.front-page #footer { position: absolute; bottom: 0; }
+.front-page #footer { position: absolute; bottom: 0; padding-bottom: 30px; }
 #footer #post-content * {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 #footer #post-content h2 {
 	color:#fff;
@@ -247,9 +247,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -308px; /* = the negative value of the footer's height, plus the height of the UCF Header */
+	margin: 0 auto -248px; /* = the negative value of the footer's height, plus the height of the UCF Header */
 }
-.push { height: 308px; } /* necessary for sticky footer */
+.push { height: 248px; } /* necessary for sticky footer */
 
 .page-content {margin-top:105px;margin-bottom:20px;}
 .page-content h1 {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
