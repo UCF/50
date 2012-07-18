@@ -249,6 +249,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .page-content {margin-top:105px;margin-bottom:20px;}
 .page-content h1 {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 .page-content p {font-family: Georgia, Times, serif;font-size:16px;line-height:1.5em;}
+.page-content a {font-weight:bold;text-decoration:underline;color:#333;}
+.page-content a:hover {color:#BB1111;}
 
 
 /* Photo Set */
@@ -412,7 +414,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	display:block;
 	background-color:#999;
 	padding:10px;
-	color:#FFF;
+	color:#FFF !important;
 	text-decoration:none;
 	box-shadow: 2px 2px 5px #999;
 	clear: both;
