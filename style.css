@@ -47,6 +47,10 @@ body { background: #fff; }
 	z-index:5;
 	width:600px;
 	position:absolute;
+	padding: 20px;
+	background: #F2DEDE;
+	border: 1px solid #EED3D7;
+	margin-top:38px;
 }
 .page-content h1 { margin: 0 0 1em 0; }
 h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times, serif; font-size: 16px; color: #444; margin: 1em 0 0.8em; }
