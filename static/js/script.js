@@ -400,9 +400,6 @@ if (typeof jQuery != 'undefined'){
 				// Bootstrap submit buttons
 				$('button, input[type="submit"]').addClass('btn');
 				
-				// Footer widget link arrows
-				$('#footer .widget .menu li a').before('<i class="icon-chevron-right icon-white" style="margin-right:5px;"></i>');
-				
 				// Front Page Tooltips
 				var tooltip_content = $('#tooltip-desc').html();
 				if (tooltip_content !== "notooltip") {
