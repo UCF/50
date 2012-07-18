@@ -89,9 +89,9 @@ if(isset($_GET['json'])) {
 		<title><?=get_bloginfo('blog_title')?> - <?=$post->post_title?></title>
 	</head>
 	<body>
-		<a href="<?=get_bloginfo('home')?>" id="back_link" style="z-index:999">
-			UCF 50th
-		</a>
+		<div id="header">
+			<h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+		</div>
 		<div id="timeline"></div>
 		<?="\n".footer_()."\n"?>
 		<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>

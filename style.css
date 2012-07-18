@@ -94,7 +94,7 @@ a.gold-btn:active {
 }
 .front-page #header-wrap { position: absolute; }
 #header-wrap.front-page {overflow:hidden;}
-#header {margin-left:auto;margin-right:auto;float:none;}
+#header {margin-left:auto;margin-right:auto;float:none;position:relative;z-index:999;}
 #header h1 { width: 196px; }
 #header h1 a {
 	margin:1px auto 0 auto;
