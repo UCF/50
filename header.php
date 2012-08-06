@@ -102,12 +102,13 @@
 
 				</div>		
 			</div>
-		</div>
-		<div id="browser_support" class="error" style="display:none;">
-			Your browser, !BROWSER!, is not supported by this website. Various features may work
+		</div>		
+		
+		<div class="alert alert-block alert-error" style="display:none;" id="browser_support">
+    		<p>Your browser, !BROWSER!, is not supported by this website. Various features may work
 			in unexpected ways or not at all. The following browsers are supported:
-			Internet Explorer 8+, Firefox 10+, Chrome 17+, and Safari 5+. 
-		</div>
+			Internet Explorer 8+, Firefox 10+, Chrome 17+, and Safari 5+.</p>
+    	</div>
 		
 		<div class="container" id="content-wrap">
 			<div class="row<? if(is_front_page()):?> front-page<? endif ?>" id="header-wrap">

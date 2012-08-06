@@ -94,19 +94,24 @@ if (typeof jQuery != 'undefined'){
 			center_browser_support();
 			if($.browser.msie && browser_version < 8) {
 				browser_support.show();
-				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version));
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version))
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.opera) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Opera ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.webkit && !$.browser.safari && browser_version < 15) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Chrome ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.mozilla && browser_version < 8) {
 				browser_support.show()
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Firefox ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.safari && browser_version < 5) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Safari ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			}
 
 			// Front Page Image Scaling
