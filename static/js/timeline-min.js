@@ -5127,7 +5127,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
 		config.interval_width = 200;
 		config.rows = [1, 1, 1];
 		//config.multiplier = 6;
-		config.multiplier = 1;
+		config.multiplier = 6;
 		config.max_multiplier = 16;
 		config.min_multiplier = 1;
 		config.has_start_page = false;
