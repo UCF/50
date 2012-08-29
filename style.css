@@ -176,7 +176,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 only screen and (min-device-pixel-ratio : 1.5) {
 	#footer-logo a {
 		background-image: url('static/img/50-logo-v-lg.png');
-		background-size: 980px 150px;	
+		background-size: 98px 150px;	
 	}
 }
 #footer h2.widgettitle { font-size: 13px; color: #fff; line-height: 20px; }
