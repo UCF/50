@@ -118,15 +118,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #header #header-menu li {margin:0 0 0 -1px; height:41px;}
 .ie9 #header #header-menu li {margin-left:0;}
 #header #header-menu li:after {content:'';}
-#header #header-menu li a {
-	font-size:25px;
-	font-family:"Helvetica Neue",Helvetica,sans-serif;
-	font-weight:200;
-	color:#333;
-	background-color:rgba(239,239,239,0.7);
-	padding:5px 15px;
-	margin:0;
-}
 .ie7 #header #header-menu li a { line-height: 40px; }
 .ie7 #header #header-menu li a,
 .ie8 #header #header-menu li a {
