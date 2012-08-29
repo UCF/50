@@ -129,11 +129,13 @@
 	   Styles applied only to the subpage nav (appended to the footer)
 	   should be called by #menu-wrap (element).
 	*/
-	#header-wrap { width: 100% !important; margin-left: 0; }
-	#header-wrap { margin-left: -20px; }
-	#header h1.span4 { width: 100%; margin-left: 20px; }
+	#header-wrap { width: 100% !important; }
+	#header-wrap { margin-left: 20px; }
+	#header h1.span4 { width: 100%; margin-left: -20px; }
 	#header h1.span4 a { float: none !important; }
-	#menu-wrap { margin-left: 0; width: 100%; padding: 20px 0; border-top: 1px solid #ddd; }
+	#menu-wrap { margin-left: -20px !important; margin-top: -5px !important; width: 100%; padding: 20px 0 0 0; }
+	#menu-wrap .navbar { margin-bottom: 0; }
+	#header #header-menu { margin-left: 0 !important; margin-top: 20px;}
 	#header #header-menu li, #header-menu li { 
 		height: 35px;
 		float: none !important;
@@ -145,11 +147,21 @@
 		padding: 10px 5px 10px 10px;	
 		font-size: 16px;
 		font-weight: bold;
-		text-shadow: 0px 1px 0px #fff;
+		text-shadow: 0px 1px 0px #000;
+		color: #fff;
+		display: block;
+		width: 100%;
+	}
+	#header #header-menu li a:hover, #header-menu li a:hover {
+		background: #222;
+		border-radius: 5px;
 	}
 	
 	/* Footer */
-	#footer { height: 473px; }
+	#content-wrap { margin: 0 auto !important; }
+	.push { display: none; }
+	#footer { height: auto !important; }
+	#footer .footer-widget-2 .widget_text .textwidget p:first-child, #footer .footer-widget-2 .widget_text h2.widgettitle { display: none; } /* Share With Us widget text */
 	
 	/* Front Page */
 	html.front-page, .front-page body { overflow-y: auto !important; }
@@ -157,15 +169,14 @@
 	.front-page #header { padding: 0 20px; }
 	
 	.front-page #header h1.span4 { margin-left: 0; }
-	#header .span8 { margin-left: -20px !important; }
-	#header #header-menu { margin-top: 30px !important; margin-left: 20px !important; }
 	
 	#front-page #post-content { /*position: relative; padding: 60px 0 20px; width: 100%;*/display:none; }
 	
+	.front-page #footer { display: none; }
+	
 	/* Subpages */
-	#content-wrap { margin: 0 auto -473px; } /* = the negative value of the footer's height, plus the height of the UCF Header */
+	#content-wrap { margin: 0 auto; }
 	.page-content h1 { margin-bottom: 0.5em; }
-	.push { height: 473px; }
 	.search-field {width:200px !important;}
 	input.gform_button[type="submit"] { width: 100%; }
 	

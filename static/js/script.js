@@ -50,35 +50,41 @@ if (typeof jQuery != 'undefined'){
 			// Don't run in IE 7 or 8 as they won't see any 
 			// other media query effects anyway
 			if (ie7 == false && ie8 == false) {
-				var header_menu = $('#header-menu');
-				
-				var menuAppendFooter = function() {
-					header_menu.addClass('nav nav-tabs nav-stacked');
-					$('#footer, .push').hide();
-					$('#menu-wrap').remove().appendTo('#content-wrap');
+				var mobile_wrap = function() {
+					$('#header-menu').wrap('<div class="navbar"><div class="navbar-inner"><div class="container" id="mobile_dropdown_container"><div class="nav-collapse"></div></div></div></div>');
+					$('<a class="btn btn-navbar" id="mobile_dropdown_toggle" data-target=".nav-collapse" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="#">Navigation</a>').prependTo('#mobile_dropdown_container');
+					$('.current-menu-item, .current_page_item').addClass('active');
 				}
-				var menuAppendHeader = function() {
-					// If #menu-wrap is not already in the header, 
-					// re-add it:
-					if ($('#header:not(:has(#menu-wrap))')) {
-						header_menu.removeClass('nav nav-tabs nav-stacked');
-						$('#menu-wrap').remove().appendTo('#header');
-						$('#footer, .push').show();
+				var mobile_unwrap = function() {
+					$('#mobile_dropdown_toggle .icon-bar').remove();
+					$('#mobile_dropdown_toggle').remove();
+					$('#mobile_dropdown_container a.brand').remove();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+				}
+				var adjust_mobile_nav = function() {
+					if ($(window).width() < 480) {
+						if ($('#mobile_dropdown_container').length < 1) {
+							mobile_wrap();
+						}
+					}
+					else {
+						if ($('#mobile_dropdown_container').length > 0) {
+							mobile_unwrap();
+						}
 					}
 				}
 				
-				if ($(window).width() < 480) {
-					menuAppendFooter();
+				if ( !($.browser.msie && $.browser.version < 9) ) { /* Don't resize in IE8 or older */
+					adjust_mobile_nav();
+					$(window).resize(function() {
+						adjust_mobile_nav();
+					});
 				}
-				$(window).resize(function() {
-					if ($(window).width() > 480) {
-						menuAppendHeader();
-					}
-					else { 
-						menuAppendFooter();
-					}
-				});
 			}
+				
 			
 
 			// Browser Support
