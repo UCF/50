@@ -107,7 +107,7 @@
 		<div class="alert alert-block alert-error" style="display:none;" id="browser_support">
     		<p>Your browser, !BROWSER!, is not supported by this website. Various features may work
 			in unexpected ways or not at all. The following browsers are supported:
-			Internet Explorer 8+, Firefox 10+, Chrome 17+, and Safari 4+.</p>
+			Internet Explorer 8+, Firefox 10+, Chrome 17+, Safari 4+, Mobile Safari 5+. and Android 2.2+.</p>
     	</div>
 		
 		<div class="container" id="content-wrap">
