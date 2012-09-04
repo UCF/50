@@ -114,9 +114,13 @@ if (typeof jQuery != 'undefined'){
 				browser_support.show()
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Firefox ' + browser_version));
 				browser_support.delay(3500).fadeOut();
-			} else if($.browser.safari && browser_version < 4) {
+			} else if($.browser.safari && browser_version < 4 && $(window).width() > 768) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Safari ' + browser_version));
+				browser_support.delay(3500).fadeOut();
+			} else if($.browser.safari && browser_version < 4 && $(window).width() < 768) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace(', !BROWSER!,', '' ));
 				browser_support.delay(3500).fadeOut();
 			}
 
