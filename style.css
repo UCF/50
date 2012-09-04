@@ -227,7 +227,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 #tooltip-desc { display: none; }
 .ui-tooltip { border: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; }
 .ie7 .ui-tooltip, .ie8 .ui-tooltip { background: url('static/img/ie-frontpage-gray.png') repeat; }
-.front-page #footer { height: 175px; }
+.front-page #footer { height: 185px; }
 
 
 /* Interior Pages */
