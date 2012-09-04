@@ -65,7 +65,7 @@ if (typeof jQuery != 'undefined'){
 					$('#header-menu').unwrap();
 				}
 				var adjust_mobile_nav = function() {
-					if ($(window).width() < 480) {
+					if ($(window).width() <= 480) {
 						if ($('#mobile_dropdown_container').length < 1) {
 							mobile_wrap();
 						}
