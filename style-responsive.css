@@ -199,7 +199,7 @@
 	
 	/* Front Page */
 	html.front-page, .front-page body { overflow-y: auto !important; }
-	.front-page body { background: center center no-repeat; }
+	.front-page body { background: center center no-repeat; background-size: cover; }
 	.front-page #header { padding: 0 20px; }
 	.front-page #header .span8 { margin: 15px auto 0 auto; }
 	.front-page #header-wrap { margin-left: -20px; }
