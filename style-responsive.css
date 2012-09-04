@@ -182,6 +182,10 @@
 	.push { display: none; }
 	#footer { height: auto !important; }
 	#footer .footer-widget-2 .widget_text .textwidget p:first-child, #footer .footer-widget-2 .widget_text h2.widgettitle { display: none; } /* Share With Us widget text */
+	#footer .footer-widget-1, #footer .footer-widget-2, #footer .footer-widget-3 { float: left; }
+	#footer .footer-widget-1 { width: 55%; }
+	#footer .footer-widget-2, #footer .footer-widget-3 { width: 40%; clear: right; }
+	
 	
 	/* Front Page */
 	html.front-page, .front-page body { overflow-y: auto !important; }
