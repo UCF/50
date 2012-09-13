@@ -400,6 +400,7 @@ Config::$scripts = array(
 	THEME_JS_URL.'/jquery.qtip.min.js',
 	THEME_STATIC_URL.'/bootstrap/build/js/bootstrap.js',
 	THEME_JS_URL.'/timeline-min.js',
+	THEME_JS_URL.'/university-header.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );
