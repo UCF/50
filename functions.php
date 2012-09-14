@@ -34,4 +34,12 @@ function truncate($string, $word_count=30) {
 	return implode(' ', array_slice($parts, 0, count($parts) - 1)).'...';
 }
 
+
+/**
+ * Change all gravity forms to submit to the page they are on
+ **/
+function change_form_action($form_tag, $form) {
+	return preg_replace("/action='(.*?)'/", "action='.'", $form_tag);
+}
+add_filter('gform_form_tag', 'change_form_action', 10, 2);
 ?>
