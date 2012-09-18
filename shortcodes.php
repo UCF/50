@@ -142,6 +142,44 @@ function sc_person_picture_list($atts) {
 add_shortcode('person-picture-list', 'sc_person_picture_list');
 
 
+/**
+ * Include the defined publication, referenced by pub title:
+ *
+ *     [publication name="Where are the robots Magazine"]
+ **/
+function sc_publication($attr, $content=null){
+	$pub_name = @$attr['name'];
+	$pub_id   = @$attr['id'];
+	
+	if (!$pub_name and is_numeric($pub_id)){
+		$pub = get_post($pub_id);
+	}
+	if (!$pub_id and $pub_name){
+		$pub = get_page_by_title($pub_name, OBJECT, 'publication');
+	}
+	
+	$iframe = get_publication_iframe($pub->ID);
+	// If a featured image is set, use it; otherwise, get the thumbnail from issuu
+	$thumb = (get_the_post_thumbnail($pub->ID, 'publication_thumb', TRUE) !== '') ? get_the_post_thumbnail($pub->ID, 'publication_thumb', TRUE) : get_publication_thumb($pub->ID);
+	
+	ob_start(); ?>
+	
+	<div class="pub">
+		<a class="track pub-track" title="<?=$pub->post_title?>" data-toggle="modal" href="#pub-modal-<?=$pub->ID?>">
+			<?=$thumb?><span><?=$pub->post_title?></span>
+		</a>
+		<p class="pub-desc"><?=$pub->post_content?></p>
+		<div class="modal hide fade" id="pub-modal-<?=$pub->ID?>" role="dialog" aria-labelledby="<?=$pub->post_title?>" aria-hidden="true">
+			<?=$iframe?>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		</div>
+	</div>
+	
+	<?php
+	return ob_get_clean();
+}
+add_shortcode('publication', 'sc_publication');
+
 
 
 ?>

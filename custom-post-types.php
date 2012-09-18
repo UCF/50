@@ -753,7 +753,7 @@ class Publication extends CustomPostType{
 		$edit_item      = 'Edit Publication',
 		$new_item       = 'New Publication',
 		$public         = True,
-		$use_editor     = False,
+		$use_editor     = True,
 		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
@@ -775,10 +775,10 @@ class Publication extends CustomPostType{
 		$prefix = $this->options('name').'_';
 		return array(
 			array(
-				'name'  => 'Publication URL',
-				'desc' => 'Example: <span style="font-family:monospace;font-weight:bold;color:#21759B;">http://publications.smca.ucf.edu/admissions/viewbook.html</span>',
-				'id'   => $prefix.'url',
-				'type' => 'text',
+				'name'  => 'Issuu Embed',
+				'desc' => 'Copy and paste the WordPress embed code from Issuu.  Note that this is NOT the same as the standard embed code; it should be contained in brackets, like a shortcode.  Note that any width, height, or other style parameters assigned in the embed code from Issuu will not be used.',
+				'id'   => $prefix.'embed',
+				'type' => 'textarea',
 				'std'  => '',
 			),
 			array(
