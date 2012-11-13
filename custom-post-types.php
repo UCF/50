@@ -667,7 +667,7 @@ class TimelineEvent extends CustomPostType{
 		return array(
 			array(
 				'name' => 'Start Date',
-				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted in needed.',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted if needed.',
 				'id'   => $prefix.'start_date',
 				'type' => 'text',
 			),
@@ -679,7 +679,7 @@ class TimelineEvent extends CustomPostType{
 			),
 			array(
 				'name'    => 'Timelines',
-				'desc'    => 'Which timeline should this even be associated with?',
+				'desc'    => 'Which timeline should this event be associated with?',
 				'default' => '(None)',
 				'id'      => $prefix.'timeline',
 				'options' => $timeline_options,
