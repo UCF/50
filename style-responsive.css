@@ -148,6 +148,16 @@
 	.photoset .span3 .photo-wrap img { max-width: 100%; }
 	.photoset .span3 .photo-desc { text-align: center; }
 
+	/* DL's */
+	.dl-horizontal dt {
+		float: none;
+		width: auto;
+		clear: none;
+		text-align: left;
+	}
+	.dl-horizontal dd {
+		margin-left: 0;
+	}
 }
 
 @media (max-width: 480px) {	

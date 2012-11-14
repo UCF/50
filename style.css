@@ -447,3 +447,30 @@ input, textarea, select, .uneditable-input { margin-bottom: 0; }
 .pub .modal iframe { border: 0; overflow: hidden !important; }
 .pub .modal .btn { position: absolute; bottom:20px; right: 20px; z-index:9999; text-decoration: none; }
 .pub .modal .btn:hover { text-decoration: none; }
+
+
+/* dl-horizontal styles from newer bootstrap */
+dt, dd { margin-bottom: 5px; }
+.dl-horizontal {
+}
+.dl-horizontal:before, .dl-horizontal:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.dl-horizontal:after {
+    clear: both;
+}
+.dl-horizontal dt {
+    clear: left;
+    float: left;
+    overflow: hidden;
+    text-align: right;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+	white-space: normal;
+    width: 160px;
+}
+.dl-horizontal dd {
+    margin-left: 180px;
+}
