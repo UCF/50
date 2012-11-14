@@ -452,6 +452,8 @@ input, textarea, select, .uneditable-input { margin-bottom: 0; }
 /* dl-horizontal styles from newer bootstrap */
 dt, dd { margin-bottom: 5px; }
 .dl-horizontal {
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 .dl-horizontal:before, .dl-horizontal:after {
     content: "";
