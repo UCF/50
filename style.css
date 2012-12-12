@@ -59,8 +59,11 @@ a.gold-btn {
 	background: -o-linear-gradient(top, #e4c984 0%,#c9b06f 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #e4c984 0%,#c9b06f 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #e4c984 0%,#c9b06f 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4c984', endColorstr='#c9b06f',GradientType=0 ); /* IE6-9 */
 	text-shadow: 0 1px 0px rgba(0, 0, 0, 0.7);
 	border: 1px solid #c9b06f;
+	color: #fff !important;
+	text-decoration: none !important;
 }
 a.gold-btn:hover {
 	background-position: 0 0;
@@ -70,8 +73,10 @@ a.gold-btn:hover {
 	background: -webkit-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #c9b06f 0%,#e4c984 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9b06f', endColorstr='#e4c984',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(to bottom, #c9b06f 0%,#e4c984 100%); /* W3C */
 	text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.7);
+	color: #fff !important;
 }
 a.gold-btn:active {
 	background: #c9b06f;	
@@ -447,6 +452,49 @@ input, textarea, select, .uneditable-input { margin-bottom: 0; }
 .pub .modal iframe { border: 0; overflow: hidden !important; }
 .pub .modal .btn { position: absolute; bottom:20px; right: 20px; z-index:9999; text-decoration: none; }
 .pub .modal .btn:hover { text-decoration: none; }
+
+
+/* Gala Pages */
+#gala-header {  }
+#gala-header #gala-header-desc { padding-top: 75px; }
+#gala-header #gala-header-desc p { font-family: 'Helvetica-Neue', Helvetica, sans-serif; font-size: 14px; }
+#gala-header #gala-logo { display: block; margin: auto; max-width: 383px; max-height: 196px; }
+#gala-header #hr { padding-bottom: 20px; border-bottom: 1px solid #bc9b6a; margin-bottom: 35px; }
+
+#gala-sidebar ul { list-style-type: none; margin-left: 0; }
+#gala-sidebar ul li { height: auto; padding-bottom: 15px; }
+#gala-sidebar ul li a { font-size: 20px; font-weight: 200; color: #bc9b6a; text-decoration: none; }
+
+#gala-body {  }
+#gala-body h1,
+#gala-body h2,
+#gala-body h3,
+#gala-body h4 { font-family: 'Helvetica-Neue', Helvetica, sans-serif; }
+#gala-body h2 { 
+	color: #bc9b6a; 
+	font-weight: 200; 
+	font-size: 32px; 
+	margin-top: 60px; 
+	margin-bottom: 50px; 
+	display: block;
+	background: #fff;
+	line-height: 0px; 
+	border-bottom: 1px solid #bc9b6a;
+}
+#gala-body h2 span { background: #fff; padding-right: 10px; }
+
+#gala-body p { font-family: 'Helvetica-Neue', Helvetica, sans-serif; font-size: 14px; }
+#gala-body p .gold-btn { padding: 20px 30px; font-size: 20px; margin-top: 15px; }
+
+#helen-donegan { 
+	display: block; 
+	background: url('static/img/gala-helen-donegan.png') center center no-repeat; 
+	width: 432px; 
+	height: 90px; 
+	text-indent: -9999px; 
+	margin-left: -85px; 
+	margin-bottom: -20px; 
+}
 
 
 /* dl-horizontal styles from newer bootstrap */

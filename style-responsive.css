@@ -39,6 +39,10 @@
 	
 	/* Search */
 	.search-field {width:auto !important;}
+	
+	/* Gala Pages */
+	#gala-header #gala-header-desc { padding-top: 40px; }
+	#gala-header #gala-logo { width: 100%; height: auto; }
 }
 
 @media (max-width: 768px) {
@@ -64,6 +68,10 @@
 	
 	/* Photosets */
 	.photoset { width: 100%; }
+	
+	/* Gala Pages */
+	#gala-body h2 { font-size: 24px; }
+	#helen-donegan { width: 300px; height: 62px; background-size: cover; margin-left: 0; }
 }
 
 @media (max-width: 767px) {		
