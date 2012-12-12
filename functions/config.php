@@ -80,7 +80,7 @@ define('CB_DOMAIN', $theme_options['cb_domain']);
  * object.
  **/
 Config::$custom_post_types = array(
-	'FrontPage', 'PhotoSet', 'Story', 'Timeline', 'TimelineEvent', 'Publication', 'Video'
+	'Page', 'FrontPage', 'PhotoSet', 'Story', 'Timeline', 'TimelineEvent', 'Publication', 'Video'
 );
 
 Config::$body_classes = array('default',);
