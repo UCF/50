@@ -10,7 +10,7 @@
 		<h1>UCF's 50th Anniversary Celebration: A Knight to Remember</h1>
 		<div class="row" id="gala-header">
 			<div class="span5">
-				<img id="gala-logo" src="<?=THEME_IMG_URL?>/gala-golden-anniversary-logo.gif" alt="Golden Anniversary - A Knight to Remember" title="Golden Anniversary - A Knight to Remember" />
+				<a href="<?=get_permalink(get_page_by_title('UCF\'s 50th Anniversary Celebration: A Knight to Remember'))?>"><img id="gala-logo" src="<?=THEME_IMG_URL?>/gala-golden-anniversary-logo.gif" alt="Golden Anniversary - A Knight to Remember" title="Golden Anniversary - A Knight to Remember" /></a>
 			</div>
 			<div class="span7" id="gala-header-desc">
 				<?=apply_filters('the_content', get_page_by_title('50th Celebration Template Header')->post_content)?>
