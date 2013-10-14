@@ -76,17 +76,4 @@ function get_publication_iframe($pub_id) {
 	$iframe = '<div><object style="width:100%;height:100%"><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;backgroundColor=%23222222&amp;documentId='.$docID.'" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><param name="wmode" value="transparent"/><embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:100%;height:100%" flashvars="mode=mini&amp;backgroundColor=%23222222&amp;documentId='.$docID.'" /></object></div>';
 	return $iframe;
 }
-
-/**
- * Add ID attribute to registered University Header script.
- **/
-function add_id_to_ucfhb($url) {
-    if ( (false !== strpos($url, 'bar/js/university-header.js')) || (false !== strpos($url, 'bar/js/university-header-full.js')) ) {
-      remove_filter('clean_url', 'add_id_to_ucfhb', 10, 3);
-      return "$url' id='ucfhb-script";
-    }
-    return $url;
-}
-add_filter('clean_url', 'add_id_to_ucfhb', 10, 3);
-
 ?>

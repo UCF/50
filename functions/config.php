@@ -392,7 +392,7 @@ if ($theme_options['bootstrap_enable_responsive'] == 1) {
 
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
-	'//universityheader.ucf.edu/bar/js/university-header.js?use-bootstrap-overrides=1',
+	'//universityheader.ucf.edu/bar/js/university-header.js',
 	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.7.2.min.js',),
 	THEME_JS_URL.'/jquery-extras.js',
 	THEME_JS_URL.'/jquery.lightbox-0.5.pack.js',
