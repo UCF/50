@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US"<?= (is_front_page() ? ' class="front-page"':'')?>>
 	<head>
-		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
 		<?="\n".header_()."\n"?>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
 		<!--[if IE]>
 		<link href="http://cdn.ucf.edu/webcom/-/css/blueprint-ie.css" rel="stylesheet" media="screen, projection">
 		<![endif]-->
