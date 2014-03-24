@@ -2,7 +2,7 @@
 Theme Name: UCF 50th Theme Bootstrap
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/50
-Version: v1.2.1
+Version: v1.2.2
 */
 
 /* UCF Header Styles */
@@ -93,12 +93,12 @@ a.gold-btn:active {
 #header-wrap {
 	/*position:absolute;*/
 	position: relative;
-	top:38px;
+	top:0;
 	/*left:0;*/
 	/*width:100%;*/
 	z-index:2;
 }
-.front-page #header-wrap { position: absolute; }
+.front-page #header-wrap { position: absolute; top: 50px; }
 #header-wrap.front-page {overflow:hidden;}
 #header {margin-left:auto;margin-right:auto;float:none;position:relative;z-index:999;}
 #header h1 { width: 196px; }
@@ -244,7 +244,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 .push { height: 248px; } /* necessary for sticky footer */
 
-.page-content {margin-top:105px;margin-bottom:20px;}
+.page-content {margin-top:50px;margin-bottom:20px;}
 .page-content h1 {font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 .page-content p {font-family: Georgia, Times, serif;font-size:16px;line-height:1.5em;}
 .page-content a {font-weight:bold;text-decoration:underline;color:#333;}
