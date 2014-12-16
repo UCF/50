@@ -1,12 +1,12 @@
 <?php disallow_direct_load('page.php');?>
 <?php get_header(); the_post();?>
-	<div class="span-24 last page-content" id="<?=$post->post_name?>">
-		<div class="span-24">
-			<article>
-				<h1><?php the_title();?></h1>
-				<?php the_content();?>
-			</article>
-		</div>
+	<div class="page-content" id="<?=$post->post_name?>">
+		<article>
+			<h1><?php the_title();?></h1>
+			<?php the_content();?>
+		</article>
 	</div>
+	<div class="push"></div>
+</div>
 
 <?php get_footer();?>

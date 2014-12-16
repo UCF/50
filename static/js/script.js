@@ -1,4 +1,22 @@
-	if (typeof jQuery != 'undefined'){
+var Generic = {};
+
+Generic.defaultMenuSeparators = function($) {
+	// Because IE sucks, we're removing the last stray separator
+	// on default navigation menus for browsers that don't 
+	// support the :last-child CSS property
+	$('.menu.horizontal li:last-child').addClass('last');
+};
+
+Generic.removeExtraGformStyles = function($) {
+	// Since we're re-registering the Gravity Form stylesheet
+	// manually and we can't dequeue the stylesheet GF adds
+	// by default, we're removing the reference to the script if
+	// it exists on the page (if CSS hasn't been turned off in GF settings.)
+	$('link#gforms_css-css').remove();
+}
+
+
+if (typeof jQuery != 'undefined'){
 	jQuery(document).ready(function($) {
 		$('#header-menu a, #front-page #post-content a').addClass('ignore-external');
 
@@ -9,16 +27,67 @@
 		Webcom.loadMoreSearchResults($);
 		
 		/* Theme Specific Code Here */
+		//Generic.homeDimensions($);
+		//Generic.resizeSearch($);
+		Generic.defaultMenuSeparators($);
+		Generic.removeExtraGformStyles($);
+		
 		(function() {
 			var ie7 = false,
+				ie8 = false,
 				ipad = (navigator.userAgent.match(/iPad/i) != null);
 
 			if($.browser.msie && $.browser.version == '7.0') {
 				ie7 = true
 			}
+			if($.browser.msie && $.browser.version == '8.0') {
+				ie8 = true
+			}
 
 			// UCF Header Bar Links
 			$('#UCFHBHeader a').removeClass('external');
+
+
+			// Mobile navigation
+			// Don't run in IE 7 or 8 as they won't see any 
+			// other media query effects anyway
+			if (ie7 == false && ie8 == false) {
+				var mobile_wrap = function() {
+					$('#header-menu').wrap('<div class="navbar"><div class="navbar-inner"><div class="container" id="mobile_dropdown_container"><div class="nav-collapse"></div></div></div></div>');
+					$('<a class="btn btn-navbar" id="mobile_dropdown_toggle" data-target=".nav-collapse" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="#">Navigation</a>').prependTo('#mobile_dropdown_container');
+					$('.current-menu-item, .current_page_item').addClass('active');
+				}
+				var mobile_unwrap = function() {
+					$('#mobile_dropdown_toggle .icon-bar').remove();
+					$('#mobile_dropdown_toggle').remove();
+					$('#mobile_dropdown_container a.brand').remove();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+					$('#header-menu').unwrap();
+				}
+				var adjust_mobile_nav = function() {
+					if ($(window).width() <= 480) {
+						if ($('#mobile_dropdown_container').length < 1) {
+							mobile_wrap();
+						}
+					}
+					else {
+						if ($('#mobile_dropdown_container').length > 0) {
+							mobile_unwrap();
+						}
+					}
+				}
+				
+				if ( !($.browser.msie && $.browser.version < 9) ) { /* Don't resize in IE8 or older */
+					adjust_mobile_nav();
+					$(window).resize(function() {
+						adjust_mobile_nav();
+					});
+				}
+			}
+				
+			
 
 			// Browser Support
 			var browser_support = $('#browser_support'),
@@ -31,40 +100,59 @@
 
 			}
 			center_browser_support();
-			if($.browser.msie && browser_version < 7) {
+			if($.browser.msie && browser_version < 8) {
 				browser_support.show();
-				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version));
+				browser_support.text(browser_support_text.replace('!BROWSER!', 'Internet Explorer ' + browser_version))
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.opera) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Opera ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.webkit && !$.browser.safari && browser_version < 15) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Chrome ' + browser_version));
+				browser_support.delay(3500).fadeOut();
 			} else if($.browser.mozilla && browser_version < 8) {
 				browser_support.show()
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Firefox ' + browser_version));
-			} else if($.browser.safari && browser_version < 5) {
+				browser_support.delay(3500).fadeOut();
+			} else if($.browser.safari && browser_version < 4 && $(window).width() > 768) {
 				browser_support.show();
 				browser_support.text(browser_support_text.replace('!BROWSER!', 'Safari ' + browser_version));
+				browser_support.delay(3500).fadeOut();
+			} else if($.browser.safari && browser_version < 4 && $(window).width() < 768) {
+				browser_support.show();
+				browser_support.text(browser_support_text.replace(', !BROWSER!,', '' ));
+				browser_support.delay(3500).fadeOut();
 			}
 
 			// Front Page Image Scaling
 			// Adapted from polanski.co
 			$(window)
 				.resize(function() {
-					var front_page_image = $('#front-page #feature-wrap img'),
-						window_width     = $(window).width(),
-						window_height    = $(window).height();
-					
+					var front_page_image 	 = $('#front-page #feature-wrap img'),
+						front_page_image_src = front_page_image.attr('src');
+						window_width     	 = $(window).width(),
+						window_height    	 = $(window).height();
 					if(ie7) {
 						window_height = window_height * 1.5; // why? who knows
-					}
+					}					
 
 					var aspect_ratio = front_page_image.width() / front_page_image.height();
 
 					var target_width = Math.round(window_height * aspect_ratio);
-
-					front_page_image.width((window_width > target_width ? window_width : target_width));
+					
+					if ($(window).width() <= 480) {
+						$('#feature-wrap').hide();
+						$('body').css({'background-image' : 'url('+front_page_image_src+')'});
+					}
+					else {
+						if ($('#feature-wrap').is(':hidden')) {
+							$('#feature-wrap').css('display', 'table');
+							$('body').css('background-image', 'none');
+						}
+						front_page_image.width((window_width > target_width ? window_width : target_width));
+					}
 
 					center_browser_support();
 				})
@@ -75,8 +163,11 @@
 					// will report 0 for the height and width
 					$(this).trigger('resize');
 				});
+							
 
 			// Photo Set
+			
+			/*
 			$('.photoset')
 				.each(function(index, photoset) {
 					var photoset     = $(photoset);
@@ -97,7 +188,7 @@
 							images
 								.find('img')
 									.each(function(_index, img) {
-										var img = $(img);
+										var img = $('img');
 										if(tallest == null) {
 											tallest = img;
 										} else if(img.height() > tallest.height()) {
@@ -111,15 +202,18 @@
 									.css('bottom', '0');
  						});
 					
-
+					*/
 					// Lightbox
-					images.find('a').lightBox({
-						imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
-						imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
-						imageBtnPrev  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-prev.gif',
-						imageBtnNext  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-next.gif'
-					});
-
+					
+					if ($(window).width() > 480 && $('body #timeline').length < 1) {
+						/*images*/$('.photoset .span3 p').find('a').lightBox({
+							imageLoading  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-ico-loading.gif',
+							imageBtnClose : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-close.gif',
+							imageBtnPrev  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-prev.gif',
+							imageBtnNext  : THEME_STATIC_URL + '/img/jquery-lightbox/lightbox-btn-next.gif'
+						});
+					}
+/*
 					// Hide images on pages greater than 1
 					images.filter(':gt(2)').hide();
 					descriptions.filter(':gt(2)').hide();
@@ -268,6 +362,7 @@
 							}
 						});
 				});
+				*/
 
 				// Hide stories until `View More Stories` is clicked
 				$('.stories > li:gt(5)').hide();
@@ -277,7 +372,7 @@
 						$(this).prev('ul').find('li').show();
 						$(this).hide();
 					});
-
+				/*
 				if(navigator.userAgent.match(/iPad/i)) {
 					$('#feature-wrap')
 						.css('width', '100%')
@@ -286,7 +381,9 @@
 						.css('top', '0');
 					$('#header #header-menu li').css('margin-left', '-6px');
 
-				};
+				};*/				
+				
+				// iPad Orientation change fix
 				if(ipad) {
 					if($('#front-page').length) {
 						$('#feature-wrap img').wrap('<span />');
@@ -294,17 +391,20 @@
 					
 					function on_orientation_change() {
 						if(orientation == '0' || orientation == '180') {
-							$('#UCFHBHeader div.UCFHBWrapper').width('768px');
+							$('#UCFHBHeader div.UCFHBWrapper').width('768px');/*
 							$('body').scrollLeft(0)
-							$('#blueprint-container').width('768px');
+							$('.container').width('768px');
 							$('#header-wrap.front-page').width('768px');
+							
 							if(!$('#front-page').length) {
 								$('body').css('zoom', '.65');
-							}
-						} else {
+							}*/
+						} else {/*
 							$('#UCFHBHeader div.UCFHBWrapper').width('974px');
-							$('#blueprint-container').width('950px');
+							$('.container').width('768px');
 							$('#header-wrap.front-page').width('100%');
+							$('#footer').css({'height':'180px','padding':'10px 0'});
+							$('body').css('overflow-y', 'hidden');*/
 							if(!$('#front-page').length) {
 								$('body').css('zoom', '1');
 							}
@@ -313,6 +413,47 @@
 					$(window).bind('orientationchange', on_orientation_change);
 					on_orientation_change();
 				}
+				
+				// Bootstrap submit buttons
+				$('button, input[type="submit"]').addClass('btn');
+				
+				// Front Page Tooltips
+				var tooltip_content = $('#tooltip-desc').html();
+				if (tooltip_content !== "notooltip") {
+					xval = 8;
+					yval = 14;
+					if (ie7 == true || ie8 == true) {
+						xval = 9;
+						yval = 18;
+					}
+					if ($.browser.mozilla) {
+						xval = 8;
+						yval = -10;
+					}
+					$('#feature-wrap div img').qtip({
+						content: tooltip_content,
+						show: {
+							delay: 1500,
+							effect: function(offset) {
+								$(this).fadeIn(500); // "this" refers to the tooltip
+							}
+						},
+						position: {
+							my: 'top left',
+							target: 'mouse',
+							viewport: $(window), // Keep it on-screen at all times if possible
+							adjust: {
+								x: xval,  y: yval
+							}
+						},
+						hide: {
+							fixed: true // Helps to prevent the tooltip from hiding ocassionally when tracking!
+						},
+						style: 'ui-tooltip'
+					});
+				}
+			
 		})();
+		
 	});
 }else{console.log('jQuery dependancy failed to load');}

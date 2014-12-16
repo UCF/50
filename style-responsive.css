@@ -1,0 +1,245 @@
+@media (min-width: 1200px) {
+	#header h1 { margin-left: 26px; }
+	#header #header-menu li a {
+		font-size:25px;
+		font-family:"Helvetica Neue",Helvetica,sans-serif;
+		font-weight:200;
+		color:#333;
+		background-color:rgba(239,239,239,0.7);
+		padding:5px 15px;
+		margin:0;
+	}
+}
+@media (max-width: 1199px) {
+	#header h1 { margin-left: 16px; }
+	#header #header-menu li a {
+		font-size:25px;
+		font-family:"Helvetica Neue",Helvetica,sans-serif;
+		font-weight:200;
+		color:#333;
+		background-color:rgba(239,239,239,0.7);
+		padding:5px 15px;
+		margin:0;
+	}
+	.stories > li.span4 { width: 299px; }
+}
+@media (max-width: 979px) {
+	#UCFHBSearch_and_links { display: none; }
+	#UCFHBHeader div.UCFHBWrapper { width: 100%; }
+	
+	/* Header */
+	#header .span8 { width: 470px; }
+	#header #header-menu li a { font-size: 22px; }
+	
+	/* Front Page */
+	.front-page #footer { padding-bottom: 80px; }
+	
+	/* Stories */
+	.stories > li.span4 { width: 227px; }
+	
+	/* Search */
+	.search-field {width:auto !important;}
+	
+	/* Gala Pages */
+	#gala-header #gala-header-desc { padding-top: 40px; }
+	#gala-header #gala-logo { width: 100%; height: auto; }
+}
+
+@media (max-width: 768px) {
+	html.front-page, .front-page body { position: relative; overflow-y: hidden; }
+	
+	/* iPad width specifically messes up content margins for some reason */
+	.page-content .row, .page-content.row, #footer .row {
+		margin-left: 0;	
+	}
+	.box { margin-bottom: 20px; }
+	
+	/* Footer */
+	.front-page #footer { height: auto !important; padding-bottom: 40px;/*display: none !important;*/ }	
+	#footer { height: 380px; }
+	.footer-widget-1, .footer-widget-2, .footer-widget-3 { margin-bottom: 20px !important; clear: both; }
+	.front-page .footer-widget-2, .front-page .footer-widget-3 { display: none !important; }
+	
+	/* Search */
+	.search-field {width:200px !important;}
+	
+	/* Stories */
+	.stories > li.span4 { width: 100% !important; margin-left: 0; }
+	
+	/* Photosets */
+	.photoset { width: 100%; }
+	
+	/* Gala Pages */
+	#gala-body h2 { font-size: 24px; }
+	#helen-donegan { width: 300px; height: 62px; background-size: cover; margin-left: 0; }
+}
+
+@media (max-width: 767px) {		
+	/* Shrinkable bootstrap tables for tablets/phones.
+	Responsive table guide via css-tricks.com/responsive-data-tables/ */
+	table.table.table-striped, 
+	.table.table-striped thead, 
+	.table.table-striped tbody, 
+	.table.table-striped th, 
+	.table.table-striped td, 
+	.table.table-striped tr {
+		display: block;
+	}
+	.table.table-striped tbody {
+		width: 100%;
+	}
+	.table.table-striped thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	.table.table-striped tr {
+		margin: 10px 0 0 0;
+		border-right: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		border-left: 1px solid #ddd;
+	}
+	.table.table-striped tbody tr td:empty {
+		display: none;
+	}
+	.table.table-striped td, 
+	.table.table-striped td.name, 
+	.table.table-striped td.email, 
+	.table.table-striped td.job_title, 
+	.table.table-striped td.phones {
+		width: auto;
+	}
+	.table.table-striped td.name {
+		font-size: 14px;
+	}
+	.table.table-striped td.job_title {
+		border-top: 0;
+	}
+	.table.table-striped tbody tr td ul {
+		margin-bottom: 0;	
+	}
+	.table.table-striped td.phones ul li {
+		line-height: 16px;
+	}
+	
+	/* Browser support window */
+	#browser_support {
+		z-index:999;
+		width:80%;
+		position:absolute;
+		margin-top:150px;
+	}
+	
+	/* Header */
+	#header h1.span4 { margin-left: 0; }
+	#header .span8 { width: 100%; margin-top: -15px; margin-left: 6px; }
+	#header-menu { margin-left: 0 !important; width: 100%; }
+	
+	/* Footer */
+	#footer .footer-widget-1, #footer .footer-widget-2, #footer .footer-widget-3 { float: left; }
+	#footer .footer-widget-1 { width: 45%; }
+	#footer .footer-widget-2, #footer .footer-widget-3 { float: right; width: 50%; clear: right; }
+	
+	/* Front page */
+	#front-page #post-content { top: 300px !important; margin-left: 6px; }
+	
+	/* Subpages */
+	.page-content { margin-top: 75px; }
+	#content-wrap { margin: 0 auto -453px; /* = the negative value of the footer's height, plus the height of the UCF Header */ }
+	.push { height: 453px; }
+	
+	/* Photosets */
+	.photoset-nav > li { margin-left: 20px; margin-bottom: 10px; }
+	.photoset legend { margin-bottom: 0; }
+	.photoset .span3 { width: 100%; margin-left: 0; min-height: 0 !important; }
+	.photoset .span3 .photo-wrap { line-height: 0 !important; }
+	.photoset .span3 .photo-wrap img { max-width: 100%; }
+	.photoset .span3 .photo-desc { text-align: center; }
+
+	/* DL's */
+	.dl-horizontal dt {
+		float: none;
+		width: auto;
+		clear: none;
+		text-align: left;
+	}
+	.dl-horizontal dd {
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 480px) {	
+	/* Header */
+	/* Note that the front page menu does not have the id 'menu-wrap'
+	   attached to the wrapping .span8, so styles that need to be 
+	   applied to the front end menu and subpage menu need to be
+	   explicitly called by their separate parent containers, i.e.
+	   #header #header-menu li, #header-menu li.
+	   Styles applied only to the subpage nav (appended to the footer)
+	   should be called by #menu-wrap (element).
+	*/
+	#header-wrap { width: 100% !important; }
+	#header-wrap { margin-left: 20px; }
+	#header h1.span4 { width: 100%; margin-left: -20px; }
+	#header h1.span4 a { float: none !important; }
+	#menu-wrap { margin-left: -20px !important; margin-top: -5px !important; width: 100%; padding: 20px 0 0 0; }
+	#menu-wrap .navbar { margin-bottom: 0; }
+	#header #header-menu { margin-left: 0 !important; margin-top: 20px;}
+	#header #header-menu li, #header-menu li { 
+		height: 35px;
+		float: none !important;
+		margin: 0 !important;
+		display: block;
+	}
+	#header #header-menu li:after, #header-menu li:after { content: ""; }
+	#header #header-menu li a, #header-menu li a {
+		padding: 10px 5px 10px 10px;	
+		font-size: 16px;
+		font-weight: bold;
+		text-shadow: 0px 1px 0px #000;
+		color: #fff;
+		display: block;
+		width: 100%;
+		background-color: transparent !important;
+	}
+	
+	#header #header-menu li a:hover, #header-menu li a:hover {
+		background-color: #222 !important;
+		border-radius: 5px;
+	}
+	
+	/* Footer */
+	#content-wrap { margin: 0 auto !important; }
+	.push { display: none; }
+	#footer { height: auto !important; }
+	#footer .footer-widget-2 .widget_text .textwidget p:first-child, #footer .footer-widget-2 .widget_text h2.widgettitle { display: none; } /* Share With Us widget text */
+	
+	
+	/* Front Page */
+	html.front-page, .front-page body { overflow-y: auto !important; }
+	.front-page body { background: center center no-repeat; background-size: cover; }
+	.front-page #header { padding: 0 20px; }
+	.front-page #header .span8 { margin: 15px auto 0 auto; }
+	.front-page #header-wrap { margin-left: -20px; }
+	
+	.front-page #header h1.span4 { margin-left: 0; }
+	
+	#front-page #post-content { /*position: relative; padding: 60px 0 20px; width: 100%;*/display:none; }
+	
+	.front-page #footer { display: none; }
+	
+	/* Subpages */
+	#content-wrap { margin: 0 auto; }
+	.page-content h1 { margin-bottom: 0.5em; }
+	.search-field {width:200px !important;}
+	input.gform_button[type="submit"] { width: 100%; }
+	
+	/* Text fields */
+	textarea, .ginput_container input[type="text"] { width: 100% !important; }
+	
+}
+
+@media (max-width: 320px) {
+	/* Photosets */
+	.photoset-nav > li:nth-child(4), .photoset-nav > li:nth-child(7) { margin-left: 0; }
+}

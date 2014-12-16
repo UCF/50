@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Abstract class for defining custom post types.  
+ * 
+ **/
 abstract class CustomPostType{
 	public 
 		$name           = 'custom_post_type',
@@ -12,13 +16,13 @@ abstract class CustomPostType{
 		$use_title      = True,  # Title field
 		$use_editor     = True,  # WYSIWYG editor, post content field
 		$use_revisions  = True,  # Revisions on post content and titles
-		$use_tags       = True,  # Tags taxonomy
-		$use_categories = False, # Categories taxonomy
 		$use_thumbnails = False, # Featured images
 		$use_order      = False, # Wordpress built-in order meta data
 		$use_metabox    = False, # Enable if you have custom fields to display in admin
-		$use_shortcode  = False; # Auto generate a shortcode for the post type
+		$use_shortcode  = False, # Auto generate a shortcode for the post type
 		                         # (see also objectsToHTML and toHTML methods)
+		$taxonomies     = array('post_tag'),
+		$built_in       = False;
 	
 	
 	/**
@@ -27,6 +31,7 @@ abstract class CustomPostType{
 	 * option array.  Returns an array of objects.
 	 **/
 	public function get_objects($options=array()){
+
 		$defaults = array(
 			'numberposts'   => -1,
 			'orderby'       => 'title',
@@ -161,24 +166,18 @@ abstract class CustomPostType{
 	 **/
 	public function register(){
 		$registration = array(
-			'labels'   => $this->labels(),
-			'supports' => $this->supports(),
-			'public'   => $this->options('public'),
+			'labels'     => $this->labels(),
+			'supports'   => $this->supports(),
+			'public'     => $this->options('public'),
+			'taxonomies' => $this->options('taxonomies'),
+			'_builtin'   => $this->options('built_in')
 		);
 		
 		if ($this->options('use_order')){
-			$regisration = array_merge($registration, array('hierarchical' => True,));
+			$registration = array_merge($registration, array('hierarchical' => True,));
 		}
 		
 		register_post_type($this->options('name'), $registration);
-		
-		if ($this->options('use_categories')){
-			register_taxonomy_for_object_type('category', $this->options('name'));
-		}
-		
-		if ($this->options('use_tags')){
-			register_taxonomy_for_object_type('post_tag', $this->options('name'));
-		}
 		
 		if ($this->options('use_shortcode')){
 			add_shortcode($this->options('name').'-list', array($this, 'shortcode'));
@@ -322,11 +321,43 @@ class Example extends CustomPostType{
 	}
 }
 
+
+class Page extends CustomPostType {
+	public
+		$name           = 'page',
+		$plural_name    = 'Pages',
+		$singular_name  = 'Page',
+		$add_new_item   = 'Add New Page',
+		$edit_item      = 'Edit Page',
+		$new_item       = 'New Page',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = False,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True,
+		$built_in       = True;
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Stylesheet',
+				'desc' => '',
+				'id' => $prefix.'stylesheet',
+				'type' => 'file',
+			),
+		);
+	}
+}
+
+
+
 class FrontPage extends CustomPostType{
 	public 
 		$name           = 'frontpage',
 		$plural_name    = 'Front Pages',
-		$singular_name  = 'Front PAge',
+		$singular_name  = 'Front Page',
 		$add_new_item   = 'Add New Front Page',
 		$edit_item      = 'Edit Front Page',
 		$new_item       = 'New Front Page',
@@ -337,7 +368,19 @@ class FrontPage extends CustomPostType{
 		$use_order      = false,
 		$use_title      = True,
 		$use_shortcode  = false,
-		$use_metabox    = false;
+		$use_metabox    = True;
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Tooltip Content',
+				'desc' => 'Designate a tooltip description of the front page piece here.  This content will display when the user hovers over the front page background image.',
+				'id'   => $prefix.'tooltip',
+				'type' => 'textarea',
+			),
+		);
+	}
 		
 }
 
@@ -368,12 +411,67 @@ class PhotoSet extends CustomPostType{
 		$class = new $class;
 		
 		// Photoset Navigation
-		$outputs = array('<ul class="photoset-nav span-24 last">');
+		$outputs = array('<ul class="photoset-nav">');
 		foreach($objects as $o){
 			$outputs[] = '<li><a href="#photoset-'.$o->post_title.'">'.$o->post_title.'</a></li>';
 		}
 		$outputs[] = '</ul>';
 
+		// Photosets
+		/*
+		foreach($objects as $o){
+			// Attachemnts - Assume they are all images
+			$images = get_posts(array(
+				'post_type'   => 'attachment',
+				'numberposts' => -1,
+				'post_status' => NULL,
+				'post_parent' => $o->ID,
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC'));
+
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<legend>'.$o->post_title.'</legend>';
+
+			$count = 0;
+			$images_html       = '';
+			$description_html  = '';
+			foreach($images as $image) {
+				$details = wp_get_attachment_image_src($image->ID, 'large');
+				if($details !== False) {
+					if(($count % 3) == 0) {
+						if(strlen($images_html) == 0) {
+							$images_html       = '<ul class="images">';
+							$description_html  = '<ul class="descriptions">';
+						} else {
+							$outputs[]         = $images_html.'</ul>'.$description_html.'</ul>';
+							$images_html       = '<ul class="images">';
+							$description_html  = '<ul class="descriptions">';
+						}
+					}
+					$css   = ($count % 3) == 0 ? ' class="no-margin-left" ' : '';
+
+					$images_html      .= '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></li>';
+					$description_html .= '<li'.$css.'><p>'.$image->post_content.'</p></li>';
+				}
+				$count++;
+			}
+			if(strlen($images_html) != 0) {
+				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
+			}
+			//$outputs[] = '</div>';
+			$outputs[] = '<div class="span6"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
+			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
+				$outputs[] = '<li><a class="page" href="#">'.$i.'</a></li>';
+			}
+			$outputs[] = '<li><a class="right" href="#">&rarr;</a></li><a class="show_all" href="#">Show All</a></ul></div>';
+			$outputs[] = '<div class="instructions span6">Click on an image to see it larger.</div>';
+			$outputs[] = '</fieldset>';
+		}
+
+
+		*/
+		
+		
 		// Photosets
 		foreach($objects as $o){
 			// Attachemnts - Assume they are all images
@@ -385,47 +483,35 @@ class PhotoSet extends CustomPostType{
 				'orderby'     => 'menu_order',
 				'order'       => 'ASC'));
 
-			$outputs[] = '<fieldset class="photoset clear span-24 last" id="photoset-'.$o->post_title.'">';
+			$outputs[] = '<fieldset class="photoset" id="photoset-'.$o->post_title.'">';
 			$outputs[] = '<legend>'.$o->post_title.'</legend>';
 
 			$count = 0;
-			$images_html       = '';
-			$description_html  = '';
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'large');
-				if($details !== False) {
-					if(($count % 3) == 0) {
-						if(strlen($images_html) == 0) {
-							$images_html       = '<ul class="images clearfix">';
-							$description_html  = '<ul class="descriptions clearfix">';
-						} else {
-							$outputs[]         = $images_html.'</ul>'.$description_html.'</ul>';
-							$images_html       = '<ul class="images clearfix">';
-							$description_html  = '<ul class="descriptions clearfix">';
-						}
-					}
-					$css   = ($count % 3) == 0 ? ' class="no-margin-left clear" ' : '';
-
-					$images_html      .= '<li'.$css.'><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></li>';
-					$description_html .= '<li'.$css.'><p>'.$image->post_content.'</p></li>';
-				}
+				
+				$css   = ($count % 3) == 0 ? ' no-margin-left' : '';
+				
+				$outputs[] = '<div class="span3'.$css.'">
+							      <p class="photo-wrap"><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></p>
+								  <p class="photo-desc">'.$image->post_content.'</p>
+							  </div>';
 				$count++;
-			}
-			if(strlen($images_html) != 0) {
-				$outputs[] = $images_html.'</ul>'.$description_html.'</ul>';
-			}
-			$outputs[] = '<div class="clear">&nbsp;</div>';
-			$outputs[] = '<div class="span-18 clear"><ul class="pagination"><li><a class="left">&larr;</a></li>';
+			}/*
+			$outputs[] = '<div class="span12"><ul class="pagination"><li><a class="left" href="#">&larr;</a></li>';
 			for($i = 1; $i <= ceil(count($images) / 3); $i++) {
-				$outputs[] = '<li><a class="page">'.$i.'</a></li>';
+				$outputs[] = '<li><a class="page" href="#">'.$i.'</a></li>';
 			}
-			$outputs[] = '<li><a class="right">&rarr;</a></li></ul><a class="show_all">Show All</a></div>';
-			$outputs[] = '<div class="instructions span-6 last">Click on an image to see it larger.</span>';
+			$outputs[] = '<li><a class="right" href="#">&rarr;</a></li><li><a class="show_all" href="#">Show All</a></li></ul></div>';
+			$outputs[] = '<div class="instructions span12">Click on an image to see it larger.</div>';*/
 			$outputs[] = '</fieldset>';
 		}
+		
 
 		return implode("\n", $outputs);
 	}
+	
+	
 	
 	
 	public function toHTML($object){
@@ -455,16 +541,16 @@ class Story extends CustomPostType{
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
 		
-		$outputs = array('<ul class="stories clear">');
+		$outputs = array('<ul class="stories row">');
 
 		$o_count = 1;
 		foreach($objects as $o){
 
 			if($o_count == 4) {
-				$outputs[] = '</ul><ul class="stories clear">';
+				$outputs[] = '</ul><ul class="stories row">';
 			}
 
-			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left"':'').'>';
+			$outputs[] = '<li'.((($o_count - 1) % 3) == 0 ? ' class="no-margin-left span4"':' class="span4"').'>';
 			$outputs[] = '<a href="'.get_permalink($o->ID).'">';
 			$outputs[] = '<div class="title"><strong>'.$o->post_title.'</strong></div>';
 			$outputs[] = '<div class="content">'.truncate(strip_tags($o->post_content), 40).'</div></a>';
@@ -474,7 +560,7 @@ class Story extends CustomPostType{
 			$num_tags  = count($tags);
 			$tag_count = 1;
 			foreach($tags as $tag) {
-				$outputs[] = '<li><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
+				$outputs[] = '<li class="span4"><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
 				$tag_count++;
 			}
 			
@@ -613,7 +699,7 @@ class TimelineEvent extends CustomPostType{
 		return array(
 			array(
 				'name' => 'Start Date',
-				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted in needed.',
+				'desc' => 'Format: YYYY,MM,DD. Day can be ommitted if needed.',
 				'id'   => $prefix.'start_date',
 				'type' => 'text',
 			),
@@ -625,12 +711,115 @@ class TimelineEvent extends CustomPostType{
 			),
 			array(
 				'name'    => 'Timelines',
-				'desc'    => 'Which timeline should this even be associated with?',
+				'desc'    => 'Which timeline should this event be associated with?',
 				'default' => '(None)',
 				'id'      => $prefix.'timeline',
 				'options' => $timeline_options,
 				'type'    => 'select',
 			)
+		);
+	}
+}
+
+class Video extends CustomPostType{
+	public 
+		$name           = 'video',
+		$plural_name    = 'Videos',
+		$singular_name  = 'Video',
+		$add_new_item   = 'Add New Video',
+		$edit_item      = 'Edit Video',
+		$new_item       = 'New Video',
+		$public         = True,
+		$use_editor     = False,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+	
+	public function get_player_html($video){
+		return sc_video(array('video' => $video));
+	}
+	
+	public function metabox(){
+		$metabox = parent::metabox();
+		
+		$metabox['title']   = 'Videos on Media Page';
+		$metabox['helptxt'] = 'Video icon will be resized to width 210px, height 118px.';
+		return $metabox;
+	}
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'URL',
+				'desc' => 'YouTube URL pointing to video.<br>  Example: http://www.youtube.com/watch?v=IrSeMg7iPbM',
+				'id'   => $prefix.'url',
+				'type' => 'text',
+				'std'  => ''
+			),
+			array(
+				'name' => 'Video Description',
+				'desc' => 'Short description of the video.',
+				'id'   => $prefix.'description',
+				'type' => 'textarea',
+				'std'  => ''
+			),
+			array(
+				'name' => 'Shortcode',
+				'desc' => 'To include this video in other posts, use the following shortcode:',
+				'id'   => 'video_shortcode',
+				'type' => 'shortcode',
+				'value' => '[video name="TITLE"]',
+			),
+		);
+	}
+}
+
+class Publication extends CustomPostType{
+	public 
+		$name           = 'publication',
+		$plural_name    = 'Publications',
+		$singular_name  = 'Publication',
+		$add_new_item   = 'Add New Publication',
+		$edit_item      = 'Edit Publication',
+		$new_item       = 'New Publication',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+	
+	public function toHTML($pub){
+		return sc_publication(array('pub' => $pub));
+	}
+	
+	public function metabox(){
+		$metabox = parent::metabox();
+		
+		$metabox['title']   = 'Publications on Media Page';
+		$metabox['helptxt'] = 'Publication cover icon will be resized to width 153px, height 198px.';
+		return $metabox;
+	}
+	
+	public function fields(){
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name'  => 'Issuu Embed',
+				'desc' => 'Copy and paste the WordPress embed code from Issuu.  Note that this is NOT the same as the standard embed code; it should be contained in brackets, like a shortcode.  Note that any width, height, or other style parameters assigned in the embed code from Issuu will not be used.',
+				'id'   => $prefix.'embed',
+				'type' => 'textarea',
+				'std'  => '',
+			),
+			array(
+				'name' => 'Shortcode',
+				'desc' => 'To include this publication in other posts, use the following shortcode: <input disabled="disabled" type="text" value="[publication name=]" />',
+				'id'   => 'publication_shortcode',
+				'type' => 'help',
+				'value' => '[publication name="TITLE"]',
+			),
 		);
 	}
 }

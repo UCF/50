@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Create a javascript slideshow of each top level element in the
  * shortcode.  All attributes are optional, but may default to less than ideal
@@ -62,6 +63,7 @@ function sc_slideshow($attr, $content=null){
 add_shortcode('slideshow', 'sc_slideshow');
 
 
+
 /**
  * Returns HTML for WordPress search form
  *
@@ -84,4 +86,100 @@ function sc_search_form($search_post_type = '') {
 	return ob_get_clean();
 }
 add_shortcode('search-form', 'sc_search_form');
+
+
+function sc_person_picture_list($atts) {
+	$atts['type']	= ($atts['type']) ? $atts['type'] : null;
+	$row_size 		= ($atts['row_size']) ? (intval($atts['row_size'])) : 5;
+	$categories		= ($atts['categories']) ? $atts['categories'] : null;
+	$org_groups		= ($atts['org_groups']) ? $atts['org_groups'] : null;
+	$limit			= ($atts['limit']) ? (intval($atts['limit'])) : -1;
+	$join			= ($atts['join']) ? $atts['join'] : 'or';
+	$people 		= sc_object_list(
+						array(
+							'type' => 'person', 
+							'limit' => $limit,
+							'join' => $join,
+							'categories' => $categories, 
+							'org_groups' => $org_groups
+						), 
+						array(
+							'objects_only' => True,
+						));
+	
+	ob_start();
+	
+	?><div class="person-picture-list"><?
+	$count = 0;
+	foreach($people as $person) {
+		
+		$image_url = get_featured_image_url($person->ID);
+		
+		$link = ($person->post_content != '') ? True : False;
+		if( ($count % $row_size) == 0) {
+			if($count > 0) {
+				?></div><?
+			}
+			?><div class="row"><?
+		}
+		
+		?>
+		<div class="span2 person-picture-wrap">
+			<? if($link) {?><a href="<?=get_permalink($person->ID)?>"><? } ?>
+				<img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
+				<div class="name"><?=Person::get_name($person)?></div>
+				<div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
+				<? if($link) {?></a><?}?>
+		</div>
+		<?
+		$count++;
+	}
+	?>	</div>
+	</div>
+	<?
+	return ob_get_clean();
+}
+add_shortcode('person-picture-list', 'sc_person_picture_list');
+
+
+/**
+ * Include the defined publication, referenced by pub title:
+ *
+ *     [publication name="Where are the robots Magazine"]
+ **/
+function sc_publication($attr, $content=null){
+	$pub_name = @$attr['name'];
+	$pub_id   = @$attr['id'];
+	
+	if (!$pub_name and is_numeric($pub_id)){
+		$pub = get_post($pub_id);
+	}
+	if (!$pub_id and $pub_name){
+		$pub = get_page_by_title($pub_name, OBJECT, 'publication');
+	}
+	
+	$iframe = get_publication_iframe($pub->ID);
+	// If a featured image is set, use it; otherwise, get the thumbnail from issuu
+	$thumb = (get_the_post_thumbnail($pub->ID, 'publication_thumb', TRUE) !== '') ? get_the_post_thumbnail($pub->ID, 'publication_thumb', TRUE) : get_publication_thumb($pub->ID);
+	
+	ob_start(); ?>
+	
+	<div class="pub">
+		<a class="track pub-track" title="<?=$pub->post_title?>" data-toggle="modal" href="#pub-modal-<?=$pub->ID?>">
+			<?=$thumb?><span><?=$pub->post_title?></span>
+		</a>
+		<p class="pub-desc"><?=$pub->post_content?></p>
+		<div class="modal hide fade" id="pub-modal-<?=$pub->ID?>" role="dialog" aria-labelledby="<?=$pub->post_title?>" aria-hidden="true">
+			<?=$iframe?>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		</div>
+	</div>
+	
+	<?php
+	return ob_get_clean();
+}
+add_shortcode('publication', 'sc_publication');
+
+
+
 ?>

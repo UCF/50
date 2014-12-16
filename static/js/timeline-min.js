@@ -5126,6 +5126,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
 		config.timeline_width = 900;
 		config.interval_width = 200;
 		config.rows = [1, 1, 1];
+		//config.multiplier = 6;
 		config.multiplier = 6;
 		config.max_multiplier = 16;
 		config.min_multiplier = 1;
@@ -5228,7 +5229,8 @@ if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
 		};
 		
 		function reSize(firstrun) {
-			VMM.Element.css($timenavline, "left", Math.round(config.width/2)+2);
+			//VMM.Element.css($timenavline, "left", Math.round(config.width/2)+2);
+			VMM.Element.css($timenavline, "left", Math.round(config.width/8)+2);
 			//VMM.Element.css($toolbar, "left", Math.round(config.width/2)-19);
 			
 			goToMarker(current_marker, config.ease, config.duration, true, firstrun);
@@ -5571,7 +5573,8 @@ if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
 			================================================== */
 			if (is_animated) {
 				VMM.Element.stop($timenav);
-				VMM.Element.animate($timenav, config.duration/2, config.ease, {"left": (config.width/2) - (cur_mark)});
+				//VMM.Element.animate($timenav, config.duration/2, config.ease, {"left": (config.width/2) - (cur_mark)});
+				VMM.Element.animate($timenav, config.duration/2, config.ease, {"left": (config.width/8) - (cur_mark)});
 			}
 
 		
@@ -6124,7 +6127,8 @@ if(typeof VMM != 'undefined' && typeof VMM.Timeline == 'undefined') {
 			/* ANIMATE MARKER
 			================================================== */
 			VMM.Element.stop($timenav);
-			VMM.Element.animate($timenav, _duration, _ease, {"left": (config.width/2) - (_pos.left)});
+			//VMM.Element.animate($timenav, _duration, _ease, {"left": (config.width/2) - (_pos.left)});
+			VMM.Element.animate($timenav, _duration, _ease, {"left": (config.width/8) - (_pos.left)});
 			
 			
 		}
