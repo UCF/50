@@ -1,8 +1,8 @@
-/*   
+/*
 Theme Name: UCF 50th Theme Bootstrap
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/50
-Version: v1.2.4
+Version: v1.2.5
 */
 
 /* UCF Header Styles */
@@ -51,7 +51,7 @@ body { background: #fff; }
 }
 .page-content h1 { margin: 0 0 1em 0; }
 h4, .gform_title, .gfield_label { font-family: Georgia, "Times New Roman", Times, serif; font-size: 16px; color: #444; margin: 1em 0 0.8em; }
-a.gold-btn { 
+a.gold-btn {
 	background: #e4c984; /* Old browsers */
 	background: -moz-linear-gradient(top, #e4c984 0%, #c9b06f 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4c984), color-stop(100%,#c9b06f)); /* Chrome,Safari4+ */
@@ -79,7 +79,7 @@ a.gold-btn:hover {
 	color: #fff !important;
 }
 a.gold-btn:active {
-	background: #c9b06f;	
+	background: #c9b06f;
 }
 .ie7 a.gold-btn, .ie8 a.gold-btn { filter: none !important; }
 
@@ -116,7 +116,7 @@ a.gold-btn:active {
 only screen and (min-device-pixel-ratio : 1.5) {
 	#header h1 a {
 		background-image: url('static/img/50-logo-lg.png');
-		background-size: 196px 110px;	
+		background-size: 196px 110px;
 	}
 }
 #header #header-menu {margin-left:20px;margin-top:45px;padding-top:0;}
@@ -172,7 +172,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 only screen and (min-device-pixel-ratio : 1.5) {
 	#footer-logo a {
 		background-image: url('static/img/50-logo-v-lg.png');
-		background-size: 98px 150px;	
+		background-size: 98px 150px;
 	}
 }
 #footer h2.widgettitle { font-size: 13px; color: #fff; line-height: 20px; }
@@ -227,7 +227,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	position:relative;
 	margin:0 auto;
 	display:block;
-	max-width: none; 
+	max-width: none;
 }
 #tooltip-desc { display: none; }
 .ui-tooltip { border: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; }
@@ -236,7 +236,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 
 /* Interior Pages */
-#content-wrap { 
+#content-wrap {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
@@ -336,17 +336,17 @@ only screen and (min-device-pixel-ratio : 1.5) {
 */
 
 
-.photoset .span3 { 
-	width: 30%; 
-	text-align: center; 
-	display: inline-block; 
-	vertical-align: top; 
-	float: none; 
-	margin-bottom: 20px; 
+.photoset .span3 {
+	width: 30%;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+	float: none;
+	margin-bottom: 20px;
 }
 .ie7 .photoset .span3, .ie8 .photoset .span3 {
 	min-height: 250px;
-	
+
 }
 .photoset .span3 .photo-wrap { line-height: 250px; display:inline; }
 .photoset .span3 .photo-wrap a { display:block; height:250px; margin-bottom: 30px; }
@@ -470,15 +470,15 @@ input, textarea, select, .uneditable-input { margin-bottom: 0; }
 #gala-body h2,
 #gala-body h3,
 #gala-body h4 { font-family: 'Helvetica-Neue', Helvetica, sans-serif; }
-#gala-body h2 { 
-	color: #bc9b6a; 
-	font-weight: 200; 
-	font-size: 32px; 
-	margin-top: 60px; 
-	margin-bottom: 50px; 
+#gala-body h2 {
+	color: #bc9b6a;
+	font-weight: 200;
+	font-size: 32px;
+	margin-top: 60px;
+	margin-bottom: 50px;
 	display: block;
 	background: #fff;
-	line-height: 0px; 
+	line-height: 0px;
 	border-bottom: 1px solid #bc9b6a;
 }
 #gala-body h2 span { background: #fff; padding-right: 10px; }
@@ -486,14 +486,14 @@ input, textarea, select, .uneditable-input { margin-bottom: 0; }
 #gala-body p { font-family: 'Helvetica-Neue', Helvetica, sans-serif; font-size: 14px; }
 #gala-body p .gold-btn { padding: 20px 30px; font-size: 20px; margin-top: 15px; }
 
-#helen-donegan { 
-	display: block; 
-	background: url('static/img/gala-helen-donegan.png') center center no-repeat; 
-	width: 432px; 
-	height: 90px; 
-	text-indent: -9999px; 
-	margin-left: -85px; 
-	margin-bottom: -20px; 
+#helen-donegan {
+	display: block;
+	background: url('static/img/gala-helen-donegan.png') center center no-repeat;
+	width: 432px;
+	height: 90px;
+	text-indent: -9999px;
+	margin-left: -85px;
+	margin-bottom: -20px;
 }
 
 
