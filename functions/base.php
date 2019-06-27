@@ -1380,7 +1380,7 @@ function installed_custom_post_types(){
 	
 	return array_map( function( $class ) {
 		return new $class;
-	}), $installed);
+	}, $installed );
 }
 
 /**
@@ -1392,7 +1392,7 @@ function installed_custom_taxonomies(){
 	
 	return array_map( function( $class ), {
 		return new $class;
-	}), $installed);
+	}, $installed );
 }
 
 function flush_rewrite_rules_if_necessary(){
