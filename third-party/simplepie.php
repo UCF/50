@@ -283,7 +283,7 @@ class SimplePie_Cache_File implements SimplePie_Cache_Base
 	{
 		if (file_exists($this->name) && is_readable($this->name))
 		{
-			return unserialize(file_get_contents($this->name));
+			return unserialize( wp_remote_retrieve_body( wp_remote_get( $this->name ) ) );
 		}
 		return false;
 	}
@@ -1612,7 +1612,7 @@ define('SIMPLEPIE_FILE_SOURCE_FSOCKOPEN', 4);
 define('SIMPLEPIE_FILE_SOURCE_CURL', 8);
 
 /**
- * file_get_contents() file source
+ * wp_remote_get() file source
  */
 define('SIMPLEPIE_FILE_SOURCE_FILE_GET_CONTENTS', 16);
 
@@ -5472,9 +5472,9 @@ class SimplePie_File
 		else
 		{
 			$this->method = SIMPLEPIE_FILE_SOURCE_LOCAL | SIMPLEPIE_FILE_SOURCE_FILE_GET_CONTENTS;
-			if (!$this->body = file_get_contents($url))
+			if (!$this->body = wp_remote_retrieve_body( wp_remote_get( $url ) );
 			{
-				$this->error = 'file_get_contents could not read the file';
+				$this->error = 'wp_remote_get could not read the file';
 				$this->success = false;
 			}
 		}
