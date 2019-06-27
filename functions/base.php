@@ -1390,7 +1390,7 @@ function installed_custom_post_types(){
 function installed_custom_taxonomies(){
 	$installed = Config::$custom_taxonomies;
 	
-	return array_map( function( $class ), {
+	return array_map( function( $class ) {
 		return new $class;
 	}, $installed );
 }
