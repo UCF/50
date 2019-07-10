@@ -1,7 +1,7 @@
 <?php disallow_direct_load('single.php');?>
-<?php  the_post();?>
-<? 
-if(isset($_GET['json'])) {
+<?php the_post();?>
+<?php
+if(isset($_GET['json'])) :
 
 	# See Timeline formatting spec at http://timeline.verite.co/#fileformat
 	$to_json = array(
@@ -82,7 +82,7 @@ if(isset($_GET['json'])) {
 
 	header('Content-Type:application/json;');
 	echo json_encode($to_json);
-} else { ?>
+else : ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -93,8 +93,8 @@ if(isset($_GET['json'])) {
 			<h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 		</div>
 		<div id="timeline"></div>
-		<?="\n".footer_()."\n"?>
-		<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>
+		<?php echo "\n".footer_()."\n"; ?>
+		<?php if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) : ?>
 			<script type="text/javascript">
 				$().ready(function() {
 					var timeline = new VMM.Timeline(),
@@ -118,9 +118,9 @@ if(isset($_GET['json'])) {
 						});
 				});
 			</script>
-		<? } ?> 
+		<?php endif; ?>
 	</body>
 </html>
-<?
-}
+<?php
+endif;
 ?>
