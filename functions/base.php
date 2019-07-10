@@ -2,7 +2,7 @@
 
 /***************************************************************************
  * CLASSES
- * 
+ *
  ***************************************************************************/
 
 /**
@@ -12,7 +12,7 @@
 class ArgumentException extends Exception{}
 class Config{
 	static
-		$body_classes      = array(), # Body classes 
+		$body_classes      = array(), # Body classes
 		$theme_settings    = array(), # Theme settings
 		$custom_post_types = array(), # Custom post types to register
 		$custom_taxonomies = array(), # Custom taxonomies to register
@@ -20,8 +20,8 @@ class Config{
 		$scripts           = array(), # Scripts to register
 		$links             = array(), # <link>s to include in <head>
 		$metas             = array(); # <meta>s to include in <head>
-	
-	
+
+
 	/**
 	 * Creates and returns a normalized name for a resource url defined by $src.
 	 **/
@@ -30,8 +30,8 @@ class Config{
 		$name = slug($base);
 		return $name;
 	}
-	
-	
+
+
 	/**
 	 * Registers a stylesheet with built-in wordpress style registration.
 	 * Arguments to this can either be a string or an array with required css
@@ -56,7 +56,7 @@ class Config{
 			$new['src'] = $attr;
 			$attr       = $new;
 		}
-		
+
 		if (!isset($attr['src'])){
 			throw new ArgumentException('add_css expects argument array to contain key "src"');
 		}
@@ -66,9 +66,9 @@ class Config{
 			'admin' => False,
 		);
 		$attr = array_merge($default, $attr);
-		
+
 		$is_admin = (is_admin() or is_login());
-		
+
 		if (
 			($attr['admin'] and $is_admin) or
 			(!$attr['admin'] and !$is_admin)
@@ -77,8 +77,8 @@ class Config{
 			wp_enqueue_style($attr['name'], $attr['src'], null, null, $attr['media']);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Functions similar to add_css, but appends scripts to the footer instead.
 	 * Accepts a string or array argument, like add_css, with the string
@@ -98,7 +98,7 @@ class Config{
 			$new['src'] = $attr;
 			$attr       = $new;
 		}
-		
+
 		if (!isset($attr['src'])){
 			throw new ArgumentException('add_script expects argument array to contain key "src"');
 		}
@@ -107,9 +107,9 @@ class Config{
 			'admin' => False,
 		);
 		$attr = array_merge($default, $attr);
-		
+
 		$is_admin = (is_admin() or is_login());
-		
+
 		if (
 			($attr['admin'] and $is_admin) or
 			(!$attr['admin'] and !$is_admin)
@@ -133,17 +133,17 @@ abstract class Field{
 			$this->value = $this->default;
 		}
 	}
-	
+
 	function __construct($attr){
 		$this->name        = @$attr['name'];
 		$this->id          = @$attr['id'];
 		$this->value       = @$attr['value'];
 		$this->description = @$attr['description'];
 		$this->default     = @$attr['default'];
-		
+
 		$this->check_for_default();
 	}
-	
+
 	function label_html(){
 		ob_start();
 		?>
@@ -151,11 +151,11 @@ abstract class Field{
 		<?php
 		return ob_get_clean();
 	}
-	
+
 	function input_html(){
 		return "Abstract Input Field, Override in Descendants";
 	}
-	
+
 	function description_html(){
 		ob_start();
 		?>
@@ -165,12 +165,12 @@ abstract class Field{
 		<?php
 		return ob_get_clean();
 	}
-	
+
 	function html(){
 		$label       = $this->label_html();
 		$input       = $this->input_html();
 		$description = $this->description_html();
-		
+
 		return $label.$input.$description;
 	}
 }
@@ -199,7 +199,7 @@ abstract class ChoicesField extends Field{
  **/
 class TextField extends Field{
 	protected $type_attr = 'text';
-	
+
 	function input_html(){
 		ob_start();
 		?>
@@ -317,26 +317,26 @@ class CheckboxField extends ChoicesField{
 class Timer{
 	private $start_time  = null;
 	private $end_time    = null;
-	
+
 	public function start_timer(){
 		$this->start_time = microtime(True);
 		$this->end_time   = null;
 	}
-	
+
 	public function stop_timer(){
 		$this->end_time = microtime(True);
 	}
-	
+
 	public function clear_timer(){
 		$this->start_time = null;
 		$this->end_time   = null;
 	}
-	
+
 	public function reset_timer(){
 		$this->clear_timer();
 		$this->start_timer();
 	}
-	
+
 	public function elapsed(){
 		if ($this->end_time !== null){
 			return $this->end_time - $this->start_time;
@@ -344,11 +344,11 @@ class Timer{
 			return microtime(True) - $this->start_time;
 		}
 	}
-	
+
 	public function __toString(){
 		return $this->elapsed;
 	}
-	
+
 	/**
 	 * Returns a started instance of timer
 	 *
@@ -367,9 +367,9 @@ class Timer{
 
 /***************************************************************************
  * DEBUGGING FUNCTIONS
- * 
+ *
  * Functions to assist in theme debugging.
- * 
+ *
  ***************************************************************************/
 
 /**
@@ -394,15 +394,15 @@ function dump(){
 /**
  * Will add a debug comment to the output when the debug constant is set true.
  * Any value, including null, is enough to trigger it.
- * 
+ *
  * @return void
  * @author Jared Lang
  **/
  /*
- 
+
 THIS FUNCTION MUST BE DISABLED IN THIS THEME FOR THE TIMELINE TO LOAD:
  */
-if (DEBUG){
+if (WP_DEBUG){
 	function debug($string){
 		//print "<!-- DEBUG: {$string} -->\n";
 	}
@@ -419,7 +419,7 @@ if (DEBUG){
  * @return mixed
  * @author Jared Lang
  **/
-if (DEBUG){
+if (WP_DEBUG){
 	function debug_callfunc($func, $args){
 		return call_user_func_array($func, $args);
 	}
@@ -448,29 +448,29 @@ function indent($html, $n){
 
 /***************************************************************************
  * GENERAL USE FUNCTIONS
- * 
+ *
  * Theme-wide general use functions. (Alphabetized)
- * 
+ *
  ***************************************************************************/
 
 /**
  * Walker function to add Bootstrap classes to nav menus using wp_nav_menu()
- * 
+ *
  * based on https://gist.github.com/1597994
  **/
 function bootstrap_menus() {
 	class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 
-			
-			function start_lvl( &$output, $depth ) {
+
+			function start_lvl( &$output, $depth = 0, $args = array() ) {
 
 				$indent = str_repeat( "\t", $depth );
 				$output	   .= "\n$indent<ul class=\"dropdown-menu\">\n";
-				
+
 			}
 
 			function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-				
+
 				$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
 				$li_attributes = '';
@@ -506,17 +506,17 @@ function bootstrap_menus() {
 			}
 
 			function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
-				
+
 				if ( !$element )
 					return;
-				
+
 				$id_field = $this->db_fields['id'];
 
 				//display this element
-				if ( is_array( $args[0] ) ) 
+				if ( is_array( $args[0] ) )
 					$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );
-				else if ( is_object( $args[0] ) ) 
-					$args[0]->has_children = ! empty( $children_elements[$element->$id_field] ); 
+				else if ( is_object( $args[0] ) )
+					$args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
 				$cb_args = array_merge( array(&$output, $element, $depth), $args);
 				call_user_func_array(array(&$this, 'start_el'), $cb_args);
 
@@ -547,10 +547,10 @@ function bootstrap_menus() {
 				//end this element
 				$cb_args = array_merge( array(&$output, $element, $depth), $args);
 				call_user_func_array(array(&$this, 'end_el'), $cb_args);
-				
+
 			}
-			
-		}	
+
+		}
 }
 add_action( 'after_setup_theme', 'bootstrap_menus' );
 
@@ -570,23 +570,23 @@ function cleanup($content){
 		$null = null;
 		$found_closed = preg_match_all('/<\/p>/', $line, $null);
 		$found_opened = preg_match_all('/<p[^>]*>/', $line, $null);
-		
+
 		$diff = $found_closed - $found_opened;
 		# Balanced tags
 		if ($diff == 0){continue;}
-		
+
 		# missing closed
 		if ($diff < 0){
 			$lines[$key] = $lines[$key] . str_repeat('</p>', abs($diff));
 		}
-		
+
 		# missing open
 		if ($diff > 0){
 			$lines[$key] = str_repeat('<p>', abs($diff)) . $lines[$key];
 		}
 	}
 	$content = implode("\n", $lines);
-	
+
 	#Remove incomplete tags at start and end
 	$content = preg_replace('/^<\/p>[\s]*/i', '', $content);
 	$content = preg_replace('/[\s]*<p>$/i', '', $content);
@@ -607,7 +607,7 @@ function cleanup($content){
 /**
  * Creates a string of attributes and their values from the key/value defined by
  * $attr.  The string is suitable for use in html tags.
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -641,7 +641,7 @@ function create_html_element($tag, $attr=array(), $content=null, $self_close=Tru
 			$element = "<{$tag}{$attr_str}></{$tag}>";
 		}
 	}
-	
+
 	return $element;
 }
 
@@ -659,7 +659,7 @@ function disallow_direct_load($page){
 /**
  * Given a name will return the custom post type's class name, or null if not
  * found
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -689,7 +689,7 @@ function get_featured_image_url($post) {
 
 
 /**
- * Get value of Theme Option Header Menu Styles and return relevant Boostrap 
+ * Get value of Theme Option Header Menu Styles and return relevant Boostrap
  * CSS classes.  Indended for use as wp_nav_menu()'s menu_class argument.
  * See http://codex.wordpress.org/Function_Reference/wp_nav_menu
  *
@@ -698,11 +698,11 @@ function get_featured_image_url($post) {
 function get_header_styles() {
 	$options = get_option(THEME_OPTIONS_NAME);
 	$id = $options['bootstrap_menu_styles'];
-	
+
 	switch ($id) {
 		case 'nav-tabs':
 			$header_menu_class = 'nav nav-tabs';
-			break;	
+			break;
 		case 'nav-pills':
 			$header_menu_class = 'nav nav-pills';
 			break;
@@ -711,7 +711,7 @@ function get_header_styles() {
 			break;
 	}
 	return $header_menu_class;
-	
+
 }
 
 
@@ -727,14 +727,14 @@ function get_image_choices(){
 		'image/jpeg',
 		'image/png',
 	);
-	
+
 	$images = array('(None)' => null);
 	$args   = array(
 		'post_type'   => 'attachment',
 		'post_status' => 'inherit',
 		'numberposts' => -1,
 	);
-	
+
 	$attachments = get_posts($args);
 	$attachments = array_filter($attachments, function( $a ) {
 		$is_image = (strpos($a->post_mime_type, "image/") !== False);
@@ -760,20 +760,20 @@ function get_image_choices(){
  * $callback lets you specify a function that will generate the output. Any
  * callback passed should accept one argument, which will be the items for the
  * menu in question.
- * 
+ *
  * @return void
  * @author Jared Lang
  **/
 function get_menu($name, $classes=null, $id=null, $callback=null){
 	$locations = get_nav_menu_locations();
 	$menu      = @$locations[$name];
-	
+
 	if (!$menu){
 		return "<div class='error'>No menu location found with name '{$name}'. Set up menus in the <a href='".get_admin_url()."nav-menus.php'>admin's appearance menu.</a></div>";
 	}
-	
+
 	$items = wp_get_nav_menu_items($menu);
-	
+
 	if ($callback === null){
 		ob_start();
 		?>
@@ -787,14 +787,14 @@ function get_menu($name, $classes=null, $id=null, $callback=null){
 	}else{
 		$menu = call_user_func($callback, $items);
 	}
-	
+
 	return $menu;
-	
+
 }
 
 
 /**
- * Uses the google search appliance to search the current site or the site 
+ * Uses the google search appliance to search the current site or the site
  * defined by the argument $domain.
  *
  * @return array
@@ -828,19 +828,19 @@ function get_search_results(
 		'sitesearch' => $domain,
 		'q'          => $query,
 	);
-	
+
 	if (strlen($query) > 0){
 		$query_string = http_build_query($arguments);
 		$url          = $search_url.'?'.$query_string;
 		$response     = wp_remote_retrieve_body( wp_remote_get( $url ) );
-		
+
 		if ($response){
 			$xml   = simplexml_load_string($response);
 			$items = $xml->RES->R;
 			$total = $xml->RES->M;
-			
+
 			$temp = array();
-			
+
 			if ($total){
 				foreach($items as $result){
 					$item            = array();
@@ -856,14 +856,14 @@ function get_search_results(
 			$results['number'] = $total;
 		}
 	}
-	
+
 	return $results;
 }
 
 
 /**
  * Returns true if the current request is on the login screen.
- * 
+ *
  * @return boolean
  * @author Jared Lang
  **/
@@ -925,15 +925,15 @@ function post_type($post){
 	if (is_int($post)){
 		$post = get_post($post);
 	}
-	
+
 	# check post_type field
 	$post_type = $post->post_type;
-	
+
 	if ($post_type === 'revision'){
 		$parent    = (int)$post->post_parent;
 		$post_type = post_type($parent);
 	}
-	
+
 	return $post_type;
 }
 
@@ -951,15 +951,15 @@ function post_type($post){
 **/
 function sc_object_list($attrs, $options = array()){
 	if (!is_array($attrs)){return '';}
-	
+
 	$default_options = array(
 		'default_content' => null,
 		'sort_func' => null,
 		'objects_only' => False
 	);
-	
+
 	extract(array_merge($default_options, $options));
-	
+
 	# set defaults and combine with passed arguments
 	$default_attrs = array(
 		'type' => null,
@@ -968,7 +968,7 @@ function sc_object_list($attrs, $options = array()){
 		'class' => '',
 	);
 	$params = array_merge($default_attrs, $attrs);
-	
+
 	# verify options
 	if ($params['type'] == null){
 		return '<p class="error">No type defined for object list.</p>';
@@ -982,7 +982,7 @@ function sc_object_list($attrs, $options = array()){
 	if (null == ($class = get_custom_post_type($params['type']))){
 		return '<p class="error">Invalid post type.</p>';
 	}
-	
+
 	# get taxonomies and translation
 	$translate = array(
 		'tags' => 'post_tag',
@@ -990,27 +990,27 @@ function sc_object_list($attrs, $options = array()){
 		'org_groups' => 'org_groups'
 	);
 	$taxonomies = array_diff(array_keys($attrs), array_keys($default_attrs));
-	
+
 	# assemble taxonomy query
 	$tax_queries = array();
 	$tax_queries['relation'] = strtoupper($params['join']);
-	
+
 	foreach($taxonomies as $tax){
 		$terms = $params[$tax];
 		$terms = trim(preg_replace('/\s+/', ' ', $terms));
 		$terms = explode(' ', $terms);
-		
+
 		if (array_key_exists($tax, $translate)){
 			$tax = $translate[$tax];
 		}
-		
+
 		$tax_queries[] = array(
 			'taxonomy' => $tax,
 			'field' => 'slug',
 			'terms' => $terms,
 		);
 	}
-	
+
 	# perform query
 	$query_array = array(
 		'tax_query' => $tax_queries,
@@ -1020,28 +1020,28 @@ function sc_object_list($attrs, $options = array()){
 		'orderby' => 'menu_order title',
 		'order' => 'ASC',
 	);
-	
+
 	$query = new WP_Query($query_array);
 	$class = new $class;
-	
+
 	global $post;
 	$objects = array();
 	while($query->have_posts()){
 		$query->the_post();
 		$objects[] = $post;
 	}
-	
+
 	# Custom sort if applicable
 	if ($sort_func !== null){
 		usort($objects, $sort_func);
 	}
-	
+
 	wp_reset_postdata();
-	
+
 	if($objects_only) {
 		return $objects;
 	}
-	
+
 	if (count($objects)){
 		$html = $class->objectsToHTML($objects, $params['class']);
 	}else{
@@ -1063,7 +1063,7 @@ function set_defaults_for_options(){
 		add_option(THEME_OPTIONS_NAME);
 		$values = array();
 	}
-	
+
 	$options = array();
 	foreach(Config::$theme_settings as $option){
 		if (is_array($option)){
@@ -1072,7 +1072,7 @@ function set_defaults_for_options(){
 			$options[] = $option;
 		}
 	}
-	
+
 	foreach ($options as $option){
 		$key = str_replace(
 			array(THEME_OPTIONS_NAME, '[', ']'),
@@ -1102,7 +1102,7 @@ add_action('shutdown', '__shutdown__');
 
 
 /**
- * Will return a string $s normalized to a slug value.  The optional argument, 
+ * Will return a string $s normalized to a slug value.  The optional argument,
  * $spaces, allows you to define what spaces and other undesirable characters
  * will be replaced with.  Useful for content that will appear in urls or
  * turning plain text into an id.
@@ -1121,16 +1121,16 @@ function slug($s, $spaces='-'){
 
 /***************************************************************************
  * HEADER AND FOOTER FUNCTIONS
- * 
+ *
  * Functions that generate output for the header and footer, including
  * <meta>, <link>, page titles, body classes and Facebook OpenGraph
  * stuff.
- * 
+ *
  ***************************************************************************/
 
 /**
  * Header content
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -1142,20 +1142,20 @@ function header_($tabs=2){
 	remove_action('wp_head', 'wp_generator');
 	remove_action('wp_head', 'wlwmanifest_link');
 	remove_action('wp_head', 'rsd_link');
-	
+
 	ob_start();
 	print header_title()."\n";
 	print header_meta()."\n";
 	wp_head();
 	print header_links()."\n";
-	
+
 	return indent(ob_get_clean(), $tabs);
 }
 
 
 /**
  * Footer content
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -1176,13 +1176,13 @@ function footer_($tabs=2){
  **/
 function opengraph_setup(){
 	$options = get_option(THEME_OPTIONS_NAME);
-	
+
 	if (!(bool)$options['enable_og']){return;}
 	if (is_search()){return;}
-	
+
 	global $post, $page;
 	setup_postdata($post);
-	
+
 	if (is_front_page()){
 		$title       = htmlentities(get_bloginfo('name'));
 		$url         = get_bloginfo('url');
@@ -1192,7 +1192,7 @@ function opengraph_setup(){
 		$url       = get_permalink($post->ID);
 		$site_name = htmlentities(get_bloginfo('name'));
 	}
-	
+
 	# Set description
 	if (is_front_page()){
 		$description = htmlentities(get_bloginfo('description'));
@@ -1213,14 +1213,14 @@ function opengraph_setup(){
 			$description = implode(' ', array_slice($words, 0, 60));
 		}
 	}
-	
+
 	$metas = array(
 		array('property' => 'og:title'      , 'content' => $title),
 		array('property' => 'og:url'        , 'content' => $url),
 		array('property' => 'og:site_name'  , 'content' => $site_name),
 		array('property' => 'og:description', 'content' => $description),
 	);
-	
+
 	# Include image if available
 	if (!is_front_page() and has_post_thumbnail($post->ID)){
 		$image = wp_get_attachment_image_src(
@@ -1229,21 +1229,21 @@ function opengraph_setup(){
 		);
 		$metas[] = array('property' => 'og:image', 'content' => $image[0]);
 	}
-	
-	
+
+
 	# Include admins if available
 	$admins = trim($options['fb_admins']);
 	if (strlen($admins) > 0){
 		$metas[] = array('property' => 'fb:admins', 'content' => $admins);
 	}
-	
+
 	Config::$metas = array_merge(Config::$metas, $metas);
 }
 
 
 /**
  * Handles generating the meta tags configured for this theme.
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -1251,7 +1251,7 @@ function header_meta(){
 	$metas     = Config::$metas;
 	$meta_html = array();
 	$defaults  = array();
-	
+
 	foreach($metas as $meta){
 		$meta        = array_merge($defaults, $meta);
 		$meta_html[] = create_html_element('meta', $meta);
@@ -1271,12 +1271,12 @@ function header_links(){
 	$links      = Config::$links;
 	$links_html = array();
 	$defaults   = array();
-	
+
 	foreach($links as $link){
 		$link         = array_merge($defaults, $link);
 		$links_html[] = create_html_element('link', $link, null, True);
 	}
-	
+
 	$links_html = implode("\n", $links_html);
 	return $links_html;
 }
@@ -1292,24 +1292,24 @@ function header_title(){
 	if ( is_single() ) {
 		$content = single_post_title('', FALSE);
 	}
-	elseif ( is_home() || is_front_page() ) { 
+	elseif ( is_home() || is_front_page() ) {
 		$content = get_bloginfo('description');
 	}
-	elseif ( is_page() ) { 
-		$content = single_post_title('', FALSE); 
+	elseif ( is_page() ) {
+		$content = single_post_title('', FALSE);
 	}
-	elseif ( is_search() ) { 
-		$content = __('Search Results for:'); 
+	elseif ( is_search() ) {
+		$content = __('Search Results for:');
 		$content .= ' ' . esc_html(stripslashes(get_search_query()));
 	}
 	elseif ( is_category() ) {
 		$content = __('Category Archives:');
 		$content .= ' ' . single_cat_title("", false);;
 	}
-	elseif ( is_404() ) { 
-		$content = __('Not Found'); 
+	elseif ( is_404() ) {
+		$content = __('Not Found');
 	}
-	else { 
+	else {
 		$content = get_bloginfo('description');
 	}
 
@@ -1331,13 +1331,13 @@ function header_title(){
 			$elements = array(
 				'content' => $content,
 			);
-		}  
+		}
 	} else {
 		$elements = array(
 			'site_name' => $site_name,
 		);
 	}
-	
+
 	// But if they don't, it won't try to implode
 	if(is_array($elements)) {
 	$doctitle = implode(' ', $elements);
@@ -1365,10 +1365,10 @@ function body_classes(){
 
 /***************************************************************************
  * REGISTRATION AND INSTALLATION FUNCTIONS
- * 
+ *
  * Functions that register and install custom post types, taxonomies,
  * and meta boxes.
- * 
+ *
  ***************************************************************************/
 
 /**
@@ -1377,7 +1377,7 @@ function body_classes(){
  **/
 function installed_custom_post_types(){
 	$installed = Config::$custom_post_types;
-	
+
 	return array_map( function( $class ) {
 		return new $class;
 	}, $installed );
@@ -1389,7 +1389,7 @@ function installed_custom_post_types(){
  **/
 function installed_custom_taxonomies(){
 	$installed = Config::$custom_taxonomies;
-	
+
 	return array_map( function( $class ) {
 		return new $class;
 	}, $installed );
@@ -1400,16 +1400,16 @@ function flush_rewrite_rules_if_necessary(){
 	$start    = microtime(True);
 	$original = get_option('rewrite_rules');
 	$rules    = $wp_rewrite->rewrite_rules();
-	
+
 	if (!$rules or !$original){
 		return;
 	}
 	ksort($rules);
 	ksort($original);
-	
+
 	$rules    = md5(implode('', array_keys($rules)));
 	$original = md5(implode('', array_keys($original)));
-	
+
 	if ($rules != $original){
 		flush_rewrite_rules();
 	}
@@ -1440,7 +1440,7 @@ function register_custom_post_types(){
 	foreach(installed_custom_post_types() as $custom_post_type){
 		$custom_post_type->register();
 	}
-	
+
 	#This ensures that the permalinks for custom posts work
 	flush_rewrite_rules_if_necessary();
 }
@@ -1465,9 +1465,9 @@ add_action('do_meta_boxes', 'register_meta_boxes');
 
 /***************************************************************************
  * POST DATA HANDLERS and META BOX FUNCTIONS
- * 
+ *
  * Functions that display and save custom post types and their meta data.
- * 
+ *
  ***************************************************************************/
 
 /**
@@ -1477,6 +1477,7 @@ add_action('do_meta_boxes', 'register_meta_boxes');
  * @author Jared Lang
  **/
 function save_meta_data($post){
+	$meta_box = null;
 	#Register custom post types metaboxes
 	foreach(installed_custom_post_types() as $custom_post_type){
 		if (post_type($post) == $custom_post_type->options('name')){
@@ -1485,7 +1486,7 @@ function save_meta_data($post){
 		}
 	}
 	return _save_meta_data($post, $meta_box);
-	
+
 }
 add_action('save_post', 'save_meta_data');
 
@@ -1514,10 +1515,10 @@ function save_file($post_id, $field){
 		$override['action'] = 'editpost';
 		$file               = $_FILES[$field['id']];
 		$uploaded_file      = wp_handle_upload($file, $override);
-		
+
 		# TODO: Pass reason for error back to frontend
 		if ($uploaded_file['error']){return;}
-		
+
 		$attachment = array(
 			'post_title'     => $file['name'],
 			'post_content'   => '',
@@ -1538,7 +1539,7 @@ function save_file($post_id, $field){
 function save_default($post_id, $field){
 	$old = get_post_meta($post_id, $field['id'], true);
 	$new = $_POST[$field['id']];
-	
+
 	# Update if new is not empty and is not the same value as old
 	if ($new !== "" and $new !== null and $new != $old) {
 		update_post_meta($post_id, $field['id'], $new);
@@ -1558,6 +1559,10 @@ function save_default($post_id, $field){
  * @author Jared Lang
  **/
 function _save_meta_data($post_id, $meta_box){
+	if ( ! isset( $_POST['meta_box_nonce'] ) ) {
+		return $post_id;
+	}
+
 	// verify nonce
 	if (!wp_verify_nonce($_POST['meta_box_nonce'], basename(__FILE__))) {
 		return $post_id;
@@ -1576,7 +1581,7 @@ function _save_meta_data($post_id, $meta_box){
 	} elseif (!current_user_can('edit_post', $post_id)) {
 		return $post_id;
 	}
-	
+
 	foreach ($meta_box['fields'] as $field) {
 		switch ($field['type']){
 			case 'file':
@@ -1609,14 +1614,14 @@ function _show_meta_boxes($post, $meta_box){
 					<?=$field['desc']?>
 				</div>
 			<?php endif;?>
-			
-			<?php switch ($field['type']): 
+
+			<?php switch ($field['type']):
 				case 'text':?>
 				<input type="text" name="<?=$field['id']?>" id="<?=$field['id']?>" value="<?=($current_value) ? htmlentities($current_value) : $field['std']?>" />
-			
+
 			<?php break; case 'textarea':?>
 				<textarea name="<?=$field['id']?>" id="<?=$field['id']?>" cols="60" rows="4"><?=($current_value) ? htmlentities($current_value) : $field['std']?></textarea>
-			
+
 			<?php break; case 'select':?>
 				<select name="<?=$field['id']?>" id="<?=$field['id']?>">
 					<option value=""><?=($field['default']) ? $field['default'] : '--'?></option>
@@ -1624,16 +1629,16 @@ function _show_meta_boxes($post, $meta_box){
 					<option <?=($current_value == $v) ? ' selected="selected"' : ''?> value="<?=$v?>"><?=$k?></option>
 				<?php endforeach;?>
 				</select>
-			
+
 			<?php break; case 'radio':?>
 				<?php foreach ($field['options'] as $k=>$v):?>
 				<label for="<?=$field['id']?>_<?=slug($k, '_')?>"><?=$k?></label>
 				<input type="radio" name="<?=$field['id']?>" id="<?=$field['id']?>_<?=slug($k, '_')?>" value="<?=$v?>"<?=($current_value == $v) ? ' checked="checked"' : ''?> />
 				<?php endforeach;?>
-			
+
 			<?php break; case 'checkbox':?>
 				<input type="checkbox" name="<?=$field['id']?>" id="<?=$field['id']?>"<?=($current_value) ? ' checked="checked"' : ''?> />
-			
+
 			<?php break; case 'file':?>
 				<?php
 					$document_id = get_post_meta($post->ID, $field['id'], True);
@@ -1648,7 +1653,7 @@ function _show_meta_boxes($post, $meta_box){
 				<a href="<?=$url?>"><?=$document->post_title?></a><br /><br />
 				<?php endif;?>
 				<input type="file" id="file_<?=$post->ID?>" name="<?=$field['id']?>"><br />
-			
+
 			<?php break; case 'help':?><!-- Do nothing for help -->
 			<?php break; default:?>
 				<p class="error">Don't know how to handle field of type '<?=$field['type']?>'</p>
@@ -1657,7 +1662,7 @@ function _show_meta_boxes($post, $meta_box){
 		</tr>
 	<?php endforeach;?>
 	</table>
-	
+
 	<?php if($meta_box['helptxt']):?>
 	<p><?=$meta_box['helptxt']?></p>
 	<?php endif;?>
