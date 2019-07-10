@@ -69,7 +69,7 @@ if(isset($_GET['json'])) :
 		$te1_start = (int)$te1['startDate'];
 		$te2_start = (int)$te2['startDate'];
 
-		if($te1_start > $te_2start) {
+		if($te1_start > $te2_start) {
 			return 1;
 		} else if ($te1_start < $te2_start) {
 			return -1;
