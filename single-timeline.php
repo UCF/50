@@ -86,7 +86,8 @@ else : ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?=get_bloginfo('blog_title')?> - <?=$post->post_title?></title>
+		<title><?php echo get_bloginfo('blog_title'); ?> - <?php echo $post->post_title; ?></title>
+		<?php wp_head(); ?>
 	</head>
 	<body>
 		<div id="header" style="padding-bottom:0;">
