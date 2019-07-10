@@ -40,16 +40,25 @@ function __init__(){
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 	));
-	foreach(Config::$styles as $style){Config::add_css($style);}
-	foreach(Config::$scripts as $script){Config::add_script($script);}
 
 	global $timer;
 	$timer = Timer::start();
-
-	wp_deregister_script('l10n');
 }
 add_action('after_setup_theme', '__init__');
 
+function fifty_add_styles() {
+	foreach( Config::$styles as $style ) {
+		Config::add_css( $style );
+	}
+
+	foreach( Config::$scripts as $script ) {
+		Config::add_script( $script );
+	}
+
+	wp_deregister_script('l10n');
+}
+
+add_action( 'wp_enqueue_scripts', 'fifty_add_styles' );
 
 
 # Set theme constants

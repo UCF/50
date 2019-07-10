@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Abstract class for defining custom post types.  
- * 
+ * Abstract class for defining custom post types.
+ *
  **/
 abstract class CustomPostType{
-	public 
+	public
 		$name           = 'custom_post_type',
 		$plural_name    = 'Custom Posts',
 		$singular_name  = 'Custom Post',
@@ -23,8 +23,8 @@ abstract class CustomPostType{
 		                         # (see also objectsToHTML and toHTML methods)
 		$taxonomies     = array('post_tag'),
 		$built_in       = False;
-	
-	
+
+
 	/**
 	 * Wrapper for get_posts function, that predefines post_type for this
 	 * custom post type.  Any options valid in get_posts can be passed as an
@@ -42,8 +42,8 @@ abstract class CustomPostType{
 		$objects = get_posts($options);
 		return $objects;
 	}
-	
-	
+
+
 	/**
 	 * Similar to get_objects, but returns array of key values mapping post
 	 * title to id if available, otherwise it defaults to id=>id.
@@ -63,8 +63,8 @@ abstract class CustomPostType{
 		}
 		return $opt;
 	}
-	
-	
+
+
 	/**
 	 * Return the instances values defined by $key.
 	 **/
@@ -72,8 +72,8 @@ abstract class CustomPostType{
 		$vars = get_object_vars($this);
 		return $vars[$key];
 	}
-	
-	
+
+
 	/**
 	 * Additional fields on a custom post type may be defined by overriding this
 	 * method on an descendant object.
@@ -81,8 +81,8 @@ abstract class CustomPostType{
 	public function fields(){
 		return array();
 	}
-	
-	
+
+
 	/**
 	 * Using instance variables defined, returns an array defining what this
 	 * custom post type supports.
@@ -107,8 +107,8 @@ abstract class CustomPostType{
 		}
 		return $supports;
 	}
-	
-	
+
+
 	/**
 	 * Creates labels array, defining names for admin panel.
 	 **/
@@ -121,8 +121,8 @@ abstract class CustomPostType{
 			'new_item'      => __($this->options('new_item')),
 		);
 	}
-	
-	
+
+
 	/**
 	 * Creates metabox array for custom post type. Override method in
 	 * descendants to add or modify metaboxes.
@@ -140,8 +140,8 @@ abstract class CustomPostType{
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * Registers metaboxes defined for custom post type.
 	 **/
@@ -158,8 +158,8 @@ abstract class CustomPostType{
 			);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Registers the custom post type and any other ancillary actions that are
 	 * required for the post to function properly.
@@ -172,19 +172,19 @@ abstract class CustomPostType{
 			'taxonomies' => $this->options('taxonomies'),
 			'_builtin'   => $this->options('built_in')
 		);
-		
+
 		if ($this->options('use_order')){
 			$registration = array_merge($registration, array('hierarchical' => True,));
 		}
-		
+
 		register_post_type($this->options('name'), $registration);
-		
+
 		if ($this->options('use_shortcode')){
 			add_shortcode($this->options('name').'-list', array($this, 'shortcode'));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Shortcode for this custom post type.  Can be overridden for descendants.
 	 * Defaults to just outputting a list of objects outputted as defined by
@@ -201,8 +201,8 @@ abstract class CustomPostType{
 		}
 		return sc_object_list($attr);
 	}
-	
-	
+
+
 	/**
 	 * Handles output for a list of objects, can be overridden for descendants.
 	 * If you want to override how a list of objects are outputted, override
@@ -211,10 +211,10 @@ abstract class CustomPostType{
 	 **/
 	public function objectsToHTML($objects, $css_classes){
 		if (count($objects) < 1){ return '';}
-		
+
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		ob_start();
 		?>
 		<ul class="<?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
@@ -228,8 +228,8 @@ abstract class CustomPostType{
 		$html = ob_get_clean();
 		return $html;
 	}
-	
-	
+
+
 	/**
 	 * Outputs this item in HTML.  Can be overridden for descendants.
 	 **/
@@ -241,7 +241,7 @@ abstract class CustomPostType{
 
 
 class Example extends CustomPostType{
-	public 
+	public
 		$name           = 'example',
 		$plural_name    = 'Examples',
 		$singular_name  = 'Example',
@@ -256,26 +256,26 @@ class Example extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = True,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML($objects, $css_classes){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
-	
+
+
 	public function fields(){
 		return array(
 			array(
@@ -354,7 +354,7 @@ class Page extends CustomPostType {
 
 
 class FrontPage extends CustomPostType{
-	public 
+	public
 		$name           = 'frontpage',
 		$plural_name    = 'Front Pages',
 		$singular_name  = 'Front Page',
@@ -369,7 +369,7 @@ class FrontPage extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = false,
 		$use_metabox    = True;
-	
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		return array(
@@ -381,11 +381,11 @@ class FrontPage extends CustomPostType{
 			),
 		);
 	}
-		
+
 }
 
 class PhotoSet extends CustomPostType{
-	public 
+	public
 		$name           = 'photoset',
 		$plural_name    = 'Photo Sets',
 		$singular_name  = 'Photo Set',
@@ -400,16 +400,16 @@ class PhotoSet extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = True,
 		$use_metabox    = False;
-	
+
 	public function get_objects($options=array()){
 		//Overriden to order by menu_order
 		parent::get_objects(array_merge(array('orderby'=>'menu_order'), $options));
 	}
 
-	public function objectsToHTML($objects){
+	public function objectsToHTML($objects, $css_classes){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		// Photoset Navigation
 		$outputs = array('<ul class="photoset-nav">');
 		foreach($objects as $o){
@@ -470,8 +470,8 @@ class PhotoSet extends CustomPostType{
 
 
 		*/
-		
-		
+
+
 		// Photosets
 		foreach($objects as $o){
 			// Attachemnts - Assume they are all images
@@ -489,9 +489,9 @@ class PhotoSet extends CustomPostType{
 			$count = 0;
 			foreach($images as $image) {
 				$details = wp_get_attachment_image_src($image->ID, 'large');
-				
+
 				$css   = ($count % 3) == 0 ? ' no-margin-left' : '';
-				
+
 				$outputs[] = '<div class="span3'.$css.'">
 							      <p class="photo-wrap"><a href="'.$details[0].'"><img src="'.$details[0].'" /></a></p>
 								  <p class="photo-desc">'.$image->post_content.'</p>
@@ -506,22 +506,22 @@ class PhotoSet extends CustomPostType{
 			$outputs[] = '<div class="instructions span12">Click on an image to see it larger.</div>';*/
 			$outputs[] = '</fieldset>';
 		}
-		
+
 
 		return implode("\n", $outputs);
 	}
-	
-	
-	
-	
+
+
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
+
 }
 
 class Story extends CustomPostType{
-	public 
+	public
 		$name           = 'story',
 		$plural_name    = 'Stories',
 		$singular_name  = 'Story',
@@ -537,10 +537,10 @@ class Story extends CustomPostType{
 		$use_shortcode  = True,
 		$use_metabox    = True;
 
-	public function objectsToHTML($objects){
+	public function objectsToHTML($objects, $css_classes){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array('<ul class="stories row">');
 
 		$o_count = 1;
@@ -563,7 +563,7 @@ class Story extends CustomPostType{
 				$outputs[] = '<li class="span4"><a href="'.get_tag_link($tag->term_id).'">'.$tag->name.'</a>'.($tag_count != $num_tags ? ',':'').'</li>';
 				$tag_count++;
 			}
-			
+
 			$outputs[] = '</ul></li>';
 			$o_count++;
 		}
@@ -605,7 +605,7 @@ class Story extends CustomPostType{
 }
 
 class Timeline extends CustomPostType{
-	public 
+	public
 		$name           = 'timeline',
 		$plural_name    = 'Timelines',
 		$singular_name  = 'Timeline',
@@ -621,21 +621,21 @@ class Timeline extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = False,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML($objects, $css_classes){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
@@ -654,7 +654,7 @@ class Timeline extends CustomPostType{
 }
 
 class TimelineEvent extends CustomPostType{
-	public 
+	public
 		$name           = 'timeline_event',
 		$plural_name    = 'Timeline Events',
 		$singular_name  = 'Timeline Event',
@@ -670,26 +670,26 @@ class TimelineEvent extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = False,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML($objects, $css_classes){
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
-	
+
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		$timeline_options = array();
@@ -722,7 +722,7 @@ class TimelineEvent extends CustomPostType{
 }
 
 class Video extends CustomPostType{
-	public 
+	public
 		$name           = 'video',
 		$plural_name    = 'Videos',
 		$singular_name  = 'Video',
@@ -735,19 +735,19 @@ class Video extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
-	
+
 	public function get_player_html($video){
 		return sc_video(array('video' => $video));
 	}
-	
+
 	public function metabox(){
 		$metabox = parent::metabox();
-		
+
 		$metabox['title']   = 'Videos on Media Page';
 		$metabox['helptxt'] = 'Video icon will be resized to width 210px, height 118px.';
 		return $metabox;
 	}
-	
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		return array(
@@ -777,7 +777,7 @@ class Video extends CustomPostType{
 }
 
 class Publication extends CustomPostType{
-	public 
+	public
 		$name           = 'publication',
 		$plural_name    = 'Publications',
 		$singular_name  = 'Publication',
@@ -790,19 +790,19 @@ class Publication extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
-	
+
 	public function toHTML($pub){
 		return sc_publication(array('pub' => $pub));
 	}
-	
+
 	public function metabox(){
 		$metabox = parent::metabox();
-		
+
 		$metabox['title']   = 'Publications on Media Page';
 		$metabox['helptxt'] = 'Publication cover icon will be resized to width 153px, height 198px.';
 		return $metabox;
 	}
-	
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		return array(

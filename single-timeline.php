@@ -1,7 +1,7 @@
 <?php disallow_direct_load('single.php');?>
-<?php  the_post();?>
-<? 
-if(isset($_GET['json'])) {
+<?php the_post();?>
+<?php
+if(isset($_GET['json'])) :
 
 	# See Timeline formatting spec at http://timeline.verite.co/#fileformat
 	$to_json = array(
@@ -69,7 +69,7 @@ if(isset($_GET['json'])) {
 		$te1_start = (int)$te1['startDate'];
 		$te2_start = (int)$te2['startDate'];
 
-		if($te1_start > $te_2start) {
+		if($te1_start > $te2_start) {
 			return 1;
 		} else if ($te1_start < $te2_start) {
 			return -1;
@@ -82,19 +82,20 @@ if(isset($_GET['json'])) {
 
 	header('Content-Type:application/json;');
 	echo json_encode($to_json);
-} else { ?>
+else : ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?=get_bloginfo('blog_title')?> - <?=$post->post_title?></title>
+		<title><?php echo get_bloginfo('blog_title'); ?> - <?php echo $post->post_title; ?></title>
+		<?php wp_head(); ?>
 	</head>
 	<body>
 		<div id="header" style="padding-bottom:0;">
 			<h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 		</div>
 		<div id="timeline"></div>
-		<?="\n".footer_()."\n"?>
-		<? if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) { ?>
+		<?php echo "\n".footer_()."\n"; ?>
+		<?php if(isset($post) && $post->post_type == 'timeline' && !isset($_GET['json'])) : ?>
 			<script type="text/javascript">
 				$().ready(function() {
 					var timeline = new VMM.Timeline(),
@@ -118,9 +119,9 @@ if(isset($_GET['json'])) {
 						});
 				});
 			</script>
-		<? } ?> 
+		<?php endif; ?>
 	</body>
 </html>
-<?
-}
+<?php
+endif;
 ?>
