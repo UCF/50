@@ -46,19 +46,43 @@ function __init__(){
 }
 add_action('after_setup_theme', '__init__');
 
-function fifty_add_styles() {
+function fifty_is_admin_asset( $asset ) {
+	return isset( $asset['admin'] ) && $asset['admin'] === true ? true : false;
+}
+
+function fifty_add_scripts() {
 	foreach( Config::$styles as $style ) {
-		Config::add_css( $style );
+		if ( ! fifty_is_admin_asset( $style ) ) {
+			Config::add_css( $style );
+		}
 	}
 
 	foreach( Config::$scripts as $script ) {
-		Config::add_script( $script );
+		if ( ! fifty_is_admin_asset( $script ) ) {
+			Config::add_script( $script );
+		}
 	}
 
 	wp_deregister_script('l10n');
 }
 
-add_action( 'wp_enqueue_scripts', 'fifty_add_styles' );
+add_action( 'wp_enqueue_scripts', 'fifty_add_scripts' );
+
+function fifty_add_admin_scripts() {
+	foreach( Config::$styles as $style ) {
+		if ( fifty_is_admin_asset( $style ) ) {
+			Config::add_css( $style );
+		}
+	}
+
+	foreach( Config::$scripts as $script ) {
+		if ( fifty_is_admin_asset( $script ) ) {
+			Config::add_script( $script );
+		}
+	}
+}
+
+add_action( 'admin_enqueue_scripts', 'fifty_add_admin_scripts' );
 
 
 # Set theme constants
