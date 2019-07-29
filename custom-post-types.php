@@ -136,6 +136,7 @@ abstract class CustomPostType{
 				'context'  => 'normal',
 				'priority' => 'high',
 				'fields'   => $this->fields(),
+				'helptxt'  => ''
 			);
 		}
 		return null;
@@ -764,14 +765,7 @@ class Video extends CustomPostType{
 				'id'   => $prefix.'description',
 				'type' => 'textarea',
 				'std'  => ''
-			),
-			array(
-				'name' => 'Shortcode',
-				'desc' => 'To include this video in other posts, use the following shortcode:',
-				'id'   => 'video_shortcode',
-				'type' => 'shortcode',
-				'value' => '[video name="TITLE"]',
-			),
+			)
 		);
 	}
 }
@@ -812,13 +806,6 @@ class Publication extends CustomPostType{
 				'id'   => $prefix.'embed',
 				'type' => 'textarea',
 				'std'  => '',
-			),
-			array(
-				'name' => 'Shortcode',
-				'desc' => 'To include this publication in other posts, use the following shortcode: <input disabled="disabled" type="text" value="[publication name=]" />',
-				'id'   => 'publication_shortcode',
-				'type' => 'help',
-				'value' => '[publication name="TITLE"]',
 			),
 		);
 	}
