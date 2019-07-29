@@ -28,11 +28,17 @@
 		</script>
 		<?php endif;?>
 
-		<?php  $post_type = get_post_type($post->ID);
-			if(($stylesheet_id = get_post_meta($post->ID, $post_type.'_stylesheet', True)) !== False
-				&& ($stylesheet_url = wp_get_attachment_url($stylesheet_id)) !== False) : ?>
-				<link rel='stylesheet' href="<?=$stylesheet_url?>" type='text/css' media='all' />
-			<?php endif; ?>
+		<?php
+		if ( isset( $post ) && $post instanceof WP_Post ):
+			$post_type = get_post_type( $post->ID );
+			if ( ( $stylesheet_id = get_post_meta( $post->ID, $post_type.'_stylesheet', true ) ) !== false
+				&& ( $stylesheet_url = wp_get_attachment_url( $stylesheet_id ) ) !== false ) :
+		?>
+				<link rel='stylesheet' href="<?php echo $stylesheet_url; ?>" type='text/css' media='all' />
+		<?php
+			endif;
+		endif;
+		?>
 
 		<script type="text/javascript">
 			var THEME_STATIC_URL = '<?=THEME_STATIC_URL?>';
