@@ -3,9 +3,6 @@
 	<head>
 		<?="\n".header_()."\n"?>
 		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-		<!--[if IE]>
-		<link href="http://cdn.ucf.edu/webcom/-/css/blueprint-ie.css" rel="stylesheet" media="screen, projection">
-		<![endif]-->
 		<?php if(GA_ACCOUNT or CB_UID):?>
 
 		<script type="text/javascript">
