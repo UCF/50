@@ -246,33 +246,6 @@ Config::$theme_settings = array(
 			'default'     => 'http://today.ucf.edu/feed/',
 		)),
 	),
-	'Search' => array(
-		new RadioField(array(
-			'name'        => 'Enable Google Search',
-			'id'          => THEME_OPTIONS_NAME.'[enable_google]',
-			'description' => 'Enable to use the google search appliance to power the search functionality.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => $theme_options['enable_google'],
-	    )),
-		new TextField(array(
-			'name'        => 'Search Domain',
-			'id'          => THEME_OPTIONS_NAME.'[search_domain]',
-			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
-			'default'     => null,
-			'value'       => $theme_options['search_domain'],
-		)),
-		new TextField(array(
-			'name'        => 'Search Results Per Page',
-			'id'          => THEME_OPTIONS_NAME.'[search_per_page]',
-			'description' => 'Number of search results to show per page of results',
-			'default'     => 10,
-			'value'       => $theme_options['search_per_page'],
-		)),
-	),
 	'Site' => array(
 		new TextField(array(
 			'name'        => 'Contact Email',
