@@ -1,6 +1,6 @@
 <?php disallow_direct_load('tag.php');?>
-<?php 
-	get_header(); 
+<?php
+	get_header();
 	$tag     = get_queried_object();
 	$stories = get_posts(array(
 		'post_type' => 'story',
@@ -13,13 +13,13 @@
 		)
 	));
 	?>
-	
+
 	<div class="page-content">
 		<article>
 			<h1>Stories tagged with <?=$tag->name;?></h1>
 			<ul id="tag-stories">
-				<? 	$even = True;
-					foreach($stories as $story) { 
+				<?php 	$even = True;
+					foreach($stories as $story) {
 						$even = ($even) ? False : True;
 				?>
 				<li class="<?=$even ? 'even' : 'odd'?>">
@@ -30,7 +30,7 @@
 						</p>
 					</a>
 				</li>
-				<? } ?>
+				<?php } ?>
 			</ul>
 		</article>
 	</div>

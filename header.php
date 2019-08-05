@@ -55,7 +55,7 @@
     	</div>
 
 		<div class="container" id="content-wrap">
-			<div class="row<? if(is_front_page()):?> front-page<? endif ?>" id="header-wrap">
+			<div class="row<?php if(is_front_page()):?> front-page<?php endif ?>" id="header-wrap">
 				<div id="header">
 					<h1 class="span4"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 					<div class="span8" id="<?php if(is_front_page() == false) : ?>menu-wrap<?php endif; ?>">

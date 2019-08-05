@@ -77,9 +77,9 @@ function sc_search_form($search_post_type = '') {
 			<label for="s">Search:</label>
 			<input type="text" value="<?php echo isset( $_GET['s'] ) ? htmlentities( $_GET['s'] ) : ''; ?>" name="s" class="search-field" id="s" placeholder="Search" />
 			<button type="submit" class="search-submit">Search</button>
-			<? if($search_post_type != '') { ?>
+			<?php if($search_post_type != '') { ?>
 			<input type="hidden" name="post_type" value="<?=$search_post_type?>" />
-			<? } ?>
+			<?php } ?>
 		</div>
 	</form>
 	<?
@@ -125,11 +125,11 @@ function sc_person_picture_list($atts) {
 
 		?>
 		<div class="span2 person-picture-wrap">
-			<? if($link) {?><a href="<?=get_permalink($person->ID)?>"><? } ?>
+			<?php if($link) {?><a href="<?=get_permalink($person->ID)?>"><?php } ?>
 				<img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
 				<div class="name"><?=Person::get_name($person)?></div>
 				<div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
-				<? if($link) {?></a><?}?>
+				<?php if($link) {?></a><?}?>
 		</div>
 		<?
 		$count++;
