@@ -142,21 +142,6 @@ function theme_options_sanitize($input){
 
 
 /**
- * Modifies the default stylesheets associated with the TinyMCE editor.
- *
- * @return string
- * @author Jared Lang
- **/
-function editor_styles($css){
-	$css   = array_map('trim', explode(',', $css));
-	$css[] = THEME_CSS_URL.'/formatting.css';
-	$css   = implode(',', $css);
-	return $css;
-}
-add_filter('mce_css', 'editor_styles');
-
-
-/**
  * Edits second row of buttons in tinyMCE editor. Removing/adding actions
  *
  * @return array

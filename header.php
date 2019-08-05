@@ -3,9 +3,6 @@
 	<head>
 		<?="\n".header_()."\n"?>
 		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-		<!--[if IE]>
-		<link href="http://cdn.ucf.edu/webcom/-/css/blueprint-ie.css" rel="stylesheet" media="screen, projection">
-		<![endif]-->
 		<?php if(GA_ACCOUNT or CB_UID):?>
 
 		<script type="text/javascript">
@@ -28,11 +25,17 @@
 		</script>
 		<?php endif;?>
 
-		<?php  $post_type = get_post_type($post->ID);
-			if(($stylesheet_id = get_post_meta($post->ID, $post_type.'_stylesheet', True)) !== False
-				&& ($stylesheet_url = wp_get_attachment_url($stylesheet_id)) !== False) : ?>
-				<link rel='stylesheet' href="<?=$stylesheet_url?>" type='text/css' media='all' />
-			<?php endif; ?>
+		<?php
+		if ( isset( $post ) && $post instanceof WP_Post ):
+			$post_type = get_post_type( $post->ID );
+			if ( ( $stylesheet_id = get_post_meta( $post->ID, $post_type.'_stylesheet', true ) ) !== false
+				&& ( $stylesheet_url = wp_get_attachment_url( $stylesheet_id ) ) !== false ) :
+		?>
+				<link rel='stylesheet' href="<?php echo $stylesheet_url; ?>" type='text/css' media='all' />
+		<?php
+			endif;
+		endif;
+		?>
 
 		<script type="text/javascript">
 			var THEME_STATIC_URL = '<?=THEME_STATIC_URL?>';
@@ -52,7 +55,7 @@
     	</div>
 
 		<div class="container" id="content-wrap">
-			<div class="row<? if(is_front_page()):?> front-page<? endif ?>" id="header-wrap">
+			<div class="row<?php if(is_front_page()):?> front-page<?php endif ?>" id="header-wrap">
 				<div id="header">
 					<h1 class="span4"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 					<div class="span8" id="<?php if(is_front_page() == false) : ?>menu-wrap<?php endif; ?>">

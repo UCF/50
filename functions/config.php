@@ -46,19 +46,43 @@ function __init__(){
 }
 add_action('after_setup_theme', '__init__');
 
-function fifty_add_styles() {
+function fifty_is_admin_asset( $asset ) {
+	return isset( $asset['admin'] ) && $asset['admin'] === true ? true : false;
+}
+
+function fifty_add_scripts() {
 	foreach( Config::$styles as $style ) {
-		Config::add_css( $style );
+		if ( ! fifty_is_admin_asset( $style ) ) {
+			Config::add_css( $style );
+		}
 	}
 
 	foreach( Config::$scripts as $script ) {
-		Config::add_script( $script );
+		if ( ! fifty_is_admin_asset( $script ) ) {
+			Config::add_script( $script );
+		}
 	}
 
 	wp_deregister_script('l10n');
 }
 
-add_action( 'wp_enqueue_scripts', 'fifty_add_styles' );
+add_action( 'wp_enqueue_scripts', 'fifty_add_scripts' );
+
+function fifty_add_admin_scripts() {
+	foreach( Config::$styles as $style ) {
+		if ( fifty_is_admin_asset( $style ) ) {
+			Config::add_css( $style );
+		}
+	}
+
+	foreach( Config::$scripts as $script ) {
+		if ( fifty_is_admin_asset( $script ) ) {
+			Config::add_script( $script );
+		}
+	}
+}
+
+add_action( 'admin_enqueue_scripts', 'fifty_add_admin_scripts' );
 
 
 # Set theme constants
@@ -220,33 +244,6 @@ Config::$theme_settings = array(
 			'description' => 'Use the following URL for the news RSS feed <br />Example: <em>http://today.ucf.edu/feed/</em>',
 			'value'       => $theme_options['news_url'],
 			'default'     => 'http://today.ucf.edu/feed/',
-		)),
-	),
-	'Search' => array(
-		new RadioField(array(
-			'name'        => 'Enable Google Search',
-			'id'          => THEME_OPTIONS_NAME.'[enable_google]',
-			'description' => 'Enable to use the google search appliance to power the search functionality.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => $theme_options['enable_google'],
-	    )),
-		new TextField(array(
-			'name'        => 'Search Domain',
-			'id'          => THEME_OPTIONS_NAME.'[search_domain]',
-			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
-			'default'     => null,
-			'value'       => $theme_options['search_domain'],
-		)),
-		new TextField(array(
-			'name'        => 'Search Results Per Page',
-			'id'          => THEME_OPTIONS_NAME.'[search_per_page]',
-			'description' => 'Number of search results to show per page of results',
-			'default'     => 10,
-			'value'       => $theme_options['search_per_page'],
 		)),
 	),
 	'Site' => array(
