@@ -1,15 +1,15 @@
 <?php get_header();?>
 	<div class="page-content" id="front-page">
-		<? extract(get_front_page_post()); ?>
+		<?php extract(get_front_page_post()); ?>
 		<div id="feature-wrap">
 			<div>
 				<img src="<?=$featured_image[0]?>" />
 			</div>
 		</div>
-		<div id="tooltip-desc"><? $tooltip = get_post_meta($post->ID, 'frontpage_tooltip', true); print empty($tooltip) ? 'notooltip' : $tooltip; ?></div>
+		<div id="tooltip-desc"><?php $tooltip = get_post_meta($post->ID, 'frontpage_tooltip', true); print empty($tooltip) ? 'notooltip' : $tooltip; ?></div>
 	</div>
 </div><!--.container -->
-<div id="footer">	
+<div id="footer">
 	<div class="container">
 		<div class="row">
 			<div class="footer-widget-1 span6" id="post-content">

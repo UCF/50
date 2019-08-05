@@ -1,13 +1,13 @@
 <?php disallow_direct_load('single.php');?>
 <?php get_header(); the_post();?>
-	
+
 	<div class="row page-content" id="photoset-page">
 		<div class="span12">
 			<article>
 				<h1><?php the_title();?></h1>
 				<?php the_content();?>
 				<ul id="images">
-					<? $images = get_posts(array(
+					<?php $images = get_posts(array(
 									'post_type'   => 'attachment',
 									'numberposts' => -1,
 									'post_status' => NULL,
