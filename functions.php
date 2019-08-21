@@ -8,7 +8,7 @@ require_once('shortcodes.php');         		# Per theme shortcodes
 //Add theme-specific functions here.
 
 /**
- * Get a random post from the FrontPage post type 
+ * Get a random post from the FrontPage post type
  *
  *
  * @author Chris Conover
@@ -62,7 +62,7 @@ function get_publication_docid($pub_id) {
 function get_publication_thumb($pub_id) {
 	$docID = get_publication_docid($pub_id);
 	$pub = get_post($pub_id);
-	$thumb 		= "<img src='http://image.issuu.com/".$docID."/jpg/page_1_thumb_large.jpg' alt='".$pub->post_title."' title='".$pub->post_title."' />"; 
+	$thumb 		= "<img src='http://image.issuu.com/".$docID."/jpg/page_1_thumb_large.jpg' alt='".$pub->post_title."' title='".$pub->post_title."' />";
 	return $thumb;
 }
 

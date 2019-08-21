@@ -1,4 +1,4 @@
-		<div id="footer">	
+		<div id="footer">
 			<div class="container">
 				<div class="row">
 					<div class="footer-widget-1 span2">
