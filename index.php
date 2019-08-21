@@ -3,7 +3,7 @@
 		<?php extract(get_front_page_post()); ?>
 		<div id="feature-wrap">
 			<div>
-				<img src="<?=$featured_image[0]?>" />
+				<img src="<?php echo $featured_image[0]?>" />
 			</div>
 		</div>
 		<div id="tooltip-desc"><?php $tooltip = get_post_meta($post->ID, 'frontpage_tooltip', true); print empty($tooltip) ? 'notooltip' : $tooltip; ?></div>
@@ -13,9 +13,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="footer-widget-1 span6" id="post-content">
-				<h2><?=$post->post_title?></h2>
+				<h2><?php echo $post->post_title?></h2>
 				<div id="post-body">
-					<?=apply_filters('the_content', $post->post_content)?>
+					<?php echo apply_filters('the_content', $post->post_content)?>
 				</div>
 			</div>
 			<div class="footer-widget-2 span3">
@@ -30,11 +30,11 @@
 						<div class="maintained">
 							Site maintained by the <br />
 							<?php if($options['site_contact'] and $options['organization_name']):?>
-							<a href="mailto:<?=$options['site_contact']?>"><?=$options['organization_name']?></a>
+							<a href="mailto:<?php echo $options['site_contact']?>"><?php echo $options['organization_name']?></a>
 							<?php elseif($options['site_contact']):?>
-							<a href="mailto:<?=$options['site_contact']?>"><?=$options['site_contact']?></a>
+							<a href="mailto:<?php echo $options['site_contact']?>"><?php echo $options['site_contact']?></a>
 							<?php elseif($options['organization_name']):?>
-							<?=$options['organization_name']?>
+							<?php echo $options['organization_name']?>
 							<?php endif;?>
 						</div>
 						<?php endif;?>
@@ -48,5 +48,5 @@
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<?="\n".footer_()."\n"?>
+<?php echo "\n".footer_()."\n"?>
 </html>
