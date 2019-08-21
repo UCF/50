@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /***************************************************************************
  * CLASSES
  *
@@ -147,9 +146,8 @@ abstract class Field{
 	function label_html(){
 		ob_start();
 		?>
-		<label class="block" for="<?=htmlentities($this->id)?>"><?=__($this->name)?></label>
-		<?php
-		return ob_get_clean();
+		<label class="block" for="<?php echo htmlentities($this->id)?>"><?php echo __($this->name)?></label>
+		<?php 		return ob_get_clean();
 	}
 
 	function input_html(){
@@ -160,10 +158,9 @@ abstract class Field{
 		ob_start();
 		?>
 		<?php if($this->description):?>
-		<p class="description"><?=__($this->description)?></p>
+		<p class="description"><?php echo __($this->description)?></p>
 		<?php endif;?>
-		<?php
-		return ob_get_clean();
+		<?php 		return ob_get_clean();
 	}
 
 	function html(){
@@ -203,9 +200,8 @@ class TextField extends Field{
 	function input_html(){
 		ob_start();
 		?>
-		<input type="<?=$this->type_attr?>" id="<?=htmlentities($this->id)?>" name="<?=htmlentities($this->id)?>" value="<?=htmlentities($this->value)?>" />
-		<?php
-		return ob_get_clean();
+		<input type="<?php echo $this->type_attr?>" id="<?php echo htmlentities($this->id)?>" name="<?php echo htmlentities($this->id)?>" value="<?php echo htmlentities($this->value)?>" />
+		<?php 		return ob_get_clean();
 	}
 }
 
@@ -232,9 +228,8 @@ class TextareaField extends Field{
 	function input_html(){
 		ob_start();
 		?>
-		<textarea id="<?=htmlentities($this->id)?>" name="<?=htmlentities($this->id)?>"><?=htmlentities($this->value)?></textarea>
-		<?php
-		return ob_get_clean();
+		<textarea id="<?php echo htmlentities($this->id)?>" name="<?php echo htmlentities($this->id)?>"><?php echo htmlentities($this->value)?></textarea>
+		<?php 		return ob_get_clean();
 	}
 }
 
@@ -249,13 +244,12 @@ class SelectField extends ChoicesField{
 	function input_html(){
 		ob_start();
 		?>
-		<select name="<?=htmlentities($this->id)?>" id="<?=htmlentities($this->id)?>">
+		<select name="<?php echo htmlentities($this->id)?>" id="<?php echo htmlentities($this->id)?>">
 			<?php foreach($this->choices as $key=>$value):?>
-			<option<?php if($this->value == $value):?> selected="selected"<?php endif;?> value="<?=htmlentities($value)?>"><?=htmlentities($key)?></option>
+			<option<?php if($this->value == $value):?> selected="selected"<?php endif;?> value="<?php echo htmlentities($value)?>"><?php echo htmlentities($key)?></option>
 			<?php endforeach;?>
 		</select>
-		<?php
-		return ob_get_clean();
+		<?php 		return ob_get_clean();
 	}
 }
 
@@ -273,13 +267,12 @@ class RadioField extends ChoicesField{
 		<ul class="radio-list">
 			<?php $i = 0; foreach($this->choices as $key=>$value): $id = htmlentities($this->id).'_'.$i++;?>
 			<li>
-				<input<?php if($this->value == $value):?> checked="checked"<?php endif;?> type="radio" name="<?=htmlentities($this->id)?>" id="<?=$id?>" value="<?=htmlentities($value)?>" />
-				<label for="<?=$id?>"><?=htmlentities($key)?></label>
+				<input<?php if($this->value == $value):?> checked="checked"<?php endif;?> type="radio" name="<?php echo htmlentities($this->id)?>" id="<?php echo $id?>" value="<?php echo htmlentities($value)?>" />
+				<label for="<?php echo $id?>"><?php echo htmlentities($key)?></label>
 			</li>
 			<?php endforeach;?>
 		</ul>
-		<?php
-		return ob_get_clean();
+		<?php 		return ob_get_clean();
 	}
 }
 
@@ -297,13 +290,12 @@ class CheckboxField extends ChoicesField{
 		<ul class="checkbox-list">
 			<?php $i = 0; foreach($this->choices as $key=>$value): $id = htmlentities($this->id).'_'.$i++;?>
 			<li>
-				<input<?php if(is_array($this->value) and in_array($value, $this->value)):?> checked="checked"<?php endif;?> type="checkbox" name="<?=htmlentities($this->id)?>[]" id="<?=$id?>" value="<?=htmlentities($value)?>" />
-				<label for="<?=$id?>"><?=htmlentities($key)?></label>
+				<input<?php if(is_array($this->value) and in_array($value, $this->value)):?> checked="checked"<?php endif;?> type="checkbox" name="<?php echo htmlentities($this->id)?>[]" id="<?php echo $id?>" value="<?php echo htmlentities($value)?>" />
+				<label for="<?php echo $id?>"><?php echo htmlentities($key)?></label>
 			</li>
 			<?php endforeach;?>
 		</ul>
-		<?php
-		return ob_get_clean();
+		<?php 		return ob_get_clean();
 	}
 }
 
@@ -777,13 +769,12 @@ function get_menu($name, $classes=null, $id=null, $callback=null){
 	if ($callback === null){
 		ob_start();
 		?>
-		<ul<?php if($classes):?> class="<?=$classes?>"<?php endif;?><?php if($id):?> id="<?=$id?>"<?php endif;?>>
+		<ul<?php if($classes):?> class="<?php echo $classes?>"<?php endif;?><?php if($id):?> id="<?php echo $id?>"<?php endif;?>>
 			<?php foreach($items as $key=>$item): $last = $key == count($items) - 1;?>
-			<li<?php if($last):?> class="last"<?php endif;?>><a href="<?=$item->url?>"><?=$item->title?></a></li>
+			<li<?php if($last):?> class="last"<?php endif;?>><a href="<?php echo $item->url?>"><?php echo $item->title?></a></li>
 			<?php endforeach;?>
 		</ul>
-		<?php
-		$menu = ob_get_clean();
+		<?php 		$menu = ob_get_clean();
 	}else{
 		$menu = call_user_func($callback, $items);
 	}
@@ -1548,46 +1539,45 @@ function _save_meta_data($post_id, $meta_box){
  **/
 function _show_meta_boxes($post, $meta_box){
 	?>
-	<input type="hidden" name="meta_box_nonce" value="<?=wp_create_nonce(basename(__FILE__))?>"/>
+	<input type="hidden" name="meta_box_nonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
 	<table class="form-table">
 	<?php foreach($meta_box['fields'] as $field):
 		$current_value = get_post_meta($post->ID, $field['id'], true);?>
 		<tr>
-			<th><label for="<?=$field['id']?>"><?=$field['name']?></label></th>
+			<th><label for="<?php echo $field['id']?>"><?php echo $field['name']?></label></th>
 			<td>
 			<?php if($field['desc']):?>
 				<div class="description">
-					<?=$field['desc']?>
+					<?php echo $field['desc']?>
 				</div>
 			<?php endif;?>
 
 			<?php switch ($field['type']):
 				case 'text':?>
-				<input type="text" name="<?=$field['id']?>" id="<?=$field['id']?>" value="<?=($current_value) ? htmlentities($current_value) : $field['std']?>" />
+				<input type="text" name="<?php echo $field['id']?>" id="<?php echo $field['id']?>" value="<?php echo ($current_value) ? htmlentities($current_value) : $field['std']?>" />
 
 			<?php break; case 'textarea':?>
-				<textarea name="<?=$field['id']?>" id="<?=$field['id']?>" cols="60" rows="4"><?=($current_value) ? htmlentities($current_value) : $field['std']?></textarea>
+				<textarea name="<?php echo $field['id']?>" id="<?php echo $field['id']?>" cols="60" rows="4"><?php echo ($current_value) ? htmlentities($current_value) : $field['std']?></textarea>
 
 			<?php break; case 'select':?>
-				<select name="<?=$field['id']?>" id="<?=$field['id']?>">
-					<option value=""><?=($field['default']) ? $field['default'] : '--'?></option>
+				<select name="<?php echo $field['id']?>" id="<?php echo $field['id']?>">
+					<option value=""><?php echo ($field['default']) ? $field['default'] : '--'?></option>
 				<?php foreach ($field['options'] as $k=>$v):?>
-					<option <?=($current_value == $v) ? ' selected="selected"' : ''?> value="<?=$v?>"><?=$k?></option>
+					<option <?php echo ($current_value == $v) ? ' selected="selected"' : ''?> value="<?php echo $v?>"><?php echo $k?></option>
 				<?php endforeach;?>
 				</select>
 
 			<?php break; case 'radio':?>
 				<?php foreach ($field['options'] as $k=>$v):?>
-				<label for="<?=$field['id']?>_<?=slug($k, '_')?>"><?=$k?></label>
-				<input type="radio" name="<?=$field['id']?>" id="<?=$field['id']?>_<?=slug($k, '_')?>" value="<?=$v?>"<?=($current_value == $v) ? ' checked="checked"' : ''?> />
+				<label for="<?php echo $field['id']?>_<?php echo slug($k, '_')?>"><?php echo $k?></label>
+				<input type="radio" name="<?php echo $field['id']?>" id="<?php echo $field['id']?>_<?php echo slug($k, '_')?>" value="<?php echo $v?>"<?php echo ($current_value == $v) ? ' checked="checked"' : ''?> />
 				<?php endforeach;?>
 
 			<?php break; case 'checkbox':?>
-				<input type="checkbox" name="<?=$field['id']?>" id="<?=$field['id']?>"<?=($current_value) ? ' checked="checked"' : ''?> />
+				<input type="checkbox" name="<?php echo $field['id']?>" id="<?php echo $field['id']?>"<?php echo ($current_value) ? ' checked="checked"' : ''?> />
 
 			<?php break; case 'file':?>
-				<?php
-					$document_id = get_post_meta($post->ID, $field['id'], True);
+				<?php 					$document_id = get_post_meta($post->ID, $field['id'], True);
 					if ($document_id){
 						$document = get_post($document_id);
 						$url      = wp_get_attachment_url($document->ID);
@@ -1596,13 +1586,13 @@ function _show_meta_boxes($post, $meta_box){
 					}
 				?>
 				<?php if($document):?>
-				<a href="<?=$url?>"><?=$document->post_title?></a><br /><br />
+				<a href="<?php echo $url?>"><?php echo $document->post_title?></a><br /><br />
 				<?php endif;?>
-				<input type="file" id="file_<?=$post->ID?>" name="<?=$field['id']?>"><br />
+				<input type="file" id="file_<?php echo $post->ID?>" name="<?php echo $field['id']?>"><br />
 
 			<?php break; case 'help':?><!-- Do nothing for help -->
 			<?php break; default:?>
-				<p class="error">Don't know how to handle field of type '<?=$field['type']?>'</p>
+				<p class="error">Don't know how to handle field of type '<?php echo $field['type']?>'</p>
 			<?php break; endswitch;?>
 			<td>
 		</tr>
@@ -1610,9 +1600,8 @@ function _show_meta_boxes($post, $meta_box){
 	</table>
 
 	<?php if($meta_box['helptxt']):?>
-	<p><?=$meta_box['helptxt']?></p>
+	<p><?php echo $meta_box['helptxt']?></p>
 	<?php endif;?>
-	<?php
-}
+	<?php }
 
 ?>

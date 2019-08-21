@@ -3,7 +3,7 @@
 		<h2>Help</h2>
 
 		<?php if ( isset( $updated ) && $updated ) : ?>
-		<div class="updated fade"><p><strong><?=__( 'Options saved' ); ?></strong></p></div>
+		<div class="updated fade"><p><strong><?php echo __( 'Options saved' ); ?></strong></p></div>
 		<?php endif; ?>
 
 		<div class="sections">
@@ -79,14 +79,13 @@
 						<th scope="col">Additional Filters</th>
 					</tr>
 
-						<?php
-							$custom_post_types = installed_custom_post_types();
+						<?php 							$custom_post_types = installed_custom_post_types();
 
 							foreach ($custom_post_types as $custom_post_type) {
 						?>
 					<tr>
-						<td><?=$custom_post_type->singular_name?></td>
-						<td><?=$custom_post_type->name?>-list</td>
+						<td><?php echo $custom_post_type->singular_name?></td>
+						<td><?php echo $custom_post_type->name?>-list</td>
 
 						<td>
 							<ul>
@@ -101,20 +100,18 @@
 								}
 
 							?>
-								<li style="list-style: disc; margin-left: 15px;"><?=$tax?></li>
+								<li style="list-style: disc; margin-left: 15px;"><?php echo $tax?></li>
 							</ul>
 							<?php } ?>
 						</td>
 						<td>
 							<ul>
-							<?php
-								// if more than 1 taxonomy is assigned to the post type, show 'join'
+							<?php 								// if more than 1 taxonomy is assigned to the post type, show 'join'
 								// as being an available filter:
 								if (count($custom_post_type->taxonomies) > 1) {
 								?>
 									<li style="list-style: disc; margin-left: 15px;">join ('and', 'or')</li>
-								<?php
-								}
+								<?php 								}
 								?>
 									<li style="list-style: disc; margin-left: 15px;">limit (number)</li>
 							</ul>
@@ -139,8 +136,7 @@
 [person-list limit=5 join="and" categories="staff" org_groups="small"]</code></pre>
 
 
-				<?php
-				// As long as the Person post type is active, let's show info for person-picture-list:
+				<?php 				// As long as the Person post type is active, let's show info for person-picture-list:
 				if (post_type_exists('person')) { ?>
 
 				<h4>person-picture-list</h4>

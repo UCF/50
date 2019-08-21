@@ -1,6 +1,5 @@
 <?php get_header(); the_post(); ?>
-<?php
-$query = isset( $_GET['s'] ) ? $_GET['s'] : '';
+<?php $query = isset( $_GET['s'] ) ? $_GET['s'] : '';
 ?>
 	<div class="row page-content" id="search-results">
 		<div class="span9">
@@ -19,13 +18,13 @@ $query = isset( $_GET['s'] ) ? $_GET['s'] : '';
 					<?php endwhile;?>
 					</ul>
 				<?php else:?>
-					<p>No results found for "<?=htmlentities( $query )?>".</p>
+					<p>No results found for "<?php echo htmlentities( $query )?>".</p>
 				<?php endif;?>
 			</article>
 		</div>
 
 		<div id="sidebar" class="span3">
-			<?=get_sidebar();?>
+			<?php echo get_sidebar();?>
 		</div>
 	</div>
 	<div class="push"></div>

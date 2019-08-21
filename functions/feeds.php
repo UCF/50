@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /**
  * Using the user defined value for Flickr ID set in the admin, will return the 
  * photostream URL for that ID.  Will return null if no id is set.
@@ -224,17 +223,16 @@ function display_flickr($header='h2'){
 	$photos   = FlickrManager::get_photos($feed_url, 0, $count);
 	
 	if(count($photos)):?>
-		<<?=$header?>><a href="<?=get_flickr_stream_url()?>">Flickr Stream</a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo get_flickr_stream_url()?>">Flickr Stream</a></<?php echo $header?>>
 		<ul class="flickr-stream">
 			<?php foreach($photos as $photo):?>
-			<li><a class="ignore-external" href="<?=$photo['page']?>"><img height="75" width="75" src="<?=$photo['square']?>" title="<?=$photo['title']?>" /></a></li>
+			<li><a class="ignore-external" href="<?php echo $photo['page']?>"><img height="75" width="75" src="<?php echo $photo['square']?>" title="<?php echo $photo['title']?>" /></a></li>
 			<?php endforeach;?>
 		</ul>
 	<?php else:?>
 		<p>Unable to fetch flickr feed.</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function display_events($header='h2'){?>
@@ -242,20 +240,19 @@ function display_events($header='h2'){?>
 	<?php $count   = $options['events_max_items']?>
 	<?php $events  = get_events(0, ($count) ? $count : 3);?>
 	<?php if(count($events)):?>
-		<<?=$header?>><a href="<?=$events[0]->get_feed()->get_link()?>"><?=$events[0]->get_feed()->get_title()?></a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo $events[0]->get_feed()->get_link()?>"><?php echo $events[0]->get_feed()->get_title()?></a></<?php echo $header?>>
 		<table class="events">
 			<?php foreach($events as $item):?>
 			<tr class="item">
 				<td class="date">
-					<?php
-						$month = $item->get_date("M");
+					<?php 						$month = $item->get_date("M");
 						$day   = $item->get_date("j");
 					?>
-					<div class="month"><?=$month?></div>
-					<div class="day"><?=$day?></div>
+					<div class="month"><?php echo $month?></div>
+					<div class="day"><?php echo $day?></div>
 				</td>
 				<td class="title">
-					<a href="<?=$item->get_link()?>" class="wrap ignore-external"><?=$item->get_title()?></a>
+					<a href="<?php echo $item->get_link()?>" class="wrap ignore-external"><?php echo $item->get_title()?></a>
 				</td>
 			</tr>
 			<?php endforeach;?>
@@ -263,8 +260,7 @@ function display_events($header='h2'){?>
 	<?php else:?>
 		<p>Unable to fetch events</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function display_news($header='h2'){?>
@@ -272,19 +268,19 @@ function display_news($header='h2'){?>
 	<?php $count   = $options['news_max_items'];?>
 	<?php $news    = get_news(0, ($count) ? $count : 2);?>
 	<?php if(count($news)):?>
-		<<?=$header?>><a href="<?=$news[0]->get_feed()->get_link()?>"><?=$news[0]->get_feed()->get_title()?></a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo $news[0]->get_feed()->get_link()?>"><?php echo $news[0]->get_feed()->get_title()?></a></<?php echo $header?>>
 		<ul class="news">
 			<?php foreach($news as $key=>$item): $image = get_article_image($item); $first = ($key == 0);?>
 			<li class="item<?php if($first):?> first<?php else:?> not-first<?php endif;?>">
-				<h3 class="title"><a href="<?=$item->get_link()?>" class="ignore-external title"><?=$item->get_title()?></a></h3>
+				<h3 class="title"><a href="<?php echo $item->get_link()?>" class="ignore-external title"><?php echo $item->get_title()?></a></h3>
 				<p>
-					<a class="image ignore-external" href="<?=$item->get_link()?>">
+					<a class="image ignore-external" href="<?php echo $item->get_link()?>">
 						<?php if($image):?>
-						<img src="<?=$image?>" alt="Feed image for <?=$item->get_title()?>" />
+						<img src="<?php echo $image?>" alt="Feed image for <?php echo $item->get_title()?>" />
 						<?php endif;?>
 					</a>
-					<a class="description ignore-external"  href="<?=$item->get_link()?>">
-						<?= $item->get_description();?>
+					<a class="description ignore-external"  href="<?php echo $item->get_link()?>">
+						<?php echo  $item->get_description();?>
 					</a>
 				</p>
 				<div class="end"><!-- --></div>
@@ -295,8 +291,7 @@ function display_news($header='h2'){?>
 	<?php else:?>
 		<p>Unable to fetch news.</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function get_events($start=null, $limit=null){

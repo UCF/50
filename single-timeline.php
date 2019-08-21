@@ -1,7 +1,6 @@
 <?php disallow_direct_load('single.php');?>
 <?php the_post();?>
-<?php
-if(isset($_GET['json'])) :
+<?php if(isset($_GET['json'])) :
 
 	# See Timeline formatting spec at http://timeline.verite.co/#fileformat
 	$to_json = array(
@@ -91,7 +90,7 @@ else : ?>
 	</head>
 	<body>
 		<div id="header" style="padding-bottom:0;">
-			<h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+			<h1><a href="<?php echo bloginfo('url')?>"><?php echo bloginfo('name')?></a></h1>
 		</div>
 		<div id="timeline"></div>
 		<?php echo "\n".footer_()."\n"; ?>
@@ -99,9 +98,9 @@ else : ?>
 			<script type="text/javascript">
 				$().ready(function() {
 					var timeline = new VMM.Timeline(),
-						event_post_title = <?= isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
+						event_post_title = <?php echo  isset($_GET['event_post_title']) ? "'".$_GET['event_post_title']."'" : 'false' ?>,
 						marker_index = false;
-					timeline.init('<?=get_permalink($post->ID);?>?json=true<?=isset($_GET['category']) ? '&category='.$_GET['category'] : ''?>');
+					timeline.init('<?php echo get_permalink($post->ID);?>?json=true<?php echo isset($_GET['category']) ? '&category='.$_GET['category'] : ''?>');
 					$('#timeline').bind('LOADED',
 						function() {
 							if(event_post_title != false) {
@@ -122,6 +121,5 @@ else : ?>
 		<?php endif; ?>
 	</body>
 </html>
-<?php
-endif;
+<?php endif;
 ?>

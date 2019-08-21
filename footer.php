@@ -18,11 +18,11 @@
 								<div class="maintained">
 									Site maintained by the <br />
 									<?php if($options['site_contact'] and $options['organization_name']):?>
-									<a href="mailto:<?=$options['site_contact']?>"><?=$options['organization_name']?></a>
+									<a href="mailto:<?php echo $options['site_contact']?>"><?php echo $options['organization_name']?></a>
 									<?php elseif($options['site_contact']):?>
-									<a href="mailto:<?=$options['site_contact']?>"><?=$options['site_contact']?></a>
+									<a href="mailto:<?php echo $options['site_contact']?>"><?php echo $options['site_contact']?></a>
 									<?php elseif($options['organization_name']):?>
-									<?=$options['organization_name']?>
+									<?php echo $options['organization_name']?>
 									<?php endif;?>
 								</div>
 								<?php endif;?>
@@ -36,5 +36,5 @@
 	<!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<?="\n".footer_()."\n"?>
+	<?php echo "\n".footer_()."\n"?>
 </html>

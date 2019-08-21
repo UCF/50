@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 if (is_login()){
 	add_action('login_head', 'login_scripts', 0);
 }
@@ -22,8 +21,8 @@ function shortcode_interface_html(){
 	$shortcodes = array_diff_key($shortcodes, $ignore);
 	ksort($shortcodes);
 	?>
-	<input type="hidden" name="shortcode-form" id="shortcode-form" value="<?=THEME_URL."/includes/shortcode-form.php"?>" />
-	<input type="hidden" name="shortcode-text" id="shortcode-text" value="<?=THEME_URL."/includes/shortcode-text.php"?>" />
+	<input type="hidden" name="shortcode-form" id="shortcode-form" value="<?php echo THEME_URL."/includes/shortcode-form.php"?>" />
+	<input type="hidden" name="shortcode-text" id="shortcode-text" value="<?php echo THEME_URL."/includes/shortcode-text.php"?>" />
 	<input type="text" name="shortcode-search" id="shortcode-search" placeholder="Find shortcodes..."/>
 	<button type="button">Search</button>
 
@@ -34,13 +33,12 @@ function shortcode_interface_html(){
 	<select name="shortcode-select" id="shortcode-select">
 		<option value="">--Choose Shortcode--</option>
 		<?php foreach($shortcodes as $name=>$callback):?>
-		<option class="shortcode" value="<?=$name?>"><?=$name?></option>
+		<option class="shortcode" value="<?php echo $name?>"><?php echo $name?></option>
 		<?php endforeach;?>
 	</select>
 
-	<p>For more information about available shortcodes, please see the <a href="<?=get_admin_url()?>admin.php?page=theme-help#shortcodes">help documentation for shortcodes</a>.</p>
-	<?php
-}
+	<p>For more information about available shortcodes, please see the <a href="<?php echo get_admin_url()?>admin.php?page=theme-help#shortcodes">help documentation for shortcodes</a>.</p>
+	<?php }
 
 
 function shortcode_interface(){
@@ -64,9 +62,8 @@ add_action('add_meta_boxes', 'shortcode_interface');
  **/
 function login_scripts(){
 	ob_start();?>
-	<link rel="stylesheet" href="<?=THEME_CSS_URL?>/admin.css" type="text/css" media="screen" charset="utf-8" />
-	<?php
-	$out = ob_get_clean();
+	<link rel="stylesheet" href="<?php echo THEME_CSS_URL?>/admin.css" type="text/css" media="screen" charset="utf-8" />
+	<?php 	$out = ob_get_clean();
 	print $out;
 }
 

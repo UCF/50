@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 
 /**
  * Create a javascript slideshow of each top level element in the
@@ -46,17 +45,16 @@ function sc_slideshow($attr, $content=null){
 	ob_start();
 	?>
 	<div
-		class="slideshow <?=$animation?>"
-		data-tranlen="<?=$tran_len?>"
-		data-cyclelen="<?=$cycle_len?>"
-		style="height: <?=$height?>; width: <?=$width?>;"
+		class="slideshow <?php echo $animation?>"
+		data-tranlen="<?php echo $tran_len?>"
+		data-cyclelen="<?php echo $cycle_len?>"
+		style="height: <?php echo $height?>; width: <?php echo $width?>;"
 	>
 		<?php foreach($items as $item):?>
-		<?=$item?>
+		<?php echo $item?>
 		<?php endforeach;?>
 	</div>
-	<?php
-	$html = ob_get_clean();
+	<?php 	$html = ob_get_clean();
 
 	return $html;
 }
@@ -72,17 +70,17 @@ add_shortcode('slideshow', 'sc_slideshow');
  **/
 function sc_search_form($search_post_type = '') {
 	ob_start();?>
-	<form role="search" method="get" class="search-form" action="<?=home_url( '/' )?>">
+	<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' )?>">
 		<div>
 			<label for="s">Search:</label>
 			<input type="text" value="<?php echo isset( $_GET['s'] ) ? htmlentities( $_GET['s'] ) : ''; ?>" name="s" class="search-field" id="s" placeholder="Search" />
 			<button type="submit" class="search-submit">Search</button>
 			<?php if($search_post_type != '') { ?>
-			<input type="hidden" name="post_type" value="<?=$search_post_type?>" />
+			<input type="hidden" name="post_type" value="<?php echo $search_post_type?>" />
 			<?php } ?>
 		</div>
 	</form>
-	<?
+	<?php 
 	return ob_get_clean();
 }
 add_shortcode('search-form', 'sc_search_form');
@@ -109,7 +107,7 @@ function sc_person_picture_list($atts) {
 
 	ob_start();
 
-	?><div class="person-picture-list"><?
+	?><div class="person-picture-list"><?php 
 	$count = 0;
 	foreach($people as $person) {
 
@@ -118,25 +116,25 @@ function sc_person_picture_list($atts) {
 		$link = ($person->post_content != '') ? True : False;
 		if( ($count % $row_size) == 0) {
 			if($count > 0) {
-				?></div><?
+				?></div><?php 
 			}
-			?><div class="row"><?
+			?><div class="row"><?php 
 		}
 
 		?>
 		<div class="span2 person-picture-wrap">
-			<?php if($link) {?><a href="<?=get_permalink($person->ID)?>"><?php } ?>
-				<img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
-				<div class="name"><?=Person::get_name($person)?></div>
-				<div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
-				<?php if($link) {?></a><?}?>
+			<?php if($link) {?><a href="<?php echo get_permalink($person->ID)?>"><?php } ?>
+				<img src="<?php echo $image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
+				<div class="name"><?php echo Person::get_name($person)?></div>
+				<div class="title"><?php echo get_post_meta($person->ID, 'person_jobtitle', True)?></div>
+				<?php if($link) {?></a><?php }?>
 		</div>
-		<?
+		<?php 
 		$count++;
 	}
 	?>	</div>
 	</div>
-	<?
+	<?php 
 	return ob_get_clean();
 }
 add_shortcode('person-picture-list', 'sc_person_picture_list');
@@ -165,18 +163,17 @@ function sc_publication($attr, $content=null){
 	ob_start(); ?>
 
 	<div class="pub">
-		<a class="track pub-track" title="<?=$pub->post_title?>" data-toggle="modal" href="#pub-modal-<?=$pub->ID?>">
-			<?=$thumb?><span><?=$pub->post_title?></span>
+		<a class="track pub-track" title="<?php echo $pub->post_title?>" data-toggle="modal" href="#pub-modal-<?php echo $pub->ID?>">
+			<?php echo $thumb?><span><?php echo $pub->post_title?></span>
 		</a>
-		<p class="pub-desc"><?=$pub->post_content?></p>
-		<div class="modal hide fade" id="pub-modal-<?=$pub->ID?>" role="dialog" aria-labelledby="<?=$pub->post_title?>" aria-hidden="true">
-			<?=$iframe?>
+		<p class="pub-desc"><?php echo $pub->post_content?></p>
+		<div class="modal hide fade" id="pub-modal-<?php echo $pub->ID?>" role="dialog" aria-labelledby="<?php echo $pub->post_title?>" aria-hidden="true">
+			<?php echo $iframe?>
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
 		</div>
 	</div>
 
-	<?php
-	return ob_get_clean();
+	<?php 	return ob_get_clean();
 }
 add_shortcode('publication', 'sc_publication');
 
