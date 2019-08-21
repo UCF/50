@@ -16,7 +16,7 @@
 					}
 				?>
 				<?php if($content):?>
-				<?=$content?>
+				<?php echo $content?>
 				<?php else:?>
 				<p>The page you requested doesn't exist.  Sorry about that.</p>
 				<?php endif;?>
@@ -24,7 +24,7 @@
 		</div>
 
 		<div id="sidebar" class="span3">
-			<?=get_sidebar();?>
+			<?php echo get_sidebar();?>
 		</div>
 	</div>
 	<div class="push"></div>

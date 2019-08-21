@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Using the user defined value for Flickr ID set in the admin, will return the 
+ * Using the user defined value for Flickr ID set in the admin, will return the
  * photostream URL for that ID.  Will return null if no id is set.
  *
  * @return string
@@ -11,7 +10,7 @@ function get_flickr_feed_url(){
 	$rss_url = "http://api.flickr.com/services/feeds/photos_public.gne?id=%s&amp;lang=en-us&amp;format=rss_200";
 	$options = get_option(THEME_OPTIONS_NAME);
 	$id = $options['flickr_id'];
-	
+
 	if ($id){
 		return sprintf($rss_url, $id);
 	}else{
@@ -24,7 +23,7 @@ function get_flickr_stream_url(){
 	$rss_url = "http://flickr.com/photos/%s";
 	$options = get_option(THEME_OPTIONS_NAME);
 	$id = $options['flickr_id'];
-	
+
 	if ($id){
 		return sprintf($rss_url, $id);
 	}else{
@@ -39,7 +38,7 @@ function get_article_image($article){
 	}else{
 		$matches = array();
 		$found   = preg_match('/<img[^>]+src=[\'\"]([^\'\"]+)[\'\"][^>]+>/i',  $article->get_content(), $matches);
-		if($found){ 
+		if($found){
 			return $matches[1];
 		}
 	}
@@ -58,7 +57,7 @@ class FeedManager{
 	static private
 		$feeds        = array(),
 		$cache_length = 0xD2F0;
-	
+
 	/**
 	 * Provided a URL, will return an array representing the feed item for that
 	 * URL.  A feed item contains the content, url, simplepie object, and failure
@@ -70,12 +69,12 @@ class FeedManager{
 	static protected function __new_feed($url){
 		$timer = Timer::start();
 		require_once(THEME_DIR.'/third-party/simplepie.php');
-		
+
 		$simplepie = null;
 		$failed    = False;
 		$cache_key = 'feedmanager-'.md5($url);
 		$content   = get_site_transient($cache_key);
-		
+
 		if ($content === False){
 			$content = wp_remote_retrieve_body( wp_remote_get( $url ) );
 			if ( ! $content){
@@ -86,13 +85,13 @@ class FeedManager{
 				set_site_transient($cache_key, $content, self::$cache_length);
 			}
 		}
-		
+
 		if ($content){
 			$simplepie = new SimplePie();
 			$simplepie->set_raw_data($content);
 			$simplepie->init();
 			$simplepie->handle_content_type();
-			
+
 			if ($simplepie->error){
 				error_log($simplepie->error);
 				$simplepie = null;
@@ -101,7 +100,7 @@ class FeedManager{
 		}else{
 			$failed = True;
 		}
-		
+
 		$elapsed = round($timer->elapsed() * 1000);
 		debug("__new_feed: {$elapsed} milliseconds");
 		return array(
@@ -111,8 +110,8 @@ class FeedManager{
 			'failed'    => $failed,
 		);
 	}
-	
-	
+
+
 	/**
 	 * Returns all the items for a given feed defined by URL
 	 *
@@ -128,10 +127,10 @@ class FeedManager{
 		}else{
 			return array();
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Retrieve the current cache expiration value.
 	 *
@@ -141,8 +140,8 @@ class FeedManager{
 	static public function get_cache_expiration(){
 		return self::$cache_length;
 	}
-	
-	
+
+
 	/**
 	 * Set the cache expiration length for all feeds from this manager.
 	 *
@@ -154,8 +153,8 @@ class FeedManager{
 			self::$cache_length = (int)$expire;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Returns all items from the feed defined by URL and limited by the start
 	 * and limit arguments.
@@ -165,7 +164,7 @@ class FeedManager{
 	 **/
 	static public function get_items($url, $start=null, $limit=null){
 		if ($start === null){$start = 0;}
-		
+
 		$items = self::__get_items($url);
 		$items = array_slice($items, $start, $limit);
 		return $items;
@@ -181,10 +180,10 @@ class FlickrManager extends FeedManager{
 		'thumbnail' => 't',
 		'square'    => 's',
 	);
-	
+
 	static protected function __items_to_photos($items){
 		$photos = array();
-		
+
 		foreach($items as $item){
 			$title = $item->get_title();
 			$urls  = array();
@@ -193,7 +192,7 @@ class FlickrManager extends FeedManager{
 			}catch (Exception $e){
 				continue;
 			}
-			
+
 			foreach(FlickrManager::$sizes as $key=>$size){
 				$size             = "_{$size}.jpg";
 				$urls[$key]       = str_replace('_b.jpg', $size, $url);
@@ -205,11 +204,11 @@ class FlickrManager extends FeedManager{
 		}
 		return $photos;
 	}
-	
-	
+
+
 	static public function get_photos($url, $start=null, $limit=null){
 		if ($start === null){$start = 0;}
-		
+
 		$items  = self::__get_items($url);
 		$photos = array_slice(self::__items_to_photos($items), $start, $limit);
 		return $photos;
@@ -222,19 +221,18 @@ function display_flickr($header='h2'){
 	$count    = $options['flickr_max_items'];
 	$feed_url = get_flickr_feed_url();
 	$photos   = FlickrManager::get_photos($feed_url, 0, $count);
-	
+
 	if(count($photos)):?>
-		<<?=$header?>><a href="<?=get_flickr_stream_url()?>">Flickr Stream</a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo get_flickr_stream_url()?>">Flickr Stream</a></<?php echo $header?>>
 		<ul class="flickr-stream">
 			<?php foreach($photos as $photo):?>
-			<li><a class="ignore-external" href="<?=$photo['page']?>"><img height="75" width="75" src="<?=$photo['square']?>" title="<?=$photo['title']?>" /></a></li>
+			<li><a class="ignore-external" href="<?php echo $photo['page']?>"><img height="75" width="75" src="<?php echo $photo['square']?>" title="<?php echo $photo['title']?>" /></a></li>
 			<?php endforeach;?>
 		</ul>
 	<?php else:?>
 		<p>Unable to fetch flickr feed.</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function display_events($header='h2'){?>
@@ -242,20 +240,19 @@ function display_events($header='h2'){?>
 	<?php $count   = $options['events_max_items']?>
 	<?php $events  = get_events(0, ($count) ? $count : 3);?>
 	<?php if(count($events)):?>
-		<<?=$header?>><a href="<?=$events[0]->get_feed()->get_link()?>"><?=$events[0]->get_feed()->get_title()?></a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo $events[0]->get_feed()->get_link()?>"><?php echo $events[0]->get_feed()->get_title()?></a></<?php echo $header?>>
 		<table class="events">
 			<?php foreach($events as $item):?>
 			<tr class="item">
 				<td class="date">
-					<?php
-						$month = $item->get_date("M");
+					<?php 						$month = $item->get_date("M");
 						$day   = $item->get_date("j");
 					?>
-					<div class="month"><?=$month?></div>
-					<div class="day"><?=$day?></div>
+					<div class="month"><?php echo $month?></div>
+					<div class="day"><?php echo $day?></div>
 				</td>
 				<td class="title">
-					<a href="<?=$item->get_link()?>" class="wrap ignore-external"><?=$item->get_title()?></a>
+					<a href="<?php echo $item->get_link()?>" class="wrap ignore-external"><?php echo $item->get_title()?></a>
 				</td>
 			</tr>
 			<?php endforeach;?>
@@ -263,8 +260,7 @@ function display_events($header='h2'){?>
 	<?php else:?>
 		<p>Unable to fetch events</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function display_news($header='h2'){?>
@@ -272,19 +268,19 @@ function display_news($header='h2'){?>
 	<?php $count   = $options['news_max_items'];?>
 	<?php $news    = get_news(0, ($count) ? $count : 2);?>
 	<?php if(count($news)):?>
-		<<?=$header?>><a href="<?=$news[0]->get_feed()->get_link()?>"><?=$news[0]->get_feed()->get_title()?></a></<?=$header?>>
+		<<?php echo $header?>><a href="<?php echo $news[0]->get_feed()->get_link()?>"><?php echo $news[0]->get_feed()->get_title()?></a></<?php echo $header?>>
 		<ul class="news">
 			<?php foreach($news as $key=>$item): $image = get_article_image($item); $first = ($key == 0);?>
 			<li class="item<?php if($first):?> first<?php else:?> not-first<?php endif;?>">
-				<h3 class="title"><a href="<?=$item->get_link()?>" class="ignore-external title"><?=$item->get_title()?></a></h3>
+				<h3 class="title"><a href="<?php echo $item->get_link()?>" class="ignore-external title"><?php echo $item->get_title()?></a></h3>
 				<p>
-					<a class="image ignore-external" href="<?=$item->get_link()?>">
+					<a class="image ignore-external" href="<?php echo $item->get_link()?>">
 						<?php if($image):?>
-						<img src="<?=$image?>" alt="Feed image for <?=$item->get_title()?>" />
+						<img src="<?php echo $image?>" alt="Feed image for <?php echo $item->get_title()?>" />
 						<?php endif;?>
 					</a>
-					<a class="description ignore-external"  href="<?=$item->get_link()?>">
-						<?= $item->get_description();?>
+					<a class="description ignore-external"  href="<?php echo $item->get_link()?>">
+						<?php echo  $item->get_description();?>
 					</a>
 				</p>
 				<div class="end"><!-- --></div>
@@ -295,8 +291,7 @@ function display_news($header='h2'){?>
 	<?php else:?>
 		<p>Unable to fetch news.</p>
 	<?php endif;?>
-<?php
-}
+<?php }
 
 
 function get_events($start=null, $limit=null){

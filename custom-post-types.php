@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Abstract class for defining custom post types.
  *
@@ -218,15 +217,14 @@ abstract class CustomPostType{
 
 		ob_start();
 		?>
-		<ul class="<?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
+		<ul class="<?php if($css_classes):?><?php echo $css_classes?><?php else:?><?php echo $class->options('name')?>-list<?php endif;?>">
 			<?php foreach($objects as $o):?>
 			<li>
-				<?=$class->toHTML($o)?>
+				<?php echo $class->toHTML($o)?>
 			</li>
 			<?php endforeach;?>
 		</ul>
-		<?php
-		$html = ob_get_clean();
+		<?php 		$html = ob_get_clean();
 		return $html;
 	}
 
