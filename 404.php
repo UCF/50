@@ -6,7 +6,8 @@
 		<div class="span9">
 			<article>
 				<h1>Page Not Found</h1>
-				<?php 					$content = '';
+				<?php
+					$content = '';
 					$page = get_page_by_title('404');
 					if($page){
 						$content = $page->post_content;

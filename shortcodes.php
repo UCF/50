@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Create a javascript slideshow of each top level element in the
@@ -80,7 +80,7 @@ function sc_search_form($search_post_type = '') {
 			<?php } ?>
 		</div>
 	</form>
-	<?php 
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('search-form', 'sc_search_form');
@@ -107,7 +107,7 @@ function sc_person_picture_list($atts) {
 
 	ob_start();
 
-	?><div class="person-picture-list"><?php 
+	?><div class="person-picture-list"><?php
 	$count = 0;
 	foreach($people as $person) {
 
@@ -116,9 +116,9 @@ function sc_person_picture_list($atts) {
 		$link = ($person->post_content != '') ? True : False;
 		if( ($count % $row_size) == 0) {
 			if($count > 0) {
-				?></div><?php 
+				?></div><?php
 			}
-			?><div class="row"><?php 
+			?><div class="row"><?php
 		}
 
 		?>
@@ -129,12 +129,12 @@ function sc_person_picture_list($atts) {
 				<div class="title"><?php echo get_post_meta($person->ID, 'person_jobtitle', True)?></div>
 				<?php if($link) {?></a><?php }?>
 		</div>
-		<?php 
+		<?php
 		$count++;
 	}
 	?>	</div>
 	</div>
-	<?php 
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('person-picture-list', 'sc_person_picture_list');

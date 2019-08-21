@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (is_login()){
 	add_action('login_head', 'login_scripts', 0);
 }
